@@ -1,162 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>遊べるお寺プロジェクト | 遊べろ！テラプロジェクト</title>
-  <meta name="description" content="遊べろ！テラプロジェクト公式。活動紹介・寄付/応援・販売情報・最新のお知らせ。">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>遊べるお寺プロジェクト</title>
   <style>
-    :root{
-      --accent:#2f855a; /* 深めの緑（仏教系と相性◎） */
-      --bg:#fafafa;
-      --ink:#1a1a1a;
-      --muted:#6b7280;
-      --card:#ffffff;
-    }
-    *{box-sizing:border-box}
-    body{margin:0; font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; color:var(--ink); background:var(--bg); line-height:1.7}
-    a{color:var(--accent); text-decoration:none}
-    a:hover{text-decoration:underline}
-    header{padding:28px 16px 8px}
-    .wrap{max-width:1080px; margin:0 auto; padding:0 16px}
-    .brand{display:flex; align-items:center; gap:12px}
-    .brand h1{margin:0; font-size:clamp(22px,4vw,28px)}
-    nav{display:flex; gap:12px; flex-wrap:wrap; margin:12px 0 8px}
-    nav a{padding:8px 12px; border:1px solid #e5e7eb; border-radius:10px; background:#fff}
-
-    .hero{padding:28px 0 12px}
-    .hero h2{margin:.2em 0; font-size:clamp(24px,5vw,36px)}
-    .hero p{margin:.3em 0; color:var(--muted)}
-
-    .grid{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin:18px 0}
-    .card{background:var(--card); border:1px solid #e5e7eb; border-radius:14px; padding:18px}
-    .card h3{margin:.2em 0 .4em; font-size:20px}
-    .badge{display:inline-block; padding:4px 8px; background:var(--accent); color:#fff; border-radius:999px; font-size:12px}
-
-    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .btn{display:inline-block; padding:10px 14px; border-radius:10px; border:1px solid var(--accent); color:#fff; background:var(--accent)}
-    .btn--ghost{background:#fff; color:var(--accent)}
-
-    section{padding:24px 0; border-top:1px solid #e5e7eb}
-    section h2{margin:0 0 10px; font-size:clamp(20px,4vw,26px)}
-    ul.plain{padding-left:20px; margin:8px 0}
-    .note-list li{margin:6px 0}
-
-    footer{margin-top:24px; border-top:1px solid #e5e7eb; padding:18px 0; color:var(--muted); font-size:14px; text-align:center}
+    body { font-family: sans-serif; margin: 0; line-height: 1.6; }
+    header { background: #f5f5f5; padding: 1rem; text-align: center; }
+    nav { background: #333; color: #fff; padding: 0.5rem; }
+    nav a { color: #fff; margin: 0 0.5rem; text-decoration: none; }
+    section { padding: 2rem; }
+    footer { background: #f5f5f5; text-align: center; padding: 1rem; }
+    .hero { text-align: center; padding: 4rem 2rem; background: #e8f4f8; }
+    .hero h1 { margin-bottom: 0.5rem; }
+    .cards { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; width: 250px; text-align: center; }
   </style>
 </head>
 <body>
-  <header class="wrap">
-    <div class="brand">
-      <!-- ロゴを置く場合は /assets/logo.png を作り下のimgのコメントアウトを外す -->
-      <!-- <img src="/assets/logo.png" alt="遊べろ！ロゴ" width="40" height="40"> -->
-      <h1>遊べろ！テラプロジェクト</h1>
+
+<header>
+  <h1>遊べるお寺プロジェクト</h1>
+  <p>楽しく学び、遊んで繋がる。</p>
+</header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Project</a>
+  <a href="#">Activities</a>
+  <a href="#">Schedule</a>
+  <a href="#">Support</a>
+  <a href="#">About</a>
+</nav>
+
+<section class="hero">
+  <h1>ようこそ！</h1>
+  <p>煩悩まみれの遊べる住職が、学びと遊びで人と地域をつなぎます。</p>
+</section>
+
+<section>
+  <h2>メイン導線</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>イベント予定</h3>
+      <p>今後のスケジュールを確認できます。</p>
     </div>
-    <nav>
-      <a href="#about">理念</a>
-      <a href="#activities">活動紹介</a>
-      <a href="#support">寄付・応援</a>
-      <a href="#shop">販売</a>
-      <a href="#news">最新情報</a>
-      <a href="https://note.com/" target="_blank" rel="noopener">note</a>
-      <!-- 必要ならLINEやXなど追加 -->
-      <!-- <a href="https://line.me/R/ti/p/xxxx" target="_blank" rel="noopener">公式LINE</a> -->
-    </nav>
-  </header>
+    <div class="card">
+      <h3>活動メニュー</h3>
+      <p>健康麻雀・謎解き・ボードゲームなど。</p>
+    </div>
+    <div class="card">
+      <h3>応援・ご依頼</h3>
+      <p>寄付・物販・出張講座などのご案内。</p>
+    </div>
+  </div>
+</section>
 
-  <main class="wrap">
-    <!-- ヒーロー -->
-    <section class="hero">
-      <span class="badge">公式サイト</span>
-      <h2>お寺を「遊べる・集える・学べる」場所に。</h2>
-      <p>ボードゲーム会や蟲神器講習会、ゆる座禅、お寺カフェなど。世代を超えてゆるくつながる場づくりを進めています。</p>
-      <div class="cta">
-        <a class="btn" href="#activities">活動を見る</a>
-        <a class="btn btn--ghost" href="#support">寄付・応援</a>
-      </div>
-    </section>
+<footer>
+  <p>&copy; 2025 遊べるお寺プロジェクト</p>
+</footer>
 
-    <!-- 理念 -->
-    <section id="about">
-      <h2>理念</h2>
-      <p>「遊び」をきっかけに、人と人がほどよく関われるコミュニティを。宗派や世代をこえて、安心して立ち寄れるお寺のあり方を模索します。</p>
-    </section>
-
-    <!-- 活動紹介：バナー式で増やせます -->
-    <section id="activities">
-      <h2>活動紹介</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>ボードゲーム会</h3>
-          <p>月1回開催。初心者歓迎・手ぶらOK。異世代交流の入り口に。</p>
-          <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">開催情報</a>
-        </div>
-        <div class="card">
-          <h3>蟲神器 講習会/大会</h3>
-          <p>ルール説明から体験会まで。小学生～大人まで楽しめます。</p>
-          <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">次回予定</a>
-        </div>
-        <div class="card">
-          <h3>ゆる座禅・お寺カフェ</h3>
-          <p>「ととのえる」時間をライトに。初めてでも安心の入門回。</p>
-          <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">参加方法</a>
-        </div>
-      </div>
-      <p style="margin-top:10px;color:var(--muted)">※ バナーは後からいくつでも追加できます。</p>
-    </section>
-
-    <!-- 寄付・応援 -->
-    <section id="support">
-      <h2>寄付・応援</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>寄付で応援</h3>
-          <p>場づくり・備品・イベント運営に活用します。</p>
-          <a class="btn" href="#" target="_blank" rel="noopener">寄付の方法</a>
-        </div>
-        <div class="card">
-          <h3>ボランティア</h3>
-          <p>会場準備や受付、撮影などのサポート募集中。</p>
-          <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">参加申し込み</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 販売 -->
-    <section id="shop">
-      <h2>販売</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>オリジナルグッズ</h3>
-          <p>シール/トランプ/御朱印風カードなど（準備中）。</p>
-          <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">オンラインショップ</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 最新情報（note連携） -->
-    <section id="news">
-      <h2>最新情報</h2>
-      <p>活動レポートや告知は <a href="https://note.com/" target="_blank" rel="noopener">note</a> で更新しています。</p>
-      <ul class="plain note-list">
-        <!-- ここは新着記事のたびにリンクを1行追加するだけ -->
-        <li><a href="#" target="_blank" rel="noopener">【サンプル】ボドゲ会レポート（2025/03/xx）</a></li>
-        <li><a href="#" target="_blank" rel="noopener">【サンプル】蟲神器 体験会のお知らせ（2025/03/xx）</a></li>
-      </ul>
-    </section>
-
-    <!-- 連絡先 -->
-    <section id="contact">
-      <h2>お問い合わせ</h2>
-      <ul class="plain">
-        <li>メール：<a href="mailto:contact@example.com">contact@example.com</a></li>
-        <!-- LINEやフォームのURLがあれば追加 -->
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    © 遊べろ！テラプロジェクト
-  </footer>
 </body>
 </html>
+
