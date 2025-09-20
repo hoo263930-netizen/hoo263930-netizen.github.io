@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -21,20 +19,26 @@
       font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',system-ui,-apple-system,sans-serif;
       color:var(--ink);
       background:var(--paper);
+
+      /* ここを追加 */
+      border-left: 20px solid var(--sand);   /* 左の黄色い帯 */
+      border-right: 20px solid var(--sand);  /* 右の黄色い帯 */
     }
 
     /* ==== Header: 画像を切らずに横いっぱい（<img>方式） ==== */
-    .site-header{ position:relative; }
+    .site-header{
+      position:relative;
+    }
     .site-header img.hero{
       display:block;
       width:100%;
-      height:auto; /* トリミングしない */
+      height:auto;     /* ←トリミングしない */
     }
 
-    /* 画像の下端にナビを重ねる（ナビ自体はコンパクト） */
+    /* 画像の下端にナビを重ねる（ナビ自体は今の大きさのまま） */
     .nav-container{
       position:absolute;
-      bottom:-8px;                 /* -6〜-14pxで微調整OK */
+      bottom:-10px;                    
       left:50%;
       transform:translateX(-50%);
       width:100%;
@@ -46,9 +50,9 @@
     .nav ul{
       list-style:none;
       margin:0;
-      padding:5px 10px;            /* タイト目 */
+      padding:6px 12px;
       display:flex;
-      gap:.9rem;
+      gap:1rem;
       background:rgba(255,255,255,.85);
       border-radius:10px 10px 0 0;
       border:3px solid #000;
@@ -76,7 +80,7 @@
     footer{ background:var(--leaf); color:#fff; padding:24px 16px; text-align:center; font-size:.95rem; margin-top:32px; }
 
     /* ==== Simple carousel (hero gallery) ==== */
-    .carousel{ max-width:1100px; margin:18px auto 0; padding:0 20px 28px; }
+    .carousel{ max-width:1100px; margin: 14px auto 0; padding: 0 20px 28px; }
     .slides{ position:relative; overflow:hidden; border-radius:18px; border:3px solid #000; box-shadow:0 6px 0 #000; height:360px; }
     .slide{ position:absolute; inset:0; opacity:0; transition:opacity .8s ease; }
     .slide img{ width:100%; height:100%; object-fit:cover; display:block; }
@@ -86,14 +90,11 @@
       .nav ul{ gap:.6rem; font-size:.9rem; padding:6px 10px; }
       .slides{ height:220px; }
     }
-    @media (max-width:480px){
-      .nav ul{ gap:.5rem; font-size:.9rem; padding:5px 8px; }
-    }
   </style>
 </head>
 
 <body>
-  <!-- 画像ヘッダー（<img>で横いっぱい・切らない） & 下端ナビ -->
+  <!-- 画像ヘッダー -->
   <header class="site-header" id="home">
     <img class="hero" src="header.png" alt="遊べるお寺プロジェクト ヘッダー画像">
     <div class="nav-container">
@@ -121,7 +122,6 @@
     </div>
   </div>
   <script>
-    // すごく軽い自動スライド
     const slides = document.querySelectorAll('#heroSlides .slide');
     let idx = 0;
     setInterval(() => {
@@ -136,15 +136,11 @@
     <p>お寺を舞台に「遊び」を通じた交流と学びを提供するプロジェクトです。世代や立場を超えて、誰もが安心してつながれる場づくりを目指しています。</p>
   </section>
 
-  <!-- ▼▼ note の最新記事（マガジンRSS）を自動表示：画像があれば表示、なければテキストのみ ▼▼ -->
   <section id="reports">
     <h2>活動報告 - note（最新）</h2>
-    <div class="card-grid" id="note-feed"></div>
-    <p style="margin-top:16px">
-      <a class="btn btn-ghost" id="note-more" href="https://note.com/loyal_dill1011/m/m9a97295e24a9" target="_blank" rel="noopener">noteでもっと見る</a>
-    </p>
+    <div id="note-feed" class="card-grid"></div>
+    <p style="margin-top:16px"><a class="btn btn-ghost" href="https://note.com/loyal_dill1011/m/m9a97295e24a9" target="_blank" rel="noopener">noteでもっと見る</a></p>
   </section>
-  <!-- ▲▲ ここまで note セクション ▲▲ -->
 
   <section id="events">
     <h2>イベント情報</h2>
@@ -191,83 +187,5 @@
   <footer>
     <p>© 2025 遊べるお寺プロジェクト</p>
   </footer>
-<script>
-(async function loadNoteFeed() {
-  const FEED_URL = "https://note.com/loyal_dill1011/m/m9a97295e24a9/rss";
-  // キャッシュバスター付き + CORS回避
-  const proxied = "https://api.allorigins.win/raw?url="
-    + encodeURIComponent(FEED_URL + "?t=" + Date.now());
-
-  const feedEl = document.getElementById("note-feed");
-  feedEl.innerHTML = `<p>読み込み中…</p>`;
-
-  // itemから最初の画像URLを拾う（enclosure → content:encoded → description）
-  const pickFirstImage = (item) => {
-    const enc = item.querySelector("enclosure")?.getAttribute("url");
-    if (enc) return enc;
-
-    // 名前空間付き要素（content:encoded）
-    const contentNode =
-      item.getElementsByTagName("content:encoded")[0] ||
-      item.querySelector("encoded");
-    const html = contentNode?.textContent || "";
-
-    // content:encoded / description 内の最初の<img>
-    const desc = item.querySelector("description")?.textContent || "";
-    const m1 = html.match(/<img[^>]+src=["']([^"']+)["']/i);
-    const m2 = desc.match(/<img[^>]+src=["']([^"']+)["']/i);
-    return (m1 && m1[1]) || (m2 && m2[1]) || null;
-  };
-
-  try {
-    const res = await fetch(proxied, { cache: "no-store" });
-    if (!res.ok) throw new Error("feed fetch failed");
-    const xml = await res.text();
-
-    const doc = new DOMParser().parseFromString(xml, "application/xml");
-    let items = Array.from(doc.querySelectorAll("item"));
-
-    // pubDate で新しい順
-    items.sort((a,b) =>
-      new Date(b.querySelector("pubDate")?.textContent || 0) -
-      new Date(a.querySelector("pubDate")?.textContent || 0)
-    );
-
-    items = items.slice(0, 6); // 6件表示
-
-    const cards = items.map(it => {
-      const title = it.querySelector("title")?.textContent?.trim() || "無題";
-      const link  = it.querySelector("link")?.textContent?.trim() || "#";
-      const pub   = new Date(it.querySelector("pubDate")?.textContent || Date.now());
-      const dateJp = pub.toLocaleDateString("ja-JP");
-      const imgSrc = pickFirstImage(it);
-
-      return `
-        <article class="card">
-          ${imgSrc ? `<img src="${imgSrc}" alt="${title}">` : ""}
-          <h3 style="margin:.5rem 0">${title}</h3>
-          <p class="meta">${dateJp}｜note</p>
-          <a class="btn btn-primary" href="${link}" target="_blank" rel="noopener">記事を読む</a>
-        </article>
-      `;
-    });
-
-    feedEl.innerHTML = cards.join("") || `<p>まだ記事がありません。</p>`;
-  } catch (e) {
-    console.error(e);
-    feedEl.innerHTML = `<p>noteの最新記事を読み込めませんでした。時間をおいて再表示してください。</p>`;
-  }
-})();
-
-  body {
-  margin: 0;
-  font-family: 'Yu Gothic','Hiragino Kaku Gothic ProN',system-ui,-apple-system,sans-serif;
-  color: var(--ink);
-  background: var(--paper);
-  
-  /* ←追加 */
-  border-left: 20px solid var(--sand);   /* 左の黄色い帯 */
-  border-right: 20px solid var(--sand);  /* 右の黄色い帯 */
-}
-
-</script>
+</body>
+</html>
