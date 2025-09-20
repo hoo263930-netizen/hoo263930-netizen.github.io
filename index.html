@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<header>
-  <img src="header.png" alt="遊べるお寺プロジェクト ヘッダー画像" style="width:100%; height:auto;">
-</header>
-
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -20,55 +16,40 @@
     *{box-sizing:border-box}
     body { margin: 0; font-family: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', system-ui, -apple-system, sans-serif; color:var(--ink); background:var(--paper); }
 
-    /* ==== Visual header (sky + clouds) ==== */
-    .site-header{ 
-      position: relative; 
-      background: var(--sky) url('images/header-sky.png') center/cover no-repeat; /* ← Canvaで書き出した雲背景を配置 */
-      min-height: 320px;
-      display: grid; 
-      place-items: center; 
-      padding: 24px 16px 88px; /* 余白下を多めにしてナビを乗せる */
-    }
-    .header-title{
-      text-align:center;
-      line-height:1.2;
-      margin:0;
-      font-weight:900;
-      font-size: clamp(28px, 4.5vw, 56px);
-      color:#fff; 
-      -webkit-text-stroke: 4px #000; /* 黒縁取り（対応ブラウザ） */
-      text-shadow: /* フォールバック：多重シャドウで縁取り */
-        2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000,
-        1.5px 1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px -1.5px 0 #000;
-    }
-    .header-sub{
-      text-align:center; 
-      margin: 10px 0 0; 
-      font-weight:700; 
-      font-size: clamp(14px, 2.6vw, 22px); 
-      color:#fff;
-      -webkit-text-stroke: 2px #000; 
-      text-shadow: 1.5px 0 0 #000, -1.5px 0 0 #000, 0 1.5px 0 #000, 0 -1.5px 0 #000;
+    /* ==== Header with background image ==== */
+    .site-header {
+      position: relative;
+      background: url("header.png") no-repeat center center;
+      background-size: cover;
+      height: 250px; /* 画像に合わせて調整 */
     }
 
-    /* ==== Nav (floating card) ==== */
-    .nav-wrap{
-      position: relative;
-      display:flex; justify-content:center; width:100%;
-      transform: translateY(44px); /* ヘッダーの下端から少し浮かせる */
+    /* ナビゲーションを下端に重ねる */
+    .nav-container {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
-    nav.primary{
-      display:flex; flex-wrap:wrap; gap:8px 16px; 
-      background:#ffffffcc; backdrop-filter:saturate(1.2) blur(2px);
-      border:3px solid #000; border-radius:20px; 
-      padding: 10px 16px; max-width: 1060px; width: calc(100% - 24px);
-      box-shadow: 0 6px 0 #000; 
+
+    .nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 1rem;
+      display: flex;
+      gap: 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px 10px 0 0;
     }
-    nav.primary a{ 
-      color:#000; text-decoration:none; font-weight:800; 
-      padding: 10px 14px; border-radius:12px; 
+
+    .nav a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
     }
-    nav.primary a:hover{ background: var(--sand); }
 
     /* ===== Generic layout ===== */
     section { padding: 72px 20px 40px; max-width: 1100px; margin: auto; }
@@ -93,28 +74,26 @@
     .slide.active{ opacity:1; }
 
     @media (max-width: 720px){
-      .site-header{ min-height: 260px; padding-bottom: 96px; }
+      .site-header{ height: 180px; }
       .slides{ height: 220px; }
-      nav.primary{ gap:6px 10px; }
+      .nav ul { gap: 0.5rem; font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
   <header class="site-header" id="home">
-    <div>
-      <h1 class="header-title">遊べるお寺プロジェクト</h1>
-      <p class="header-sub">楽しく学び　遊んでつながる</p>
-    </div>
-    <div class="nav-wrap">
-      <nav class="primary">
-        <a href="#home">ホーム</a>
-        <a href="#about">遊べるお寺プロジェクトとは</a>
-        <a href="#events">イベント</a>
-        <a href="#request">ご依頼はこちら</a>
-        <a href="#join">参加方法</a>
-        <a href="#support">寄付・応援</a>
-        <a href="#contact">お問い合わせ</a>
-        <a href="#en">Lunggage</a>
+    <div class="nav-container">
+      <nav class="nav">
+        <ul>
+          <li><a href="#home">ホーム</a></li>
+          <li><a href="#about">遊べるお寺プロジェクトとは</a></li>
+          <li><a href="#events">イベント</a></li>
+          <li><a href="#request">ご依頼はこちら</a></li>
+          <li><a href="#join">参加方法</a></li>
+          <li><a href="#support">寄付・応援</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+          <li><a href="#en">Lunggage</a></li>
+        </ul>
       </nav>
     </div>
   </header>
@@ -218,3 +197,4 @@
   </footer>
 </body>
 </html>
+
