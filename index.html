@@ -14,30 +14,32 @@
       --paper:#fff;
     }
     *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',system-ui,-apple-system,sans-serif;
-      color:var(--ink);
-      background:var(--paper);
-
-body {
-  margin: 0;
-  font-family: 'Yu Gothic','Hiragino Kaku Gothic ProN',system-ui,-apple-system,sans-serif;
-  color: var(--ink);
-  background: var(--paper);
-
-  /* 黄色い帯を両側に */
-  border-left: 40px solid var(--sand);
-  border-right: 40px solid var(--sand);
+    /* === 両サイドの黄色い帯（壊れにくい版） === */
+:root { --rail: 40px; }           /* 帯の太さ：PC */
+@media (max-width: 720px){
+  :root { --rail: 20px; }         /* 帯の太さ：スマホ */
 }
 
-/* スマホのときは少し細く */
-@media (max-width: 720px) {
-  body {
-    border-left: 20px solid var(--sand);
-    border-right: 20px solid var(--sand);
-  }
+/* コンテンツが帯の下に入らないよう余白をつける（任意） */
+html { padding: 0 var(--rail); }
+@media (max-width: 720px){
+  html { padding: 0 var(--rail); }
 }
+
+/* 画面の左右に固定で帯を描画 */
+body::before,
+body::after{
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: var(--rail);
+  background: var(--sand);        /* 既存の黄色 */
+  pointer-events: none;           /* クリックを邪魔しない */
+  z-index: 9999;                  /* 最前面に固定 */
+}
+body::before{ left: 0; }
+body::after { right: 0; }
 
 
 
