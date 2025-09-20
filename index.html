@@ -26,10 +26,19 @@ body {
   color: var(--ink);
   background: var(--paper);
 
-  /* 黄色い帯（太めに調整） */
+  /* 黄色い帯を両側に */
   border-left: 40px solid var(--sand);
   border-right: 40px solid var(--sand);
 }
+
+/* スマホのときは少し細く */
+@media (max-width: 720px) {
+  body {
+    border-left: 20px solid var(--sand);
+    border-right: 20px solid var(--sand);
+  }
+}
+
 
 
     /* ==== Header: 画像を切らずに横いっぱい（<img>方式） ==== */
