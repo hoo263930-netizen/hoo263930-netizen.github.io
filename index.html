@@ -189,66 +189,71 @@
   <footer>
     <p>© 2025 遊べるお寺プロジェクト</p>
   </footer>
+<script>
+(async function loadNoteFeed() {
+  const FEED_URL = "https://note.com/loyal_dill1011/m/m9a97295e24a9/rss";
+  // キャッシュバスター付き + CORS回避
+  const proxied = "https://api.allorigins.win/raw?url="
+    + encodeURIComponent(FEED_URL + "?t=" + Date.now());
 
-  <!-- note RSS を読み込むスクリプト（CORS回避に allorigins を使用） -->
-  <script>
-  (async function loadNoteFeed() {
-    const FEED_URL = "https://note.com/loyal_dill1011/m/m9a97295e24a9/rss";
-    const proxied = "https://api.allorigins.win/raw?url=" + encodeURIComponent(FEED_URL);
+  const feedEl = document.getElementById("note-feed");
+  feedEl.innerHTML = `<p>読み込み中…</p>`;
 
-    const feedEl = document.getElementById("note-feed");
-    feedEl.innerHTML = `<p>読み込み中…</p>`;
+  // itemから最初の画像URLを拾う（enclosure → content:encoded → description）
+  const pickFirstImage = (item) => {
+    const enc = item.querySelector("enclosure")?.getAttribute("url");
+    if (enc) return enc;
 
-    try {
-      const res = await fetch(proxied, { cache: "no-store" });
-      if (!res.ok) throw new Error("feed fetch failed");
-      const xml = await res.text();
+    // 名前空間付き要素（content:encoded）
+    const contentNode =
+      item.getElementsByTagName("content:encoded")[0] ||
+      item.querySelector("encoded");
+    const html = contentNode?.textContent || "";
 
-      const doc = new DOMParser().parseFromString(xml, "application/xml");
-      let items = Array.from(doc.querySelectorAll("item"));
+    // content:encoded / description 内の最初の<img>
+    const desc = item.querySelector("description")?.textContent || "";
+    const m1 = html.match(/<img[^>]+src=["']([^"']+)["']/i);
+    const m2 = desc.match(/<img[^>]+src=["']([^"']+)["']/i);
+    return (m1 && m1[1]) || (m2 && m2[1]) || null;
+  };
 
-      // ▼ pubDateで新しい順にソート
-      items.sort((a,b) => {
-        const ad = new Date(a.querySelector("pubDate")?.textContent || 0);
-        const bd = new Date(b.querySelector("pubDate")?.textContent || 0);
-        return bd - ad;
-      });
+  try {
+    const res = await fetch(proxied, { cache: "no-store" });
+    if (!res.ok) throw new Error("feed fetch failed");
+    const xml = await res.text();
 
-      // 最新6件だけ使用
-      items = items.slice(0, 6);
+    const doc = new DOMParser().parseFromString(xml, "application/xml");
+    let items = Array.from(doc.querySelectorAll("item"));
 
-      const cards = items.map(it => {
-        const title = it.querySelector("title")?.textContent?.trim() || "無題";
-        const link  = it.querySelector("link")?.textContent?.trim() || "#";
-        const pub   = new Date(it.querySelector("pubDate")?.textContent || Date.now());
-        const dateJp = pub.toLocaleDateString("ja-JP");
+    // pubDate で新しい順
+    items.sort((a,b) =>
+      new Date(b.querySelector("pubDate")?.textContent || 0) -
+      new Date(a.querySelector("pubDate")?.textContent || 0)
+    );
 
-        // 画像の取得（優先順：enclosure → description内の最初の<img> → なし）
-        const enclosure = it.querySelector("enclosure")?.getAttribute("url");
-        const desc = it.querySelector("description")?.textContent || "";
-        const descImgMatch = desc.match(/<img[^>]+src="([^"]+)"/i);
-        const descImg = descImgMatch ? descImgMatch[1] : null;
-        const imgSrc = enclosure || descImg || null;
+    items = items.slice(0, 6); // 6件表示
 
-        // 画像がある場合だけ <img> を出す
-        const imgHTML = imgSrc ? `<img src="${imgSrc}" alt="${title}">` : "";
+    const cards = items.map(it => {
+      const title = it.querySelector("title")?.textContent?.trim() || "無題";
+      const link  = it.querySelector("link")?.textContent?.trim() || "#";
+      const pub   = new Date(it.querySelector("pubDate")?.textContent || Date.now());
+      const dateJp = pub.toLocaleDateString("ja-JP");
+      const imgSrc = pickFirstImage(it);
 
-        return `
-          <article class="card">
-            ${imgHTML}
-            <h3 style="margin:.5rem 0">${title}</h3>
-            <p class="meta">${dateJp}｜note</p>
-            <a class="btn btn-primary" href="${link}" target="_blank" rel="noopener">記事を読む</a>
-          </article>
-        `;
-      });
+      return `
+        <article class="card">
+          ${imgSrc ? `<img src="${imgSrc}" alt="${title}">` : ""}
+          <h3 style="margin:.5rem 0">${title}</h3>
+          <p class="meta">${dateJp}｜note</p>
+          <a class="btn btn-primary" href="${link}" target="_blank" rel="noopener">記事を読む</a>
+        </article>
+      `;
+    });
 
-      feedEl.innerHTML = cards.join("") || `<p>まだ記事がありません。</p>`;
-    } catch (e) {
-      console.error(e);
-      feedEl.innerHTML = `<p>noteの最新記事を読み込めませんでした。時間をおいて再表示してください。</p>`;
-    }
-  })();
-  </script>
-</body>
-</html>
+    feedEl.innerHTML = cards.join("") || `<p>まだ記事がありません。</p>`;
+  } catch (e) {
+    console.error(e);
+    feedEl.innerHTML = `<p>noteの最新記事を読み込めませんでした。時間をおいて再表示してください。</p>`;
+  }
+})();
+</script>
