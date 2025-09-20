@@ -5,64 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>遊べるお寺プロジェクト</title>
   <style>
-    body { font-family: sans-serif; margin: 0; line-height: 1.6; }
-    header { background: #f5f5f5; padding: 1rem; text-align: center; }
-    nav { background: #333; color: #fff; padding: 0.5rem; }
-    nav a { color: #fff; margin: 0 0.5rem; text-decoration: none; }
-    section { padding: 2rem; }
-    footer { background: #f5f5f5; text-align: center; padding: 1rem; }
-    .hero { text-align: center; padding: 4rem 2rem; background: #e8f4f8; }
-    .hero h1 { margin-bottom: 0.5rem; }
-    .cards { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; width: 250px; text-align: center; }
+    body { margin: 0; font-family: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', sans-serif; }
+    header { background: #87CEEB; color: #fff; padding: 1rem; position: sticky; top: 0; }
+    nav { display: flex; justify-content: center; gap: 1.5rem; }
+    nav a { color: #fff; text-decoration: none; font-weight: bold; }
+    .hero { background: url('your-image.jpg') no-repeat center/cover; height: 400px; display: flex; align-items: center; justify-content: center; color: #fff; text-shadow: 2px 2px 4px #333; }
+    .hero h1 { font-size: 2.5rem; }
+    section { padding: 2rem; max-width: 900px; margin: auto; }
+    h2 { border-bottom: 2px solid #f0c330; padding-bottom: .5rem; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; background: #fff; }
+    footer { background: #f5f5f5; padding: 1rem; text-align: center; font-size: 0.9rem; }
   </style>
 </head>
 <body>
+  <header>
+    <nav>
+      <a href="#home">ホーム</a>
+      <a href="#about">遊べるお寺プロジェクトとは</a>
+      <a href="#events">イベント</a>
+      <a href="#request">ご依頼はこちら</a>
+      <a href="#join">参加方法</a>
+      <a href="#support">寄付・応援</a>
+      <a href="#contact">お問い合わせ</a>
+      <a href="#en">Lunggage</a>
+    </nav>
+  </header>
 
-<header>
-  <h1>遊べるお寺プロジェクト</h1>
-  <p>楽しく学び、遊んで繋がる。</p>
-</header>
-
-<nav>
-  <a href="index.html">Home</a>
-  <a href="project.html">Project</a>
-  <a href="activities.html">Activities</a>
-  <a href="schedule.html">Schedule</a>
-  <a href="support.html">Support</a>
-  <a href="about.html">About</a>
-</nav>
-
-
-
-
-<section class="hero">
-  <h1>ようこそ！</h1>
-  <p>煩悩まみれの遊べる住職が、学びと遊びで人と地域をつなぎます。</p>
-</section>
-
-<section>
-  <h2>メイン導線</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>イベント予定</h3>
-      <p>今後のスケジュールを確認できます。</p>
-    </div>
-    <div class="card">
-      <h3>活動メニュー</h3>
-      <p>健康麻雀・謎解き・ボードゲームなど。</p>
-    </div>
-    <div class="card">
-      <h3>応援・ご依頼</h3>
-      <p>寄付・物販・出張講座などのご案内。</p>
-    </div>
+  <div class="hero">
+    <h1>楽しく学び 遊んでつながる</h1>
   </div>
-</section>
 
-<footer>
-  <p>&copy; 2025 遊べるお寺プロジェクト</p>
-</footer>
+  <section id="about">
+    <h2>遊べるお寺プロジェクトとは</h2>
+    <p>お寺を舞台に「遊び」を通じた交流と学びを提供するプロジェクトです。世代や立場を超えて、誰もが安心してつながれる場づくりを目指しています。</p>
+  </section>
 
+  <section id="reports">
+    <h2>活動報告 - note</h2>
+    <div class="card-grid">
+      <div class="card">記事１（noteリンク）</div>
+      <div class="card">記事２（noteリンク）</div>
+      <div class="card">記事３（noteリンク）</div>
+    </div>
+  </section>
+
+  <section id="events">
+    <h2>イベント情報</h2>
+    <p>近日のイベントを掲載予定です。</p>
+  </section>
+
+  <section id="join">
+    <h2>参加方法</h2>
+    <p>「地域で一緒に遊んでみたい」「こんな活動をしてみたい」という方はぜひご意見をお寄せください。</p>
+  </section>
+
+  <section id="support">
+    <h2>寄付・応援</h2>
+    <p>寄付・応援ページは現在準備中です。応援メッセージだけでも受け付けています。</p>
+  </section>
+
+  <section id="contact">
+    <h2>お問い合わせ</h2>
+    <p>ご依頼・ご相談はこちらからお気軽にどうぞ。</p>
+    <p>Email: <a href="mailto:hoo263930@gmail.com">hoo263930@gmail.com</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 遊べるお寺プロジェクト</p>
+  </footer>
 </body>
 </html>
-
