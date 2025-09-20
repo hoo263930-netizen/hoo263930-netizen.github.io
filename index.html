@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>遊べるお寺プロジェクト</title>
 
   <style>
@@ -13,74 +13,89 @@
       --ink:#2b2b2b; /* dark text */
       --paper:#fff;
     }
-    *{box-sizing:border-box}
-    body { margin: 0; font-family: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', system-ui, -apple-system, sans-serif; color:var(--ink); background:var(--paper); }
-
-    /* ==== Header with background image ==== */
-    .site-header {
-      position: relative;
-      background: url("header.png") no-repeat center center;
-      background-size: cover;
-      height: 250px; /* 画像に合わせて調整 */
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',system-ui,-apple-system,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
     }
 
-    /* ナビゲーションを下端に重ねる */
-    .nav-container {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      display: flex;
-      justify-content: center;
+    /* ==== Header: 画像の上が切れない＆比率固定 ==== */
+    .site-header{
+      position:relative;
+      background:#5ac2ff url("header.png") no-repeat top center;
+      background-size:contain;          /* 画像を切らずに全部表示 */
+      aspect-ratio:3/1;                 /* 1920x640 ≒ 3:1 */
+      max-height:360px;                  /* PC上限（好みで調整） */
+      min-height:220px;                  /* モバイル下限 */
     }
 
-    .nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0.5rem 1rem;
-      display: flex;
-      gap: 1.5rem;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 10px 10px 0 0;
+    /* 画像の下端にナビを重ねる */
+    .nav-container{
+      position:absolute;
+      bottom:6px;                        /* タイトルとの間隔を詰める */
+      left:50%;
+      transform:translateX(-50%);
+      width:100%;
+      display:flex;
+      justify-content:center;
+      pointer-events:none;               /* 背景クリックを防ぐ用（子に上書き） */
     }
 
-    .nav a {
-      text-decoration: none;
-      color: #000;
-      font-weight: bold;
+    .nav{
+      pointer-events:auto;
+    }
+
+    .nav ul{
+      list-style:none;
+      margin:0;
+      padding:6px 12px;                  /* 余白をタイトに */
+      display:flex;
+      gap:1rem;                          /* 文字間隔を詰める */
+      background:rgba(255,255,255,.85);
+      border-radius:10px 10px 0 0;
+      border:3px solid #000;
+      box-shadow:0 6px 0 #000;
+    }
+    .nav a{
+      text-decoration:none;
+      color:#000;
+      font-weight:800;
     }
 
     /* ===== Generic layout ===== */
-    section { padding: 72px 20px 40px; max-width: 1100px; margin: auto; }
-    h2 { font-size: clamp(20px, 2.8vw, 28px); border-bottom: 4px solid var(--sand); padding-bottom: .5rem; margin-top:0; }
+    section{ padding:72px 20px 40px; max-width:1100px; margin:auto; }
+    h2{ font-size:clamp(20px,2.8vw,28px); border-bottom:4px solid var(--sand); padding-bottom:.5rem; margin-top:0; }
 
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-    .card { border: 3px solid #000; border-radius: 18px; padding: 16px; background: #fff; box-shadow: 0 6px 0 #000; }
+    .card-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+    .card{ border:3px solid #000; border-radius:18px; padding:16px; background:#fff; box-shadow:0 6px 0 #000; }
     .card img{ width:100%; height:180px; object-fit:cover; border-radius:12px; border:2px solid #000; }
-    .meta{ font-size: 0.9rem; opacity:.8; margin-top:4px; }
+    .meta{ font-size:.9rem; opacity:.8; margin-top:4px; }
 
     .btn{ display:inline-block; padding:10px 14px; border:3px solid #000; border-radius:12px; font-weight:800; text-decoration:none; }
-    .btn-primary{ background: var(--sand); color:#000; box-shadow:0 4px 0 #000; }
+    .btn-primary{ background:var(--sand); color:#000; box-shadow:0 4px 0 #000; }
     .btn-ghost{ background:#fff; color:#000; }
 
-    footer { background: var(--leaf); color:#fff; padding: 24px 16px; text-align: center; font-size: 0.95rem; margin-top: 32px; }
+    footer{ background:var(--leaf); color:#fff; padding:24px 16px; text-align:center; font-size:.95rem; margin-top:32px; }
 
     /* ==== Simple carousel (hero gallery) ==== */
-    .carousel{ max-width:1100px; margin: 0 auto; padding: 0 20px 28px; }
-    .slides{ position:relative; overflow:hidden; border-radius:18px; border:3px solid #000; box-shadow:0 6px 0 #000; height: 360px; }
+    .carousel{ max-width:1100px; margin:0 auto; padding:0 20px 28px; }
+    .slides{ position:relative; overflow:hidden; border-radius:18px; border:3px solid #000; box-shadow:0 6px 0 #000; height:360px; }
     .slide{ position:absolute; inset:0; opacity:0; transition:opacity .8s ease; }
     .slide img{ width:100%; height:100%; object-fit:cover; display:block; }
     .slide.active{ opacity:1; }
 
-    @media (max-width: 720px){
-      .site-header{ height: 180px; }
-      .slides{ height: 220px; }
-      .nav ul { gap: 0.5rem; font-size: 0.9rem; }
+    @media (max-width:720px){
+      .site-header{ max-height:260px; min-height:180px; }
+      .nav ul{ gap:.6rem; font-size:.9rem; padding:6px 10px; }
+      .slides{ height:220px; }
     }
   </style>
 </head>
+
 <body>
+  <!-- 画像ヘッダー & 下端ナビ -->
   <header class="site-header" id="home">
     <div class="nav-container">
       <nav class="nav">
@@ -98,19 +113,19 @@
     </div>
   </header>
 
-  <!-- Hero carousel: 3枚の写真を自動で切替 -->
+  <!-- Hero carousel -->
   <div class="carousel" aria-label="フォトギャラリー">
     <div class="slides" id="heroSlides">
-      <div class="slide active"><img src="images/hero1.jpg" alt="お寺の風景と交流の様子"></div>
-      <div class="slide"><img src="images/hero2.jpg" alt="ボードゲームで遊ぶ参加者"></div>
-      <div class="slide"><img src="images/hero3.jpg" alt="イベントの笑顔"></div>
+      <div class="slide active"><img src="images/hero1.jpg" alt="お寺の風景と交流の様子" /></div>
+      <div class="slide"><img src="images/hero2.jpg" alt="ボードゲームで遊ぶ参加者" /></div>
+      <div class="slide"><img src="images/hero3.jpg" alt="イベントの笑顔" /></div>
     </div>
   </div>
   <script>
     // すごく軽い自動スライド
     const slides = document.querySelectorAll('#heroSlides .slide');
     let idx = 0;
-    setInterval(()=>{
+    setInterval(() => {
       slides[idx].classList.remove('active');
       idx = (idx + 1) % slides.length;
       slides[idx].classList.add('active');
@@ -126,21 +141,21 @@
     <h2>活動報告 - note</h2>
     <div class="card-grid">
       <article class="card">
-        <img src="images/note1.jpg" alt="活動レポート1のサムネイル">
+        <img src="images/note1.jpg" alt="活動レポート1のサムネイル" />
         <h3>「森カフェ」での交流記録</h3>
         <p class="meta">2025/09/10｜レポート</p>
         <p>自然の中でお茶を飲みながら、世代を超えて遊びとおしゃべりを楽しみました。</p>
         <a class="btn btn-primary" href="#" target="_blank" rel="noopener">記事を読む</a>
       </article>
       <article class="card">
-        <img src="images/note2.jpg" alt="活動レポート2のサムネイル">
+        <img src="images/note2.jpg" alt="活動レポート2のサムネイル" />
         <h3>健康麻雀のはじめ方</h3>
         <p class="meta">2025/09/05｜コラム</p>
         <p>誰でも気軽に参加できる健康麻雀。準備物やルールのやさしい解説をまとめました。</p>
         <a class="btn btn-primary" href="#" target="_blank" rel="noopener">記事を読む</a>
       </article>
       <article class="card">
-        <img src="images/note3.jpg" alt="活動レポート3のサムネイル">
+        <img src="images/note3.jpg" alt="活動レポート3のサムネイル" />
         <h3>謎解きイベントの舞台裏</h3>
         <p class="meta">2025/08/28｜制作記</p>
         <p>企画づくりから当日の進行まで。子どもも大人もワクワクする仕掛けをご紹介。</p>
