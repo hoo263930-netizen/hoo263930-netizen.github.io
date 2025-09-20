@@ -208,3 +208,29 @@
   </footer>
 </body>
 </html>
+/* ---- 調整用の追加コード ---- */
+
+/* 1) ナビの位置を微調整 */
+.nav-container{
+  bottom: -8px;   /* -6〜-14pxで微調整OK */
+}
+
+/* 2) ナビをコンパクトに */
+.nav ul{
+  padding: 5px 10px;   /* 余白タイトに */
+  gap: .9rem;          /* 文字間隔も少し詰める */
+}
+
+/* 3) カルーセルとの余白 */
+.carousel{
+  margin: 18px auto 0;
+}
+
+/* 4) スマホ用の調整 */
+@media (max-width: 480px){
+  .nav ul{
+    gap: .5rem;
+    font-size: .9rem;
+    padding: 5px 8px;
+  }
+}
