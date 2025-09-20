@@ -26,13 +26,13 @@
     .site-header img.hero{
       display:block;
       width:100%;
-      height:auto; /* ←トリミングしない */
+      height:auto; /* トリミングしない */
     }
 
     /* 画像の下端にナビを重ねる（ナビ自体はコンパクト） */
     .nav-container{
       position:absolute;
-      bottom:-8px;                 /* ←好みに応じて -6 〜 -14px で調整 */
+      bottom:-8px;                 /* -6〜-14pxで微調整OK */
       left:50%;
       transform:translateX(-50%);
       width:100%;
@@ -44,9 +44,9 @@
     .nav ul{
       list-style:none;
       margin:0;
-      padding:5px 10px;            /* タイト目（あなたの調整反映） */
+      padding:5px 10px;            /* タイト目 */
       display:flex;
-      gap:.9rem;                   /* タイト目（あなたの調整反映） */
+      gap:.9rem;
       background:rgba(255,255,255,.85);
       border-radius:10px 10px 0 0;
       border:3px solid #000;
@@ -74,18 +74,18 @@
     footer{ background:var(--leaf); color:#fff; padding:24px 16px; text-align:center; font-size:.95rem; margin-top:32px; }
 
     /* ==== Simple carousel (hero gallery) ==== */
-    .carousel{ max-width:1100px; margin:18px auto 0; padding:0 20px 28px; } /* あなたの調整反映（14px→18px） */
+    .carousel{ max-width:1100px; margin:18px auto 0; padding:0 20px 28px; }
     .slides{ position:relative; overflow:hidden; border-radius:18px; border:3px solid #000; box-shadow:0 6px 0 #000; height:360px; }
     .slide{ position:absolute; inset:0; opacity:0; transition:opacity .8s ease; }
     .slide img{ width:100%; height:100%; object-fit:cover; display:block; }
     .slide.active{ opacity:1; }
 
     @media (max-width:720px){
-      .nav ul{ gap:.6rem; font-size:.9rem; padding:6px 10px; } /* 既存のモバイル調整 */
+      .nav ul{ gap:.6rem; font-size:.9rem; padding:6px 10px; }
       .slides{ height:220px; }
     }
     @media (max-width:480px){
-      .nav ul{ gap:.5rem; font-size:.9rem; padding:5px 8px; } /* あなたの追加調整 */
+      .nav ul{ gap:.5rem; font-size:.9rem; padding:5px 8px; }
     }
   </style>
 </head>
@@ -134,7 +134,7 @@
     <p>お寺を舞台に「遊び」を通じた交流と学びを提供するプロジェクトです。世代や立場を超えて、誰もが安心してつながれる場づくりを目指しています。</p>
   </section>
 
-  <!-- ▼▼ ここから note の最新記事（マガジンRSS）を自動表示 ▼▼ -->
+  <!-- ▼▼ note の最新記事（マガジンRSS）を自動表示：画像があれば表示、なければテキストのみ ▼▼ -->
   <section id="reports">
     <h2>活動報告 - note（最新）</h2>
     <div class="card-grid" id="note-feed"></div>
@@ -205,22 +205,37 @@
       const xml = await res.text();
 
       const doc = new DOMParser().parseFromString(xml, "application/xml");
-      const items = Array.from(doc.querySelectorAll("item")).slice(0, 6); // ←表示件数はここで調整
+      let items = Array.from(doc.querySelectorAll("item"));
+
+      // ▼ pubDateで新しい順にソート
+      items.sort((a,b) => {
+        const ad = new Date(a.querySelector("pubDate")?.textContent || 0);
+        const bd = new Date(b.querySelector("pubDate")?.textContent || 0);
+        return bd - ad;
+      });
+
+      // 最新6件だけ使用
+      items = items.slice(0, 6);
 
       const cards = items.map(it => {
         const title = it.querySelector("title")?.textContent?.trim() || "無題";
         const link  = it.querySelector("link")?.textContent?.trim() || "#";
         const pub   = new Date(it.querySelector("pubDate")?.textContent || Date.now());
         const dateJp = pub.toLocaleDateString("ja-JP");
-        const desc = it.querySelector("description")?.textContent || "";
 
-        // 説明文から1枚目の画像を取得（ない場合は画像なし）
-        const imgMatch = desc.match(/<img[^>]+src="([^"]+)"/i);
-        const imgSrc = imgMatch ? imgMatch[1] : null;
+        // 画像の取得（優先順：enclosure → description内の最初の<img> → なし）
+        const enclosure = it.querySelector("enclosure")?.getAttribute("url");
+        const desc = it.querySelector("description")?.textContent || "";
+        const descImgMatch = desc.match(/<img[^>]+src="([^"]+)"/i);
+        const descImg = descImgMatch ? descImgMatch[1] : null;
+        const imgSrc = enclosure || descImg || null;
+
+        // 画像がある場合だけ <img> を出す
+        const imgHTML = imgSrc ? `<img src="${imgSrc}" alt="${title}">` : "";
 
         return `
           <article class="card">
-            ${imgSrc ? `<img src="${imgSrc}" alt="${title}">` : ""}
+            ${imgHTML}
             <h3 style="margin:.5rem 0">${title}</h3>
             <p class="meta">${dateJp}｜note</p>
             <a class="btn btn-primary" href="${link}" target="_blank" rel="noopener">記事を読む</a>
