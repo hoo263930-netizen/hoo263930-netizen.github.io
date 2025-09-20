@@ -71,19 +71,32 @@
 
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
     .card { border: 3px solid #000; border-radius: 18px; padding: 16px; background: #fff; box-shadow: 0 6px 0 #000; }
+    .card img{ width:100%; height:180px; object-fit:cover; border-radius:12px; border:2px solid #000; }
+    .meta{ font-size: 0.9rem; opacity:.8; margin-top:4px; }
+
+    .btn{ display:inline-block; padding:10px 14px; border:3px solid #000; border-radius:12px; font-weight:800; text-decoration:none; }
+    .btn-primary{ background: var(--sand); color:#000; box-shadow:0 4px 0 #000; }
+    .btn-ghost{ background:#fff; color:#000; }
 
     footer { background: var(--leaf); color:#fff; padding: 24px 16px; text-align: center; font-size: 0.95rem; margin-top: 32px; }
 
-    /* Sticky-on-scroll nav (optional) */
+    /* ==== Simple carousel (hero gallery) ==== */
+    .carousel{ max-width:1100px; margin: 0 auto; padding: 0 20px 28px; }
+    .slides{ position:relative; overflow:hidden; border-radius:18px; border:3px solid #000; box-shadow:0 6px 0 #000; height: 360px; }
+    .slide{ position:absolute; inset:0; opacity:0; transition:opacity .8s ease; }
+    .slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .slide.active{ opacity:1; }
+
     @media (max-width: 720px){
       .site-header{ min-height: 260px; padding-bottom: 96px; }
+      .slides{ height: 220px; }
       nav.primary{ gap:6px 10px; }
     }
   </style>
 </head>
 <body>
   <header class="site-header" id="home">
-    <div class="header-inner">
+    <div>
       <h1 class="header-title">遊べるお寺プロジェクト</h1>
       <p class="header-sub">楽しく学び　遊んでつながる</p>
     </div>
@@ -101,9 +114,24 @@
     </div>
   </header>
 
-  <div class="hero">
-    <h1>楽しく学び 遊んでつながる</h1>
+  <!-- Hero carousel: 3枚の写真を自動で切替 -->
+  <div class="carousel" aria-label="フォトギャラリー">
+    <div class="slides" id="heroSlides">
+      <div class="slide active"><img src="images/hero1.jpg" alt="お寺の風景と交流の様子"></div>
+      <div class="slide"><img src="images/hero2.jpg" alt="ボードゲームで遊ぶ参加者"></div>
+      <div class="slide"><img src="images/hero3.jpg" alt="イベントの笑顔"></div>
+    </div>
   </div>
+  <script>
+    // すごく軽い自動スライド
+    const slides = document.querySelectorAll('#heroSlides .slide');
+    let idx = 0;
+    setInterval(()=>{
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 5000);
+  </script>
 
   <section id="about">
     <h2>遊べるお寺プロジェクトとは</h2>
@@ -113,25 +141,65 @@
   <section id="reports">
     <h2>活動報告 - note</h2>
     <div class="card-grid">
-      <div class="card">記事１（noteリンク）</div>
-      <div class="card">記事２（noteリンク）</div>
-      <div class="card">記事３（noteリンク）</div>
+      <article class="card">
+        <img src="images/note1.jpg" alt="活動レポート1のサムネイル">
+        <h3>「森カフェ」での交流記録</h3>
+        <p class="meta">2025/09/10｜レポート</p>
+        <p>自然の中でお茶を飲みながら、世代を超えて遊びとおしゃべりを楽しみました。</p>
+        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">記事を読む</a>
+      </article>
+      <article class="card">
+        <img src="images/note2.jpg" alt="活動レポート2のサムネイル">
+        <h3>健康麻雀のはじめ方</h3>
+        <p class="meta">2025/09/05｜コラム</p>
+        <p>誰でも気軽に参加できる健康麻雀。準備物やルールのやさしい解説をまとめました。</p>
+        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">記事を読む</a>
+      </article>
+      <article class="card">
+        <img src="images/note3.jpg" alt="活動レポート3のサムネイル">
+        <h3>謎解きイベントの舞台裏</h3>
+        <p class="meta">2025/08/28｜制作記</p>
+        <p>企画づくりから当日の進行まで。子どもも大人もワクワクする仕掛けをご紹介。</p>
+        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">記事を読む</a>
+      </article>
     </div>
+    <p style="margin-top:16px"><a class="btn btn-ghost" href="#" target="_blank" rel="noopener">noteでもっと見る</a></p>
   </section>
 
   <section id="events">
     <h2>イベント情報</h2>
-    <p>近日のイベントを掲載予定です。</p>
+    <div class="card-grid">
+      <article class="card">
+        <h3>10/12(日) 森カフェ×ボードゲーム</h3>
+        <p class="meta">場所：超前時（境内）｜参加費：500円</p>
+        <p>木陰でお茶を飲みながら、軽いゲームで交流しましょう。初めての方歓迎！</p>
+        <a class="btn btn-primary" href="#">参加申し込み</a>
+      </article>
+      <article class="card">
+        <h3>10/26(日) 健康麻雀の日</h3>
+        <p class="meta">場所：地域交流スペース｜参加費：300円</p>
+        <p>点数計算は不要、やさしいルールで楽しむ日。見学だけもOKです。</p>
+        <a class="btn btn-primary" href="#">参加申し込み</a>
+      </article>
+      <article class="card">
+        <h3>11/09(日) 寺子屋・ゆる仏教トーク</h3>
+        <p class="meta">場所：本堂｜参加費：投げ銭</p>
+        <p>日常のモヤモヤを仏教の視点でほどく、小さな対話の時間です。</p>
+        <a class="btn btn-primary" href="#">参加申し込み</a>
+      </article>
+    </div>
   </section>
 
   <section id="join">
     <h2>参加方法</h2>
-    <p>「地域で一緒に遊んでみたい」「こんな活動をしてみたい」という方はぜひご意見をお寄せください。</p>
+    <p>「地域で一緒に遊んでみたい」「こんな活動をしてみたい」というアイデアをお待ちしています。まずはお気軽に声をかけてください。</p>
+    <p><a class="btn btn-ghost" href="#">アイデア・参加の相談フォームへ</a></p>
   </section>
 
   <section id="support">
     <h2>寄付・応援</h2>
-    <p>寄付・応援ページは現在準備中です。応援メッセージだけでも受け付けています。</p>
+    <p>寄付・応援ページは現在準備中です。先行して<strong>応援メッセージ</strong>を募集しています。いただいたメッセージは承認後、サイト内でご紹介予定です。</p>
+    <p><a class="btn btn-primary" href="#">応援メッセージを送る</a></p>
   </section>
 
   <section id="contact">
