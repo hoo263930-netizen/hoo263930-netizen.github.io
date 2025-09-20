@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -256,4 +258,16 @@
     feedEl.innerHTML = `<p>noteの最新記事を読み込めませんでした。時間をおいて再表示してください。</p>`;
   }
 })();
+
+  body {
+  margin: 0;
+  font-family: 'Yu Gothic','Hiragino Kaku Gothic ProN',system-ui,-apple-system,sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  
+  /* ←追加 */
+  border-left: 20px solid var(--sand);   /* 左の黄色い帯 */
+  border-right: 20px solid var(--sand);  /* 右の黄色い帯 */
+}
+
 </script>
