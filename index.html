@@ -12,24 +12,36 @@
       --leaf:#36b37e;  /* accent green */
       --ink:#2b2b2b;   /* dark text */
       --paper:#fff;
+      --rail: 40px;    /* 左右の黄色い帯の太さ（PC） */
+    }
+    @media (max-width: 720px){
+      :root{ --rail: 20px; } /* スマホ時の帯の太さ */
     }
 
     *{ box-sizing:border-box; }
+
+    /* 全体左右に帯ぶんの余白を確保（コンテンツが帯の下に入らない） */
+    html{ padding: 0 var(--rail); }
 
     body{
       margin:0;
       font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',system-ui,-apple-system,sans-serif;
       color:var(--ink);
       background:var(--paper);
-      /* ※ 以前入れていた border-left/right は削除しています（疑似要素方式に変更） */
     }
 
-    /* ==== Header: 画像を切らずに横いっぱい（<img>方式） ==== */
-    .site-header{ position:relative; }
+    /* ==== ヘッダー：画像を切らずに横いっぱい（img方式） ==== */
+    .site-header{
+      position:relative;
+      z-index:2; /* 帯よりも前面に */
+      /* html の左右 padding を打ち消して画像を端まで広げる */
+      margin-left:  calc(-1 * var(--rail));
+      margin-right: calc(-1 * var(--rail));
+    }
     .site-header img.hero{
       display:block;
       width:100%;
-      height:auto;     /* ←トリミングしない */
+      height:auto;
     }
 
     /* 画像の下端にナビを重ねる（ナビ自体は今の大きさのまま） */
@@ -88,32 +100,20 @@
       .slides{ height:220px; }
     }
 
-    /* === 両サイドの黄色い帯（壊れにくい版） === */
-    :root { --rail: 40px; }           /* 帯の太さ：PC */
-    @media (max-width: 720px){
-      :root { --rail: 20px; }         /* 帯の太さ：スマホ */
-    }
-
-    /* コンテンツが帯の下に入らないよう全体左右に余白を確保 */
-    html { padding: 0 var(--rail); }
-    @media (max-width: 720px){
-      html { padding: 0 var(--rail); }
-    }
-
-    /* 画面の左右に固定で帯を描画（消えない＆レイアウトに干渉しない） */
+    /* === 両サイドの黄色い帯（疑似要素） === */
     body::before,
     body::after{
-      content: "";
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      width: var(--rail);
-      background: var(--sand);
-      pointer-events: none;
-      z-index: 9999;
+      content:"";
+      position:fixed;
+      top:0;
+      bottom:0;
+      width:var(--rail);
+      background:var(--sand);
+      pointer-events:none;
+      z-index:1;     /* ← 帯は背景側（ヘッダーより背面） */
     }
-    body::before{ left: 0; }
-    body::after { right: 0; }
+    body::before{ left:0; }
+    body::after { right:0; }
   </style>
 </head>
 
@@ -216,50 +216,71 @@
     <p>© 2025 遊べるお寺プロジェクト</p>
   </footer>
 
-  <!-- note マガジンのRSSを取得して最新記事を表示（画像は本文最初の画像を拾う） -->
+  <!-- note マガジンのRSSを取得して最新記事を表示（画像は本文最初の画像を拾う／フォールバックあり） -->
   <script>
   (async () => {
-    const FEED_URL = "https://r.jina.ai/http://note.com/loyal_dill1011/m/m9a97295e24a9/rss";
+    const FEEDS = [
+      "https://r.jina.ai/http://note.com/loyal_dill1011/m/m9a97295e24a9/rss",
+      "https://r.jina.ai/https://note.com/loyal_dill1011/m/m9a97295e24a9/rss"
+    ];
     const mount = document.getElementById("note-feed");
-    try {
-      const res = await fetch(FEED_URL);
-      const xml = await res.text();
-      const doc = new DOMParser().parseFromString(xml, "text/xml");
-      const items = Array.from(doc.querySelectorAll("item")).slice(0, 6);
 
-      const pickImage = (item) => {
-        const html = item.querySelector("content\\:encoded, encoded")?.textContent || "";
-        const m = html.match(/<img[^>]+src=["']([^"']+)["']/i);
-        return m ? m[1] : null;
-      };
+    // description か content:encoded から最初の <img> を拾う
+    const pickImage = (item) => {
+      const enc = item.querySelector("content\\:encoded, encoded")?.textContent || "";
+      const desc = item.querySelector("description")?.textContent || "";
+      const html = enc || desc || "";
+      const m = html.match(/<img[^>]+src=["']([^"']+)["']/i);
+      return m ? m[1] : null;
+    };
 
-      const toDate = (str) => {
-        const d = new Date(str);
-        const y = d.getFullYear();
-        const m = String(d.getMonth()+1).padStart(2,"0");
-        const day = String(d.getDate()).padStart(2,"0");
-        return `${y}/${m}/${day}`;
-      };
+    const toDate = (str) => {
+      const d = new Date(str);
+      if (isNaN(d)) return "";
+      const y = d.getFullYear();
+      const m = String(d.getMonth()+1).padStart(2,"0");
+      const day = String(d.getDate()).padStart(2,"0");
+      return `${y}/${m}/${day}`;
+    };
 
-      const cards = items.map(it => {
+    const render = (items) => {
+      const cards = items.slice(0,6).map(it => {
         const title = it.querySelector("title")?.textContent?.trim() || "無題";
         const link  = it.querySelector("link")?.textContent || "#";
-        const dateJp = toDate(it.querySelector("pubDate")?.textContent || new Date());
+        const dateJp = toDate(it.querySelector("pubDate")?.textContent || "");
         const img = pickImage(it);
-
         return `
           <article class="card">
             ${img ? `<img src="${img}" alt="${title}">` : ""}
             <h3 style="margin:.5rem 0">${title}</h3>
-            <p class="meta">${dateJp}｜note</p>
+            <p class="meta">${dateJp ? `${dateJp}｜` : ""}note</p>
             <a class="btn btn-primary" href="${link}" target="_blank" rel="noopener">記事を読む</a>
           </article>
         `;
       }).join("");
-
       mount.innerHTML = cards || "<p>まだ記事がありません。</p>";
-    } catch(e){
-      console.error(e);
+    };
+
+    // フィード取得（2通りを順に試す）
+    let loaded = false;
+    for (const url of FEEDS) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) continue;
+        const xml = await res.text();
+        const doc = new DOMParser().parseFromString(xml, "text/xml");
+        const items = Array.from(doc.querySelectorAll("item"));
+        if (items.length) {
+          render(items);
+          loaded = true;
+          break;
+        }
+      } catch (e) {
+        // 次のURLで再挑戦
+      }
+    }
+
+    if (!loaded) {
       mount.innerHTML = "<p>noteの最新記事を読み込めませんでした。時間をおいて再表示してください。</p>";
     }
   })();
