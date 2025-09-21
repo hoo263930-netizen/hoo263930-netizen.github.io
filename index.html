@@ -100,22 +100,32 @@
       .slides{ height:220px; }
     }
 
-    /* === 両サイドの黄色い帯（疑似要素） === */
-    body::before,
-    body::after{
-      content:"";
-      position:fixed;
-      top:0;
-      bottom:0;
-      width:var(--rail);
-      background:var(--sand);
-      pointer-events:none;
-      z-index:1;     /* ← 帯は背景側（ヘッダーより背面） */
-    }
-    body::before{ left:0; }
-    body::after { right:0; }
-  </style>
-</head>
+/* ==== ヘッダー（青空画像） ==== */
+.site-header{
+  position:relative;
+  z-index:1; /* 画像は下のレイヤー */
+}
+.site-header img.hero{
+  display:block;
+  width:100%;
+  max-height:300px;   /* ←高さを短くする */
+  object-fit:cover;   /* ←縦を切り取りつつ収める */
+}
+
+/* ==== 両サイドの黄色い帯 ==== */
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  top:0; bottom:0;
+  width:var(--rail);
+  background:var(--sand);
+  pointer-events:none;
+  z-index:9999;   /* ←帯を最前面に */
+}
+body::before{ left:0; }
+body::after { right:0; }
+
 
 <body>
   <!-- 画像ヘッダー -->
