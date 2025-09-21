@@ -7,22 +7,19 @@
 
   <style>
     :root{
-      --sky:#5ac2ff;   /* base blue */
-      --sand:#f7ce52;  /* accent yellow */
-      --leaf:#36b37e;  /* accent green */
-      --ink:#2b2b2b;   /* dark text */
+      --sky:#5ac2ff;
+      --sand:#f7ce52;
+      --leaf:#36b37e;
+      --ink:#2b2b2b;
       --paper:#fff;
-      --rail: 40px;    /* 左右の黄色い帯の太さ（PC） */
+      --rail: 40px;
     }
     @media (max-width: 720px){
-      :root{ --rail: 20px; } /* スマホ時の帯の太さ */
+      :root{ --rail: 20px; }
     }
 
     *{ box-sizing:border-box; }
-
-    /* 全体左右に帯ぶんの余白を確保（コンテンツが帯の下に入らない） */
     html{ padding: 0 var(--rail); }
-
     body{
       margin:0;
       font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',system-ui,-apple-system,sans-serif;
@@ -30,21 +27,20 @@
       background:var(--paper);
     }
 
-    /* ==== ヘッダー：画像を切らずに横いっぱい（img方式） ==== */
+    /* ==== ヘッダー ==== */
     .site-header{
       position:relative;
-      z-index:2; /* 帯よりも前面に */
-      /* html の左右 padding を打ち消して画像を端まで広げる */
+      z-index:2;
       margin-left:  calc(-1 * var(--rail));
       margin-right: calc(-1 * var(--rail));
     }
     .site-header img.hero{
       display:block;
       width:100%;
-      height:auto;
+      max-height:300px;   /* 高さを抑える */
+      object-fit:cover;   /* バランスを保つ */
     }
 
-    /* 画像の下端にナビを重ねる（ナビ自体は今の大きさのまま） */
     .nav-container{
       position:absolute;
       bottom:-10px;
@@ -73,7 +69,6 @@
       font-weight:800;
     }
 
-    /* ===== Generic layout ===== */
     section{ padding:72px 20px 40px; max-width:1100px; margin:auto; }
     h2{ font-size:clamp(20px,2.8vw,28px); border-bottom:4px solid var(--sand); padding-bottom:.5rem; margin-top:0; }
 
@@ -88,31 +83,7 @@
 
     footer{ background:var(--leaf); color:#fff; padding:24px 16px; text-align:center; font-size:.95rem; margin-top:32px; }
 
-    /* ==== Simple carousel (hero gallery) ==== */
-    .carousel{ max-width:1100px; margin: 14px auto 0; padding: 0 20px 28px; }
-    .slides{ position:relative; overflow:hidden; border-radius:18px; border:3px solid #000; box-shadow:0 6px 0 #000; height:360px; }
-    .slide{ position:absolute; inset:0; opacity:0; transition:opacity .8s ease; }
-    .slide img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .slide.active{ opacity:1; }
-
-    @media (max-width:720px){
-      .nav ul{ gap:.6rem; font-size:.9rem; padding:6px 10px; }
-      .slides{ height:220px; }
-    }
-
-    /* ==== ヘッダー（青空画像） ==== */
-    .site-header{
-      position:relative;
-      z-index:1; /* 画像は下のレイヤー */
-    }
-    .site-header img.hero{
-      display:block;
-      width:100%;
-      max-height:300px;   /* ←高さを短くする */
-      object-fit:cover;   /* ←縦を切り取りつつ収める */
-    }
-
-    /* ==== 両サイドの黄色い帯（背景レイヤーに変更） ==== */
+    /* ==== 黄色帯（背景扱い） ==== */
     body::before,
     body::after{
       content:"";
@@ -121,7 +92,7 @@
       width:var(--rail);
       background:var(--sand);
       pointer-events:none;
-      z-index:-1;   /* ← 背景扱いにする（ここがポイント） */
+      z-index:-1;
     }
     body::before{ left:0; }
     body::after { right:0; }
@@ -135,14 +106,12 @@
     <div class="nav-container">
       <nav class="nav">
         <ul>
-          <li><a href="#home">ホーム</a></li>
-          <li><a href="#about">遊べるお寺プロジェクトとは</a></li>
-          <li><a href="#events">イベント</a></li>
-          <li><a href="#request">ご依頼はこちら</a></li>
-          <li><a href="#join">参加方法</a></li>
-          <li><a href="#support">寄付・応援</a></li>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="about.html">遊べるお寺プロジェクトとは</a></li>
+          <li><a href="events.html">イベント情報</a></li>
+          <li><a href="join.html">参加方法</a></li>
+          <li><a href="support.html">寄付・応援</a></li>
           <li><a href="#contact">お問い合わせ</a></li>
-          <li><a href="#en">Luggage</a></li>
         </ul>
       </nav>
     </div>
@@ -157,20 +126,10 @@
     </div>
   </div>
 
-  <script>
-    // すごく軽い自動スライド
-    const slides = document.querySelectorAll('#heroSlides .slide');
-    let idx = 0;
-    setInterval(() => {
-      slides[idx].classList.remove('active');
-      idx = (idx + 1) % slides.length;
-      slides[idx].classList.add('active');
-    }, 5000);
-  </script>
-
   <section id="about">
     <h2>遊べるお寺プロジェクトとは</h2>
-    <p>お寺を舞台に「遊び」を通じた交流と学びを提供するプロジェクトです。世代や立場を超えて、誰もが安心してつながれる場づくりを目指しています。</p>
+    <p>お寺を舞台に「遊び」を通じた交流と学びを提供するプロジェクトです。</p>
+    <p><a class="btn btn-primary" href="about.html">もっと詳しく</a></p>
   </section>
 
   <section id="reports">
@@ -183,43 +142,23 @@
 
   <section id="events">
     <h2>イベント情報</h2>
-    <div class="card-grid">
-      <article class="card">
-        <h3>10/12(日) 森カフェ×ボードゲーム</h3>
-        <p class="meta">場所：超前時（境内）｜参加費：500円</p>
-        <p>木陰でお茶を飲みながら、軽いゲームで交流しましょう。初めての方歓迎！</p>
-        <a class="btn btn-primary" href="#">参加申し込み</a>
-      </article>
-      <article class="card">
-        <h3>10/26(日) 健康麻雀の日</h3>
-        <p class="meta">場所：地域交流スペース｜参加費：300円</p>
-        <p>点数計算は不要、やさしいルールで楽しむ日。見学だけもOKです。</p>
-        <a class="btn btn-primary" href="#">参加申し込み</a>
-      </article>
-      <article class="card">
-        <h3>11/09(日) 寺子屋・ゆる仏教トーク</h3>
-        <p class="meta">場所：本堂｜参加費：投げ銭</p>
-        <p>日常のモヤモヤを仏教の視点でほどく、小さな対話の時間です。</p>
-        <a class="btn btn-primary" href="#">参加申し込み</a>
-      </article>
-    </div>
+    <p><a class="btn btn-primary" href="events.html">イベントページを見る</a></p>
   </section>
 
   <section id="join">
     <h2>参加方法</h2>
-    <p>「地域で一緒に遊んでみたい」「こんな活動をしてみたい」というアイデアをお待ちしています。まずはお気軽に声をかけてください。</p>
-    <p><a class="btn btn-ghost" href="#">アイデア・参加の相談フォームへ</a></p>
+    <p>参加のアイデアや希望をお待ちしています。</p>
+    <p><a class="btn btn-ghost" href="join.html">参加ページへ</a></p>
   </section>
 
   <section id="support">
     <h2>寄付・応援</h2>
-    <p>寄付・応援ページは現在準備中です。先行して<strong>応援メッセージ</strong>を募集しています。いただいたメッセージは承認後、サイト内でご紹介予定です。</p>
-    <p><a class="btn btn-primary" href="#">応援メッセージを送る</a></p>
+    <p>応援メッセージを募集しています。</p>
+    <p><a class="btn btn-primary" href="support.html">寄付・応援ページへ</a></p>
   </section>
 
   <section id="contact">
     <h2>お問い合わせ</h2>
-    <p>ご依頼・ご相談はこちらからお気軽にどうぞ。</p>
     <p>Email: <a href="mailto:hoo263930@gmail.com">hoo263930@gmail.com</a></p>
   </section>
 
@@ -227,16 +166,14 @@
     <p>© 2025 遊べるお寺プロジェクト</p>
   </footer>
 
-  <!-- note マガジンのRSSを取得して最新記事を表示（画像は本文最初の画像を拾う／フォールバックあり） -->
+  <!-- noteマガジンRSS読み込み -->
   <script>
   (async () => {
     const FEEDS = [
-      "https://r.jina.ai/http://note.com/loyal_dill1011/m/m9a97295e24a9/rss",
-      "https://r.jina.ai/https://note.com/loyal_dill1011/m/m9a97295e24a9/rss"
+      "https://note.com/loyal_dill1011/m/m9a97295e24a9/rss"
     ];
     const mount = document.getElementById("note-feed");
 
-    // description か content:encoded から最初の <img> を拾う
     const pickImage = (item) => {
       const enc = item.querySelector("content\\:encoded, encoded")?.textContent || "";
       const desc = item.querySelector("description")?.textContent || "";
@@ -272,27 +209,14 @@
       mount.innerHTML = cards || "<p>まだ記事がありません。</p>";
     };
 
-    // フィード取得（2通りを順に試す）
-    let loaded = false;
-    for (const url of FEEDS) {
-      try {
-        const res = await fetch(url);
-        if (!res.ok) continue;
-        const xml = await res.text();
-        const doc = new DOMParser().parseFromString(xml, "text/xml");
-        const items = Array.from(doc.querySelectorAll("item"));
-        if (items.length) {
-          render(items);
-          loaded = true;
-          break;
-        }
-      } catch (e) {
-        // 次のURLで再挑戦
-      }
-    }
-
-    if (!loaded) {
-      mount.innerHTML = "<p>noteの最新記事を読み込めませんでした。時間をおいて再表示してください。</p>";
+    try {
+      const res = await fetch(FEEDS[0]);
+      const xml = await res.text();
+      const doc = new DOMParser().parseFromString(xml, "text/xml");
+      const items = Array.from(doc.querySelectorAll("item"));
+      if (items.length) render(items);
+    } catch (e) {
+      mount.innerHTML = "<p>noteの最新記事を読み込めませんでした。</p>";
     }
   })();
   </script>
