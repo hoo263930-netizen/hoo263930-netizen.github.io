@@ -136,8 +136,9 @@ body::after{
   width:var(--rail);
   background:var(--sand);
   pointer-events:none;
-  z-index:9999;   /* ←帯を最前面に */
+  z-index:-1;   /* ← 背景扱いにする */
 }
+
 body::before{ left:0; }
 body::after { right:0; }
 
