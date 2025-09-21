@@ -17,21 +17,6 @@
     @media (max-width: 720px){
       :root{ --rail: 20px; } /* スマホ時の帯の太さ */
     }
-    /* ---- hero画像をバーより前面に出す ---- */
-.hero, header, .kv { position: relative; }
-
-.hero img,
-.kv img {
-  position: relative;
-  z-index: 10;   /* 画像を最前面に */
-}
-
-/* 黄色バーが ::before / ::after だった場合を想定して一段下げる */
-.hero::before, .hero::after,
-header::before, header::after,
-.kv::before, .kv::after {
-  z-index: 0;    /* 画像(z-index:10)より下に */
-}
 
     *{ box-sizing:border-box; }
 
@@ -115,35 +100,33 @@ header::before, header::after,
       .slides{ height:220px; }
     }
 
-/* ==== ヘッダー（青空画像） ==== */
-.site-header{
-  position:relative;
-  z-index:1; /* 画像は下のレイヤー */
-}
-.site-header img.hero{
-  display:block;
-  width:100%;
-  max-height:300px;   /* ←高さを短くする */
-  object-fit:cover;   /* ←縦を切り取りつつ収める */
-}
+    /* ==== ヘッダー（青空画像） ==== */
+    .site-header{
+      position:relative;
+      z-index:1; /* 画像は下のレイヤー */
+    }
+    .site-header img.hero{
+      display:block;
+      width:100%;
+      max-height:300px;   /* ←高さを短くする */
+      object-fit:cover;   /* ←縦を切り取りつつ収める */
+    }
 
-/* ==== 両サイドの黄色い帯 ==== */
-body::before,
-body::after{
-  content:"";
-  position:fixed;
-  top:0; bottom:0;
-  width:var(--rail);
-  background:var(--sand);
-  pointer-events:none;
-  z-index:-1;   /* ← 背景扱いにする */
-}
-
-body::before{ left:0; }
-body::after { right:0; }
-</style>
-
-
+    /* ==== 両サイドの黄色い帯（背景レイヤーに変更） ==== */
+    body::before,
+    body::after{
+      content:"";
+      position:fixed;
+      top:0; bottom:0;
+      width:var(--rail);
+      background:var(--sand);
+      pointer-events:none;
+      z-index:-1;   /* ← 背景扱いにする（ここがポイント） */
+    }
+    body::before{ left:0; }
+    body::after { right:0; }
+  </style>
+</head>
 
 <body>
   <!-- 画像ヘッダー -->
