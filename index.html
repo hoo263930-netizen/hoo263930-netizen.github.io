@@ -17,6 +17,21 @@
     @media (max-width: 720px){
       :root{ --rail: 20px; } /* スマホ時の帯の太さ */
     }
+    /* ---- hero画像をバーより前面に出す ---- */
+.hero, header, .kv { position: relative; }
+
+.hero img,
+.kv img {
+  position: relative;
+  z-index: 10;   /* 画像を最前面に */
+}
+
+/* 黄色バーが ::before / ::after だった場合を想定して一段下げる */
+.hero::before, .hero::after,
+header::before, header::after,
+.kv::before, .kv::after {
+  z-index: 0;    /* 画像(z-index:10)より下に */
+}
 
     *{ box-sizing:border-box; }
 
