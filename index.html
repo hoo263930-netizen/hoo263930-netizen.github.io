@@ -69,7 +69,7 @@
       font-weight:800;
     }
 
-    /* ==== フェード式ヒーロー（トップ写真） ==== */
+    /* ==== フェード式ヒーロー ==== */
     .fade-hero{ padding:24px 20px 0; max-width:1100px; margin:0 auto; }
     .fade-slideshow{
       position: relative;
@@ -90,22 +90,15 @@
       animation: xfade 18s infinite;
     }
 
-    /* 各スライドのアニメーション開始タイミング */
     .fade-slideshow img:nth-child(1){ animation-delay: 0s; }
     .fade-slideshow img:nth-child(2){ animation-delay: 6s; }
-    .fade-slideshow img:nth-child(3){
-      transform: scale(0.85);          
-      transform-origin: center center; 
-      object-fit: cover;               
-      background: #000; /* 背景を黒にして透け防止 */
-      animation-delay: 12s;
-    }
+    .fade-slideshow img:nth-child(3){ animation-delay: 12s; transform: scale(0.9); }
 
     @keyframes xfade{
       0%   { opacity: 0; }
-      8%   { opacity: 1; }  /* 前のが消え切ってから登場 */
-      30%  { opacity: 1; }
-      35%  { opacity: 0; }  /* 早めに退場 */
+      8%   { opacity: 1; }
+      28%  { opacity: 1; }
+      33%  { opacity: 0; }
       100% { opacity: 0; }
     }
 
@@ -165,7 +158,7 @@
 </head>
 
 <body>
-  <!-- 画像ヘッダー -->
+  <!-- ヘッダー -->
   <header class="site-header" id="home">
     <img class="hero" src="header.png" alt="遊べるお寺プロジェクト ヘッダー画像">
     <div class="nav-container">
@@ -182,7 +175,7 @@
     </div>
   </header>
 
-  <!-- フェード式ヒーロー -->
+  <!-- スライドショー -->
   <section class="fade-hero" aria-label="活動写真スライドショー">
     <div class="fade-slideshow">
       <img src="IMG_1.jpeg" alt="トップ写真1">
@@ -199,7 +192,10 @@
 
   <section id="reports">
     <h2>活動報告 - note（最新3件）</h2>
-    <div id="note-feed" class="card-grid"></div>
+    <div id="note-feed" class="card-grid">
+      <!-- 初期表示（フェールセーフ用） -->
+      <article class="card"><p>記事を読み込み中...</p></article>
+    </div>
     <p style="margin-top:16px">
       <a class="btn btn-ghost" href="https://note.com/loyal_dill1011/m/m9a97295e24a9" target="_blank">noteマガジンをもっと見る</a>
     </p>
@@ -252,12 +248,11 @@
     };
 
     const render = (items) => {
-      const cards = items.slice(0,3).map(it => {   // 最新3件だけ
+      const cards = items.slice(0,3).map(it => {
         const title = it.querySelector("title")?.textContent?.trim() || "無題";
         const link  = it.querySelector("link")?.textContent || "#";
         const dateJp = toDate(it.querySelector("pubDate")?.textContent || "");
         const img = pickImage(it);
-
         return `
           <article class="card">
             ${img ? `<img src="${img}" alt="${title}">` : ""}
@@ -276,8 +271,8 @@
       const doc = new DOMParser().parseFromString(xml, "text/xml");
       const items = Array.from(doc.querySelectorAll("item"));
       if (items.length) render(items);
-      else mount.innerHTML = "<p>noteの最新記事が取得できませんでした。</p>";
     } catch (e) {
+      console.error(e);
       mount.innerHTML = "<p>noteの最新記事を読み込めませんでした。</p>";
     }
   })();
