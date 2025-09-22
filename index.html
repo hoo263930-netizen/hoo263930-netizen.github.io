@@ -69,60 +69,77 @@
       font-weight:800;
     }
 
-/* ==== フェード式ヒーロー（トップ写真） ==== */
-.fade-hero{ padding:24px 20px 0; max-width:1100px; margin:0 auto; }
-.fade-slideshow{
-  position: relative;
-  width: 100%;
-  aspect-ratio: 21 / 9;      /* 高さ控えめ。必要なら 16/9 に変更 */
-  max-height: 420px;
-  overflow: hidden;
-  border-radius: 16px;
-  border:3px solid #000;
-  box-shadow:0 6px 0 #000;
-  background:#ddd;
-}
-.fade-slideshow img{
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  animation: xfade 18s infinite;
-}
+    /* ==== フェード式ヒーロー（トップ写真） ==== */
+    .fade-hero{ padding:24px 20px 0; max-width:1100px; margin:0 auto; }
+    .fade-slideshow{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 21 / 9;
+      max-height: 420px;
+      overflow: hidden;
+      border-radius: 16px;
+      border:3px solid #000;
+      box-shadow:0 6px 0 #000;
+      background:#ddd;
+    }
+    .fade-slideshow img{
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      animation: xfade 18s infinite;
+    }
 
-/* 各スライドのアニメーション開始タイミング */
-.fade-slideshow img:nth-child(1){ animation-delay: 0s; }
-.fade-slideshow img:nth-child(2){ animation-delay: 6s; }
-.fade-slideshow img:nth-child(3){
-  transform: scale(0.85);          /* 少し縮小してズームを弱める */
-  transform-origin: center center; /* 中央基準で縮小 */
-  object-fit: cover;               /* 切り取りは維持 */
-  background: #000;                /* ← ここを追加！透け防止用 */
-}
+    /* 各スライドのアニメーション開始タイミング */
+    .fade-slideshow img:nth-child(1){ animation-delay: 0s; }
+    .fade-slideshow img:nth-child(2){ animation-delay: 6s; }
+    .fade-slideshow img:nth-child(3){
+      transform: scale(0.85);          
+      transform-origin: center center; 
+      object-fit: cover;               
+      background: #000; /* 背景を黒にして透け防止 */
+      animation-delay: 12s;
+    }
 
-}
+    @keyframes xfade{
+      0%   { opacity: 0; }
+      8%   { opacity: 1; }  /* 前のが消え切ってから登場 */
+      30%  { opacity: 1; }
+      35%  { opacity: 0; }  /* 早めに退場 */
+      100% { opacity: 0; }
+    }
 
-@keyframes xfade{
-  0%   { opacity: 0; }
-  5%   { opacity: 1; }  /* ふわっと現れる */
-  33%  { opacity: 1; }  /* 表示 */
-  38%  { opacity: 0; }  /* ふわっと消える */
-  100% { opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .fade-slideshow img{ animation: none; }
-  .fade-slideshow img:not(:first-child){ display: none; }
-}
-
+    @media (prefers-reduced-motion: reduce){
+      .fade-slideshow img{ animation: none; }
+      .fade-slideshow img:not(:first-child){ display: none; }
+    }
 
     /* ==== 共通レイアウト ==== */
     section{ padding:72px 20px 40px; max-width:1100px; margin:auto; }
     h2{ font-size:clamp(20px,2.8vw,28px); border-bottom:4px solid var(--sand); padding-bottom:.5rem; margin-top:0; }
 
-    .card-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
-    .card{ border:3px solid #000; border-radius:18px; padding:16px; background:#fff; box-shadow:0 6px 0 #000; overflow:hidden; }
-    .card img{ width:100%; height:180px; object-fit:cover; border-radius:12px; border:2px solid #000; margin-bottom:10px; }
+    .card-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:16px;
+    }
+    .card{
+      border:3px solid #000;
+      border-radius:18px;
+      padding:16px;
+      background:#fff;
+      box-shadow:0 6px 0 #000;
+      overflow:hidden;
+      text-align:center;
+    }
+    .card img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      border-radius:12px;
+      border:2px solid #000;
+      margin-bottom:10px;
+    }
     .meta{ font-size:.9rem; opacity:.8; margin-top:4px; }
 
     .btn{ display:inline-block; padding:10px 14px; border:3px solid #000; border-radius:12px; font-weight:800; text-decoration:none; }
@@ -131,7 +148,7 @@
 
     footer{ background:var(--leaf); color:#fff; padding:24px 16px; text-align:center; font-size:.95rem; margin-top:32px; }
 
-    /* ==== 黄色帯（背景扱い） ==== */
+    /* ==== 黄色帯 ==== */
     body::before,
     body::after{
       content:"";
@@ -148,7 +165,7 @@
 </head>
 
 <body>
-  <!-- 画像ヘッダー（固定画像＋ナビ） -->
+  <!-- 画像ヘッダー -->
   <header class="site-header" id="home">
     <img class="hero" src="header.png" alt="遊べるお寺プロジェクト ヘッダー画像">
     <div class="nav-container">
@@ -165,10 +182,9 @@
     </div>
   </header>
 
-  <!-- フェード式ヒーロー（トップ写真が順に表示） -->
+  <!-- フェード式ヒーロー -->
   <section class="fade-hero" aria-label="活動写真スライドショー">
     <div class="fade-slideshow">
-      <!-- 画像はリポジトリ直下の3枚を使用 -->
       <img src="IMG_1.jpeg" alt="トップ写真1">
       <img src="IMG_2.JPG"  alt="トップ写真2">
       <img src="IMG_3.jpg"  alt="トップ写真3">
@@ -182,10 +198,10 @@
   </section>
 
   <section id="reports">
-    <h2>活動報告 - note（最新）</h2>
+    <h2>活動報告 - note（最新3件）</h2>
     <div id="note-feed" class="card-grid"></div>
     <p style="margin-top:16px">
-      <a class="btn btn-ghost" href="activities.html">活動報告ページへ</a>
+      <a class="btn btn-ghost" href="https://note.com/loyal_dill1011/m/m9a97295e24a9" target="_blank">noteマガジンをもっと見る</a>
     </p>
   </section>
 
@@ -215,12 +231,10 @@
     <p>© 2025 遊べるお寺プロジェクト</p>
   </footer>
 
-  <!-- noteマガジンRSS読み込み（CORSで失敗することもあるため失敗時はメッセージ表示） -->
+  <!-- noteマガジンRSS読み込み -->
   <script>
   (async () => {
-    const FEEDS = [
-      "https://note.com/loyal_dill1011/m/m9a97295e24a9/rss"
-    ];
+    const FEED_URL = "https://note.com/loyal_dill1011/m/m9a97295e24a9/rss";
     const mount = document.getElementById("note-feed");
 
     const pickImage = (item) => {
@@ -234,23 +248,21 @@
     const toDate = (str) => {
       const d = new Date(str);
       if (isNaN(d)) return "";
-      const y = d.getFullYear();
-      const m = String(d.getMonth()+1).padStart(2,"0");
-      const day = String(d.getDate()).padStart(2,"0");
-      return `${y}/${m}/${day}`;
+      return `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,"0")}/${String(d.getDate()).padStart(2,"0")}`;
     };
 
     const render = (items) => {
-      const cards = items.slice(0,6).map(it => {
+      const cards = items.slice(0,3).map(it => {   // 最新3件だけ
         const title = it.querySelector("title")?.textContent?.trim() || "無題";
         const link  = it.querySelector("link")?.textContent || "#";
         const dateJp = toDate(it.querySelector("pubDate")?.textContent || "");
         const img = pickImage(it);
+
         return `
           <article class="card">
             ${img ? `<img src="${img}" alt="${title}">` : ""}
             <h3 style="margin:.5rem 0">${title}</h3>
-            <p class="meta">${dateJp ? `${dateJp}｜` : ""}note</p>
+            <p class="meta">${dateJp}｜note</p>
             <a class="btn btn-primary" href="${link}" target="_blank" rel="noopener">記事を読む</a>
           </article>
         `;
@@ -259,7 +271,7 @@
     };
 
     try {
-      const res = await fetch(FEEDS[0]);
+      const res = await fetch(FEED_URL);
       const xml = await res.text();
       const doc = new DOMParser().parseFromString(xml, "text/xml");
       const items = Array.from(doc.querySelectorAll("item"));
