@@ -68,15 +68,45 @@
       color:#000;
       font-weight:800;
     }
-    <section class="hero">
-  <div class="fade-slideshow">
-    <img src="IMG_1.jpeg" alt="トップ写真1">
-    <img src="IMG_2.JPG" alt="トップ写真2">
-    <img src="IMG_3.jpg" alt="トップ写真3">
-  </div>
-</section>
 
+    /* ==== フェード式ヒーロー（トップ写真） ==== */
+    .fade-hero{ padding:24px 20px 0; max-width:1100px; margin:0 auto; }
+    .fade-slideshow{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 21 / 9;      /* 高さ控えめ。必要なら 16/9 に変更 */
+      max-height: 420px;
+      overflow: hidden;
+      border-radius: 16px;
+      border:3px solid #000;
+      box-shadow:0 6px 0 #000;
+      background:#ddd;
+    }
+    .fade-slideshow img{
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      animation: xfade 18s infinite;
+    }
+    .fade-slideshow img:nth-child(1){ animation-delay: 0s;  }
+    .fade-slideshow img:nth-child(2){ animation-delay: 6s;  }
+    .fade-slideshow img:nth-child(3){ animation-delay: 12s; }
 
+    @keyframes xfade{
+      0%   { opacity: 0; }
+      5%   { opacity: 1; }  /* ふわっと現れる */
+      33%  { opacity: 1; }  /* 表示 */
+      38%  { opacity: 0; }  /* ふわっと消える */
+      100% { opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .fade-slideshow img{ animation: none; }
+      .fade-slideshow img:not(:first-child){ display: none; }
+    }
+
+    /* ==== 共通レイアウト ==== */
     section{ padding:72px 20px 40px; max-width:1100px; margin:auto; }
     h2{ font-size:clamp(20px,2.8vw,28px); border-bottom:4px solid var(--sand); padding-bottom:.5rem; margin-top:0; }
 
@@ -108,7 +138,7 @@
 </head>
 
 <body>
-  <!-- 画像ヘッダー -->
+  <!-- 画像ヘッダー（固定画像＋ナビ） -->
   <header class="site-header" id="home">
     <img class="hero" src="header.png" alt="遊べるお寺プロジェクト ヘッダー画像">
     <div class="nav-container">
@@ -125,14 +155,15 @@
     </div>
   </header>
 
-  <!-- Hero carousel -->
-  <div class="carousel" aria-label="フォトギャラリー">
-    <div class="slides" id="heroSlides">
-      <div class="slide active"><img src="images/hero1.jpg" alt="お寺の風景と交流の様子" /></div>
-      <div class="slide"><img src="images/hero2.jpg" alt="ボードゲームで遊ぶ参加者" /></div>
-      <div class="slide"><img src="images/hero3.jpg" alt="イベントの笑顔" /></div>
+  <!-- フェード式ヒーロー（トップ写真が順に表示） -->
+  <section class="fade-hero" aria-label="活動写真スライドショー">
+    <div class="fade-slideshow">
+      <!-- 画像はリポジトリ直下の3枚を使用 -->
+      <img src="IMG_1.jpeg" alt="トップ写真1">
+      <img src="IMG_2.JPG"  alt="トップ写真2">
+      <img src="IMG_3.jpg"  alt="トップ写真3">
     </div>
-  </div>
+  </section>
 
   <section id="about">
     <h2>遊べるお寺プロジェクトとは</h2>
@@ -174,7 +205,7 @@
     <p>© 2025 遊べるお寺プロジェクト</p>
   </footer>
 
-  <!-- noteマガジンRSS読み込み -->
+  <!-- noteマガジンRSS読み込み（CORSで失敗することもあるため失敗時はメッセージ表示） -->
   <script>
   (async () => {
     const FEEDS = [
@@ -223,6 +254,7 @@
       const doc = new DOMParser().parseFromString(xml, "text/xml");
       const items = Array.from(doc.querySelectorAll("item"));
       if (items.length) render(items);
+      else mount.innerHTML = "<p>noteの最新記事が取得できませんでした。</p>";
     } catch (e) {
       mount.innerHTML = "<p>noteの最新記事を読み込めませんでした。</p>";
     }
