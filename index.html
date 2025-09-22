@@ -91,7 +91,11 @@
     }
     .fade-slideshow img:nth-child(1){ animation-delay: 0s;  }
     .fade-slideshow img:nth-child(2){ animation-delay: 6s;  }
-    .fade-slideshow img:nth-child(3){ animation-delay: 12s; }
+.fade-slideshow img:nth-child(3){
+  transform: scale(0.9);   /* 90%サイズで表示 */
+  object-fit: cover;       /* 切り取りは維持 */
+}
+
 
     @keyframes xfade{
       0%   { opacity: 0; }
