@@ -69,48 +69,49 @@
       font-weight:800;
     }
 
-    /* ==== フェード式ヒーロー（トップ写真） ==== */
-    .fade-hero{ padding:24px 20px 0; max-width:1100px; margin:0 auto; }
-    .fade-slideshow{
-      position: relative;
-      width: 100%;
-      aspect-ratio: 21 / 9;      /* 高さ控えめ。必要なら 16/9 に変更 */
-      max-height: 420px;
-      overflow: hidden;
-      border-radius: 16px;
-      border:3px solid #000;
-      box-shadow:0 6px 0 #000;
-      background:#ddd;
-    }
-    .fade-slideshow img{
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      animation: xfade 18s infinite;
-    }
+/* ==== フェード式ヒーロー（トップ写真） ==== */
+.fade-hero{ padding:24px 20px 0; max-width:1100px; margin:0 auto; }
+.fade-slideshow{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;      /* 高さ控えめ。必要なら 16/9 に変更 */
+  max-height: 420px;
+  overflow: hidden;
+  border-radius: 16px;
+  border:3px solid #000;
+  box-shadow:0 6px 0 #000;
+  background:#ddd;
+}
+.fade-slideshow img{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: xfade 18s infinite;
+}
+
+/* 各スライドのアニメーション開始タイミング */
 .fade-slideshow img:nth-child(1){ animation-delay: 0s; }
 .fade-slideshow img:nth-child(2){ animation-delay: 6s; }
 .fade-slideshow img:nth-child(3){
-  transform: scale(0.85);          /* 85%に縮小（調整OK） */
+  transform: scale(0.85);          /* 少し縮小してズームを弱める */
   transform-origin: center center; /* 中央基準で縮小 */
   object-fit: cover;               /* 切り取りは維持 */
 }
 
+@keyframes xfade{
+  0%   { opacity: 0; }
+  5%   { opacity: 1; }  /* ふわっと現れる */
+  33%  { opacity: 1; }  /* 表示 */
+  38%  { opacity: 0; }  /* ふわっと消える */
+  100% { opacity: 0; }
+}
 
+@media (prefers-reduced-motion: reduce){
+  .fade-slideshow img{ animation: none; }
+  .fade-slideshow img:not(:first-child){ display: none; }
+}
 
-    @keyframes xfade{
-      0%   { opacity: 0; }
-      5%   { opacity: 1; }  /* ふわっと現れる */
-      33%  { opacity: 1; }  /* 表示 */
-      38%  { opacity: 0; }  /* ふわっと消える */
-      100% { opacity: 0; }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .fade-slideshow img{ animation: none; }
-      .fade-slideshow img:not(:first-child){ display: none; }
-    }
 
     /* ==== 共通レイアウト ==== */
     section{ padding:72px 20px 40px; max-width:1100px; margin:auto; }
