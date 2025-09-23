@@ -1,175 +1,121 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>遊べるお寺プロジェクト</title>
-  <meta name="description" content="楽しく学び、遊んで繋がる。『遊べるお寺プロジェクト』の公式サイト。イベント情報・活動報告・コラボ依頼はこちら。" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>遊べるお寺プロジェクト</title>
+<meta name="description" content="楽しく学び、遊んで繋がる。『遊べるお寺プロジェクト』の公式サイト。イベント情報・活動報告・コラボ依頼はこちら。" />
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --sky:#5ac2ff;   /* 青 */
-      --sand:#f7ce52;  /* 黄 */
-      --ink:#2b2b2b;   /* 文字色 */
-      --paper:#ffffff; /* 背景 */
-      --rail:24px;     /* サイド黄色バー幅（PC） */
-      --mobile-rail:6px; /* スマホの上部細帯 高さ */
-      --maxw:1100px;   /* 本文最大幅 */
-      --gap:20px;      /* 横の余白 */
-    }
-    *{ box-sizing: border-box; }
-    html,body{ margin:0; padding:0; background:var(--paper); color:var(--ink); }
-    body{
-      font-family:"BIZ UDPGothic","Noto Sans JP",system-ui,-apple-system,Segoe UI,Roboto,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-      line-height:1.8;
-    }
+<style>
+:root{
+  --sky:#5ac2ff;   /* 青 */
+  --sand:#f7ce52;  /* 黄 */
+  --ink:#2b2b2b;   /* 文字色 */
+  --paper:#ffffff; /* 背景 */
+  --rail:24px;     /* PCの左右黄色バー */
+  --mobile-rail:6px; /* スマホの上部細帯 */
+  --maxw:1100px;
+  --gap:20px;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:var(--paper); color:var(--ink); }
+body{
+  font-family:"BIZ UDPGothic","Noto Sans JP",system-ui,-apple-system,Segoe UI,Roboto,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  line-height:1.8;
+}
 
-    /* ====== サイド黄色バー（PC） ====== */
-    .rail{
-      position:fixed; top:0; bottom:0; width:var(--rail); background:var(--sand); z-index:0;
-    }
-    .rail.left{ left:0; }
-    .rail.right{ right:0; }
+/* PCの左右黄色バー */
+.rail{ position:fixed; top:0; bottom:0; width:var(--rail); background:var(--sand); z-index:0; }
+.rail.left{ left:0; }
+.rail.right{ right:0; }
 
-    /* 本文はサイドバー分だけ内側に寄せる */
-    .page{
-      position:relative; z-index:1;
-      padding-left: calc(var(--rail) + var(--gap));
-      padding-right: calc(var(--rail) + var(--gap));
-    }
+/* ページ余白（バー分内側に） */
+.page{ position:relative; z-index:1; padding-left:calc(var(--rail) + var(--gap)); padding-right:calc(var(--rail) + var(--gap)); }
 
-    /* スマホはサイドバーを消し、上部に細帯を出す */
-    .mobile-rail{ display:none; }
-    @media (max-width: 768px){
-      .rail{ display:none; }
-      .page{ padding-left: var(--gap); padding-right: var(--gap); }
-      .mobile-rail{
-        display:block; position:fixed; top:0; left:0; right:0; height:var(--mobile-rail);
-        background:var(--sand); z-index:999;
-      }
-      body{ padding-top: var(--mobile-rail); }
-    }
+/* スマホは細帯に切替 */
+.mobile-rail{ display:none; }
+@media (max-width:768px){
+  .rail{ display:none; }
+  .page{ padding-left:var(--gap); padding-right:var(--gap); }
+  .mobile-rail{ display:block; position:fixed; top:0; left:0; right:0; height:var(--mobile-rail); background:var(--sand); z-index:999; }
+  body{ padding-top:var(--mobile-rail); }
+}
 
-    /* ====== ヘッダー ====== */
-    header{
-      background:#fff;
-      border-bottom:1px solid #eee;
-    }
-    .wrap{
-      max-width:var(--maxw); margin:0 auto; padding:14px 0;
-    }
-    .brand{
-      font-weight:700; font-size:20px; letter-spacing: .02em;
-    }
-    nav{
-      margin-top:10px;
-    }
-    .nav{
-      display:flex; gap:16px; flex-wrap:wrap; padding:0; margin:0; list-style:none;
-    }
-    .nav a{
-      display:block; padding:10px 12px; text-decoration:none; color:var(--ink);
-      border-radius:8px; transition: background .15s ease;
-    }
-    .nav a:hover{ background:#f6f6f6; }
-    .nav a.cta{ background:var(--sky); color:#fff; }
-    .nav a.cta:hover{ opacity:.9; }
+/* ヘッダー（非固定） */
+header{ background:#fff; border-bottom:1px solid #eee; }
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:14px 0; }
+.brand{ font-weight:700; font-size:20px; letter-spacing:.02em; }
+nav{ margin-top:10px; }
+.nav{ display:flex; gap:18px; flex-wrap:wrap; list-style:none; padding:0; margin:0; }
 
-    /* ====== ヒーロー（16:9） ====== */
-    .hero{
-      max-width:var(--maxw); margin:28px auto 18px; 
-    }
-    .hero .frame{
-      width:100%;
-      aspect-ratio:16/9; /* ←量産しやすい規格 */
-      background:#ddd url("img/hero.jpg") center/cover no-repeat;
-      /* 角丸・影なし（白背景となじませる意図） */
-    }
-    .hero .caption{
-      margin-top:10px; font-size:14px; color:#777;
-    }
+/* 縦仕切り（画像のイメージ通り、1pxの線） */
+.nav li{ position:relative; }
+.nav li + li::before{
+  content:""; position:absolute; left:-9px; top:50%; transform:translateY(-50%);
+  width:1px; height:22px; background:#d9d9d9;
+}
+.nav a{
+  display:block; padding:10px 12px; text-decoration:none; color:var(--ink);
+  border-radius:8px; transition:background .15s ease;
+}
+.nav a:hover{ background:#f6f6f6; }
+.nav a.cta{ background:var(--sky); color:#fff; }
+.nav a.cta:hover{ opacity:.9; }
 
-    /* ====== セクション共通 ====== */
-    section{ padding:28px 0; }
-    section .wrap{ max-width:var(--maxw); margin:0 auto; }
-    h2{ font-size:28px; margin:0 0 12px; }
-    p.lead{ font-size:16px; margin:0 0 16px; }
-    .btn{
-      display:inline-block; padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:700;
-      background:var(--sky); color:#fff;
-      transition: transform .06s ease;
-    }
-    .btn:hover{ transform: translateY(-1px); }
+/* ヒーロー 16:9（alt対応のためimgで表示） */
+.hero{ max-width:var(--maxw); margin:28px auto 18px; }
+.hero .frame{ position:relative; width:100%; aspect-ratio:16/9; }
+.hero img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 
-    /* ====== About（紹介） ====== */
-    .about{
-      background:#f9fbff;
-      border:1px solid #e8f3ff; border-radius:16px;
-      padding:20px;
-    }
+/* セクション共通 */
+section{ padding:28px 0; }
+section .wrap{ max-width:var(--maxw); margin:0 auto; }
+h2{ font-size:28px; margin:0 0 12px; }
+p.lead{ font-size:16px; margin:0 0 16px; }
+.btn{ display:inline-block; padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:700; background:var(--sky); color:#fff; transition:transform .06s ease; }
+.btn:hover{ transform:translateY(-1px); }
 
-    /* ====== Note 最新3件 ====== */
-    .cards{
-      display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;
-    }
-    .card{
-      background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden;
-      display:flex; flex-direction:column; height:100%;
-    }
-    .card .thumb{ width:100%; aspect-ratio: 16/9; background:#eee center/cover no-repeat; }
-    .card .body{ padding:14px; }
-    .card .meta{ font-size:12px; color:#777; margin-bottom:6px; }
-    .card h3{ font-size:16px; margin:0 0 8px; line-height:1.5; }
-    .card p{ font-size:14px; color:#555; margin:0; }
-    .more{
-      margin-top:16px;
-    }
+/* About */
+.about{ background:#f9fbff; border:1px solid #e8f3ff; border-radius:16px; padding:20px; }
 
-    @media (max-width: 900px){
-      .cards{ grid-template-columns: 1fr; }
-    }
+/* Note 最新3件 */
+.cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.card{ background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; display:flex; flex-direction:column; height:100%; }
+.card .thumb{ width:100%; aspect-ratio:16/9; background:#eee center/cover no-repeat; }
+.card .body{ padding:14px; }
+.card .meta{ font-size:12px; color:#777; margin-bottom:6px; }
+.card h3{ font-size:16px; margin:0 0 8px; line-height:1.5; }
+.card p{ font-size:14px; color:#555; margin:0; }
+.more{ margin-top:16px; }
+@media (max-width:900px){ .cards{ grid-template-columns:1fr; } }
 
-    /* ====== コラボ依頼 ====== */
-    .collab{
-      background:#f3ffe8;
-      border:1px solid #e5f7d6; border-radius:16px; padding:20px;
-      display:grid; grid-template-columns: 1.2fr 1fr; gap:18px; align-items:center;
-    }
-    .collab .pic{
-      width:100%; aspect-ratio:16/9; background:#ddd url("img/collab.jpg") center/cover no-repeat;
-      border-radius:10px; /* 見栄え用。不要なら0に変更可 */
-    }
-    @media (max-width: 900px){
-      .collab{ grid-template-columns: 1fr; }
-    }
+/* コラボ */
+.collab{
+  background:#f3ffe8; border:1px solid #e5f7d6; border-radius:16px; padding:20px;
+  display:grid; grid-template-columns:1.2fr 1fr; gap:18px; align-items:center;
+}
+.collab .pic{ width:100%; aspect-ratio:16/9; background:#ddd url("img/collab.jpg") center/cover no-repeat; border-radius:10px; }
+@media (max-width:900px){ .collab{ grid-template-columns:1fr; } }
 
-    /* ====== フッター ====== */
-    footer{
-      margin:40px 0 20px; color:#666; font-size:13px;
-    }
-    footer .foot{
-      max-width:var(--maxw); margin:0 auto; border-top:1px solid #eee; padding-top:16px;
-    }
-  </style>
+/* フッター */
+footer{ margin:40px 0 20px; color:#666; font-size:13px; }
+footer .foot{ max-width:var(--maxw); margin:0 auto; border-top:1px solid #eee; padding-top:16px; display:flex; flex-direction:column; gap:6px; }
+.small{ font-size:12px; color:#777; }
+</style>
 </head>
 <body>
-
   <!-- スマホ上部の細帯 -->
   <div class="mobile-rail"></div>
-
-  <!-- PCの左右レール -->
+  <!-- PCの左右黄色レール -->
   <div class="rail left" aria-hidden="true"></div>
   <div class="rail right" aria-hidden="true"></div>
 
   <div class="page">
-
-    <!-- ヘッダー（非固定） -->
+    <!-- ヘッダー -->
     <header>
       <div class="wrap">
-        <!-- ロゴは置かない方針。サイト名のみ -->
         <div class="brand">遊べるお寺プロジェクト</div>
         <nav aria-label="グローバルナビゲーション">
           <ul class="nav">
@@ -177,25 +123,25 @@
             <li><a href="/about.html">遊べるお寺プロジェクトとは</a></li>
             <li><a href="/events.html">イベント</a></li>
             <li><a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）</a></li>
-            <li><a href="/contact.html" class="cta">お問い合わせ</a></li>
+            <li><a class="cta" href="/contact.html">お問い合わせ</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <!-- ヒーロー：16:9。画像は「img/hero.jpg」に差し替え -->
+    <!-- ヒーロー（16:9, alt=指定文言） -->
     <div class="hero">
-      <div class="frame" role="img" aria-label="トップ画像（16:9）。白背景のビジュアルを推奨。"></div>
-      <div class="caption">※ 画像は 16:9 推奨（例：1600×900px）。角丸・影なしで白背景となじませる。</div>
+      <div class="frame">
+        <img src="img/hero.jpg" alt="遊べるお寺プロジェクトTOP" />
+      </div>
     </div>
 
-    <!-- About：紹介文＋もっと詳しく -->
+    <!-- About -->
     <section>
       <div class="wrap">
         <h2>遊べるお寺プロジェクトとは</h2>
         <div class="about">
           <p class="lead">
-            <!-- TODO: 後で差し替え。やや長めでOK／ここには簡略版を置く想定 -->
             地域の「楽しい学び」と「つながり」をつくる取り組みです。健康麻雀、ボードゲーム会、ナーフ体験、
             謎解き・ワークショップ、座禅、お寺カフェなど、年齢や背景をこえて気軽に参加できる企画をひらいています。
           </p>
@@ -204,49 +150,18 @@
       </div>
     </section>
 
-    <!-- Note 最新3件（まずは手動差し替え式） -->
+    <!-- Note 最新3件（JSONから描画） -->
     <section aria-labelledby="recent">
       <div class="wrap">
         <h2 id="recent">最近の活動紹介</h2>
-        <div class="cards">
-          <!-- ===== カード1：画像URLとリンク先、日付・タイトル・抜粋を差し替え ===== -->
-          <article class="card">
-            <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener" class="thumb" style="background-image:url('img/note-1.jpg');" aria-label="Note記事1へ"></a>
-            <div class="body">
-              <div class="meta">2025-09-01・活動報告</div>
-              <h3><a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">（タイトルを差し替え）高島こどもフェス出店のふりかえり</a></h3>
-              <p>（抜粋を差し替え）環境・客層・動線の学び。射的は好評、次回に向けた改善点…</p>
-            </div>
-          </article>
-
-          <!-- カード2 -->
-          <article class="card">
-            <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener" class="thumb" style="background-image:url('img/note-2.jpg');" aria-label="Note記事2へ"></a>
-            <div class="body">
-              <div class="meta">2025-08-20・イベント</div>
-              <h3><a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">（タイトルを差し替え）健康麻雀の会レポート</a></h3>
-              <p>（抜粋）初心者向けレクチャーと交流の様子、次回日程のご案内。</p>
-            </div>
-          </article>
-
-          <!-- カード3 -->
-          <article class="card">
-            <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener" class="thumb" style="background-image:url('img/note-3.jpg');" aria-label="Note記事3へ"></a>
-            <div class="body">
-              <div class="meta">2025-08-05・コラム</div>
-              <h3><a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">（タイトルを差し替え）遊べるお寺のアイデア帳</a></h3>
-              <p>（抜粋）ボードゲーム、謎解き、Zoomお寺カフェの企画メモ。</p>
-            </div>
-          </article>
-        </div>
-
+        <div id="note-cards" class="cards" aria-live="polite"></div>
         <div class="more">
           <a class="btn" href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">もっと見る（note）</a>
         </div>
       </div>
     </section>
 
-    <!-- コラボをお考えの方へ：横長画像＋テキスト -->
+    <!-- コラボ -->
     <section aria-labelledby="collab">
       <div class="wrap">
         <h2 id="collab">コラボをお考えの皆さまへ</h2>
@@ -254,26 +169,61 @@
           <div class="copy">
             <p class="lead">
               自治体・社協・学校・企業・地域団体のみなさまと、健康麻雀・ボードゲーム会・ナーフ体験・
-              謎解きワークショップ・講演など、楽しい参加型の企画をご一緒できます。
-              まずはお気軽にご相談ください。
+              謎解きワークショップ・講演など、楽しい参加型の企画をご一緒できます。まずはお気軽にご相談ください。
             </p>
             <a class="btn" href="/contact.html">お問い合わせへ</a>
           </div>
-          <!-- 画像は横長1枚。差し替えは img/collab.jpg -->
-          <div class="pic" role="img" aria-label="コラボのイメージ画像（横長1枚）"></div>
+          <div class="pic" role="img" aria-label="コラボのイメージ画像（16:9）"></div>
         </div>
       </div>
     </section>
 
-    <!-- フッター（仮） -->
+    <!-- フッター -->
     <footer>
       <div class="foot">
         <div>遊べるお寺プロジェクト（仮）</div>
-        <div>〒000-0000 滋賀県〇〇市〇〇町 &nbsp;|&nbsp; mail@example.com</div>
-        <div style="margin-top:6px;">&copy; 2025 遊べるお寺プロジェクト</div>
+        <div>〒000-0000 滋賀県〇〇市〇〇町 ｜ mail@example.com</div>
+        <div class="small">&copy; 2025 遊べるお寺プロジェクト</div>
+        <div class="small">
+          NoteマガジンRSS：
+          <a href="https://note.com/loyal_dill1011/m/m9a97295e24a9/rss/" target="_blank" rel="noopener">https://note.com/…/rss/</a>
+        </div>
       </div>
     </footer>
+  </div>
 
-  </div><!-- /.page -->
+<script>
+(async function(){
+  const mount = document.getElementById('note-cards');
+  const fallback = () => {
+    mount.innerHTML = `
+      <article class="card"><a class="thumb"></a><div class="body"><div class="meta">更新を取得できませんでした</div><h3>Noteの最新記事</h3><p>時間をおいて再読み込みしてください。</p></div></article>
+    `;
+  };
+  try{
+    const res = await fetch('note-feed.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('feed not found');
+    const data = await res.json();
+    const items = (data.items || []).slice(0,3);
+    if(items.length === 0) return fallback();
+
+    mount.innerHTML = items.map(it => `
+      <article class="card">
+        <a href="${it.link}" target="_blank" rel="noopener"
+           class="thumb" style="background-image:url('${(it.thumbnail||'').replace(/&/g,'&amp;')}');"
+           aria-label="${it.title}"></a>
+        <div class="body">
+          <div class="meta">${new Date(it.isoDate||it.pubDate).toLocaleDateString('ja-JP', {year:'numeric', month:'2-digit', day:'2-digit'})}</div>
+          <h3><a href="${it.link}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">${it.title}</a></h3>
+          <p>${it.excerpt||''}</p>
+        </div>
+      </article>
+    `).join('');
+  }catch(e){
+    console.error(e);
+    fallback();
+  }
+})();
+</script>
 </body>
 </html>
