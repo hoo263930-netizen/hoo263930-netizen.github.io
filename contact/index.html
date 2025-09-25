@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>お問い合わせ | 遊べるお寺プロジェクト</title>
+  <style>
+    :root{
+      --sky:#5ac2ff;
+      --sand:#f7ce52;
+      --ink:#2b2b2b;
+      --paper:#ffffff;
+      --maxw:780px;
+    }
+    body{ margin:0; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; color:var(--ink); line-height:1.7; background:var(--paper);}
+    header{ background:var(--sand); padding:14px 16px; text-align:center; font-weight:700; }
+    nav{ background:#222; color:#fff; }
+    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 12px; display:flex; gap:12px; overflow:auto; }
+    nav a{ color:#fff; text-decoration:none; padding:10px 8px; }
+    nav a:hover{ border-bottom:2px solid var(--sand); }
+    main{ max-width:var(--maxw); margin:0 auto; padding:24px 16px 48px; }
+    h1{ margin-top:0; }
+    form{ display:grid; gap:14px; margin-top:1.5rem; }
+    label{ font-weight:700; }
+    input, textarea{
+      width:100%; padding:.7rem .8rem; border:1px solid #ccc; border-radius:6px; font-size:1rem;
+    }
+    textarea{ min-height:160px; resize:vertical; }
+    button{
+      background:var(--sky); color:#fff; border:none;
+      padding:.9rem 1.2rem; border-radius:8px; font-size:1rem; cursor:pointer;
+    }
+    button:hover{ filter:brightness(.95); }
+    footer{ background:#f7f7f7; border-top:1px solid #eee; padding:14px 16px; text-align:center; font-size:.9rem; color:#666; }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header>お問い合わせ</header>
+
+  <!-- ナビ -->
+  <nav>
+    <div class="wrap">
+      <a href="/">ホーム</a>
+      <a href="/project/">プロジェクト</a>
+      <a href="/events/">イベント</a>
+      <a href="/report/">活動報告</a>
+      <a href="/contact/">お問い合わせ</a>
+    </div>
+  </nav>
+
+  <!-- 本文 -->
+  <main>
+    <h1>お問い合わせフォーム</h1>
+    <p>ご質問・ご依頼など、こちらのフォームからお気軽にお送りください。送信後に確認メールが届きます。</p>
+
+    <form action="https://formspree.io/f/mrbybkoe" method="POST">
+      <!-- 名前 -->
+      <label for="name">お名前</label>
+      <input type="text" id="name" name="name" required>
+
+      <!-- メール -->
+      <label for="email">メールアドレス</label>
+      <input type="email" id="email" name="email" required>
+
+      <!-- 題名 -->
+      <label for="subject">題名</label>
+      <input type="text" id="subject" name="subject" placeholder="例：イベントについて">
+
+      <!-- 本文 -->
+      <label for="message">本文</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <!-- 任意の隠しフィールド -->
+      <input type="hidden" name="_subject" value="HPからのお問い合わせ">
+      <input type="hidden" name="_redirect" value="https://hoo263930-netizen.github.io/contact/sent.html">
+      <input type="text" name="_gotcha" style="display:none">
+
+      <!-- 送信ボタン -->
+      <button type="submit">送信</button>
+      <p style="font-size:.9rem;opacity:.8;">※ 個人情報は返信目的のみに使用します。</p>
+    </form>
+  </main>
+
+  <!-- フッター -->
+  <footer>
+    <p>&copy; 2025 遊べるお寺プロジェクト</p>
+  </footer>
+
+</body>
+</html>
