@@ -2,77 +2,202 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>遊べるお寺プロジェクトとは</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>遊べるお寺プロジェクト｜活動紹介</title>
+  <meta name="description" content="遊べるお寺プロジェクトの活動紹介ページ。目的・主な活動・参加方法・スケジュール・問い合わせ先を掲載。"/>
   <style>
-    body{
-      font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',system-ui,-apple-system,sans-serif;
-      margin:0;
-      padding:0;
-      line-height:1.7;
-      background:#fffdf8;
-      color:#2b2b2b;
+    :root{
+      --sky:#5ac2ff;   /* base blue */
+      --sand:#f7ce52;  /* accent yellow */
+      --leaf:#36b37e;  /* accent green */
+      --ink:#2b2b2b;   /* text */
+      --paper:#fff;
+      --rail: 20px;
+      --w: 1100px;
     }
-    header{ background:#5ac2ff; padding:20px; text-align:center; }
-    header h1{ margin:0; color:#fff; }
-    main{ max-width:900px; margin:40px auto; padding:0 16px; }
-    h2{ border-bottom:3px solid #f7ce52; padding-bottom:.5rem; }
-    section{ margin-bottom:40px; }
-    .btn-back{
-      display:inline-block; margin-top:20px;
-      padding:10px 16px; border:2px solid #000; border-radius:12px;
-      background:#f7ce52; color:#000; font-weight:bold; text-decoration:none;
-      box-shadow:0 4px 0 #000;
+    *{box-sizing:border-box}
+    body{margin:0; font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',Meiryo,sans-serif; color:var(--ink); background:#fafafa;}
+    header{
+      position:relative; padding:56px 0 28px; background:linear-gradient(180deg, var(--sky), #9fe0ff);
+      color:#07324a; overflow:hidden;
     }
-    footer{ text-align:center; padding:20px; background:#36b37e; color:#fff; margin-top:40px; }
+    header .wrap, main .wrap, footer .wrap{max-width:var(--w); margin:0 auto; padding:0 var(--rail);} 
+    h1{font-size:clamp(28px, 4vw, 40px); margin:0 0 8px; letter-spacing:.02em}
+    header p.lead{margin:0; font-size:clamp(14px, 2.4vw, 18px)}
+    nav.breadcrumb{font-size:14px; margin:6px 0 0; opacity:.85}
+    nav.breadcrumb a{color:#06364f; text-decoration:underline}
+
+    /* sections */
+    section{padding:28px 0; background:#fff}
+    section + section{border-top:1px solid #eee}
+    section h2{font-size:clamp(22px, 3.2vw, 28px); margin:0 0 18px}
+    .text{font-size:16px; line-height:1.9}
+
+    /* activity cards */
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:16px}
+    .card{grid-column:span 12; background:#fff; border:1px solid #eaeaea; border-radius:16px; overflow:hidden; box-shadow:0 4px 18px rgba(0,0,0,.04)}
+    .card__media{aspect-ratio:16/9; background:#f2f7ff url('/images/placeholder.webp') center/cover no-repeat}
+    .card__body{padding:16px}
+    .card h3{margin:0 0 6px; font-size:clamp(18px, 2.8vw, 22px)}
+    .meta{font-size:13px; color:#5a5a5a; margin-bottom:8px}
+    .pill{display:inline-block; padding:4px 8px; border-radius:999px; background:var(--sand); margin-right:8px; font-size:12px}
+
+    @media(min-width:760px){ .card{display:grid; grid-template-columns:1.2fr 1fr} }
+    @media(min-width:860px){ .card{grid-column:span 6} }
+
+    /* info list */
+    .list{display:grid; gap:8px}
+    .list li{background:#fcfcfc; border:1px dashed #eee; padding:10px 12px; border-radius:10px}
+
+    /* schedule */
+    .schedule{border:1px solid #eaeaea; border-radius:12px; overflow:hidden}
+    .schedule__head{display:flex; align-items:center; justify-content:space-between; padding:10px 14px; background:#f8fbff; border-bottom:1px solid #eaeaea}
+    .schedule__table{width:100%; border-collapse:collapse}
+    .schedule__table th, .schedule__table td{padding:10px 12px; border-bottom:1px solid #f0f0f0; text-align:left; font-size:15px}
+    .schedule__table th{background:#fffef5}
+
+    /* cta */
+    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:14px}
+    .btn{appearance:none; border:none; cursor:pointer; padding:12px 16px; border-radius:999px; font-weight:600; font-size:15px}
+    .btn.primary{background:var(--leaf); color:#fff}
+    .btn.solid{background:#222; color:#fff}
+    .btn.ghost{background:#fff; color:#222; border:1px solid #ddd}
+
+    footer{background:#111; color:#ddd; padding:24px 0}
+    footer a{color:#fff}
   </style>
 </head>
 <body>
   <header>
-    <h1>遊べるお寺プロジェクトとは</h1>
+    <div class="wrap">
+      <nav class="breadcrumb"> <a href="/">トップ</a> / 活動紹介 </nav>
+      <h1>遊べるお寺プロジェクト｜活動紹介</h1>
+      <p class="lead">世代や立場を超えて「遊び」でつながる。— やさしく、たのしく、ひらかれた居場所づくり。</p>
+    </div>
   </header>
 
   <main>
     <section>
-      <h2>プロジェクトの概要</h2>
-      <p>
-        「遊べるお寺プロジェクト」は、お寺を舞台にした新しい地域交流の取り組みです。  
-        仏教や伝統を身近に感じつつ、ボードゲーム・カードゲーム・イベント・ワークショップなどの「遊び」を通じて、誰もが安心して集まれる居場所づくりを目指しています。
-      </p>
+      <div class="wrap text">
+        <h2>活動の目的</h2>
+        <p>「遊べるお寺プロジェクト」は、お寺を舞台に <strong>遊び×対話</strong> を通じて、だれもが安心して集まれる場を育てる取り組みです。ボードゲーム、健康麻雀、路上あそび、謎解き、地域イベントなど、楽しい体験を入口に世代や立場をこえて自然な交流を生み出します。</p>
+        <ul class="list" aria-label="大切にしていること">
+          <li>価値観のちがいを歓迎する、やさしい空気</li>
+          <li>遊びを通じた <em>学び／気づき／安心感</em> の広がり</li>
+          <li>伝統的な「お寺」を、現代的に楽しく活かす工夫</li>
+        </ul>
+      </div>
     </section>
 
     <section>
-      <h2>大切にしていること</h2>
-      <ul>
-        <li>世代や立場を超えてつながれる場をつくること</li>
-        <li>遊びを通じて「学び」「気づき」「安心感」を広げること</li>
-        <li>お寺という伝統的な場を、現代的に楽しく活かすこと</li>
-      </ul>
+      <div class="wrap">
+        <h2>主な活動</h2>
+        <div class="grid">
+          <!-- 健康麻雀会 -->
+          <article class="card" id="kenkou-mahjong">
+            <div class="card__media" style="background-image:url('/images/events/mahjong_flyer.jpg')"></div>
+            <div class="card__body">
+              <h3>健康麻雀会（初心者歓迎）</h3>
+              <div class="meta"><span class="pill">第4日曜中心</span> <span class="pill">点数計算不要</span></div>
+              <p>勝ち負けよりも会話と交流をたいせつに。禁煙・禁酒、やさしい進行で初めての方も安心です。見学だけでもOK。</p>
+              <div class="cta">
+                <a class="btn primary" href="/events/">スケジュールを見る</a>
+                <a class="btn ghost" href="/contact/">問い合わせ</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 路上あそび -->
+          <article class="card" id="rojo-asobi">
+            <div class="card__media" style="background-image:url('/images/events/street_play.jpg')"></div>
+            <div class="card__body">
+              <h3>路上あそび（シャボン玉・コマ・けん玉 など）</h3>
+              <div class="meta"><span class="pill">親子歓迎</span> <span class="pill">外遊び</span></div>
+              <p>道路や広場での昔あそびを、みんなで安全にたのしむ小さなイベント。準備は少なめ、笑顔は多め。</p>
+              <div class="cta">
+                <a class="btn primary" href="/events/">次回の予定</a>
+                <a class="btn ghost" href="/note/">活動レポート</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
     <section>
-      <h2>これまでの活動例</h2>
-      <p>
-        健康麻雀、ボードゲーム交流会、カードゲーム大会、謎解きイベント、森カフェ、地域マルシェ出展など、多様な活動を行っています。  
-        これらはすべて「遊びを通じて人がつながる」ことを大切にしています。
-      </p>
+      <div class="wrap">
+        <h2>直近の予定（抜粋）</h2>
+        <div class="schedule">
+          <div class="schedule__head"><strong>健康麻雀会</strong><span>※変更の可能性あり</span></div>
+          <table class="schedule__table" aria-label="健康麻雀会スケジュール">
+            <thead>
+              <tr><th>日付</th><th>曜日</th><th>メモ</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2025年9月28日</td><td>日</td><td>定例（第4日曜）</td></tr>
+              <tr><td>2025年10月26日</td><td>日</td><td>定例</td></tr>
+              <tr><td>2025年11月23日</td><td>日</td><td>定例</td></tr>
+              <tr><td>2025年12月21日</td><td>日</td><td>予定（第3日曜）</td></tr>
+              <tr><td>2026年1月25日</td><td>日</td><td>定例</td></tr>
+              <tr><td>2026年2月22日</td><td>日</td><td>定例</td></tr>
+              <tr><td>2026年3月</td><td>—</td><td>調整中</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cta" style="margin-top:12px">
+          <a class="btn solid" href="/events/">イベントページへ</a>
+          <a class="btn ghost" href="/line/">公式LINEで受け取る</a>
+        </div>
+      </div>
     </section>
 
     <section>
-      <h2>これからの展望</h2>
-      <p>
-        今後は、地域の方や仲間と協力しながら、さらに多様な活動を展開していきます。  
-        また、オンラインとオフラインを組み合わせ、全国の人ともつながれる「遊べるお寺」を目指しています。
-      </p>
+      <div class="wrap text">
+        <h2>参加のながれ</h2>
+        <ol class="list" style="list-style:decimal inside">
+          <li>イベントページで日程を確認</li>
+          <li>持ち物をチェック（飲み物・参加費・動きやすい服装など）</li>
+          <li>当日、会場へ。初めての方はスタッフに「初めてです」と声をかけてください</li>
+        </ol>
+        <p style="margin-top:8px">※未就学児は保護者同伴／安全配慮のため運営の指示にご協力ください。</p>
+      </div>
     </section>
 
-    <a href="index.html" class="btn-back">← トップページへ戻る</a>
+    <section>
+      <div class="wrap text">
+        <h2>よくある質問</h2>
+        <details>
+          <summary>予約は必要ですか？</summary>
+          <p>基本は予約不要ですが、混雑時は人数調整のため事前連絡をお願いする場合があります。</p>
+        </details>
+        <details>
+          <summary>参加費は？</summary>
+          <p>イベントによって異なります。健康麻雀会は会場費・消耗品費の実費をいただく場合があります。</p>
+        </details>
+        <details>
+          <summary>初心者でも大丈夫？</summary>
+          <p>大丈夫です。ゆっくり説明しながら進めます。見学のみも歓迎です。</p>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap text">
+        <h2>問い合わせ・つながる</h2>
+        <p>最新情報や急な変更は <strong>公式LINE</strong> が最速です。お問い合わせもLINEまたは下記フォームからどうぞ。</p>
+        <div class="cta">
+          <a class="btn primary" href="/line/">公式LINEを開く</a>
+          <a class="btn ghost" href="/contact/">問い合わせフォーム</a>
+          <a class="btn ghost" href="/note/">Note（活動報告）</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>© 2025 遊べるお寺プロジェクト</p>
+    <div class="wrap">
+      <small>© 2025 遊べるお寺プロジェクト</small>
+    </div>
   </footer>
 </body>
 </html>
-
