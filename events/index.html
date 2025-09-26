@@ -2,34 +2,141 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>イベント情報 - 遊べるお寺プロジェクト</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>イベント | 遊べるお寺プロジェクト</title>
+  <meta name="description" content="遊べるお寺プロジェクトのイベント情報。チラシと紹介文で分かりやすくご案内します。" />
   <style>
-    body{ font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',sans-serif; line-height:1.7; margin:0; padding:0; }
-    header{ background:#36b37e; color:#fff; text-align:center; padding:20px; }
-    main{ max-width:900px; margin:40px auto; padding:0 16px; }
-    h2{ border-bottom:3px solid #f7ce52; padding-bottom:.5rem; }
-    .event-card{ border:2px solid #000; border-radius:12px; padding:16px; margin-bottom:20px; background:#fff; box-shadow:0 4px 0 #000; }
-    .btn-back{ display:inline-block; margin-top:20px; padding:10px 16px; border:2px solid #000; border-radius:12px; background:#f7ce52; color:#000; font-weight:bold; text-decoration:none; box-shadow:0 4px 0 #000; }
-    footer{ text-align:center; padding:20px; background:#36b37e; color:#fff; margin-top:40px; }
+    :root{
+      --sky:#22a7ff;
+      --sand:#f7ce52;
+      --ink:#2b2b2b;
+      --paper:#fff;
+      --maxw:1100px;
+      --rail:16px;
+    }
+    @media(min-width:900px){ :root{ --rail:24px; } }
+
+    /* ベース（トップと同じ見た目） */
+    html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+    body{ background:var(--sand); }
+    .container{ max-width:var(--maxw); margin:0 auto; background:var(--paper); min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
+    header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
+    .visually-hidden{ position:absolute; left:-9999px; }
+    nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
+    nav::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:3px; background:var(--sky); }
+    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail); display:flex; gap:0; justify-content:center; overflow:auto; }
+    nav a{ color:#333; text-decoration:none; padding:18px clamp(14px,2.6vw,28px); font-weight:700; font-size:clamp(18px,2.2vw,22px); white-space:nowrap; border-bottom:3px solid transparent; }
+    nav a + a{ border-left:2px solid #ddd; }
+    nav a:hover{ background:#fafafa; }
+    main{ padding:28px var(--rail) 56px; }
+    h1{ font-size:clamp(24px,3.2vw,36px); margin:.2em 0 .6em; }
+    footer{ background:#f7f7f7; border-top:1px solid #eee; padding:14px var(--rail); text-align:center; font-size:.9rem; color:#666; }
+
+    /* イベントカード */
+    .event-list{ display:grid; gap:28px; margin-top:10px; }
+    .event{
+      border:1px solid #dfe6ee; border-radius:14px; padding:18px;
+      display:grid; grid-template-columns: minmax(260px, 420px) 1fr; gap:22px; align-items:center;
+      background:#fff;
+    }
+    .event-media a{ display:block; border-radius:10px; overflow:hidden; border:1px solid #e9eef3; }
+    .event-media img{ width:100%; height:auto; display:block; }
+    .event-body h3{ margin:0 0 .3em; font-size:clamp(20px,2.6vw,28px); }
+    .event-date{ margin:.2em 0 1em; color:#666; font-weight:600; }
+    .event-body p{ margin:.7em 0; }
+    .event-cta{ margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{
+      display:inline-block; text-decoration:none; font-weight:700;
+      background:#1f6fff; color:#fff; padding:.65rem 1.2rem; border-radius:999px;
+      box-shadow:0 4px 14px rgba(31,111,255,.18);
+    }
+    .btn:hover{ filter:brightness(.96); }
+    .btn.sec{ background:#f0f3f8; color:#1b2b44; box-shadow:none; }
+
+    /* バッジ（任意） */
+    .badge{ display:inline-block; margin-left:.5rem; padding:.15em .55em; border-radius:8px; font-size:.8rem; background:#e9f6ff; color:#056; font-weight:700; }
+
+    /* スマホ：縦並び */
+    @media (max-width: 800px){
+      .event{ grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  <header><h1>イベント情報</h1></header>
-  <main>
-    <h2>開催予定のイベント</h2>
-    <div class="event-card">
-      <h3>〇月〇日　健康麻雀交流会</h3>
-      <p>場所：超前時 2階ホール</p>
-      <p>どなたでも参加可能です。お気軽にご参加ください！</p>
-    </div>
-    <div class="event-card">
-      <h3>〇月〇日　ボードゲーム体験会</h3>
-      <p>場所：〇〇会館</p>
-      <p>初心者も大歓迎！一緒に遊びながら交流しましょう。</p>
-    </div>
-    <a href="index.html" class="btn-back">← トップページへ戻る</a>
-  </main>
-  <footer>© 2025 遊べるお寺プロジェクト</footer>
+  <div class="container">
+    <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
+
+    <nav aria-label="主なナビゲーション">
+      <div class="wrap">
+        <a href="/">ホーム</a>
+        <a href="/project/">プロジェクト</a>
+        <a href="/events/">イベント</a>
+        <a href="/report/">活動報告</a>
+        <a href="/contact/">お問い合わせ</a>
+      </div>
+    </nav>
+
+    <main>
+      <h1>今後のイベント情報</h1>
+      <p style="margin-top:-8px;color:#666">最新のチラシは画像をクリックすると拡大表示できます。</p>
+
+      <section class="event-list">
+
+        <!-- イベント①：例 -->
+        <article class="event">
+          <div class="event-media">
+            <a href="/images/events/sample-cello.jpg" target="_blank" rel="noopener">
+              <img src="/images/events/sample-cello.jpg" alt="鳴海 薫 チェロリサイタルのチラシ">
+            </a>
+          </div>
+          <div class="event-body">
+            <h3>鳴海 薫 チェロリサイタル <span class="badge">予約受付中</span></h3>
+            <p class="event-date">2025年4月12日（土）14:00 開演（13:30 開場）｜会場：ウェルカムハウス Liaisōn</p>
+            <p>
+              昨年の第1回リサイタルに続き、今年も開催が決定しました。若きチェリストの清らかで深い音色と
+              コーヒーの香り、窓辺の木々のささやきとともに、春の午後をお楽しみください。
+            </p>
+            <div class="event-cta">
+              <a class="btn" href="https://example.com/tickets" target="_blank" rel="noopener">詳細・申込</a>
+              <a class="btn sec" href="https://example.com/access" target="_blank" rel="noopener">アクセス</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- イベント②：例 -->
+        <article class="event">
+          <div class="event-media">
+            <a href="/images/events/sample-piano.jpg" target="_blank" rel="noopener">
+              <img src="/images/events/sample-piano.jpg" alt="西野 純一 ピアノリサイタルのチラシ">
+            </a>
+          </div>
+          <div class="event-body">
+            <h3>西野 純一 ピアノリサイタル</h3>
+            <p class="event-date">2025年12月7日（日）14:00 開演（13:30 開場）｜会場：ウェルカムハウス Liaisōn</p>
+            <p>
+              ピアノに生きる魂が奏でる音の粒——珈琲の香りとともにあなたへ。クラシック初心者の方も
+              気軽にお越しください。
+            </p>
+            <div class="event-cta">
+              <a class="btn" href="https://example.com/tickets2" target="_blank" rel="noopener">詳細・申込</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ↓ 以降、同じ <article class="event">…</article> をコピペして増やしてください -->
+
+      </section>
+
+      <!-- もし過去イベントを置くなら（任意） -->
+      <!--
+      <h2 style="margin-top:36px;">これまでのイベント</h2>
+      <section class="event-list">
+        …同じ要素でOK（「開催終了」バッジに変更して運用）
+      </section>
+      -->
+    </main>
+
+    <footer>© 2025 遊べるお寺プロジェクト</footer>
+  </div>
 </body>
 </html>
