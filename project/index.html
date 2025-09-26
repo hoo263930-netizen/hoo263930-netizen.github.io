@@ -6,7 +6,7 @@
   <title>遊べるお寺プロジェクト｜活動紹介</title>
   <meta name="description" content="遊べるお寺プロジェクトの活動紹介ページ。活動の目的、健康麻雀会、座禅会、サバイバルゲーム、その他の活動、情報発信、参加のご案内。" />
   <style>
-    /* ====== Theme (トップページの雰囲気に寄せる) ====== */
+    /* ====== Theme ====== */
     :root{
       --sky:#5ac2ff;   /* base blue */
       --sand:#f7ce52;  /* accent yellow */
@@ -29,15 +29,31 @@
     }
     .wrap{ max-width:var(--w); margin:0 auto; padding:0 var(--rail); }
 
-    /* ====== Header (薄い帯だけ・後でヒーロー追加しやすい) ====== */
+    /* ====== Header ====== */
     header{
       background:linear-gradient(180deg, var(--sky) 0%, #9fe0ff 100%);
       color:#06364f;
-      padding:22px 0;
+      padding:22px 0 12px;
       border-bottom: 4px solid rgba(0,0,0,.03);
     }
     header h1{ margin:0; font-size:clamp(22px,3.6vw,30px); letter-spacing:.02em; }
-    header .sub{ margin:6px 0 0; opacity:.9; font-size:clamp(13px,2.6vw,16px); }
+    header .sub{ margin:6px 0 8px; opacity:.9; font-size:clamp(13px,2.6vw,16px); }
+
+    /* ====== Top links bar (黄色い帯) ====== */
+    .toplinks{
+      background:var(--sand);
+      border-top:1px solid rgba(0,0,0,.04);
+      border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    .toplinks .wrap{
+      display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:10px var(--rail);
+    }
+    .toplinks a{
+      display:inline-block; padding:6px 12px; border-radius:999px;
+      background:rgba(255,255,255,.9); color:#2b2b2b; text-decoration:none; font-weight:700; font-size:14px;
+      border:1px solid rgba(0,0,0,.06);
+    }
+    .toplinks a:hover{ background:#fff; text-decoration:underline; }
 
     /* ====== Sections ====== */
     section{ padding:28px 0; background:#fff; }
@@ -45,7 +61,7 @@
     h2{ font-size:clamp(20px,3.2vw,26px); margin:0 0 12px; letter-spacing:.02em; }
     p{ margin:0 0 12px; }
 
-    /* Callouts / Lists */
+    /* Callouts / Lists / Buttons */
     .note{ background:var(--muted); padding:12px 14px; border-radius:12px; border:1px solid #e9eef7; }
     .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
     .btn{
@@ -56,7 +72,7 @@
     .btn.dark{ background:#222; color:#fff; }
     .btn.ghost{ background:#fff; color:#222; border:1px solid #ddd; }
 
-    /* ====== Blocks (活動カード等) ====== */
+    /* ====== Blocks ====== */
     .block{
       background:#fff; border:1px solid #ececec; border-radius:var(--radius);
       box-shadow:var(--shadow);
@@ -68,7 +84,7 @@
       background:var(--sand); color:#523e00;
     }
 
-    /* ====== Media (画像並び・キャプション) ====== */
+    /* ====== Media ====== */
     .media-1 img,
     .media-2 img{
       width:100%; height:auto; display:block; border-radius:12px;
@@ -76,6 +92,9 @@
       border:1px solid #eef3fb;
     }
     .media-1{ margin:10px 0; }
+    .media-1.small{ max-width:520px; }
+    .media-1.small figure{ margin:0; }
+    .media-1.small img{ width:100%; }
     .media-2{
       display:grid; grid-template-columns:1fr 1fr; gap:12px;
       margin:10px 0;
@@ -87,18 +106,18 @@
     }
     @media (max-width:760px){
       .media-2{ grid-template-columns:1fr; }
+      .media-1.small{ max-width:100%; }
     }
 
     /* ====== Footer ====== */
     footer{ background:#111; color:#ddd; padding:24px 0; }
     footer a{ color:#fff; }
 
-    /* ====== In-page anchor spacing ====== */
-    :target{ scroll-margin-top: 80px; }
+    /* In-page anchor spacing */
+    :target{ scroll-margin-top: 90px; }
   </style>
 </head>
 <body>
-  <!-- 上部は“薄帯”のみ。後でヒーロー（背景画像＋大見出し）をここに追加可能 -->
   <header>
     <div class="wrap">
       <h1>遊べるお寺プロジェクト｜活動紹介</h1>
@@ -106,8 +125,22 @@
     </div>
   </header>
 
+  <!-- トップページ風：黄色い帯に各種リンク -->
+  <div class="toplinks">
+    <div class="wrap">
+      <a href="#purpose">活動の目的</a>
+      <a href="#mahjong">健康麻雀会</a>
+      <a href="#zazen">座禅会</a>
+      <a href="#survival">サバイバルゲーム</a>
+      <a href="#others">その他の活動</a>
+      <a href="/note/">活動レポート</a>
+      <a href="/events/">イベント</a>
+      <a href="/contact/">問い合わせ</a>
+    </div>
+  </div>
+
   <main>
-    <!-- 1) 活動の目的（紹介文本体） -->
+    <!-- 1) 活動の目的 -->
     <section id="purpose">
       <div class="wrap">
         <h2>活動の目的</h2>
@@ -140,7 +173,6 @@
           </div>
           <div class="cta">
             <a class="btn primary" href="/events/">イベントを見る</a>
-            <a class="btn ghost" href="/line/">公式LINE</a>
             <a class="btn ghost" href="/contact/">問い合わせ</a>
           </div>
         </div>
@@ -163,10 +195,7 @@
               <figcaption>姿勢・呼吸をやさしく案内。初めてでも安心して体験できます。</figcaption>
             </figure>
           </div>
-          <div class="cta">
-            <a class="btn primary" href="/events/">イベントを見る</a>
-            <a class="btn ghost" href="/contact/">出張のご相談</a>
-          </div>
+          <!-- ご要望により下部ボタンは削除 -->
         </div>
       </div>
     </section>
@@ -187,21 +216,18 @@
               <figcaption>境内や自然を舞台に、作戦を立てて挑む非日常体験。</figcaption>
             </figure>
           </div>
-          <div class="cta">
-            <a class="btn primary" href="/events/">イベントを見る</a>
-            <a class="btn ghost" href="/contact/">出張のご相談</a>
-          </div>
+          <!-- ご要望により下部ボタンは削除 -->
         </div>
       </div>
     </section>
 
-    <!-- 5) その他の活動（画像1枚のみ） -->
+    <!-- 5) その他の活動（小さめ表示） -->
     <section id="others">
       <div class="wrap">
         <h2>その他の活動</h2>
         <div class="block">
           <p>ボードゲーム会や謎解きイベント、カードゲーム大会など、気軽に参加できる企画を多数行っています。参加者の声や地域のニーズに合わせて、新しい遊びや企画も積極的に取り入れています。お寺を拠点に、また地域のさまざまな場所で「遊び」を通じた交流を広げています。</p>
-          <div class="media-1">
+          <div class="media-1 small">
             <figure>
               <img src="/images/project/bikkuriman2.jpg" alt="オリジナルシールやゲーム企画のイメージ">
               <figcaption>ボードゲーム・謎解き・カードゲームなど、気軽に参加できる企画を展開。</figcaption>
@@ -233,9 +259,8 @@
       <div class="wrap">
         <h2>参加のご案内</h2>
         <div class="block">
-          <p class="note">最新情報や急な変更は <strong>公式LINE</strong> が最速です。お問い合わせはLINEまたはフォームからどうぞ。</p>
+          <p class="note">最新情報や急な変更については、イベントページと活動レポートをご確認ください。お問い合わせはフォームからどうぞ。</p>
           <div class="cta">
-            <a class="btn primary" href="/line/">公式LINE</a>
             <a class="btn ghost" href="/events/">イベントページ</a>
             <a class="btn ghost" href="/contact/">問い合わせ</a>
           </div>
