@@ -7,8 +7,8 @@
   <meta name="description" content="楽しく学び、遊んでつながる。遊べるお寺プロジェクトの公式サイト。イベント情報・活動報告・お問い合わせはこちら。" />
   <style>
     :root{
-      --sky:#5ac2ff;   /* アクセント青 */
-      --sand:#f7ce52;  /* サイト背景（左右帯の黄） */
+      --sky:#5ac2ff;
+      --sand:#f7ce52;
       --ink:#2b2b2b;
       --paper:#fff;
       --maxw:1100px;
@@ -16,86 +16,43 @@
     }
     @media(min-width:900px){ :root{ --rail:24px; } }
 
-    /* === 共通レイアウト：左右イエロー帯 + 中央白コンテナ === */
     html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
     body{ background:var(--sand); }
-    .container{
-      max-width:var(--maxw);
-      margin:0 auto;
-      background:var(--paper);
-      min-height:100vh;
-      box-shadow:0 0 6px rgba(0,0,0,.05);
-    }
+    .container{ max-width:var(--maxw); margin:0 auto; background:var(--paper); min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
 
-    /* ヘッダー＆ナビ */
     header{ background:#fff; padding:12px var(--rail); text-align:center; border-bottom:2px solid var(--sand); }
     nav{ background:#fff; border-bottom:2px solid var(--sand); }
     nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail); display:flex; gap:12px; justify-content:center; overflow:auto; }
     nav a{ color:#333; text-decoration:none; padding:12px 10px; font-weight:600; white-space:nowrap; border-bottom:2px solid transparent; }
     nav a:hover{ color:var(--sky); border-bottom-color:var(--sky); }
 
-    /* ヒーロー（縮小版） */
     .hero{ margin:0; }
     .hero img{ width:100%; height:auto; max-height:300px; object-fit:cover; display:block; }
 
-    /* 本文 */
     main{ padding:28px var(--rail) 56px; }
     h2{ margin:.2em 0 .5em; font-size:clamp(20px,2.8vw,26px); }
     .lead{ margin:0 0 1rem; opacity:.9; }
 
-    /* Noteカード */
-    .note-cards{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap:16px;
-      margin-top:.5rem;
-    }
-    .note-card{
-      border:1px solid #eee;
-      border-radius:12px;
-      overflow:hidden;
-      background:#fff;
-      transition:box-shadow .15s ease, transform .03s ease;
-    }
+    .note-cards{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-top:.5rem; }
+    .note-card{ border:1px solid #eee; border-radius:12px; overflow:hidden; background:#fff; transition:box-shadow .15s ease, transform .03s ease; }
     .note-card:hover{ box-shadow:0 8px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
-    .note-thumb{
-      width:100%; aspect-ratio:16/9; object-fit:cover; display:block; background:#f4f4f4;
-    }
-    .note-title{
-      font-size:.98rem; line-height:1.5;
-      margin:10px 12px 12px;
-      color:#0b62d6; text-decoration:none; display:block;
-    }
+    .note-thumb{ width:100%; aspect-ratio:16/9; object-fit:cover; display:block; background:#f4f4f4; }
+    .note-title{ font-size:.98rem; line-height:1.5; margin:10px 12px 12px; color:#0b62d6; text-decoration:none; display:block; }
     .note-title:hover{ text-decoration:underline; }
     .more-wrap{ margin-top:12px; text-align:right; }
-    .more-btn{
-      display:inline-block; background:#5ac2ff; color:#fff; text-decoration:none;
-      padding:.6rem 1rem; border-radius:999px; font-weight:700;
-    }
+    .more-btn{ display:inline-block; background:#5ac2ff; color:#fff; text-decoration:none; padding:.6rem 1rem; border-radius:999px; font-weight:700; }
     .more-btn:hover{ filter:brightness(.96); }
 
-    /* コラボ募集 */
     .collab{ margin:28px 0 8px; }
-    .collab-inner{
-      background:#2f7d3a; color:#fff; border-radius:20px;
-      padding:clamp(20px,3vw,36px);
-      display:grid; gap:clamp(16px,2.5vw,28px); align-items:center;
-      box-shadow:0 8px 20px rgba(0,0,0,.12);
-    }
+    .collab-inner{ background:#2f7d3a; color:#fff; border-radius:20px; padding:clamp(20px,3vw,36px); display:grid; gap:clamp(16px,2.5vw,28px); align-items:center; box-shadow:0 8px 20px rgba(0,0,0,.12); }
     .collab-media img{ width:100%; max-width:360px; display:block; margin:0 auto; border-radius:12px; }
     .collab-copy h2{ margin:0 0 .6em; font-size:clamp(22px,3.6vw,34px); }
     .collab-copy p{ margin:0 0 1.1em; font-size:clamp(15px,2.4vw,17px); opacity:.95; }
-    .collab-btn{
-      display:inline-block; background:#7ee081; color:#0b3d0f; text-decoration:none; font-weight:700;
-      padding:.9rem 1.6rem; border-radius:999px;
-      box-shadow:0 6px 0 rgba(0,0,0,.12), 0 12px 22px rgba(0,0,0,.18);
-      transition:transform .04s ease, filter .15s ease;
-    }
+    .collab-btn{ display:inline-block; background:#7ee081; color:#0b3d0f; text-decoration:none; font-weight:700; padding:.9rem 1.6rem; border-radius:999px; box-shadow:0 6px 0 rgba(0,0,0,.12), 0 12px 22px rgba(0,0,0,.18); transition:transform .04s ease, filter .15s ease; }
     .collab-btn:hover{ filter:brightness(.96); }
     .collab-btn:active{ transform:translateY(1px); }
     @media(min-width:880px){ .collab-inner{ grid-template-columns:380px 1fr; padding:clamp(28px,4vw,44px);} }
 
-    /* フッター */
     footer{ background:#f7f7f7; border-top:1px solid #eee; padding:14px var(--rail); text-align:center; font-size:.9rem; color:#666; }
   </style>
 </head>
@@ -115,18 +72,22 @@
       </div>
     </nav>
 
-    <!-- ヒーロー -->
     <figure class="hero">
       <img src="/images/cover.png" alt="遊べるお寺プロジェクト">
     </figure>
 
     <main>
+      <!-- はじめての方へ -->
       <section>
-        <h2>はじめての方へ</h2>
-        <p class="lead">当サイトは、お寺を“遊びと学びの場”としてひらく取り組みのポータルです。イベント予定、活動のレポート、お問い合わせはこちらから。</p>
+        <h2>遊べるお寺プロジェクトとは</h2>
+        <p class="lead">
+          「楽しい」、「面白い」、「ワクワクする」、そんな気持ちを土台として、遊びや対話を通じてつながっていく——そんな自由で開かれた雰囲気を大切にしています。<br><br>
+          現代社会では、地域や世代を超えたつながりが希薄になり、自分の属する団体や興味関心のある小さなコミュニティの中だけで暮らすことが当たり前になりつつあります。<br><br>
+          そのような時代において、価値観の異なる他者と自然に出会い、交わることができる「場」が作れたらと思い活動しています。
+        </p>
       </section>
 
-      <!-- 最新Note 3件（カード表示） -->
+      <!-- 最新Note -->
       <section id="note-feed">
         <h2>最新のNote記事</h2>
         <div id="note-cards" class="note-cards">
@@ -155,7 +116,6 @@
     <footer>© 2025 遊べるお寺プロジェクト</footer>
   </div>
 
-  <!-- NoteマガジンRSS → 最新3件（CORS回避に AllOrigins を使用） -->
   <script>
   async function loadNoteRSS(){
     const rss = "https://note.com/loyal_dill1011/m/m9a97295e24a9/rss";
@@ -165,20 +125,16 @@
       const res = await fetch(proxy);
       if(!res.ok) throw new Error('fetch failed');
       const { contents } = await res.json();
-
       const xml = new DOMParser().parseFromString(contents, "application/xml");
       const items = Array.from(xml.querySelectorAll("item")).slice(0,3);
 
       const wrap = document.getElementById("note-cards");
-      const fallback = document.getElementById("note-fallback");
-      wrap.innerHTML = ""; // 初期のfallbackを消す
-
+      wrap.innerHTML = "";
       items.forEach(it=>{
         const title = it.querySelector("title")?.textContent ?? "（無題）";
         const link  = it.querySelector("link")?.textContent ?? "#";
         const tn = it.querySelector("media\\:thumbnail, thumbnail");
         const thumb = tn ? (tn.getAttribute("url") || tn.textContent) : "";
-
         const card = document.createElement("article");
         card.className = "note-card";
         card.innerHTML = `
@@ -190,7 +146,7 @@
         wrap.appendChild(card);
       });
     }catch(e){
-      console.warn("RSSの取得に失敗：", e);
+      console.warn("RSS取得に失敗：", e);
     }
   }
   loadNoteRSS();
