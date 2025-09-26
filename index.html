@@ -41,12 +41,33 @@
     nav a + a{ border-left:2px solid #ddd; }
     nav a:hover{ color:#111; background:#fafafa; }
 
-    /* ヒーロー（上下が切れない・大きめ） */
-    .hero{ margin:0; background:#fff; }
-    .hero img{
-      width:100%; height:auto; max-height:420px; /* 参考サイト寄りに少し大きめ */
-      object-fit:contain; display:block; background:#fff;
-    }
+  /* ヒーロー：でかく・切らずに見せる */
+.hero{
+  margin:0;
+  background:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  /* 画面幅に応じて高さを決める（中央の 62vw を好みで調整） */
+  height:clamp(380px, 62vw, 760px);
+  border-bottom:1px solid #eee;
+}
+.hero img{
+  /* ボックスの中で最大サイズまで拡大、はみ出さない */
+  max-width:96%;
+  max-height:100%;
+  width:auto;      /* ← 画像の縦横比を維持 */
+  height:100%;
+  object-fit:contain;  /* ← 端を切らない */
+  display:block;
+  background:#fff;
+}
+
+/* スマホでは少し低めに（お好みで） */
+@media (max-width: 600px){
+  .hero{ height:clamp(260px, 60vw, 420px); }
+}
+
 
     /* 本文 */
     main{ padding:28px var(--rail) 56px; }
