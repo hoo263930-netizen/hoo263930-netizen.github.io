@@ -132,21 +132,55 @@
     <!-- サイト名はスクリーンリーダー向けだけ残す -->
     <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
 
-    <!-- 大きめナビ（区切り線つき） -->
-    <nav aria-label="主なナビゲーション">
-      <div class="wrap">
-        <a href="/">ホーム</a>
-        <a href="/project/">プロジェクト</a>
-        <a href="/events/">イベント</a>
-        <a href="/report/">活動報告</a>
-        <a href="/contact/">お問い合わせ</a>
-      </div>
-    </nav>
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">ホーム</a></li>
+      <li><a href="project.html">プロジェクト</a></li>
+      <li><a href="events.html">イベント</a></li>
+      <li><a href="activity.html">活動報告</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+  </nav>
+  <div class="hero">
+    <img src="images/top-visual.png" alt="遊べるお寺プロジェクト メインビジュアル">
+  </div>
+</header>
 
-    <!-- ヒーロー（上下が切れない） -->
-    <figure class="hero">
-      <img src="/images/cover.png" alt="遊べるお寺プロジェクト">
-    </figure>
+<style>
+/* ナビゲーション */
+nav {
+  background: #fff;
+  border-bottom: 3px solid #f7ce52;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  margin: 0 1.5rem;
+}
+nav ul li a {
+  text-decoration: none;
+  font-size: 1.2rem; /* ←大きめに */
+  font-weight: bold;
+  color: #333;
+}
+nav ul li a:hover {
+  color: #5ac2ff;
+}
+
+/* ヒーロー画像 */
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain; /* 上下切れ防止 */
+}
+</style>
 
     <main>
       <!-- はじめての方へ（ご指定文） -->
