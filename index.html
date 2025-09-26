@@ -1,148 +1,157 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>遊べるお寺プロジェクト</title>
-  <meta name="description" content="楽しく学び、遊んでつながる。遊べるお寺プロジェクトの公式サイト。イベント情報・活動報告・お問い合わせはこちら。">
+  <meta name="description" content="楽しく学び、遊んでつながる。遊べるお寺プロジェクトの公式サイト。イベント情報・活動報告・お問い合わせはこちら。" />
   <style>
     :root{
-      --sky:#5ac2ff;     /* アクセント（空色） */
-      --sand:#f7ce52;    /* アクセント（黄）   */
-      --ink:#2b2b2b;     /* 文字色              */
-      --paper:#ffffff;   /* 背景                */
-      --rail:20px;       /* 横余白（モバイル） */
-      --maxw:1100px;     /* 横幅の上限          */
+      --sky:#5ac2ff;   /* アクセント青 */
+      --sand:#f7ce52;  /* サイト背景（左右帯の黄） */
+      --ink:#2b2b2b;
+      --paper:#fff;
+      --maxw:1100px;
+      --rail:16px;
     }
-    @media(min-width:900px){ :root{ --rail:32px; } }
+    @media(min-width:900px){ :root{ --rail:24px; } }
 
-    *{ box-sizing:border-box; }
-    html,body{ margin:0; padding:0; background:var(--paper); color:var(--ink); font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; line-height:1.7; }
+    /* === 共通レイアウト：左右イエロー帯 + 中央白コンテナ === */
+    html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+    body{ background:var(--sand); }
+    .container{
+      max-width:var(--maxw);
+      margin:0 auto;
+      background:var(--paper);
+      min-height:100vh;
+      box-shadow:0 0 6px rgba(0,0,0,.05);
+    }
 
     /* ヘッダー＆ナビ */
-    header{ background:var(--sky); color:#fff; }
-    .topbar{ max-width:var(--maxw); margin:0 auto; padding:10px var(--rail); display:flex; align-items:center; gap:14px; }
-    .brand{ font-weight:700; letter-spacing:.02em; }
-    nav{ background:#222; }
-    .navwrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail); display:flex; overflow:auto; }
-    .navwrap a{
-      color:#fff; text-decoration:none; padding:12px 14px; display:inline-block; white-space:nowrap; border-bottom:3px solid transparent;
-    }
-    .navwrap a:hover, .navwrap a:focus{ border-bottom-color:var(--sand); }
+    header{ background:#fff; padding:12px var(--rail); text-align:center; border-bottom:2px solid var(--sand); }
+    nav{ background:#fff; border-bottom:2px solid var(--sand); }
+    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail); display:flex; gap:12px; justify-content:center; overflow:auto; }
+    nav a{ color:#333; text-decoration:none; padding:12px 10px; font-weight:600; white-space:nowrap; border-bottom:2px solid transparent; }
+    nav a:hover{ color:var(--sky); border-bottom-color:var(--sky); }
 
-    /* ヒーロー画像 */
-    .hero{ position:relative; margin:0; }
-    .hero img{ width:100%; height:auto; display:block; }
-    /* オプションのコピー（使わなければ削除OK） */
-    .hero-copy{
-      position:absolute; inset:auto 0 8%; text-align:center; color:#fff; text-shadow:0 2px 18px rgba(0,0,0,.55);
-      padding:0 var(--rail); font-weight:700; letter-spacing:.02em;
-    }
-    .hero-copy h1{ margin:0 0 .3em; font-size:clamp(24px,4.5vw,44px); }
-    .hero-copy p{ margin:0; font-size:clamp(14px,2.7vw,18px); }
+    /* ヒーロー（少し小さく） */
+    .hero{ margin:0; }
+    .hero img{ width:100%; height:auto; max-height:360px; object-fit:cover; display:block; }
 
-    /* コンテンツ共通 */
-    main{ max-width:var(--maxw); margin:0 auto; padding:28px var(--rail) 56px; }
-    section + section{ margin-top:36px; }
-    h2{ font-size:clamp(20px,2.8vw,26px); margin:.2em 0 .4em; }
-    .lead{ margin:.4em 0 1em; opacity:.9; }
+    /* 本文 */
+    main{ padding:28px var(--rail) 56px; }
+    h2{ margin:.2em 0 .5em; font-size:clamp(20px,2.8vw,26px); }
+    .lead{ margin:0 0 1rem; opacity:.9; }
 
-    /* Note 最新3件 */
+    /* 最新Note */
     #note-feed ul{ margin:.4em 0 0; padding-left:1.2rem; }
-    #note-feed li{ margin:.3em 0; }
+    #note-feed li{ margin:.35em 0; }
     #note-feed a{ color:#0b62d6; text-decoration:none; }
     #note-feed a:hover{ text-decoration:underline; }
 
+    /* コラボ募集 */
+    .collab{ margin:28px 0 8px; }
+    .collab-inner{
+      background:#2f7d3a; color:#fff; border-radius:20px;
+      padding:clamp(20px,3vw,36px);
+      display:grid; gap:clamp(16px,2.5vw,28px); align-items:center;
+      box-shadow:0 8px 20px rgba(0,0,0,.12);
+    }
+    .collab-media img{ width:100%; max-width:360px; display:block; margin:0 auto; border-radius:12px; }
+    .collab-copy h2{ margin:0 0 .6em; font-size:clamp(22px,3.6vw,34px); }
+    .collab-copy p{ margin:0 0 1.1em; font-size:clamp(15px,2.4vw,17px); opacity:.95; }
+    .collab-btn{
+      display:inline-block; background:#7ee081; color:#0b3d0f; text-decoration:none; font-weight:700;
+      padding:.9rem 1.6rem; border-radius:999px;
+      box-shadow:0 6px 0 rgba(0,0,0,.12), 0 12px 22px rgba(0,0,0,.18);
+      transition:transform .04s ease, filter .15s ease;
+    }
+    .collab-btn:hover{ filter:brightness(.96); }
+    .collab-btn:active{ transform:translateY(1px); }
+    @media(min-width:880px){ .collab-inner{ grid-template-columns:380px 1fr; padding:clamp(28px,4vw,44px);} }
+
     /* フッター */
-    footer{ background:#f7f7f7; border-top:1px solid #eee; }
-    .foot{ max-width:var(--maxw); margin:0 auto; padding:18px var(--rail); font-size:14px; color:#666; }
+    footer{ background:#f7f7f7; border-top:1px solid #eee; padding:14px var(--rail); text-align:center; font-size:.9rem; color:#666; }
   </style>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <strong>遊べるお寺プロジェクト</strong>
+    </header>
 
-  <!-- ヘッダー -->
-  <header>
-    <div class="topbar">
-      <img src="/images/cover.png" alt="" style="height:36px; aspect-ratio:3/1; object-fit:contain; background:#fff; border-radius:6px; padding:4px;">
-      <div class="brand">遊べるお寺プロジェクト</div>
-    </div>
-  </header>
+    <nav aria-label="主なナビゲーション">
+      <div class="wrap">
+        <a href="/">ホーム</a>
+        <a href="/project/">プロジェクト</a>
+        <a href="/events/">イベント</a>
+        <a href="/report/">活動報告</a>
+        <a href="/contact/">お問い合わせ</a>
+      </div>
+    </nav>
 
-  <!-- ナビ -->
-  <nav>
-    <div class="navwrap">
-      <a href="/">ホーム</a>
-      <a href="/project/">プロジェクト</a>
-      <a href="/events/">イベント</a>
-      <a href="/report/">活動報告</a>
-      <a href="/contact/">お問い合わせ</a>
-    </div>
-  </nav>
+    <!-- ヒーロー -->
+    <figure class="hero">
+      <img src="/images/cover.png" alt="遊べるお寺プロジェクト">
+    </figure>
 
-  <!-- ヒーロー（大きく表示） -->
-  <figure class="hero">
-    <img src="/images/cover.png" alt="遊べるお寺プロジェクト">
-    <!-- 画像の上に文字を重ねたい場合は下のdivを使う。不要なら削除OK -->
-    <div class="hero-copy">
-      <h1>楽しく学び、遊んでつながる</h1>
-      <p>イベント・活動の最新情報をこちらで発信します</p>
-    </div>
-  </figure>
+    <main>
+      <section>
+        <h2>はじめての方へ</h2>
+        <p class="lead">当サイトは、お寺を“遊びと学びの場”としてひらく取り組みのポータルです。イベント予定、活動のレポート、お問い合わせはこちらから。</p>
+      </section>
 
-  <!-- 本文 -->
-  <main>
-    <section>
-      <h2>はじめての方へ</h2>
-      <p class="lead">当サイトは、お寺を“遊びと学びの場”としてひらく取り組みのポータルです。イベント予定、活動のレポート、お問い合わせはこちらから。</p>
-    </section>
+      <!-- 最新Note 3件 -->
+      <section id="note-feed">
+        <h2>最新のNote記事</h2>
+        <ul id="note-list">
+          <li><a href="https://note.com/loyal_dill1011/m/m9a97295e24a9" target="_blank" rel="noopener">（読み込み中…）</a></li>
+        </ul>
+      </section>
 
-    <!-- Note 最新3件（まずは手動→あとで自動化に差し替え可能） -->
-    <section id="note-feed">
-      <h2>最新のNote記事</h2>
-      <ul id="note-list">
-        <!-- まずは仮の3件を手動で。明日、自動化に差し替えできます。 -->
-        <li><a href="https://note.com/ユーザー名/n/XXXXXXXX" target="_blank" rel="noopener">記事タイトル１</a></li>
-        <li><a href="https://note.com/ユーザー名/n/YYYYYYYY" target="_blank" rel="noopener">記事タイトル２</a></li>
-        <li><a href="https://note.com/ユーザー名/n/ZZZZZZZZ" target="_blank" rel="noopener">記事タイトル３</a></li>
-      </ul>
-    </section>
-  </main>
+      <!-- コラボ募集 -->
+      <section class="collab">
+        <div class="collab-inner">
+          <div class="collab-media">
+            <!-- ここをあなたの画像に差し替え（推奨: /images/collab-badge.png） -->
+            <img src="/images/collab-badge.png" alt="コラボ募集イメージ">
+          </div>
+          <div class="collab-copy">
+            <h2>健康麻雀とコラボをお考えの皆様へ</h2>
+            <p>学校・自治体・福祉施設・企業などと一緒に“楽しくつながる場づくり”のコラボ企画を行っています。興味があれば、まずはお気軽にご連絡ください。</p>
+            <a class="collab-btn" href="/contact/">お問い合わせはこちら</a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-  <!-- フッター -->
-  <footer>
-    <div class="foot">© 2025 遊べるお寺プロジェクト</div>
-  </footer>
+    <footer>© 2025 遊べるお寺プロジェクト</footer>
+  </div>
 
-  <!-- ここから下：明日以降の“自動化”に差し替え用（同一ドメインの静的ファイル読込） -->
+  <!-- NoteマガジンRSS → 最新3件（CORS回避に AllOrigins を使用） -->
   <script>
-  // もし /note_feed.json または /note_feed.html を生成できる状態なら、自動で差し替えます。
-  (async function(){
-    try {
-      // JSONがあればこちらを優先
-      const j = await fetch('/note_feed.json', {cache:'no-store'});
-      if(j.ok){
-        const data = await j.json();      // [{title, link, pubDate}, ...]
-        const list = document.getElementById('note-list');
-        list.innerHTML = '';
-        data.slice(0,3).forEach(item=>{
-          const li = document.createElement('li');
-          li.innerHTML = `<a href="${item.link}" target="_blank" rel="noopener">${item.title}</a>`;
-          list.appendChild(li);
-        });
-        return;
-      }
-    } catch(e){}
-    try {
-      // HTML断片がある場合はこちらでもOK
-      const h = await fetch('/note_feed.html', {cache:'no-store'});
-      if(h.ok){
-        const html = await h.text();
-        const wrap = document.getElementById('note-feed');
-        // note_feed.html は <ul>〜</ul> の断片想定
-        wrap.querySelector('#note-list').outerHTML = html;
-      }
-    } catch(e){}
-  })();
+  async function loadNoteRSS(){
+    const rss = "https://note.com/loyal_dill1011/m/m9a97295e24a9/rss";
+    const url = "https://api.allorigins.win/get?url=" + encodeURIComponent(rss);
+    try{
+      const res = await fetch(url);
+      const { contents } = await res.json();
+      const xml = new DOMParser().parseFromString(contents, "application/xml");
+      const items = Array.from(xml.querySelectorAll("item")).slice(0,3);
+      const list = document.getElementById("note-list");
+      list.innerHTML = "";
+      items.forEach(it=>{
+        const title = it.querySelector("title")?.textContent ?? "（無題）";
+        const link  = it.querySelector("link")?.textContent ?? "#";
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
+        list.appendChild(li);
+      });
+    }catch(e){
+      console.warn("RSSの取得に失敗したため、リンクのみ表示します。", e);
+    }
+  }
+  loadNoteRSS();
   </script>
 </body>
 </html>
