@@ -34,20 +34,45 @@
     nav a{ color:#333; text-decoration:none; padding:12px 10px; font-weight:600; white-space:nowrap; border-bottom:2px solid transparent; }
     nav a:hover{ color:var(--sky); border-bottom-color:var(--sky); }
 
-    /* ヒーロー（少し小さく） */
+    /* ヒーロー（縮小版） */
     .hero{ margin:0; }
-    .hero img{ width:100%; height:auto; max-height:360px; object-fit:cover; display:block; }
+    .hero img{ width:100%; height:auto; max-height:300px; object-fit:cover; display:block; }
 
     /* 本文 */
     main{ padding:28px var(--rail) 56px; }
     h2{ margin:.2em 0 .5em; font-size:clamp(20px,2.8vw,26px); }
     .lead{ margin:0 0 1rem; opacity:.9; }
 
-    /* 最新Note */
-    #note-feed ul{ margin:.4em 0 0; padding-left:1.2rem; }
-    #note-feed li{ margin:.35em 0; }
-    #note-feed a{ color:#0b62d6; text-decoration:none; }
-    #note-feed a:hover{ text-decoration:underline; }
+    /* Noteカード */
+    .note-cards{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:16px;
+      margin-top:.5rem;
+    }
+    .note-card{
+      border:1px solid #eee;
+      border-radius:12px;
+      overflow:hidden;
+      background:#fff;
+      transition:box-shadow .15s ease, transform .03s ease;
+    }
+    .note-card:hover{ box-shadow:0 8px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+    .note-thumb{
+      width:100%; aspect-ratio:16/9; object-fit:cover; display:block; background:#f4f4f4;
+    }
+    .note-title{
+      font-size:.98rem; line-height:1.5;
+      margin:10px 12px 12px;
+      color:#0b62d6; text-decoration:none; display:block;
+    }
+    .note-title:hover{ text-decoration:underline; }
+    .more-wrap{ margin-top:12px; text-align:right; }
+    .more-btn{
+      display:inline-block; background:#5ac2ff; color:#fff; text-decoration:none;
+      padding:.6rem 1rem; border-radius:999px; font-weight:700;
+    }
+    .more-btn:hover{ filter:brightness(.96); }
 
     /* コラボ募集 */
     .collab{ margin:28px 0 8px; }
@@ -101,19 +126,21 @@
         <p class="lead">当サイトは、お寺を“遊びと学びの場”としてひらく取り組みのポータルです。イベント予定、活動のレポート、お問い合わせはこちらから。</p>
       </section>
 
-      <!-- 最新Note 3件 -->
+      <!-- 最新Note 3件（カード表示） -->
       <section id="note-feed">
         <h2>最新のNote記事</h2>
-        <ul id="note-list">
-          <li><a href="https://note.com/loyal_dill1011/m/m9a97295e24a9" target="_blank" rel="noopener">（読み込み中…）</a></li>
-        </ul>
+        <div id="note-cards" class="note-cards">
+          <p id="note-fallback"><a href="https://note.com/loyal_dill1011/m/m9a97295e24a9" target="_blank" rel="noopener">（最新記事はこちら）</a></p>
+        </div>
+        <div class="more-wrap">
+          <a class="more-btn" href="https://note.com/loyal_dill1011/m/m9a97295e24a9" target="_blank" rel="noopener">もっと見る（note）</a>
+        </div>
       </section>
 
       <!-- コラボ募集 -->
       <section class="collab">
         <div class="collab-inner">
           <div class="collab-media">
-            <!-- ここをあなたの画像に差し替え（推奨: /images/collab-badge.png） -->
             <img src="/images/collab-badge.png" alt="コラボ募集イメージ">
           </div>
           <div class="collab-copy">
@@ -132,23 +159,38 @@
   <script>
   async function loadNoteRSS(){
     const rss = "https://note.com/loyal_dill1011/m/m9a97295e24a9/rss";
-    const url = "https://api.allorigins.win/get?url=" + encodeURIComponent(rss);
+    const proxy = "https://api.allorigins.win/get?url=" + encodeURIComponent(rss);
+
     try{
-      const res = await fetch(url);
+      const res = await fetch(proxy);
+      if(!res.ok) throw new Error('fetch failed');
       const { contents } = await res.json();
+
       const xml = new DOMParser().parseFromString(contents, "application/xml");
       const items = Array.from(xml.querySelectorAll("item")).slice(0,3);
-      const list = document.getElementById("note-list");
-      list.innerHTML = "";
+
+      const wrap = document.getElementById("note-cards");
+      const fallback = document.getElementById("note-fallback");
+      wrap.innerHTML = ""; // 初期のfallbackを消す
+
       items.forEach(it=>{
         const title = it.querySelector("title")?.textContent ?? "（無題）";
         const link  = it.querySelector("link")?.textContent ?? "#";
-        const li = document.createElement("li");
-        li.innerHTML = `<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
-        list.appendChild(li);
+        const tn = it.querySelector("media\\:thumbnail, thumbnail");
+        const thumb = tn ? (tn.getAttribute("url") || tn.textContent) : "";
+
+        const card = document.createElement("article");
+        card.className = "note-card";
+        card.innerHTML = `
+          <a href="${link}" target="_blank" rel="noopener">
+            <img class="note-thumb" src="${thumb || 'https://placehold.co/800x450?text=note'}" alt="">
+          </a>
+          <a class="note-title" href="${link}" target="_blank" rel="noopener">${title}</a>
+        `;
+        wrap.appendChild(card);
       });
     }catch(e){
-      console.warn("RSSの取得に失敗したため、リンクのみ表示します。", e);
+      console.warn("RSSの取得に失敗：", e);
     }
   }
   loadNoteRSS();
