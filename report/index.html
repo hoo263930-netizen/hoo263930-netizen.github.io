@@ -1,26 +1,50 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>活動報告 | 遊べるお寺プロジェクト</title>
-  <meta name="description" content="遊べるお寺プロジェクトの活動報告。Noteのマガジン記事を新しい順で一覧表示します。">
+  <meta name="description" content="遊べるお寺プロジェクトの活動報告。Noteのマガジン記事を新しい順で一覧表示します。" />
   <style>
     :root{
-      --sky:#5ac2ff;
-      --sand:#f7ce52;
-      --ink:#2b2b2b;
-      --paper:#ffffff;
-      --maxw:980px;
+      --sky:#5ac2ff;     /* アクセント青 */
+      --sand:#f7ce52;    /* サイト背景の黄（左右帯） */
+      --ink:#2b2b2b;     /* 本文色 */
+      --paper:#ffffff;   /* コンテナ白 */
+      --maxw:980px;      /* コンテンツ最大幅 */
+      --rail:16px;       /* 横余白 */
     }
-    body{ margin:0; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; color:var(--ink); background:var(--paper); line-height:1.75; }
-    header{ background:var(--sand); padding:14px 16px; text-align:center; font-weight:700; }
-    nav{ background:#222; color:#fff; }
-    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 12px; display:flex; gap:12px; overflow:auto; }
-    nav a{ color:#fff; text-decoration:none; padding:10px 8px; white-space:nowrap; }
-    nav a:hover{ border-bottom:2px solid var(--sand); }
-    main{ max-width:var(--maxw); margin:0 auto; padding:24px 16px 56px; }
-    h1{ margin:.2em 0 .6em; }
+    @media (min-width: 900px){ :root{ --rail:24px; } }
+
+    /* === 全ページ共通：左右イエロー帯 + 中央白コンテナ === */
+    html,body{ margin:0; padding:0; line-height:1.75; color:var(--ink); font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+    body{ background:var(--sand); }                  /* 両脇の黄色帯 */
+    .container{
+      background:var(--paper);                      /* 中央の白い面 */
+      max-width:var(--maxw);
+      margin:0 auto;
+      min-height:100vh;
+      box-shadow:0 0 6px rgba(0,0,0,.05);
+    }
+
+    /* ヘッダー & ナビ（白地＋下に黄色ライン） */
+    header{ background:var(--paper); padding:14px var(--rail); text-align:center; font-weight:700; border-bottom:2px solid var(--sand); }
+    header .subtitle{ font-size:.95rem; opacity:.7; margin-top:.2rem; }
+    nav{ background:#fff; border-bottom:2px solid var(--sand); }
+    nav .wrap{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:0 var(--rail);
+      display:flex; gap:12px; overflow:auto; justify-content:center;
+    }
+    nav a{
+      color:#333; text-decoration:none; padding:12px 10px; white-space:nowrap; font-weight:600; border-bottom:2px solid transparent;
+    }
+    nav a:hover{ color:var(--sky); border-bottom-color:var(--sky); }
+
+    /* 本文 */
+    main{ max-width:var(--maxw); margin:0 auto; padding:24px var(--rail) 56px; background:#fff; }
+    h1{ margin:.2em 0 .4em; }
     .lead{ margin:0 0 1rem; opacity:.9; }
 
     /* リスト表示 */
@@ -31,7 +55,7 @@
     .meta{ font-size:.9rem; color:#666; }
 
     /* ページネーション */
-    .pager{ display:flex; gap:8px; justify-content:center; margin:20px 0 0; flex-wrap:wrap; }
+    .pager{ display:flex; gap:8px; justify-content:center; margin:22px 0 0; flex-wrap:wrap; }
     .pager button{
       border:1px solid #ddd; background:#fff; padding:.45rem .75rem; border-radius:8px; cursor:pointer;
     }
@@ -40,59 +64,68 @@
 
     /* 読み込み・エラー */
     .muted{ color:#777; font-size:.95rem; }
+
+    /* フッター */
+    footer{ background:#f7f7f7; border-top:1px solid #eee; padding:14px var(--rail); text-align:center; font-size:.9rem; color:#666; }
   </style>
 </head>
 <body>
+  <div class="container">
+    <!-- ヘッダー -->
+    <header>
+      活動報告
+      <div class="subtitle">Noteのマガジン記事を新しい順で一覧表示</div>
+    </header>
 
-  <header>活動報告</header>
+    <!-- ナビ -->
+    <nav aria-label="主なナビゲーション">
+      <div class="wrap">
+        <a href="/">ホーム</a>
+        <a href="/project/">プロジェクト</a>
+        <a href="/events/">イベント</a>
+        <a href="/report/">活動報告</a>
+        <a href="/contact/">お問い合わせ</a>
+      </div>
+    </nav>
 
-  <nav>
-    <div class="wrap">
-      <a href="/">ホーム</a>
-      <a href="/project/">プロジェクト</a>
-      <a href="/events/">イベント</a>
-      <a href="/report/">活動報告</a>
-      <a href="/contact/">お問い合わせ</a>
-    </div>
-  </nav>
+    <!-- 本文 -->
+    <main>
+      <h1>活動レポート</h1>
+      <p class="lead">Noteのマガジンから、最新の投稿を新しい順に表示します。</p>
 
-  <main>
-    <h1>活動レポート</h1>
-    <p class="lead">Noteのマガジンから、最新の投稿を新しい順に表示します。</p>
+      <!-- リスト -->
+      <ul id="report-list" class="list">
+        <!-- データがまだ無いときの仮表示（/note_feed.json を置くと自動で置換されます） -->
+        <li class="item">
+          <div><a href="#" onclick="return false;">（サンプル）活動レポートのタイトル</a></div>
+          <div class="meta">2025-09-01　｜　note</div>
+        </li>
+        <li class="item">
+          <div><a href="#" onclick="return false;">（サンプル）活動レポートのタイトル</a></div>
+          <div class="meta">2025-08-22　｜　note</div>
+        </li>
+        <li class="item">
+          <div><a href="#" onclick="return false;">（サンプル）活動レポートのタイトル</a></div>
+          <div class="meta">2025-08-15　｜　note</div>
+        </li>
+      </ul>
 
-    <!-- リスト -->
-    <ul id="report-list" class="list">
-      <!-- データがまだ無いときの仮表示（明日自動で置換されます） -->
-      <li class="item">
-        <div><a href="#" onclick="return false;">（サンプル）活動レポートのタイトル</a></div>
-        <div class="meta">2025-09-01　｜　note</div>
-      </li>
-      <li class="item">
-        <div><a href="#" onclick="return false;">（サンプル）活動レポートのタイトル</a></div>
-        <div class="meta">2025-08-22　｜　note</div>
-      </li>
-      <li class="item">
-        <div><a href="#" onclick="return false;">（サンプル）活動レポートのタイトル</a></div>
-        <div class="meta">2025-08-15　｜　note</div>
-      </li>
-    </ul>
+      <!-- ページネーション -->
+      <div id="pager" class="pager" aria-label="ページ切替">
+        <!-- JSで 1 / 2 / 3 を生成 -->
+      </div>
 
-    <!-- ページネーション -->
-    <div id="pager" class="pager" aria-label="ページ切替">
-      <!-- JSで 1 / 2 / 3 を生成 -->
-    </div>
+      <p id="helper" class="muted" style="margin-top:18px;">
+        ※ 実データは <code>/note_feed.json</code> または <code>/note_magazine.json</code> が存在すれば自動で読み込まれます。
+      </p>
+    </main>
 
-    <p id="helper" class="muted" style="margin-top:18px;">
-      ※ 実データは <code>/note_feed.json</code> または <code>/note_magazine.json</code> が存在すれば自動で読み込まれます。
-    </p>
-  </main>
-
-  <footer style="background:#f7f7f7;border-top:1px solid #eee;padding:14px 16px;text-align:center;font-size:.9rem;color:#666;">
-    © 2025 遊べるお寺プロジェクト
-  </footer>
+    <!-- フッター -->
+    <footer>© 2025 遊べるお寺プロジェクト</footer>
+  </div>
 
   <script>
-  // 設定：1ページの件数と最大ページ数（希望：各30件、3ページまで）
+  // 設定：1ページの件数と最大ページ数（各30件、最大3ページ）
   const PAGE_SIZE = 30;
   const MAX_PAGES = 3;
 
@@ -147,7 +180,6 @@
     const totalPages = Math.min(Math.ceil(total / PAGE_SIZE), MAX_PAGES);
     if (totalPages <= 1) return;
 
-    let current = 1;
     for (let i=1; i<=totalPages; i++){
       const btn = document.createElement('button');
       btn.textContent = String(i);
@@ -155,8 +187,7 @@
       btn.addEventListener('click', ()=>{
         [...pager.children].forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
-        current = i;
-        onGo(current);
+        onGo(i);
         window.scrollTo({top:0, behavior:'instant'});
       });
       pager.appendChild(btn);
