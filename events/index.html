@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>イベント | 遊べるお寺プロジェクト</title>
-  <meta name="description" content="遊べるお寺プロジェクトのイベント情報。チラシと紹介文で分かりやすくご案内します。" />
+  <meta name="description" content="遊べるお寺プロジェクトのイベント情報。チラシと紹介文でわかりやすくご案内します。" />
   <style>
     :root{
       --sky:#22a7ff;
@@ -14,36 +14,53 @@
       --maxw:1100px;
       --rail:16px;
     }
-    @media(min-width:900px){ :root{ --rail:24px; } }
+    @media (min-width:900px){ :root{ --rail:24px; } }
 
-    /* ベース（トップと同じ見た目） */
-    html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+    /* ベース（トップと同じ雰囲気） */
+    html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75;
+      font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
     body{ background:var(--sand); }
-    .container{ max-width:var(--maxw); margin:0 auto; background:var(--paper); min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
+    .container{ max-width:var(--maxw); margin:0 auto; background:var(--paper);
+      min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
+
     header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
     .visually-hidden{ position:absolute; left:-9999px; }
+
     nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
     nav::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:3px; background:var(--sky); }
-    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail); display:flex; gap:0; justify-content:center; overflow:auto; }
-    nav a{ color:#333; text-decoration:none; padding:18px clamp(14px,2.6vw,28px); font-weight:700; font-size:clamp(18px,2.2vw,22px); white-space:nowrap; border-bottom:3px solid transparent; }
+    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail);
+      display:flex; gap:0; justify-content:center; overflow:auto; }
+    nav a{ color:#333; text-decoration:none; padding:18px clamp(14px,2.6vw,28px);
+      font-weight:700; font-size:clamp(18px,2.2vw,22px); white-space:nowrap; }
     nav a + a{ border-left:2px solid #ddd; }
     nav a:hover{ background:#fafafa; }
+
     main{ padding:28px var(--rail) 56px; }
-    h1{ font-size:clamp(24px,3.2vw,36px); margin:.2em 0 .6em; }
-    footer{ background:#f7f7f7; border-top:1px solid #eee; padding:14px var(--rail); text-align:center; font-size:.9rem; color:#666; }
+    h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
+    footer{ background:#f7f7f7; border-top:1px solid #eee; padding:14px var(--rail);
+      text-align:center; font-size:.9rem; color:#666; }
 
     /* イベントカード */
     .event-list{ display:grid; gap:28px; margin-top:10px; }
+
     .event{
       border:1px solid #dfe6ee; border-radius:14px; padding:18px;
-      display:grid; grid-template-columns: minmax(260px, 420px) 1fr; gap:22px; align-items:center;
       background:#fff;
     }
+    .event-wrap{
+      display:grid; grid-template-columns:minmax(260px, 420px) 1fr;
+      gap:22px; align-items:start;
+    }
+
     .event-media a{ display:block; border-radius:10px; overflow:hidden; border:1px solid #e9eef3; }
     .event-media img{ width:100%; height:auto; display:block; }
-    .event-body h3{ margin:0 0 .3em; font-size:clamp(20px,2.6vw,28px); }
+
+    .thumbs{ display:grid; gap:10px; } /* 2枚チラシ用 */
+
+    .event-body h3{ margin:0 0 .35em; font-size:clamp(20px,2.6vw,28px); }
     .event-date{ margin:.2em 0 1em; color:#666; font-weight:600; }
     .event-body p{ margin:.7em 0; }
+
     .event-cta{ margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
     .btn{
       display:inline-block; text-decoration:none; font-weight:700;
@@ -53,12 +70,11 @@
     .btn:hover{ filter:brightness(.96); }
     .btn.sec{ background:#f0f3f8; color:#1b2b44; box-shadow:none; }
 
-    /* バッジ（任意） */
-    .badge{ display:inline-block; margin-left:.5rem; padding:.15em .55em; border-radius:8px; font-size:.8rem; background:#e9f6ff; color:#056; font-weight:700; }
+    .badge{ display:inline-block; margin-left:.5rem; padding:.15em .55em; border-radius:8px;
+      font-size:.8rem; background:#e9f6ff; color:#056; font-weight:700; }
 
-    /* スマホ：縦並び */
-    @media (max-width: 800px){
-      .event{ grid-template-columns: 1fr; }
+    @media (max-width:800px){
+      .event-wrap{ grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -78,62 +94,69 @@
 
     <main>
       <h1>今後のイベント情報</h1>
-      <p style="margin-top:-8px;color:#666">最新のチラシは画像をクリックすると拡大表示できます。</p>
+      <p style="margin-top:-8px;color:#666">チラシ画像をクリック／タップすると拡大表示できます。</p>
 
       <section class="event-list">
 
-        <!-- イベント①：例 -->
-        <article class="event">
-          <div class="event-media">
-            <a href="/images/events/sample-cello.jpg" target="_blank" rel="noopener">
-              <img src="/images/events/sample-cello.jpg" alt="鳴海 薫 チェロリサイタルのチラシ">
-            </a>
-          </div>
-          <div class="event-body">
-            <h3>鳴海 薫 チェロリサイタル <span class="badge">予約受付中</span></h3>
-            <p class="event-date">2025年4月12日（土）14:00 開演（13:30 開場）｜会場：ウェルカムハウス Liaisōn</p>
-            <p>
-              昨年の第1回リサイタルに続き、今年も開催が決定しました。若きチェリストの清らかで深い音色と
-              コーヒーの香り、窓辺の木々のささやきとともに、春の午後をお楽しみください。
-            </p>
-            <div class="event-cta">
-              <a class="btn" href="https://example.com/tickets" target="_blank" rel="noopener">詳細・申込</a>
-              <a class="btn sec" href="https://example.com/access" target="_blank" rel="noopener">アクセス</a>
+        <!-- 健康麻雀会 -->
+        <article class="event" id="kenko-mahjong">
+          <div class="event-wrap">
+            <div class="event-media">
+              <a href="/画像/イベント/mj1.PNG" target="_blank" rel="noopener">
+                <img src="/画像/イベント/mj1.PNG" alt="健康麻雀会のチラシ">
+              </a>
+            </div>
+            <div class="event-body">
+              <h3>健康麻雀会 <span class="badge">参加者募集中</span></h3>
+              <p class="event-date">
+                開催日：2024年9月28日・10月26日・11月23日・12月21日（予定）・<br>
+                2025年1月25日・2月22日・3月22日
+              </p>
+              <p>
+                初心者から経験者まで、どなたでも参加できる健康麻雀の集いです。<br>
+                点数計算が不安な方もスタッフがサポート。和やかな雰囲気の中、
+                世代を超えて交流しながら“頭の体操”とリフレッシュを一緒に楽しみましょう。
+              </p>
+              <!-- 申込や要項ページができたら下記ボタンの href を設定 -->
+              <!-- <div class="event-cta">
+                <a class="btn" href="https://example.com/entry" target="_blank" rel="noopener">参加申込</a>
+                <a class="btn sec" href="https://example.com/access" target="_blank" rel="noopener">アクセス</a>
+              </div> -->
             </div>
           </div>
         </article>
 
-        <!-- イベント②：例 -->
-        <article class="event">
-          <div class="event-media">
-            <a href="/images/events/sample-piano.jpg" target="_blank" rel="noopener">
-              <img src="/images/events/sample-piano.jpg" alt="西野 純一 ピアノリサイタルのチラシ">
-            </a>
-          </div>
-          <div class="event-body">
-            <h3>西野 純一 ピアノリサイタル</h3>
-            <p class="event-date">2025年12月7日（日）14:00 開演（13:30 開場）｜会場：ウェルカムハウス Liaisōn</p>
-            <p>
-              ピアノに生きる魂が奏でる音の粒——珈琲の香りとともにあなたへ。クラシック初心者の方も
-              気軽にお越しください。
-            </p>
-            <div class="event-cta">
-              <a class="btn" href="https://example.com/tickets2" target="_blank" rel="noopener">詳細・申込</a>
+        <!-- 路上遊びフェスタ -->
+        <article class="event" id="rojou-asobi">
+          <div class="event-wrap">
+            <div class="event-media">
+              <div class="thumbs">
+                <a href="/画像/イベント/rojou1.JPG" target="_blank" rel="noopener">
+                  <img src="/画像/イベント/rojou1.JPG" alt="路上遊びフェスタのチラシ1">
+                </a>
+                <a href="/画像/イベント/rojou2.JPG" target="_blank" rel="noopener">
+                  <img src="/画像/イベント/rojou2.JPG" alt="路上遊びフェスタのチラシ2">
+                </a>
+              </div>
+            </div>
+            <div class="event-body">
+              <h3>路上遊びフェスタ</h3>
+              <p class="event-date">開催日：2024年11月8日（金）</p>
+              <p>
+                昔ながらの遊びや、みんなで楽しめる企画を路上に広げる体験型イベントです。<br>
+                「遊べるお寺プロジェクト」では、屋外にこたつを出して“外コタツ麻雀”を実施予定！<br>
+                ちょっと非日常な遊び心と、あたたかな交流を一緒に楽しみましょう。
+              </p>
+              <!-- <div class="event-cta">
+                <a class="btn" href="https://example.com/detail" target="_blank" rel="noopener">詳細</a>
+              </div> -->
             </div>
           </div>
         </article>
 
-        <!-- ↓ 以降、同じ <article class="event">…</article> をコピペして増やしてください -->
+        <!-- 以降、同じ .event をコピペして増やせます -->
 
       </section>
-
-      <!-- もし過去イベントを置くなら（任意） -->
-      <!--
-      <h2 style="margin-top:36px;">これまでのイベント</h2>
-      <section class="event-list">
-        …同じ要素でOK（「開催終了」バッジに変更して運用）
-      </section>
-      -->
     </main>
 
     <footer>© 2025 遊べるお寺プロジェクト</footer>
