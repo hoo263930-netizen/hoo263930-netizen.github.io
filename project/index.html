@@ -23,7 +23,7 @@
   }
   .wrap{max-width:var(--w); margin:0 auto; padding:0 var(--rail)}
 
-  /* ====== イベントページ風：黄色い帯のタブ ====== */
+  /* 黄色い帯のタブ（イベント/トップと統一） */
   nav.topnav{ background:var(--sand); border-top:1px solid rgba(0,0,0,.05); border-bottom:3px solid #3aa8ff; }
   nav.topnav .wrap{ display:flex; justify-content:center; align-items:center; }
   nav.topnav a{
@@ -35,7 +35,7 @@
   nav.topnav a:hover{ background:#fff; text-decoration:underline; }
   nav.topnav a.active{ box-shadow:inset 0 -3px 0 #3aa8ff; }
 
-  /* ====== Sections ====== */
+  /* Sections */
   section{ padding:28px 0; background:#fff; }
   section + section{ border-top:1px solid #eee; }
   h2{ font-size:clamp(20px,3.2vw,26px); margin:0 0 12px; letter-spacing:.02em; }
@@ -48,7 +48,7 @@
   .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 6px; }
   .badge{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; background:#ffeaa8; color:#523e00; }
 
-  /* ====== Media ====== */
+  /* 画像 */
   .media-1{ margin:10px 0; }
   .media-1 img, .media-2 img{
     width:100%; height:auto; display:block; border-radius:12px; background:#f2f7ff; object-fit:cover; border:1px solid #eef3fb;
@@ -59,7 +59,7 @@
   figcaption{ font-size:13px; color:#5d6673; margin-top:6px; background:#fcfdff; padding:6px 8px; border-radius:8px; border:1px dashed #e6ecf7; }
   @media (max-width:760px){ .media-2{ grid-template-columns:1fr } .media-1.small{ max-width:100% } }
 
-  /* ====== Buttons ====== */
+  /* ボタン */
   .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
   .btn{ appearance:none; border:none; cursor:pointer; padding:11px 16px; border-radius:999px; font-weight:700; font-size:15px; text-decoration:none; display:inline-block; }
   .btn.primary{ background:var(--leaf); color:#fff; }
@@ -72,7 +72,7 @@
 </style>
 </head>
 <body>
-  <!-- ここから直接ナビを表示 -->
+  <!-- 上部はナビだけ -->
   <nav class="topnav">
     <div class="wrap">
       <a href="/">ホーム</a>
@@ -84,8 +84,131 @@
   </nav>
 
   <main>
-    <!-- 以下、各セクション（目的・麻雀・座禅・サバゲー・その他…）はそのまま -->
-    <!-- あなたが貼ってくれた中身を残してOK -->
+    <!-- 1) 活動の目的 -->
+    <section id="purpose">
+      <div class="wrap">
+        <h2>活動の目的</h2>
+        <div class="block">
+          <p><strong>「遊べるお寺プロジェクト」</strong>は、「楽しい」「面白い」「ワクワクする」という気持ちを土台に、お寺や地域を舞台として展開する仏教の実践活動です。</p>
+          <p>現代社会では、地域や世代を超えたつながりが希薄になり、自分の属する団体や興味関心のあるコミュニティの中だけで暮らすことが当たり前になりつつあります。だからこそ、価値観の異なる他者と自然に出会い、交わることができる「場」が必要ではないか——そう思ったことが、この活動のきっかけです。</p>
+          <p>世代や立場を超えて人が自然に集まり、遊びや対話を通じて交流できる場をつくることを目的としています。お寺という場所を活かしながら、ときには地域の会場や野外など「お寺でない場所」にも飛び出して活動しています。</p>
+          <p><strong>「遊べるお寺プロジェクト」</strong>では、楽しい時間を共有することで一人ひとりの人生をより豊かにし、地域全体が元気になっていくこと、そしてその広がりが世界を少しずつ楽しくしていくことを目指しています。</p>
+          <p>そんな、僧侶である私の仏教の実践に興味を持たれた方は、ぜひ一度お越しください。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) 健康麻雀会 -->
+    <section id="mahjong">
+      <div class="wrap">
+        <h2>健康麻雀会</h2>
+        <div class="block">
+          <div class="badges">
+            <span class="badge">初心者歓迎</span>
+            <span class="badge">点数計算不要</span>
+            <span class="badge">禁煙・禁酒</span>
+          </div>
+          <p>「賭けない・飲まない・吸わない」に加え、「怒らない・そして楽しく！」を合言葉にしている麻雀の集まりです。初心者の方も安心して参加できるよう、ルール説明から丁寧に進めています。世代を超えた交流や頭の体操としても人気で、和気あいあいとした雰囲気が広がります。地域の会場へ<strong>出張開催</strong>することもあり、より多くの人に楽しんでもらえる工夫をしています。</p>
+          <div class="media-1">
+            <figure>
+              <img src="/images/project/mj1.jpeg" alt="健康麻雀の卓を囲む参加者の笑顔">
+              <figcaption>「賭けない・飲まない・吸わない・怒らない・楽しく！」初心者歓迎、見学OK。</figcaption>
+            </figure>
+          </div>
+          <div class="cta">
+            <a class="btn primary" href="/events/">イベントを見る</a>
+            <a class="btn ghost" href="/contact/">問い合わせ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) 座禅会（横2枚＋キャプション） -->
+    <section id="zazen">
+      <div class="wrap">
+        <h2>座禅会</h2>
+        <div class="block">
+          <p>心と体を落ち着ける座禅体験は、お寺ならではの静かな時間です。初めての方でも参加しやすいように、姿勢や呼吸法をやさしく案内しています。忙しい日常から少し離れて座ることで、リフレッシュや気づきを得られると好評です。学校や地域団体などへの<strong>出張開催</strong>にも対応しています。</p>
+          <div class="media-2">
+            <figure>
+              <img src="/images/project/zazen2.jpg" alt="座禅に必要な座布や備品がそろった和室">
+              <figcaption>座禅に必要な物品は完備。<strong>和室での実施を推奨</strong>しています。</figcaption>
+            </figure>
+            <figure>
+              <img src="/images/project/zazen3.jpg" alt="姿勢と呼吸の案内を受けながら座る参加者">
+              <figcaption>姿勢・呼吸をやさしく案内。初めてでも安心して体験できます。</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) サバイバルゲーム会（横2枚＋キャプション） -->
+    <section id="survival">
+      <div class="wrap">
+        <h2>サバイバルゲーム会（Nerf）</h2>
+        <div class="block">
+          <p>スポンジの弾を発射する「Nerf（ナーフ）」を使ったサバイバルゲーム。安全性が高く、子どもから大人まで気軽に楽しめるのが特徴です。境内や自然を舞台に作戦を立てて仲間と協力し合う体験は、世代を超えた交流のきっかけになります。地域イベントや広場などへの<strong>出張開催</strong>も行っています。</p>
+          <div class="media-2">
+            <figure>
+              <img src="/images/project/nerf1.jpeg" alt="Nerfを使って安全に遊ぶ参加者">
+              <figcaption>スポンジ弾のNerfで安全に。子どもから大人まで楽しめます。</figcaption>
+            </figure>
+            <figure>
+              <img src="/images/project/nerf2.JPG" alt="境内や自然のフィールドで作戦を立てる様子">
+              <figcaption>境内や自然を舞台に、作戦を立てて挑む非日常体験。</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) その他の活動（小さめ表示） -->
+    <section id="others">
+      <div class="wrap">
+        <h2>その他の活動</h2>
+        <div class="block">
+          <p>ボードゲーム会や謎解きイベント、カードゲーム大会など、気軽に参加できる企画を多数行っています。参加者の声や地域のニーズに合わせて、新しい遊びや企画も積極的に取り入れています。お寺を拠点に、また地域のさまざまな場所で「遊び」を通じた交流を広げています。</p>
+          <div class="media-1 small">
+            <figure>
+              <img src="/images/project/bikkuriman2.jpg" alt="オリジナルシールやゲーム企画のイメージ">
+              <figcaption>ボードゲーム・謎解き・カードゲームなど、気軽に参加できる企画を展開。</figcaption>
+            </figure>
+          </div>
+          <div class="cta">
+            <a class="btn primary" href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動レポート（note）</a>
+            <a class="btn ghost" href="/events/">イベントを見る</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) 情報発信 -->
+    <section id="info">
+      <div class="wrap">
+        <h2>情報発信</h2>
+        <div class="block">
+          <p>活動の様子や仏教についてのやさしい解説を、ブログサービス「<strong>note</strong>」で発信しています。日々の出来事やイベントの報告を通じて、活動に参加した方や遠方の方ともつながれるようにしています。オンラインでも「遊べるお寺プロジェクト」を身近に感じてもらえるよう心がけています。</p>
+          <div class="cta">
+            <a class="btn dark" href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">note を見る</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7) 参加のご案内 -->
+    <section id="join">
+      <div class="wrap">
+        <h2>参加のご案内</h2>
+        <div class="block">
+          <p class="note">最新情報や急な変更については、イベントページと活動レポートをご確認ください。お問い合わせはフォームからどうぞ。</p>
+          <div class="cta">
+            <a class="btn ghost" href="/events/">イベントページ</a>
+            <a class="btn ghost" href="/contact/">問い合わせ</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -93,7 +216,7 @@
   </footer>
 
   <script>
-    // 現在ページのタブを強調
+    // 現在ページのタブを強調（/project/）
     (function(){
       var path = location.pathname.replace(/\/+$/,'') || '/';
       document.querySelectorAll('.topnav a').forEach(a=>{
