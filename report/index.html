@@ -3,79 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>活動報告 | 遊べるお寺プロジェクト</title>
-  <meta name="description" content="遊べるお寺プロジェクトの活動報告。Noteのマガジン記事を新しい順で一覧表示します。" />
+  <title>お問い合わせ | 遊べるお寺プロジェクト</title>
+  <meta name="description" content="遊べるお寺プロジェクトへのお問い合わせはこちら。" />
   <style>
     :root{
-      --sky:#5ac2ff;     /* アクセント青 */
-      --sand:#f7ce52;    /* サイト背景の黄（左右帯） */
-      --ink:#2b2b2b;     /* 本文色 */
-      --paper:#ffffff;   /* コンテナ白 */
-      --maxw:980px;      /* コンテンツ最大幅 */
-      --rail:16px;       /* 横余白 */
+      --sky:#5ac2ff;
+      --sand:#f7ce52;
+      --ink:#2b2b2b;
+      --paper:#fff;
+      --maxw:980px;
+      --rail:16px;
     }
-    @media (min-width: 900px){ :root{ --rail:24px; } }
+    @media (min-width:900px){ :root{ --rail:24px; } }
 
-    /* === 全ページ共通：左右イエロー帯 + 中央白コンテナ === */
-    html,body{ margin:0; padding:0; line-height:1.75; color:var(--ink); font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
-    body{ background:var(--sand); }                  /* 両脇の黄色帯 */
-    .container{
-      background:var(--paper);                      /* 中央の白い面 */
-      max-width:var(--maxw);
-      margin:0 auto;
-      min-height:100vh;
-      box-shadow:0 0 6px rgba(0,0,0,.05);
-    }
+    /* === 全ページ共通 === */
+    html,body{ margin:0; padding:0; line-height:1.75; color:var(--ink);
+      font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+    body{ background:var(--sand); }
+    .container{ background:var(--paper); max-width:var(--maxw); margin:0 auto;
+      min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
 
-    /* ヘッダー & ナビ（白地＋下に黄色ライン） */
-    header{ background:var(--paper); padding:14px var(--rail); text-align:center; font-weight:700; border-bottom:2px solid var(--sand); }
-    header .subtitle{ font-size:.95rem; opacity:.7; margin-top:.2rem; }
+    /* ヘッダー & ナビ */
+    header{ background:var(--paper); padding:14px var(--rail); text-align:center;
+      font-weight:700; border-bottom:2px solid var(--sand); }
     nav{ background:#fff; border-bottom:2px solid var(--sand); }
-    nav .wrap{
-      max-width:var(--maxw);
-      margin:0 auto;
-      padding:0 var(--rail);
-      display:flex; gap:12px; overflow:auto; justify-content:center;
-    }
-    nav a{
-      color:#333; text-decoration:none; padding:12px 10px; white-space:nowrap; font-weight:600; border-bottom:2px solid transparent;
-    }
+    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail);
+      display:flex; gap:12px; overflow:auto; justify-content:center; }
+    nav a{ color:#333; text-decoration:none; padding:12px 10px; white-space:nowrap;
+      font-weight:600; border-bottom:2px solid transparent; }
     nav a:hover{ color:var(--sky); border-bottom-color:var(--sky); }
 
     /* 本文 */
-    main{ max-width:var(--maxw); margin:0 auto; padding:24px var(--rail) 56px; background:#fff; }
-    h1{ margin:.2em 0 .4em; }
-    .lead{ margin:0 0 1rem; opacity:.9; }
+    main{ padding:28px var(--rail) 56px; background:#fff; }
+    h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
+    p{ margin:0 0 1em; }
 
-    /* リスト表示 */
-    .list{ list-style:none; padding:0; margin:0; }
-    .item{ padding:14px 0; border-bottom:1px solid #eee; display:grid; gap:.35rem; }
-    .item a{ color:#0b62d6; text-decoration:none; }
-    .item a:hover{ text-decoration:underline; }
-    .meta{ font-size:.9rem; color:#666; }
+    form{ display:grid; gap:16px; max-width:600px; }
+    label{ display:block; font-weight:600; margin-bottom:.3em; }
+    input,textarea{ width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-family:inherit; }
+    textarea{ min-height:140px; }
+    button{ background:#22a7ff; color:#fff; font-weight:700; border:none;
+      padding:.7rem 1.4rem; border-radius:999px; cursor:pointer; }
+    button:hover{ filter:brightness(.96); }
 
-    /* ページネーション */
-    .pager{ display:flex; gap:8px; justify-content:center; margin:22px 0 0; flex-wrap:wrap; }
-    .pager button{
-      border:1px solid #ddd; background:#fff; padding:.45rem .75rem; border-radius:8px; cursor:pointer;
-    }
-    .pager button[disabled]{ opacity:.5; cursor:default; }
-    .pager .active{ background:var(--sky); color:#fff; border-color:var(--sky); }
-
-    /* 読み込み・エラー */
-    .muted{ color:#777; font-size:.95rem; }
-
-    /* フッター */
-    footer{ background:#f7f7f7; border-top:1px solid #eee; padding:14px var(--rail); text-align:center; font-size:.9rem; color:#666; }
+    footer{ background:#f7f7f7; border-top:1px solid #eee; padding:14px var(--rail);
+      text-align:center; font-size:.9rem; color:#666; }
   </style>
 </head>
 <body>
   <div class="container">
     <!-- ヘッダー -->
-    <header>
-      活動報告
-      <div class="subtitle">Noteのマガジン記事を新しい順で一覧表示</div>
-    </header>
+    <header>お問い合わせ</header>
 
     <!-- ナビ -->
     <nav aria-label="主なナビゲーション">
@@ -83,134 +61,34 @@
         <a href="/">ホーム</a>
         <a href="/project/">プロジェクト</a>
         <a href="/events/">イベント</a>
-        <a href="/report/">活動報告</a>
+        <a href="/report/">活動報告（note）</a>
         <a href="/contact/">お問い合わせ</a>
       </div>
     </nav>
 
     <!-- 本文 -->
     <main>
-      <h1>活動レポート</h1>
-      <p class="lead">Noteのマガジンから、最新の投稿を新しい順に表示します。</p>
+      <h1>お問い合わせフォーム</h1>
+      <p>ご質問・ご依頼などございましたら、以下のフォームよりご連絡ください。</p>
 
-      <!-- リスト -->
-      <ul id="report-list" class="list">
-        <!-- データがまだ無いときの仮表示（/note_feed.json を置くと自動で置換されます） -->
-        <li class="item">
-          <div><a href="#" onclick="return false;">（サンプル）活動レポートのタイトル</a></div>
-          <div class="meta">2025-09-01　｜　note</div>
-        </li>
-        <li class="item">
-          <div><a href="#" onclick="return false;">（サンプル）活動レポートのタイトル</a></div>
-          <div class="meta">2025-08-22　｜　note</div>
-        </li>
-        <li class="item">
-          <div><a href="#" onclick="return false;">（サンプル）活動レポートのタイトル</a></div>
-          <div class="meta">2025-08-15　｜　note</div>
-        </li>
-      </ul>
-
-      <!-- ページネーション -->
-      <div id="pager" class="pager" aria-label="ページ切替">
-        <!-- JSで 1 / 2 / 3 を生成 -->
-      </div>
-
-      <p id="helper" class="muted" style="margin-top:18px;">
-        ※ 実データは <code>/note_feed.json</code> または <code>/note_magazine.json</code> が存在すれば自動で読み込まれます。
-      </p>
+      <form action="https://formspree.io/f/xxxxxx" method="POST">
+        <div>
+          <label for="name">お名前</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div>
+          <label for="email">メールアドレス</label>
+          <input type="email" id="email" name="_replyto" required />
+        </div>
+        <div>
+          <label for="message">メッセージ</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit">送信する</button>
+      </form>
     </main>
 
-    <!-- フッター -->
     <footer>© 2025 遊べるお寺プロジェクト</footer>
   </div>
-
-  <script>
-  // 設定：1ページの件数と最大ページ数（各30件、最大3ページ）
-  const PAGE_SIZE = 30;
-  const MAX_PAGES = 3;
-
-  // 読み込み候補（どちらか存在する方を使う）
-  const FEED_CANDIDATES = ['/note_feed.json', '/note_magazine.json'];
-
-  // JSONの想定フォーマット：
-  // [{ "title":"...", "link":"https://note.com/.../n/...", "pubDate":"2025-09-25T10:00:00Z" }, ...]
-  async function loadFeed() {
-    for (const url of FEED_CANDIDATES) {
-      try {
-        const r = await fetch(url, { cache: 'no-store' });
-        if (r.ok) {
-          const data = await r.json();
-          if (Array.isArray(data) && data.length) return data;
-        }
-      } catch (e) {}
-    }
-    return null;
-  }
-
-  function formatDate(iso) {
-    try{
-      const d = new Date(iso);
-      const y = d.getFullYear();
-      const m = String(d.getMonth()+1).padStart(2,'0');
-      const day = String(d.getDate()).padStart(2,'0');
-      return `${y}-${m}-${day}`;
-    }catch(e){ return iso; }
-  }
-
-  function renderPage(items, page=1) {
-    const list = document.getElementById('report-list');
-    list.innerHTML = '';
-    const start = (page-1)*PAGE_SIZE;
-    const end   = start + PAGE_SIZE;
-    items.slice(start, end).forEach(it=>{
-      const li = document.createElement('li');
-      li.className = 'item';
-      const date = it.pubDate ? formatDate(it.pubDate) : '';
-      li.innerHTML = `
-        <div><a href="${it.link}" target="_blank" rel="noopener">${it.title ?? '(無題)'}</a></div>
-        <div class="meta">${date}${date ? '　｜　' : ''}note</div>
-      `;
-      list.appendChild(li);
-    });
-  }
-
-  function renderPager(total, onGo) {
-    const pager = document.getElementById('pager');
-    pager.innerHTML = '';
-    const totalPages = Math.min(Math.ceil(total / PAGE_SIZE), MAX_PAGES);
-    if (totalPages <= 1) return;
-
-    for (let i=1; i<=totalPages; i++){
-      const btn = document.createElement('button');
-      btn.textContent = String(i);
-      if (i === 1) btn.classList.add('active');
-      btn.addEventListener('click', ()=>{
-        [...pager.children].forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        onGo(i);
-        window.scrollTo({top:0, behavior:'instant'});
-      });
-      pager.appendChild(btn);
-    }
-  }
-
-  (async function init(){
-    const helper = document.getElementById('helper');
-    const feed = await loadFeed();
-
-    if (!feed) {
-      helper.textContent = '（現在はサンプル表示です。/note_feed.json を用意すると自動で最新記事に置き換わります）';
-      return; // 仮表示のまま
-    }
-
-    // 新しい順にソート（pubDate降順）
-    feed.sort((a,b)=> new Date(b.pubDate||0) - new Date(a.pubDate||0));
-
-    // 初期表示
-    renderPage(feed, 1);
-    renderPager(feed.length, (p)=> renderPage(feed, p));
-    helper.textContent = `全${feed.length}件　/　1ページあたり${PAGE_SIZE}件表示`;
-  })();
-  </script>
 </body>
 </html>
