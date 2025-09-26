@@ -1,154 +1,81 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- トップページ風：黄色い帯＋タブ型リンク -->
-<nav class="topnav">
-  <div class="wrap">
-    <a href="/">ホーム</a>
-    <a href="/project/">プロジェクト</a>
-    <a href="/events/">イベント</a>
-    <a href="/note/">活動報告</a>
-    <a href="/contact/">お問い合わせ</a>
-  </div>
-</nav>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>遊べるお寺プロジェクト｜活動紹介</title>
+<meta name="description" content="遊べるお寺プロジェクトの活動紹介ページ。活動の目的、健康麻雀会、座禅会、サバイバルゲーム、その他の活動、情報発信、参加のご案内。" />
 <style>
-.topnav{
-  background:#f7ce52;
-  border-top:1px solid rgba(0,0,0,.05);
-  border-bottom:3px solid #3aa8ff; /* 下の青ライン */
-}
-.topnav .wrap{
-  display:flex; justify-content:center; align-items:center;
-}
-.topnav a{
-  flex:1;
-  text-align:center;
-  padding:12px 0;
-  font-weight:700;
-  color:#222;
-  text-decoration:none;
-  border-right:1px solid rgba(0,0,0,.1);
-}
-.topnav a:last-child{ border-right:none; }
-.topnav a:hover{ background:rgba(255,255,255,.6); }
+  :root{
+    --sky:#5ac2ff;   /* base blue */
+    --sand:#f7ce52;  /* accent yellow */
+    --leaf:#36b37e;  /* accent green */
+    --ink:#2b2b2b;   /* text */
+    --muted:#f6f8fb;
+    --rail:20px; --w:1100px; --radius:14px;
+    --shadow:0 6px 24px rgba(0,0,0,.06);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',Meiryo,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    color:var(--ink); background:#fafafa; line-height:1.85;
+  }
+  .wrap{max-width:var(--w); margin:0 auto; padding:0 var(--rail)}
+
+  /* ====== Top title (シンプル) ====== */
+  header{ background:#fff; }
+  header .wrap{ padding:22px 0 16px; }
+  header h1{ margin:0; font-size:clamp(22px,3.6vw,30px); letter-spacing:.02em; }
+  header .sub{ margin:6px 0 0; opacity:.9; font-size:clamp(13px,2.6vw,16px); }
+
+  /* ====== イベントページ風：黄色い帯のタブ ====== */
+  nav.topnav{ background:var(--sand); border-top:1px solid rgba(0,0,0,.05); border-bottom:3px solid #3aa8ff; }
+  nav.topnav .wrap{ display:flex; justify-content:center; align-items:center; }
+  nav.topnav a{
+    flex:1; text-align:center; padding:12px 0; font-weight:700; color:#222; text-decoration:none;
+    background:#fff; border-right:1px solid rgba(0,0,0,.1);
+  }
+  nav.topnav a:first-child{ border-left:1px solid rgba(0,0,0,.1); }
+  nav.topnav a:last-child{ border-right:1px solid rgba(0,0,0,.1); }
+  nav.topnav a:hover{ background:#fff; text-decoration:underline; }
+  nav.topnav a.active{ box-shadow:inset 0 -3px 0 #3aa8ff; }
+
+  /* ====== Sections ====== */
+  section{ padding:28px 0; background:#fff; }
+  section + section{ border-top:1px solid #eee; }
+  h2{ font-size:clamp(20px,3.2vw,26px); margin:0 0 12px; letter-spacing:.02em; }
+  p{ margin:0 0 12px; }
+
+  .block{
+    background:#fff; border:1px solid #ececec; border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:18px; margin:10px 0;
+  }
+  .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 6px; }
+  .badge{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; background:#ffeaa8; color:#523e00; }
+
+  /* ====== Media ====== */
+  .media-1{ margin:10px 0; }
+  .media-1 img, .media-2 img{
+    width:100%; height:auto; display:block; border-radius:12px; background:#f2f7ff; object-fit:cover; border:1px solid #eef3fb;
+  }
+  .media-1.small{ max-width:520px; }
+  .media-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:10px 0; }
+  figure{ margin:0; }
+  figcaption{ font-size:13px; color:#5d6673; margin-top:6px; background:#fcfdff; padding:6px 8px; border-radius:8px; border:1px dashed #e6ecf7; }
+  @media (max-width:760px){ .media-2{ grid-template-columns:1fr } .media-1.small{ max-width:100% } }
+
+  /* ====== Buttons ====== */
+  .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+  .btn{ appearance:none; border:none; cursor:pointer; padding:11px 16px; border-radius:999px; font-weight:700; font-size:15px; text-decoration:none; display:inline-block; }
+  .btn.primary{ background:var(--leaf); color:#fff; }
+  .btn.ghost{ background:#fff; color:#222; border:1px solid #ddd; }
+  .btn.dark{ background:#222; color:#fff; }
+
+  footer{ background:#111; color:#ddd; padding:24px 0; }
+  footer a{ color:#fff }
+  :target{ scroll-margin-top: 90px; }
 </style>
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>遊べるお寺プロジェクト｜活動紹介</title>
-  <meta name="description" content="遊べるお寺プロジェクトの活動紹介ページ。活動の目的、健康麻雀会、座禅会、サバイバルゲーム、その他の活動、情報発信、参加のご案内。" />
-  <style>
-    /* ====== Theme ====== */
-    :root{
-      --sky:#5ac2ff;   /* base blue */
-      --sand:#f7ce52;  /* accent yellow */
-      --leaf:#36b37e;  /* accent green */
-      --ink:#2b2b2b;   /* dark text */
-      --paper:#fff;
-      --muted:#f6f8fb;
-      --rail: 20px;
-      --w: 1100px;
-      --radius: 14px;
-      --shadow: 0 6px 24px rgba(0,0,0,.06);
-    }
-    *{ box-sizing:border-box; }
-    html,body{ margin:0; padding:0; }
-    body{
-      font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',Meiryo,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-      color:var(--ink);
-      background:#fafafa;
-      line-height:1.85;
-    }
-    .wrap{ max-width:var(--w); margin:0 auto; padding:0 var(--rail); }
-
-    /* ====== Header ====== */
-    header{
-      background:linear-gradient(180deg, var(--sky) 0%, #9fe0ff 100%);
-      color:#06364f;
-      padding:22px 0 12px;
-      border-bottom: 4px solid rgba(0,0,0,.03);
-    }
-    header h1{ margin:0; font-size:clamp(22px,3.6vw,30px); letter-spacing:.02em; }
-    header .sub{ margin:6px 0 8px; opacity:.9; font-size:clamp(13px,2.6vw,16px); }
-
-    /* ====== Top links bar (黄色い帯) ====== */
-    .toplinks{
-      background:var(--sand);
-      border-top:1px solid rgba(0,0,0,.04);
-      border-bottom:1px solid rgba(0,0,0,.06);
-    }
-    .toplinks .wrap{
-      display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:10px var(--rail);
-    }
-    .toplinks a{
-      display:inline-block; padding:6px 12px; border-radius:999px;
-      background:rgba(255,255,255,.9); color:#2b2b2b; text-decoration:none; font-weight:700; font-size:14px;
-      border:1px solid rgba(0,0,0,.06);
-    }
-    .toplinks a:hover{ background:#fff; text-decoration:underline; }
-
-    /* ====== Sections ====== */
-    section{ padding:28px 0; background:#fff; }
-    section + section{ border-top:1px solid #eee; }
-    h2{ font-size:clamp(20px,3.2vw,26px); margin:0 0 12px; letter-spacing:.02em; }
-    p{ margin:0 0 12px; }
-
-    /* Callouts / Lists / Buttons */
-    .note{ background:var(--muted); padding:12px 14px; border-radius:12px; border:1px solid #e9eef7; }
-    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
-    .btn{
-      appearance:none; border:none; cursor:pointer;
-      padding:11px 16px; border-radius:999px; font-weight:700; font-size:15px; text-decoration:none; display:inline-block;
-    }
-    .btn.primary{ background:var(--leaf); color:#fff; }
-    .btn.dark{ background:#222; color:#fff; }
-    .btn.ghost{ background:#fff; color:#222; border:1px solid #ddd; }
-
-    /* ====== Blocks ====== */
-    .block{
-      background:#fff; border:1px solid #ececec; border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:18px; margin:10px 0;
-    }
-    .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 6px; }
-    .badge{
-      display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700;
-      background:var(--sand); color:#523e00;
-    }
-
-    /* ====== Media ====== */
-    .media-1 img,
-    .media-2 img{
-      width:100%; height:auto; display:block; border-radius:12px;
-      background:#f2f7ff; object-fit:cover;
-      border:1px solid #eef3fb;
-    }
-    .media-1{ margin:10px 0; }
-    .media-1.small{ max-width:520px; }
-    .media-1.small figure{ margin:0; }
-    .media-1.small img{ width:100%; }
-    .media-2{
-      display:grid; grid-template-columns:1fr 1fr; gap:12px;
-      margin:10px 0;
-    }
-    figure{ margin:0; }
-    figcaption{
-      font-size:13px; color:#5d6673; margin-top:6px; background:#fcfdff;
-      padding:6px 8px; border-radius:8px; border:1px dashed #e6ecf7;
-    }
-    @media (max-width:760px){
-      .media-2{ grid-template-columns:1fr; }
-      .media-1.small{ max-width:100%; }
-    }
-
-    /* ====== Footer ====== */
-    footer{ background:#111; color:#ddd; padding:24px 0; }
-    footer a{ color:#fff; }
-
-    /* In-page anchor spacing */
-    :target{ scroll-margin-top: 90px; }
-  </style>
 </head>
 <body>
   <header>
@@ -158,19 +85,16 @@
     </div>
   </header>
 
-  <!-- トップページ風：黄色い帯に各種リンク -->
-  <div class="toplinks">
+  <!-- イベントページと同系のタブ型ナビ -->
+  <nav class="topnav">
     <div class="wrap">
-      <a href="#purpose">活動の目的</a>
-      <a href="#mahjong">健康麻雀会</a>
-      <a href="#zazen">座禅会</a>
-      <a href="#survival">サバイバルゲーム</a>
-      <a href="#others">その他の活動</a>
-      <a href="/note/">活動レポート</a>
+      <a href="/">ホーム</a>
+      <a href="/project/" class="active">プロジェクト</a>
       <a href="/events/">イベント</a>
-      <a href="/contact/">問い合わせ</a>
+      <a href="/note/">活動報告</a>
+      <a href="/contact/">お問い合わせ</a>
     </div>
-  </div>
+  </nav>
 
   <main>
     <!-- 1) 活動の目的 -->
@@ -212,7 +136,7 @@
       </div>
     </section>
 
-    <!-- 3) 座禅会（横2枚＋キャプション） -->
+    <!-- 3) 座禅会（横2枚＋キャプション。下ボタン無し） -->
     <section id="zazen">
       <div class="wrap">
         <h2>座禅会</h2>
@@ -228,12 +152,11 @@
               <figcaption>姿勢・呼吸をやさしく案内。初めてでも安心して体験できます。</figcaption>
             </figure>
           </div>
-          <!-- ご要望により下部ボタンは削除 -->
         </div>
       </div>
     </section>
 
-    <!-- 4) サバイバルゲーム会（横2枚＋キャプション） -->
+    <!-- 4) サバイバルゲーム会（横2枚＋キャプション。下ボタン無し） -->
     <section id="survival">
       <div class="wrap">
         <h2>サバイバルゲーム会（Nerf）</h2>
@@ -249,7 +172,6 @@
               <figcaption>境内や自然を舞台に、作戦を立てて挑む非日常体験。</figcaption>
             </figure>
           </div>
-          <!-- ご要望により下部ボタンは削除 -->
         </div>
       </div>
     </section>
@@ -303,9 +225,18 @@
   </main>
 
   <footer>
-    <div class="wrap">
-      <small>© 2025 遊べるお寺プロジェクト</small>
-    </div>
+    <div class="wrap"><small>© 2025 遊べるお寺プロジェクト</small></div>
   </footer>
+
+  <script>
+    // 現在ページのタブを強調（/project/）
+    (function(){
+      var path = location.pathname.replace(/\/+$/,'') || '/';
+      document.querySelectorAll('.topnav a').forEach(a=>{
+        var href = a.getAttribute('href').replace(/\/+$/,'') || '/';
+        if(href === path) a.classList.add('active');
+      });
+    })();
+  </script>
 </body>
 </html>
