@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <!-- トップページ風：黄色い帯＋タブ型リンク -->
+<nav class="topnav">
+  <div class="wrap">
+    <a href="/">ホーム</a>
+    <a href="/project/">プロジェクト</a>
+    <a href="/events/">イベント</a>
+    <a href="/note/">活動報告</a>
+    <a href="/contact/">お問い合わせ</a>
+  </div>
+</nav>
+
+<style>
+.topnav{
+  background:#f7ce52;
+  border-top:1px solid rgba(0,0,0,.05);
+  border-bottom:3px solid #3aa8ff; /* 下の青ライン */
+}
+.topnav .wrap{
+  display:flex; justify-content:center; align-items:center;
+}
+.topnav a{
+  flex:1;
+  text-align:center;
+  padding:12px 0;
+  font-weight:700;
+  color:#222;
+  text-decoration:none;
+  border-right:1px solid rgba(0,0,0,.1);
+}
+.topnav a:last-child{ border-right:none; }
+.topnav a:hover{ background:rgba(255,255,255,.6); }
+</style>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>遊べるお寺プロジェクト｜活動紹介</title>
