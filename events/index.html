@@ -1,69 +1,182 @@
-<!-- 焚火＆人狼会 -->
-<article class="event" id="takibi-werewolf">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/takibi.png" target="_blank" rel="noopener">
-        <img src="/images/events/takibi.png" alt="焚火＆人狼会のチラシ">
-      </a>
-    </div>
-    <div class="event-body">
-      <h3>焚火＆人狼会</h3>
-      <p class="event-date">
-        開催日：2025年10月12日（日）／ 時間：15:30〜20:30頃（オリーブフェスタ後）<br>
-        場所：滋賀県高島市今津町深清水 南宗清水オリーブ畑
-      </p>
-      <p>
-        昼は青空の下でボードゲーム、夜は焚火を囲んでゆったり過ごす特別な夜。<br>
-        人狼やインサイダーなどの小箱ゲーム中心で、初めての方も安心して楽しめます。
-      </p>
-      <p>🌿 対象：自然の中で遊びたい方／ボードゲームに興味がある方</p>
-      <p>🔥 申込：チラシのQRから（Googleフォーム）</p>
-      <!-- 申込URLが決まったら下のボタンを有効化
-      <div class="event-cta">
-        <a class="btn" href="https://example.com/form" target="_blank" rel="noopener">参加申込</a>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>イベント | 遊べるお寺プロジェクト</title>
+  <meta name="description" content="遊べるお寺プロジェクトのイベント情報。チラシと紹介文でわかりやすくご案内します。" />
+  <style>
+    :root{
+      --sky:#22a7ff;
+      --sand:#f7ce52;
+      --ink:#2b2b2b;
+      --paper:#fff;
+      --maxw:1100px;
+      --rail:16px;
+    }
+    @media (min-width:900px){ :root{ --rail:24px; } }
+
+    /* ベース */
+    html,body{
+      margin:0; padding:0; color:var(--ink); line-height:1.75;
+      font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    }
+    body{ background:var(--sand); }
+    .container{
+      max-width:var(--maxw); margin:0 auto; background:var(--paper);
+      min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05);
+    }
+
+    header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
+    .visually-hidden{ position:absolute; left:-9999px; }
+
+    nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
+    nav::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:3px; background:var(--sky); }
+    nav .wrap{
+      max-width:var(--maxw); margin:0 auto; padding:0 var(--rail);
+      display:flex; gap:0; justify-content:center; overflow:auto;
+    }
+    nav a{
+      color:#333; text-decoration:none; padding:18px clamp(14px,2.6vw,28px);
+      font-weight:700; font-size:clamp(18px,2.2vw,22px); white-space:nowrap;
+    }
+    nav a + a{ border-left:2px solid #ddd; }
+    nav a:hover{ background:#fafafa; }
+
+    main{ padding:28px var(--rail) 56px; }
+    h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
+    footer{
+      background:#f7f7f7; border-top:1px solid #eee; padding:14px var(--rail);
+      text-align:center; font-size:.9rem; color:#666;
+    }
+
+    /* イベントカード */
+    .event-list{ display:grid; gap:28px; margin-top:10px; }
+    .event{
+      border:1px solid #dfe6ee; border-radius:14px; padding:18px; background:#fff;
+    }
+    .event-wrap{
+      display:grid; grid-template-columns:minmax(260px, 420px) 1fr;
+      gap:22px; align-items:start;
+    }
+
+    .event-media a{ display:block; border-radius:10px; overflow:hidden; border:1px solid #e9eef3; background:#fff; }
+    .event-media img{
+      width:100%; height:auto; display:block;
+      max-height:340px;             /* ← 画像の高さを統一 */
+      object-fit:contain;           /* 比率を保ったまま収める */
+      background:#fff;
+    }
+    /* 2枚チラシ（縦並び） */
+    .thumbs{ display:grid; gap:10px; grid-template-columns:1fr; }
+    .thumbs img{ max-height:160px; object-fit:contain; }
+
+    .event-body h3{ margin:0 0 .35em; font-size:clamp(20px,2.6vw,28px); }
+    .event-date{ margin:.2em 0 1em; color:#666; font-weight:600; }
+    .event-body p{ margin:.7em 0; }
+    .event-body ul{ margin:.4em 0 0 1.2em; padding:0; }
+
+    .event-cta{ margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{
+      display:inline-block; text-decoration:none; font-weight:700;
+      background:#1f6fff; color:#fff; padding:.65rem 1.2rem; border-radius:999px;
+      box-shadow:0 4px 14px rgba(31,111,255,.18);
+    }
+    .btn:hover{ filter:brightness(.96); }
+    .btn.sec{ background:#f0f3f8; color:#1b2b44; box-shadow:none; }
+
+    .badge{
+      display:inline-block; margin-left:.5rem; padding:.15em .55em; border-radius:8px;
+      font-size:.8rem; background:#e9f6ff; color:#056; font-weight:700;
+    }
+
+    @media (max-width:800px){
+      .event-wrap{ grid-template-columns:1fr; }
+      .event-media img{ max-height:280px; } /* スマホはさらに控えめ */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
+
+    <nav aria-label="主なナビゲーション">
+      <div class="wrap">
+        <a href="/">ホーム</a>
+        <a href="/project/">プロジェクト</a>
+        <a href="/events/">イベント</a>
+        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告</a>
+        <a href="/contact/">お問い合わせ</a>
       </div>
-      -->
-    </div>
-  </div>
-</article>
+    </nav>
 
-<!-- たかしま子どもフェスティバル出展 -->
-<article class="event" id="takasima-fes">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/takasima.png" target="_blank" rel="noopener">
-        <img src="/images/events/takasima.png" alt="たかしま子どもフェスティバルのチラシ">
-      </a>
-    </div>
-    <div class="event-body">
-      <h3>たかしま子どもフェスティバル出展</h3>
-      <p class="event-date">
-        開催日：2025年10月19日（日）／ 時間：10:00〜15:00<br>
-        場所：高島公民館・ガリバーホール（滋賀県高島市）
-      </p>
-      <p>
-        「遊べるお寺プロジェクト」として2つの体験ブースを出します！
-      </p>
-      <ul>
-        <li>🀄 <strong>健康麻雀ブース『役満できるかな』</strong> … 初心者歓迎。役作りに挑戦！</li>
-        <li>🔫 <strong>サバイバル射的ブース</strong> … サバゲー用の安全な銃で的当てチャレンジ！</li>
-      </ul>
-      <p>
-        ご家族・お友達とぜひ遊びに来てください。<br>
-        <em>（主催：たかしま子どもフェスティバル実行委員会／高島市教育委員会）</em>
-      </p>
-    </div>
-  </div>
-</article>
+    <main>
+      <h1>今後のイベント情報</h1>
 
+      <section class="event-list">
 
+        <!-- 焚火＆人狼会（左：チラシ／右：説明） -->
+        <article class="event" id="takibi-werewolf">
+          <div class="event-wrap">
+            <div class="event-media">
+              <a href="/images/events/takibi.png" target="_blank" rel="noopener">
+                <img src="/images/events/takibi.png" alt="焚火＆人狼会のチラシ" loading="lazy">
+              </a>
+            </div>
+            <div class="event-body">
+              <h3>焚火＆人狼会</h3>
+              <p class="event-date">
+                開催日：2025年10月12日（日）／ 時間：15:30〜20:30頃（オリーブフェスタ後）<br>
+                場所：滋賀県高島市今津町深清水 南宗清水オリーブ畑
+              </p>
+              <p>
+                昼は青空の下でボードゲーム、夜は焚火を囲んでゆったり過ごす特別な夜。<br>
+                人狼やインサイダーなどの小箱ゲーム中心で、初めての方も安心して楽しめます。
+              </p>
+              <p>🌿 対象：自然の中で遊びたい方／ボードゲームに興味がある方</p>
+              <p>🔥 申込：チラシのQRから（Googleフォーム）</p>
+              <!-- 申込URLが決まったらボタンを有効化
+              <div class="event-cta">
+                <a class="btn" href="https://example.com/form" target="_blank" rel="noopener">参加申込</a>
+              </div>
+              -->
+            </div>
+          </div>
+        </article>
 
-        <!-- 健康麻雀会 -->
+        <!-- たかしま子どもフェスティバル出展（左：チラシ／右：説明） -->
+        <article class="event" id="takasima-fes">
+          <div class="event-wrap">
+            <div class="event-media">
+              <a href="/images/events/takasima.png" target="_blank" rel="noopener">
+                <img src="/images/events/takasima.png" alt="たかしま子どもフェスティバルのチラシ" loading="lazy">
+              </a>
+            </div>
+            <div class="event-body">
+              <h3>たかしま子どもフェスティバル出展</h3>
+              <p class="event-date">
+                開催日：2025年10月19日（日）／ 時間：10:00〜15:00<br>
+                場所：高島公民館・ガリバーホール（滋賀県高島市）
+              </p>
+              <p>「遊べるお寺プロジェクト」として2つの体験ブースを出します！</p>
+              <ul>
+                <li>🀄 <strong>健康麻雀ブース『役満できるかな』</strong> … 初心者歓迎。役作りに挑戦！</li>
+                <li>🔫 <strong>サバイバル射的ブース</strong> … サバゲー用の安全な銃で的当てチャレンジ！</li>
+              </ul>
+              <p>
+                ご家族・お友達とぜひ遊びに来てください。<br>
+                <em>（主催：たかしま子どもフェスティバル実行委員会／高島市教育委員会）</em>
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 健康麻雀会（既存） -->
         <article class="event" id="kenko-mahjong">
           <div class="event-wrap">
             <div class="event-media">
               <a href="/images/events/mj1.PNG" target="_blank" rel="noopener">
-                <img src="/images/events/mj1.PNG" alt="健康麻雀会のチラシ">
+                <img src="/images/events/mj1.PNG" alt="健康麻雀会のチラシ" loading="lazy">
               </a>
             </div>
             <div class="event-body">
@@ -71,39 +184,29 @@
               <p class="event-date">
                 開催予定日（毎月第４日曜日）<br>※変更する場合は、こちらの予定日を書き換えますのでご確認ください<br>
                 2025年<br>
-                9月28日<br>
-                10月26日<br>
-                11月23日<br>
-                12月21日・<br>
+                9月28日 / 10月26日 / 11月23日 / 12月21日<br>
                 2026年<br>
-                1月25日<br>
-                2月22日<br>
-                3月22日
+                1月25日 / 2月22日 / 3月22日
               </p>
               <p>
                 初心者から経験者まで、どなたでも参加できる健康麻雀の集いです。<br>
                 点数計算が不安な方もスタッフがサポート。和やかな雰囲気の中、
                 世代を超えて交流しながら“頭の体操”とリフレッシュを一緒に楽しみましょう。
               </p>
-              <!-- 申込や要項ページができたら下記ボタンの href を設定 -->
-              <!-- <div class="event-cta">
-                <a class="btn" href="https://example.com/entry" target="_blank" rel="noopener">参加申込</a>
-                <a class="btn sec" href="https://example.com/access" target="_blank" rel="noopener">アクセス</a>
-              </div> -->
             </div>
           </div>
         </article>
 
-        <!-- 路上遊びフェスタ -->
+        <!-- 路上遊びフェスタ（既存） -->
         <article class="event" id="rojou-asobi">
           <div class="event-wrap">
             <div class="event-media">
               <div class="thumbs">
                 <a href="/images/events/rojou1.JPG" target="_blank" rel="noopener">
-                  <img src="/images/events/rojou1.JPG" alt="路上遊びフェスタのチラシ1">
+                  <img src="/images/events/rojou1.JPG" alt="路上遊びフェスタのチラシ1" loading="lazy">
                 </a>
                 <a href="/images/events/rojou2.JPG" target="_blank" rel="noopener">
-                  <img src="/images/events/rojou2.JPG" alt="路上遊びフェスタのチラシ2">
+                  <img src="/images/events/rojou2.JPG" alt="路上遊びフェスタのチラシ2" loading="lazy">
                 </a>
               </div>
             </div>
@@ -115,14 +218,9 @@
                 「遊べるお寺プロジェクト」では、屋外にこたつを出して“外コタツ麻雀”を実施予定！<br>
                 ちょっと非日常な遊び心と、あたたかな交流を一緒に楽しみましょう。
               </p>
-              <!-- <div class="event-cta">
-                <a class="btn" href="https://example.com/detail" target="_blank" rel="noopener">詳細</a>
-              </div> -->
             </div>
           </div>
         </article>
-
-        <!-- 以降、同じ .event をコピペして増やせます -->
 
       </section>
     </main>
