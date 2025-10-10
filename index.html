@@ -41,46 +41,37 @@
     nav a + a{ border-left:2px solid #ddd; }
     nav a:hover{ color:#111; background:#fafafa; }
 
- <!-- ヒーロー -->
-<figure class="hero">
-  <img id="hero-image" src="" alt="遊べるお寺プロジェクト メインビジュアル">
-</figure>
+/* ヒーロー */
+.hero{
+  margin:0;
+  background:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:clamp(380px, 62vw, 760px);
+  border-bottom:1px solid #eee;
+}
 
-<script>
-  (function() {
-    // 現在の月を取得（例：10月 → "10"）
-    const month = String(new Date().getMonth() + 1).padStart(2, '0');
+.hero img{
+  height:100%;        /* ← 高さをヒーローに合わせる */
+  width:auto;         /* ← 横は自動（比率維持） */
+  max-width:100%;
+  object-fit:contain; /* ← 全体表示（左右切れ防止） */
+  display:block;
+  background:#fff;
+  opacity:0;
+  transition:opacity .6s ease;
+}
+.hero img.is-loaded{ opacity:1; }
 
-    // フォルダのパス（例：/images/top/10/）
-    const folder = `/images/top/${month}/`;
-
-    // その月の画像ファイル（好きな数だけ）
-    const banners = [
-      `${folder}banner1.png`,
-      `${folder}banner2.png`,
-      `${folder}banner3.png`,
-      `${folder}banner4.png`,
-      `${folder}banner5.png`
-    ];
-
-    // ランダムで選択
-    const randomBanner = banners[Math.floor(Math.random() * banners.length)];
-    const heroImg = document.getElementById('hero-image');
-
-    // 読み込み完了でフェードイン
-    const pre = new Image();
-    pre.onload = () => {
-      heroImg.src = randomBanner;
-      heroImg.classList.add('is-loaded');
-    };
-    pre.onerror = () => {
-      console.warn('指定の月の画像が見つかりませんでした:', randomBanner);
-      heroImg.src = '/images/cover.png'; // フォールバック
-      heroImg.classList.add('is-loaded');
-    };
-    pre.src = randomBanner;
-  })();
-</script>
+/* スマホは縦長になりやすいので、幅基準に切替 */
+@media (max-width:600px){
+  .hero{ height:clamp(260px, 60vw, 420px); }
+  .hero img{
+    width:100%;
+    height:auto;
+  }
+}
 
 
 
