@@ -56,10 +56,14 @@
       max-height:100%;
       width:auto;
       height:100%;
-      object-fit:contain;
+      object-fit:cover;           /* ← バナーにフィット */
       display:block;
       background:#fff;
+      opacity:0;                  /* ← フェードイン */
+      transition:opacity .6s ease;
     }
+    .hero img.is-loaded{ opacity:1; }
+
     @media (max-width: 600px){
       .hero{ height:clamp(260px, 60vw, 420px); }
     }
@@ -99,14 +103,14 @@
         <a href="/">ホーム</a>
         <a href="/project/">プロジェクト</a>
         <a href="/events/">イベント</a>
-<a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）</a>
+        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）</a>
         <a href="/contact/">お問い合わせ</a>
       </div>
     </nav>
 
-    <!-- ヒーロー -->
+    <!-- ヒーロー（ランダム月別表示） -->
     <figure class="hero">
-      <img src="/images/cover.png" alt="遊べるお寺プロジェクト メインビジュアル">
+      <img id="hero-image" alt="季節のメインビジュアル">
     </figure>
 
     <main>
@@ -140,5 +144,60 @@
 
     <footer>© 2025 遊べるお寺プロジェクト</footer>
   </div>
+
+  <!-- 月別フォルダからランダム表示（10月= /images/top/10/） -->
+  <script>
+    (function(){
+      // 今月の数字（例: 10月 -> "10"）
+      const month = String(new Date().getMonth() + 1).padStart(2, '0');
+
+      // フォルダ（10月は '/images/top/10/'）※年分けしたい場合は `images/top/2025/${month}/` に変更
+      const folder = `/images/top/${month}/`;
+
+      // 用意した4枚（拡張子は webp/png/jpg どれでもOK）
+      const baseNames = ['banner1','banner2','banner3','banner4'];
+      const exts = ['webp','png','jpg']; // 優先順で解決
+
+      const heroImg = document.getElementById('hero-image');
+
+      // 候補URLを順にプリフライトして、存在するものだけに絞る
+      Promise.all(baseNames.map(resolveExisting))
+        .then(list => list.filter(Boolean))
+        .then(valid => {
+          if (valid.length === 0) throw new Error('候補画像が見つかりません');
+          const pick = valid[Math.floor(Math.random() * valid.length)];
+          const pre = new Image();
+          pre.onload = () => {
+            heroImg.src = pick;
+            heroImg.classList.add('is-loaded'); // フェードイン
+          };
+          pre.onerror = () => fallback();
+          pre.src = pick;
+        })
+        .catch(fallback);
+
+      function resolveExisting(base){
+        return new Promise(resolve => {
+          let i = 0;
+          const tryNext = () => {
+            if (i >= exts.length) return resolve(null);
+            const url = `${folder}${base}.${exts[i++]}`;
+            const img = new Image();
+            img.onload = () => resolve(url);
+            img.onerror = tryNext;
+            img.src = url + '?v=1'; // キャッシュ抑制軽く
+          };
+          tryNext();
+        });
+      }
+
+      function fallback(){
+        // 任意のデフォルト（無ければ何もしない）
+        // heroImg.src = '/images/cover.png';
+        heroImg.classList.add('is-loaded');
+        console.warn('月別ランダム画像の表示に失敗しました。パスとファイル名をご確認ください。');
+      }
+    })();
+  </script>
 </body>
 </html>
