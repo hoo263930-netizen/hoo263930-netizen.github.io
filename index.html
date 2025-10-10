@@ -62,11 +62,20 @@
       opacity:0;                  /* ← フェードイン */
       transition:opacity .6s ease;
     }
-    .hero img.is-loaded{ opacity:1; }
+  .hero img {
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+  object-fit: contain;   /* ← ここを cover → contain に変更 */
+  display: block;
+  background: #fff;
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+.hero img.is-loaded {
+  opacity: 1;
+}
 
-    @media (max-width: 600px){
-      .hero{ height:clamp(260px, 60vw, 420px); }
-    }
 
     /* 本文 */
     main{ padding:28px var(--rail) 56px; }
