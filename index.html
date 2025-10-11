@@ -153,58 +153,62 @@
   </div>
 
   <!-- 月別フォルダからランダム表示（10月= /images/top/10/） -->
-  <script>
-    (function(){
-      // 今月の数字（例: 10月 -> "10"）
-      const month = String(new Date().getMonth() + 1).padStart(2, '0');
+<script>
+(function(){
+  // 今月の数字（例: 10月 -> "10"）
+  const month = String(new Date().getMonth() + 1).padStart(2, '0');
 
-      // フォルダ（10月は '/images/top/10/'）※年分けしたい場合は `images/top/2025/${month}/` に変更
-      const folder = `/images/top/${month}/`;
+  // フォルダ（10月は '/images/top/10/'）
+  const folder = `/images/top/${month}/`;
 
-      // 用意した4枚（拡張子は webp/png/jpg どれでもOK）
-      const baseNames = ['banner1','banner2','banner3','banner4'];
-      const exts = ['webp','png','jpg']; // 優先順で解決
+  // ✅ 用意したバナー5枚（ここを4→5に）
+  const baseNames = ['banner1','banner2','banner3','banner4','banner5'];
+  const exts = ['webp','png','jpg']; // 優先順で解決
 
-      const heroImg = document.getElementById('hero-image');
+  const heroImg = document.getElementById('hero-image');
 
-      // 候補URLを順にプリフライトして、存在するものだけに絞る
-      Promise.all(baseNames.map(resolveExisting))
-        .then(list => list.filter(Boolean))
-        .then(valid => {
-          if (valid.length === 0) throw new Error('候補画像が見つかりません');
-          const pick = valid[Math.floor(Math.random() * valid.length)];
-          const pre = new Image();
-          pre.onload = () => {
-            heroImg.src = pick;
-            heroImg.classList.add('is-loaded'); // フェードイン
-          };
-          pre.onerror = () => fallback();
-          pre.src = pick;
-        })
-        .catch(fallback);
+  // 候補URLを順にプリフライトして、存在するものだけに絞る
+  Promise.all(baseNames.map(resolveExisting))
+    .then(list => list.filter(Boolean))
+    .then(valid => {
+      if (valid.length === 0) throw new Error('候補画像が見つかりません');
+      const pick = valid[Math.floor(Math.random() * valid.length)];
+      const pre = new Image();
+      pre.onload = () => {
+        heroImg.src = pick;
+        heroImg.classList.add('is-loaded'); // フェードイン
+      };
+      pre.onerror = () => fallback();
+      pre.src = pick;
+    })
+    .catch(fallback);
 
-      function resolveExisting(base){
-        return new Promise(resolve => {
-          let i = 0;
-          const tryNext = () => {
-            if (i >= exts.length) return resolve(null);
-            const url = `${folder}${base}.${exts[i++]}`;
-            const img = new Image();
-            img.onload = () => resolve(url);
-            img.onerror = tryNext;
-            img.src = url + '?v=1'; // キャッシュ抑制軽く
-          };
-          tryNext();
-        });
-      }
+  function resolveExisting(base){
+    return new Promise(resolve => {
+      let i = 0;
+      const tryNext = () => {
+        if (i >= exts.length) return resolve(null);
+        const url = `${folder}${base}.${exts[i++]}`;
+        const img = new Image();
+        img.onload = () => resolve(url);
+        img.onerror = tryNext;
+        img.src = url + '?v=1'; // キャッシュ抑制
+      };
+      tryNext();
+    });
+  }
 
-      function fallback(){
-        // 任意のデフォルト（無ければ何もしない）
-        // heroImg.src = '/images/cover.png';
-        heroImg.classList.add('is-loaded');
-        console.warn('月別ランダム画像の表示に失敗しました。パスとファイル名をご確認ください。');
-      }
-    })();
-  </script>
+  function fallback(){
+    // 任意のデフォルト（無ければ何もしない）
+    // heroImg.src = '/images/cover.png';
+    heroImg.classList.add('is-loaded');
+    console.warn('月別ランダム画像の表示に失敗しました。パスとファイル名をご確認ください。');
+  }
+})();
+</script>
+
+
+
+  
 </body>
 </html>
