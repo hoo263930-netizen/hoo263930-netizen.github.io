@@ -138,77 +138,34 @@
   const RSS = "https://note.com/loyal_dill1011/rss";
   const LIMIT = 3;
 
-  const ABS = (url) => {
-    if (!url) return "";
-    if (url.startsWith("http://") || url.startsWith("https://")) return url;
-    if (url.startsWith("//")) return "https:" + url;
-    if (url.startsWith("/")) return "https://note.com" + url;
-    return url;
-  };
-
-  // HTMLエスケープ解除して最初の<img>を拾う
-  function firstImgFromHTML(html){
-    if (!html) return "";
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    const img = doc.querySelector("img");
-    return img ? ABS(img.getAttribute("src") || img.getAttribute("data-src") || img.getAttribute("data-original")) : "";
-  }
-
-  // OGP画像のフェッチ（最終手段：1記事あたり1回だけ）
-  async function fetchOgImage(link){
-    try{
-      const res = await fetch(`https://r.jina.ai/http/${link.replace(/^https?:\/\//,'')}`);
-      if (!res.ok) return "";
-      const html = await res.text();
-      const m = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i);
-      return m ? ABS(m[1]) : "";
-    }catch{ return ""; }
-  }
-
+  // r.jina.ai 経由だけにして失敗ポイントを減らす
   async function fetchRSS(url){
-    try {
-      const r1 = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
-      if (r1.ok) return await r1.text();
-      throw new Error("allorigins failed");
-    } catch(e){
-      const r2 = await fetch(`https://r.jina.ai/http/${url.replace(/^https?:\/\//,'')}`);
-      if (r2.ok) return await r2.text();
-      throw new Error("fallback failed");
-    }
+    const res = await fetch(`https://r.jina.ai/http/${url.replace(/^https?:\/\//,'')}`);
+    if (!res.ok) throw new Error("RSS fetch failed: " + res.status);
+    return res.text();
   }
 
-  async function extractImageFromItem(item, articleLink){
-    // 1) enclosure / media:*
-    const enc = item.querySelector("enclosure");
-    if (enc?.getAttribute("url")) return ABS(enc.getAttribute("url"));
-
-    const mediaThumb = item.querySelector("media\\:thumbnail, thumbnail");
-    if (mediaThumb?.getAttribute("url")) return ABS(mediaThumb.getAttribute("url"));
-
-    const mediaContent = item.querySelector("media\\:content, content");
-    if (mediaContent?.getAttribute("url")) return ABS(mediaContent.getAttribute("url"));
-
-    // 2) content:encoded（名前空間対応）
-    const contentNode = item.querySelector("content\\:encoded") || item.getElementsByTagNameNS?.("*","encoded")?.[0];
-    if (contentNode?.textContent){
-      const fromContent = firstImgFromHTML(contentNode.textContent);
-      if (fromContent) return fromContent;
-    }
-
-    // 3) description
-    const descHtml = item.querySelector("description")?.textContent ?? "";
-    const fromDesc = firstImgFromHTML(descHtml);
-    if (fromDesc) return fromDesc;
-
-    // 4) OGP（最終手段）
-    const ogImg = await fetchOgImage(articleLink);
-    if (ogImg) return ogImg;
-
-    // 5) デフォルト
-    return "https://assets.st-note.com/production/uploads/images/default/ogp.png";
+  // 相対/プロトコル省略を絶対URLに
+  function abs(url){
+    if (!url) return "";
+    if (url.startsWith("http")) return url;
+    if (url.startsWith("//")) return "https:" + url;
+    if (url.startsWith("/"))  return "https://note.com" + url;
+    return url;
   }
 
-  function renderCard(grid, {title, link, date, img}){
+  // description や content:encoded（エスケープ済みHTML）から最初の<img>を取る
+  function firstImgFrom(html){
+    if (!html) return "";
+    // HTMLエスケープ解除 → 再パース
+    const decoded = new DOMParser().parseFromString(html, "text/html").documentElement.textContent || html;
+    const doc = new DOMParser().parseFromString(decoded, "text/html");
+    const img = doc.querySelector("img");
+    return img ? abs(img.getAttribute("src") || img.getAttribute("data-src") || img.getAttribute("data-original")) : "";
+  }
+
+  function renderCard(grid, data){
+    const {title, link, date, img} = data;
     grid.insertAdjacentHTML("beforeend", `
       <article class="note-card">
         <a class="note-link" href="${link}" target="_blank" rel="noopener">
@@ -228,11 +185,11 @@
     const grid = document.getElementById("note-grid-latest");
     try{
       const xmlText = await fetchRSS(RSS);
-      const xml = new DOMParser().parseFromString(xmlText, "application/xml");
-      const items = Array.from(xml.querySelectorAll("item")).slice(0, LIMIT);
+      const xml = new DOMParser().parseFromString(xmlText, "text/xml");
 
+      const items = Array.from(xml.querySelectorAll("item")).slice(0, LIMIT);
       if (!items.length){
-        grid.innerHTML = '<p style="color:#666">記事が見つかりませんでした。</p>'; 
+        grid.innerHTML = '<p style="color:#666">記事が見つかりませんでした。</p>';
         return;
       }
 
@@ -242,17 +199,38 @@
         const pub   = it.querySelector("pubDate")?.textContent ?? "";
         const date  = pub ? new Date(pub).toLocaleDateString("ja-JP") : "";
 
-        const img = await extractImageFromItem(it, link);
+        // enclosure / media
+        let img = it.querySelector("enclosure")?.getAttribute("url")
+               || it.querySelector("media\\:thumbnail")?.getAttribute("url")
+               || it.querySelector("media\\:content")?.getAttribute("url")
+               || "";
+
+        // content:encoded / description から拾う
+        if (!img){
+          const contentNode = it.querySelector("content\\:encoded");
+          img = firstImgFrom(contentNode?.textContent || "") ||
+                firstImgFrom(it.querySelector("description")?.textContent || "");
+        }
+
+        if (!img){
+          img = "https://assets.st-note.com/production/uploads/images/default/ogp.png";
+        } else {
+          img = abs(img);
+        }
+
         renderCard(grid, {title, link, date, img});
       }
     }catch(err){
-      console.error("note RSS 読み込みエラー:", err);
-      grid.innerHTML = '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
+      console.error(err);
+      document.getElementById("note-grid-latest").innerHTML =
+        '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
     }
   }
+
   init();
 })();
 </script>
+
 
 
 
