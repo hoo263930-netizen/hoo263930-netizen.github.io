@@ -1,138 +1,152 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>note記事一覧 | 遊べるお寺プロジェクト</title>
-<style>
-body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", sans-serif; margin:0; color:#222; background:#fafafa; }
-.header { padding:14px 16px; background:#FFE08A; }
-.header a { color:#222; text-decoration:none; font-weight:700; }
-.header .back { font-size:.95rem; }
-
-.wrap { max-width: 1100px; margin: 0 auto; padding: 24px 16px 64px; }
-h1 { font-size: 1.6rem; margin: 6px 0 18px; }
-
-.note-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:18px; }
-@media (max-width: 980px){ .note-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
-@media (max-width: 640px){ .note-grid{ grid-template-columns: 1fr; } }
-
-.note-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.08); transition: transform .15s, box-shadow .15s; }
-.note-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,.12); }
-.note-link{ display:block; color:inherit; text-decoration:none; }
-
-.note-thumb-wrap{ aspect-ratio:16/9; background:#f3f3f3; overflow:hidden; }
-.note-thumb{ width:100%; height:100%; object-fit:cover; display:block; transform: translateZ(0); }
-
-.note-meta{ padding:.9rem .95rem 1.05rem; }
-.note-title{ font-size:1.02rem; line-height:1.5; margin:0 0 .35rem; }
-.note-date{ font-size:.85rem; color:#666; }
-
-.controls{ text-align:center; margin: 18px 0 0; }
-.btn-more{ display:inline-block; padding:.75rem 1.3rem; border-radius:999px;
-  background:#F4B400; color:#222; font-weight:700; text-decoration:none; border:0;
-  box-shadow:0 4px 12px rgba(244,180,0,.35); cursor:pointer; }
-.btn-more:hover{ filter:brightness(.95); }
-.help { text-align:center; font-size:.9rem; color:#666; margin-top:10px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>note記事一覧｜遊べるお寺プロジェクト</title>
+  <meta name="description" content="遊べるお寺プロジェクトのnote記事一覧。" />
+  <!-- CORS/CSP（必須） -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self';
+             connect-src 'self' https://r.jina.ai;
+             img-src 'self' https: data:;
+             script-src 'self' 'unsafe-inline' https:;
+             style-src 'self' 'unsafe-inline' https:;">
+  <style>
+    :root{ --maxw:1100px; --rail:16px; }
+    body{ margin:0; font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; line-height:1.7; background:#f7d35a; }
+    .wrap{ max-width:var(--maxw); margin:0 auto; padding:18px var(--rail) 60px; background:#fff; min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
+    header{ display:flex; align-items:center; gap:10px; font-size:.95rem; color:#333; }
+    header a{ color:#333; text-decoration:none; }
+    h1{ margin:14px 0 18px; font-size:clamp(22px,3.4vw,28px); }
+    /* グリッド */
+    .grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+    @media (max-width:980px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width:640px){ .grid{ grid-template-columns: 1fr; } }
+    /* カード */
+    .card{ background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.08); }
+    .card a{ display:block; color:inherit; text-decoration:none; }
+    .thumb{ aspect-ratio:16/9; background:#f3f3f3; overflow:hidden; }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; referrerpolicy:no-referrer; }
+    .meta{ padding:.9rem .95rem 1rem; }
+    .title{ font-size:1rem; margin:0 0 .35rem; line-height:1.5; }
+    .date{ font-size:.85rem; color:#666; }
+    /* ページャ */
+    .pager{ display:flex; justify-content:center; gap:10px; margin:22px 0 0; }
+    .pager button{ padding:.6rem 1rem; border-radius:10px; border:none; background:#eee; cursor:pointer; }
+    .pager button[disabled]{ opacity:.5; cursor:default; }
+    /* ステータス */
+    .status{ color:#c00; margin:10px 0 0; }
+  </style>
 </head>
 <body>
-  <div class="header">
-    <a class="back" href="../">← トップへ戻る</a>
+  <div class="wrap">
+    <header><a href="/">← トップへ戻る</a></header>
+    <h1>note記事一覧</h1>
+    <div id="status" class="status"></div>
+    <div id="grid" class="grid" aria-live="polite"></div>
+    <div class="pager">
+      <button id="prev" disabled>前へ</button>
+      <button id="next" disabled>次へ</button>
+    </div>
   </div>
 
-  <main class="wrap">
-    <h1>note記事一覧</h1>
-    <div id="note-grid-archive" class="note-grid"></div>
+  <script>
+  (function(){
+    const RSS = "https://r.jina.ai/http/note.com/loyal_dill1011/rss"; // CORS回避
+    const PER_PAGE = 12;
 
-    <div class="controls">
-      <button id="load-more" class="btn-more">さらに読み込む</button>
-      <div class="help">※ 12件ずつ追加表示します</div>
-    </div>
-  </main>
+    const grid = document.getElementById("grid");
+    const statusBox = document.getElementById("status");
+    const btnPrev = document.getElementById("prev");
+    const btnNext = document.getElementById("next");
 
-<script>
-(function(){
-  const RSS = "https://note.com/loyal_dill1011/rss";
-  const STEP = 12;
-  let allItems = [];
-  let shown = 0;
+    let items = [];
+    let page = 1;
 
-  async function fetchRSS(url){
-    try {
-      const r1 = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
-      if (r1.ok) return await r1.text();
-      throw new Error("allorigins failed");
-    } catch(e){
-      const r2 = await fetch(`https://r.jina.ai/http/${url.replace(/^https?:\/\//,'')}`);
-      if (r2.ok) return await r2.text();
-      throw new Error("fallback failed");
+    // ---- utils
+    const abs = (u) => {
+      if (!u) return "";
+      if (u.startsWith("http")) return u;
+      if (u.startsWith("//")) return "https:" + u;
+      if (u.startsWith("/"))  return "https://note.com" + u;
+      return u;
+    };
+    const decodeHTML = (html) =>
+      new DOMParser().parseFromString(html || "", "text/html").documentElement.textContent || "";
+    const firstImgFromHTML = (html) => {
+      const decoded = decodeHTML(html);
+      const doc = new DOMParser().parseFromString(decoded, "text/html");
+      const img = doc.querySelector("img");
+      return img ? abs(img.getAttribute("src") || img.getAttribute("data-src") || img.getAttribute("data-original")) : "";
+    };
+    const fallbackImg = "https://assets.st-note.com/production/uploads/images/default/ogp.png";
+
+    function card({title, link, date, img}){
+      return `
+        <article class="card">
+          <a href="${link}" target="_blank" rel="noopener">
+            <div class="thumb"><img src="${img}" alt="${title}" loading="lazy"></div>
+            <div class="meta">
+              <h2 class="title">${title}</h2>
+              <time class="date">${date}</time>
+            </div>
+          </a>
+        </article>
+      `;
     }
-  }
 
-  function extractImageFromItem(item){
-    const enclosure = item.querySelector("enclosure");
-    if (enclosure && enclosure.getAttribute("url")) return enclosure.getAttribute("url");
-
-    const content = item.getElementsByTagName("content:encoded")[0]?.textContent ?? "";
-    let m = content.match(/<img[^>]+(?:src|data-src|data-original)=["']([^"']+)["']/i);
-    if (m) return m[1];
-
-    const desc = item.querySelector("description")?.textContent ?? "";
-    m = desc.match(/<img[^>]+(?:src|data-src|data-original)=["']([^"']+)["']/i);
-    if (m) return m[1];
-
-    return "https://assets.st-note.com/production/uploads/images/default/ogp.png";
-  }
-
-  function cardHTML(obj){
-    return `
-      <article class="note-card">
-        <a class="note-link" href="${obj.link}" target="_blank" rel="noopener">
-          <div class="note-thumb-wrap"><img class="note-thumb" src="${obj.img}" alt="" loading="lazy" referrerpolicy="no-referrer"></div>
-          <div class="note-meta">
-            <h3 class="note-title">${obj.title}</h3>
-            <time class="note-date">${obj.date}</time>
-          </div>
-        </a>
-      </article>
-    `;
-  }
-
-  function renderMore(){
-    const grid = document.getElementById("note-grid-archive");
-    const slice = allItems.slice(shown, shown + STEP);
-    slice.forEach(it => grid.insertAdjacentHTML("beforeend", cardHTML(it)));
-    shown += slice.length;
-    if (shown >= allItems.length) {
-      document.getElementById("load-more").style.display = "none";
+    function renderPage(){
+      const start = (page-1)*PER_PAGE;
+      const list = items.slice(start, start+PER_PAGE);
+      grid.innerHTML = list.map(card).join("");
+      btnPrev.disabled = (page === 1);
+      btnNext.disabled = (start + PER_PAGE >= items.length);
     }
-  }
 
-  async function init(){
-    try{
-      const xmlText = await fetchRSS(RSS);
-      const xml = new DOMParser().parseFromString(xmlText, "application/xml");
-      const items = Array.from(xml.querySelectorAll("item"));
-      allItems = items.map(item => {
-        const title = item.querySelector("title")?.textContent ?? "";
-        const link  = item.querySelector("link")?.textContent ?? "#";
-        const pub   = item.querySelector("pubDate")?.textContent ?? "";
-        const date  = pub ? new Date(pub).toLocaleDateString("ja-JP") : "";
-        const img   = extractImageFromItem(item);
-        return { title, link, date, img };
-      });
-      renderMore();
-      document.getElementById("load-more").addEventListener("click", renderMore);
-    }catch(err){
-      console.error("note RSS 読み込みエラー:", err);
-      document.getElementById("note-grid-archive").innerHTML =
-        '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
-      document.getElementById("load-more").style.display = "none";
+    async function load(){
+      statusBox.textContent = "";
+      try{
+        const res = await fetch(RSS);
+        if (!res.ok) throw new Error("RSS fetch " + res.status);
+        const xml = new DOMParser().parseFromString(await res.text(), "text/xml");
+        const raw = Array.from(xml.querySelectorAll("item"));
+
+        items = await Promise.all(raw.map(async it => {
+          const title = it.querySelector("title")?.textContent ?? "";
+          const link  = it.querySelector("link")?.textContent ?? "#";
+          const pub   = it.querySelector("pubDate")?.textContent ?? "";
+          const date  = pub ? new Date(pub).toLocaleDateString("ja-JP") : "";
+
+          // 画像抽出（順番どおり）
+          let img = it.querySelector("enclosure")?.getAttribute("url")
+                 || it.querySelector("media\\:thumbnail")?.getAttribute("url")
+                 || it.querySelector("media\\:content")?.getAttribute("url") || "";
+
+          if (!img) {
+            const contentNode = it.querySelector("content\\:encoded");
+            img = firstImgFromHTML(contentNode?.textContent || "");
+          }
+          if (!img) {
+            img = firstImgFromHTML(it.querySelector("description")?.textContent || "");
+          }
+          img = abs(img || fallbackImg);
+
+          return {title, link, date, img};
+        }));
+
+        renderPage();
+      }catch(e){
+        console.error(e);
+        statusBox.textContent = "noteの読み込みに失敗しました。";
+      }
     }
-  }
-  init();
-})();
-</script>
+
+    btnPrev.addEventListener("click", () => { if (page>1){ page--; renderPage(); }});
+    btnNext.addEventListener("click", () => { if ((page*PER_PAGE) < items.length){ page++; renderPage(); }});
+
+    load();
+  })();
+  </script>
 </body>
 </html>
