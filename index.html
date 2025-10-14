@@ -166,102 +166,43 @@
 
 
 <script>
-(function(){
-  const RSS = "https://note.com/loyal_dill1011/rss";
-  const LIMIT = 3;
+(async function(){
+  const grid = document.getElementById("note-grid-latest");
+  try {
+    const res = await fetch("https://r.jina.ai/http/note.com/loyal_dill1011/rss");
+    const xml = new DOMParser().parseFromString(await res.text(), "text/xml");
+    const items = Array.from(xml.querySelectorAll("item")).slice(0, 3);
 
-  // r.jina.ai 経由だけにして失敗ポイントを減らす
-  async function fetchRSS(url){
-    const res = await fetch(`https://r.jina.ai/http/${url.replace(/^https?:\/\//,'')}`);
-    if (!res.ok) throw new Error("RSS fetch failed: " + res.status);
-    return res.text();
-  }
+    grid.innerHTML = "";
+    for (const it of items){
+      const title = it.querySelector("title")?.textContent ?? "";
+      const link = it.querySelector("link")?.textContent ?? "#";
+      const pub  = new Date(it.querySelector("pubDate")?.textContent ?? "").toLocaleDateString("ja-JP");
+      const desc = it.querySelector("description")?.textContent ?? "";
+      const imgMatch = desc.match(/<img[^>]+src="([^"]+)"/i);
+      const img = imgMatch ? imgMatch[1] : "https://assets.st-note.com/production/uploads/images/default/ogp.png";
 
-  // 相対/プロトコル省略を絶対URLに
-  function abs(url){
-    if (!url) return "";
-    if (url.startsWith("http")) return url;
-    if (url.startsWith("//")) return "https:" + url;
-    if (url.startsWith("/"))  return "https://note.com" + url;
-    return url;
-  }
-
-  // description や content:encoded（エスケープ済みHTML）から最初の<img>を取る
-  function firstImgFrom(html){
-    if (!html) return "";
-    // HTMLエスケープ解除 → 再パース
-    const decoded = new DOMParser().parseFromString(html, "text/html").documentElement.textContent || html;
-    const doc = new DOMParser().parseFromString(decoded, "text/html");
-    const img = doc.querySelector("img");
-    return img ? abs(img.getAttribute("src") || img.getAttribute("data-src") || img.getAttribute("data-original")) : "";
-  }
-
-  function renderCard(grid, data){
-    const {title, link, date, img} = data;
-    grid.insertAdjacentHTML("beforeend", `
-      <article class="note-card">
-        <a class="note-link" href="${link}" target="_blank" rel="noopener">
-          <div class="note-thumb-wrap">
-            <img class="note-thumb" src="${img}" alt="${title}" loading="lazy" referrerpolicy="no-referrer">
-          </div>
-          <div class="note-meta">
-            <h3 class="note-title">${title}</h3>
-            <time class="note-date">${date}</time>
-          </div>
-        </a>
-      </article>
-    `);
-  }
-
-  async function init(){
-    const grid = document.getElementById("note-grid-latest");
-    try{
-      const xmlText = await fetchRSS(RSS);
-      const xml = new DOMParser().parseFromString(xmlText, "text/xml");
-
-      const items = Array.from(xml.querySelectorAll("item")).slice(0, LIMIT);
-      if (!items.length){
-        grid.innerHTML = '<p style="color:#666">記事が見つかりませんでした。</p>';
-        return;
-      }
-
-      for (const it of items){
-        const title = it.querySelector("title")?.textContent ?? "";
-        const link  = it.querySelector("link")?.textContent ?? "#";
-        const pub   = it.querySelector("pubDate")?.textContent ?? "";
-        const date  = pub ? new Date(pub).toLocaleDateString("ja-JP") : "";
-
-        // enclosure / media
-        let img = it.querySelector("enclosure")?.getAttribute("url")
-               || it.querySelector("media\\:thumbnail")?.getAttribute("url")
-               || it.querySelector("media\\:content")?.getAttribute("url")
-               || "";
-
-        // content:encoded / description から拾う
-        if (!img){
-          const contentNode = it.querySelector("content\\:encoded");
-          img = firstImgFrom(contentNode?.textContent || "") ||
-                firstImgFrom(it.querySelector("description")?.textContent || "");
-        }
-
-        if (!img){
-          img = "https://assets.st-note.com/production/uploads/images/default/ogp.png";
-        } else {
-          img = abs(img);
-        }
-
-        renderCard(grid, {title, link, date, img});
-      }
-    }catch(err){
-      console.error(err);
-      document.getElementById("note-grid-latest").innerHTML =
-        '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
+      grid.insertAdjacentHTML("beforeend", `
+        <article class="note-card">
+          <a class="note-link" href="${link}" target="_blank" rel="noopener">
+            <div class="note-thumb-wrap">
+              <img class="note-thumb" src="${img}" alt="${title}" loading="lazy">
+            </div>
+            <div class="note-meta">
+              <h3 class="note-title">${title}</h3>
+              <time class="note-date">${pub}</time>
+            </div>
+          </a>
+        </article>
+      `);
     }
+  } catch(e) {
+    console.error(e);
+    grid.innerHTML = '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
   }
-
-  init();
 })();
 </script>
+
 
 
 
