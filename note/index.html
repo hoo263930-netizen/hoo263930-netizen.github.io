@@ -136,6 +136,35 @@
     else grid.innerHTML = '<p style="color:#c00">noteの読み込みに失敗しました：' + e.message + '</p>';
   }
 })();
+
+// 画像用プロキシ（ホットリンク回避）
+const imgProxy = (u) => {
+  if (!u) return "";
+  const clean = u.replace(/^https?:\/\//, ""); // プロキシはスキーム抜きを推奨
+  return `https://images.weserv.nl/?url=${encodeURIComponent(clean)}&output=jpg`;
+};
+
+    img = img ? abs(img) : fallbackImg;
+// ★ここでプロキシに通す
+const imgForTag = imgProxy(img);
+
+// …HTML生成側では imgForTag を使う
+grid.insertAdjacentHTML("beforeend", `
+  <article class="card">
+    <a href="${link}" target="_blank" rel="noopener">
+      <div class="thumb">
+        <img src="${imgForTag}" alt="${title}" loading="lazy">
+      </div>
+      <div class="meta">
+        <h2 class="title">${title}</h2>
+        <time class="date">${date}</time>
+      </div>
+    </a>
+  </article>
+`);
+
+
+    
 </script>
 
 
