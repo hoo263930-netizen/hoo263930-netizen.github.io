@@ -50,19 +50,17 @@
   </div>
 
 
-
 <script>
-(function(){
-  // ===== 設定 =====
-  const RSS_ORIG = "https://note.com/loyal_dill1011/rss";
-  const PROXIES = [
-    (u) => `https://r.jina.ai/http/${u.replace(/^https?:\/\//,'')}`,
-    (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`
-  ];
-  // トップ：最新3件なら 3、一覧なら 12
-  const LIMIT_OR_PERPAGE = (document.getElementById("note-grid-latest") ? 3 : 12);
+(async function(){
+  const RSS = "https://r.jina.ai/http/note.com/loyal_dill1011/rss";
+  const grid = document.getElementById("grid") || document.getElementById("note-grid-latest");
+  const statusBox = document.getElementById("status");
+  const LIMIT = grid?.id === "note-grid-latest" ? 3 : 12;
 
-  // ===== 便利関数 =====
+  if (!grid) return;
+
+  const fallbackImg = "https://assets.st-note.com/production/uploads/images/default/ogp.png";
+
   const abs = (u) => {
     if (!u) return "";
     if (u.startsWith("http")) return u;
@@ -70,104 +68,68 @@
     if (u.startsWith("/"))  return "https://note.com" + u;
     return u;
   };
+
   const decodeHTML = (html) =>
     new DOMParser().parseFromString(html || "", "text/html").documentElement.textContent || "";
+
+  // --- 強化版：src, data-src, data-original すべて対応 ---
   const firstImgFromHTML = (html) => {
     const decoded = decodeHTML(html);
     const doc = new DOMParser().parseFromString(decoded, "text/html");
     const img = doc.querySelector("img");
-    return img ? abs(img.getAttribute("src") || img.getAttribute("data-src") || img.getAttribute("data-original")) : "";
+    if (!img) return "";
+    return abs(
+      img.getAttribute("src") ||
+      img.getAttribute("data-src") ||
+      img.getAttribute("data-original") ||
+      img.getAttribute("srcset")?.split(" ")[0] ||
+      ""
+    );
   };
-  const fallbackImg = "https://assets.st-note.com/production/uploads/images/default/ogp.png";
 
-  async function fetchViaProxies(url){
-    let lastErr;
-    for (const to of PROXIES){
-      const proxied = to(url);
-      try{
-        const res = await fetch(proxied);
-        if (!res.ok) throw new Error(`HTTP ${res.status} @ ${proxied}`);
-        return await res.text();
-      }catch(e){
-        lastErr = e;
-      }
+  try {
+    const res = await fetch(RSS);
+    if (!res.ok) throw new Error("RSS fetch failed: " + res.status);
+    const xml = new DOMParser().parseFromString(await res.text(), "text/xml");
+    const items = Array.from(xml.querySelectorAll("item")).slice(0, LIMIT);
+
+    grid.innerHTML = "";
+
+    for (const it of items) {
+      const title = it.querySelector("title")?.textContent ?? "";
+      const link  = it.querySelector("link")?.textContent ?? "#";
+      const pub   = it.querySelector("pubDate")?.textContent ?? "";
+      const date  = pub ? new Date(pub).toLocaleDateString("ja-JP") : "";
+
+      let img = it.querySelector("enclosure")?.getAttribute("url")
+             || it.querySelector("media\\:thumbnail")?.getAttribute("url")
+             || it.querySelector("media\\:content")?.getAttribute("url") || "";
+
+      if (!img) img = firstImgFromHTML(it.querySelector("content\\:encoded")?.textContent || "");
+      if (!img) img = firstImgFromHTML(it.querySelector("description")?.textContent || "");
+      if (!img) img = fallbackImg;
+
+      grid.insertAdjacentHTML("beforeend", `
+        <article class="card">
+          <a href="${link}" target="_blank" rel="noopener">
+            <div class="thumb">
+              <img src="${img}" alt="${title}" loading="lazy" referrerpolicy="no-referrer">
+            </div>
+            <div class="meta">
+              <h2 class="title">${title}</h2>
+              <time class="date">${date}</time>
+            </div>
+          </a>
+        </article>
+      `);
     }
-    throw lastErr || new Error("all proxies failed");
+  } catch (e) {
+    console.error(e);
+    if (statusBox) statusBox.textContent = "noteの読み込みに失敗しました：" + e.message;
   }
-
-  function buildCard({title, link, date, img}){
-    return `
-      <article class="card note-card">
-        <a class="note-link" href="${link}" target="_blank" rel="noopener">
-          <div class="thumb note-thumb-wrap">
-            <img class="note-thumb" src="${img}" alt="${title}" loading="lazy" referrerpolicy="no-referrer">
-          </div>
-          <div class="meta note-meta">
-            <h3 class="title note-title">${title}</h3>
-            <time class="date note-date">${date}</time>
-          </div>
-        </a>
-      </article>`;
-  }
-
-  async function main(){
-    // どのページかを自動判定
-    const gridTop = document.getElementById("note-grid-latest");
-    const gridList = document.getElementById("grid");
-    const statusBox = document.getElementById("status");
-
-    const grid = gridTop || gridList;
-    if (!grid) return;
-
-    try{
-      const xmlText = await fetchViaProxies(RSS_ORIG);
-      const xml = new DOMParser().parseFromString(xmlText, "text/xml");
-      const items = Array.from(xml.querySelectorAll("item"));
-
-      // トップ（3件） or 一覧（12件×ページ1）
-      const slice = items.slice(0, LIMIT_OR_PERPAGE);
-
-      const rows = slice.map(it => {
-        const title = it.querySelector("title")?.textContent ?? "";
-        const link  = it.querySelector("link")?.textContent ?? "#";
-        const pub   = it.querySelector("pubDate")?.textContent ?? "";
-        const date  = pub ? new Date(pub).toLocaleDateString("ja-JP") : "";
-
-        let img = it.querySelector("enclosure")?.getAttribute("url")
-               || it.querySelector("media\\:thumbnail")?.getAttribute("url")
-               || it.querySelector("media\\:content")?.getAttribute("url") || "";
-
-        if (!img){
-          const contentNode = it.querySelector("content\\:encoded");
-          img = firstImgFromHTML(contentNode?.textContent || "");
-        }
-        if (!img){
-          img = firstImgFromHTML(it.querySelector("description")?.textContent || "");
-        }
-        img = abs(img || fallbackImg);
-
-        return buildCard({title, link, date, img});
-      });
-
-      grid.innerHTML = rows.join("");
-
-      // 一覧ページのときだけ簡易ページャ（必要なら後で拡張）
-      if (gridList){
-        const next = document.getElementById("next");
-        const prev = document.getElementById("prev");
-        if (next) next.disabled = true;
-        if (prev) prev.disabled = true;
-      }
-
-    }catch(e){
-      console.error(e);
-      if (statusBox) statusBox.textContent = `noteの読み込みに失敗しました：${e.message}`;
-      else grid.innerHTML = `<p style="color:#c00">noteの読み込みに失敗しました：${e.message}</p>`;
-    }
-  }
-  main();
 })();
 </script>
+
 
 
 
