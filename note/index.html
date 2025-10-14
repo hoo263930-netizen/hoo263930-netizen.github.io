@@ -7,8 +7,7 @@
            script-src 'self' 'unsafe-inline' https:;
            style-src 'self' 'unsafe-inline' https:;">
 
-
-
+  
   
   <style>
     :root{ --maxw:1100px; --rail:16px; }
@@ -50,52 +49,61 @@
   </div>
 
 
-<script>
-(async function(){
-  const RSS = "https://r.jina.ai/http/note.com/loyal_dill1011/rss";
-  const grid = document.getElementById("grid") || document.getElementById("note-grid-latest");
-  const statusBox = document.getElementById("status");
-  const LIMIT = grid?.id === "note-grid-latest" ? 3 : 12;
 
+
+
+  <script>
+(async function(){
+  // 1) 取得候補URL（上から順に試す）
+  const CANDIDATES = [
+    "https://r.jina.ai/http/https://note.com/loyal_dill1011/rss", // ← https: を含める版
+    "https://r.jina.ai/http/note.com/loyal_dill1011/rss",         // ← さっきの版
+    "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://note.com/loyal_dill1011/rss")
+  ];
+
+  // 2) どのページか自動判定
+  const grid = document.getElementById("note-grid-latest") || document.getElementById("grid");
+  const statusBox = document.getElementById("status");
+  const limit = (grid && grid.id === "note-grid-latest") ? 3 : 12;
   if (!grid) return;
 
+  // 3) ユーティリティ
+  const abs = (u) => !u ? "" : u.startsWith("http") ? u : u.startsWith("//") ? "https:"+u : u.startsWith("/") ? "https://note.com"+u : u;
+  const decodeHTML = (h) => new DOMParser().parseFromString(h||"", "text/html").documentElement.textContent || "";
+  const firstImgFromHTML = (h) => {
+    const doc = new DOMParser().parseFromString(decodeHTML(h), "text/html");
+    const img = doc.querySelector("img");
+    return img ? abs(img.getAttribute("src") || img.getAttribute("data-src") || img.getAttribute("data-original") || (img.getAttribute("srcset")||"").split(" ")[0]) : "";
+  };
   const fallbackImg = "https://assets.st-note.com/production/uploads/images/default/ogp.png";
 
-  const abs = (u) => {
-    if (!u) return "";
-    if (u.startsWith("http")) return u;
-    if (u.startsWith("//")) return "https:" + u;
-    if (u.startsWith("/"))  return "https://note.com" + u;
-    return u;
-  };
+  async function fetchFirstWorking(urls){
+    let lastErr;
+    for (const u of urls){
+      try{
+        const r = await fetch(u);
+        if (!r.ok) throw new Error(`HTTP ${r.status} @ ${u}`);
+        return await r.text();
+      }catch(e){ lastErr = e; }
+    }
+    throw lastErr || new Error("all candidates failed");
+  }
 
-  const decodeHTML = (html) =>
-    new DOMParser().parseFromString(html || "", "text/html").documentElement.textContent || "";
+  try{
+    // 4) RSSテキスト取得
+    const xmlText = await fetchFirstWorking(CANDIDATES);
 
-  // --- 強化版：src, data-src, data-original すべて対応 ---
-  const firstImgFromHTML = (html) => {
-    const decoded = decodeHTML(html);
-    const doc = new DOMParser().parseFromString(decoded, "text/html");
-    const img = doc.querySelector("img");
-    if (!img) return "";
-    return abs(
-      img.getAttribute("src") ||
-      img.getAttribute("data-src") ||
-      img.getAttribute("data-original") ||
-      img.getAttribute("srcset")?.split(" ")[0] ||
-      ""
-    );
-  };
+    // 5) パースしてカード描画
+    const xml = new DOMParser().parseFromString(xmlText, "text/xml");
+    const items = Array.from(xml.querySelectorAll("item")).slice(0, limit);
 
-  try {
-    const res = await fetch(RSS);
-    if (!res.ok) throw new Error("RSS fetch failed: " + res.status);
-    const xml = new DOMParser().parseFromString(await res.text(), "text/xml");
-    const items = Array.from(xml.querySelectorAll("item")).slice(0, LIMIT);
+    if (!items.length){
+      grid.innerHTML = '<p style="color:#666">記事が見つかりませんでした。</p>';
+      return;
+    }
 
     grid.innerHTML = "";
-
-    for (const it of items) {
+    for (const it of items){
       const title = it.querySelector("title")?.textContent ?? "";
       const link  = it.querySelector("link")?.textContent ?? "#";
       const pub   = it.querySelector("pubDate")?.textContent ?? "";
@@ -104,31 +112,32 @@
       let img = it.querySelector("enclosure")?.getAttribute("url")
              || it.querySelector("media\\:thumbnail")?.getAttribute("url")
              || it.querySelector("media\\:content")?.getAttribute("url") || "";
-
       if (!img) img = firstImgFromHTML(it.querySelector("content\\:encoded")?.textContent || "");
       if (!img) img = firstImgFromHTML(it.querySelector("description")?.textContent || "");
-      if (!img) img = fallbackImg;
+      img = abs(img || fallbackImg);
 
       grid.insertAdjacentHTML("beforeend", `
-        <article class="card">
-          <a href="${link}" target="_blank" rel="noopener">
-            <div class="thumb">
-              <img src="${img}" alt="${title}" loading="lazy" referrerpolicy="no-referrer">
+        <article class="card note-card">
+          <a class="note-link" href="${link}" target="_blank" rel="noopener">
+            <div class="thumb note-thumb-wrap">
+              <img class="note-thumb" src="${img}" alt="${title}" loading="lazy" referrerpolicy="no-referrer">
             </div>
-            <div class="meta">
-              <h2 class="title">${title}</h2>
-              <time class="date">${date}</time>
+            <div class="meta note-meta">
+              <h3 class="title note-title">${title}</h3>
+              <time class="date note-date">${date}</time>
             </div>
           </a>
         </article>
       `);
     }
-  } catch (e) {
+  }catch(e){
     console.error(e);
     if (statusBox) statusBox.textContent = "noteの読み込みに失敗しました：" + e.message;
+    else grid.innerHTML = '<p style="color:#c00">noteの読み込みに失敗しました：' + e.message + '</p>';
   }
 })();
 </script>
+
 
 
 
