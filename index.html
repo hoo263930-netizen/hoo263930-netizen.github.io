@@ -132,6 +132,7 @@
 
 
 
+<!-- ===== note 最新3件（横並び）ここから ===== -->
 <section id="note-latest" class="section">
   <h2 class="section-title">最新のnote</h2>
   <div id="note-grid-latest" class="note-grid"></div>
@@ -140,85 +141,109 @@
   </div>
 </section>
 
-<script>
-(async function loadNoteLatest(){
-  const RSS = "https://note.com/loyal_dill1011/rss";
-  const grid = document.getElementById("note-grid-latest");
+<style>
+/* セクション体裁 */
+#note-latest { margin: 2.5rem 0; }
+.section-title { font-size: 1.4rem; margin: 0 0 1rem; }
 
-  async function fetchTextWithFallback(url){
-    // ① AllOrigins（RAW）→ ② r.jina.ai の順にトライ
+/* 横並びグリッド（3列→レスポンシブ） */
+.note-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 980px) { .note-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .note-grid { grid-template-columns: 1fr; } }
+
+/* カード */
+.note-card { background: #fff; border-radius: 14px; overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08); transition: transform .15s, box-shadow .15s; }
+.note-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,.12); }
+.note-link { display: block; color: inherit; text-decoration: none; }
+.note-thumb-wrap { aspect-ratio: 16/9; background:#f3f3f3; overflow:hidden; }
+.note-thumb { width:100%; height:100%; object-fit:cover; display:block; transform: translateZ(0); }
+.note-meta { padding: .9rem .95rem 1rem; }
+.note-title { font-size: 1rem; line-height: 1.5; margin: 0 0 .35rem; }
+.note-date { font-size: .85rem; color: #666; }
+
+/* ボタン */
+.note-actions { text-align: center; margin-top: 1rem; }
+.btn-more { display:inline-block; padding:.7rem 1.2rem; border-radius:999px;
+  background:#F4B400; color:#222; font-weight:700; text-decoration:none;
+  box-shadow:0 4px 12px rgba(244,180,0,.35); }
+.btn-more:hover { filter: brightness(.95); }
+</style>
+
+<script>
+(function(){
+  const RSS = "https://note.com/loyal_dill1011/rss"; // こうせんさんの note RSS
+  const LIMIT = 3; // 表示件数
+
+  // --- フェッチ（プライマリ→フォールバック）
+  async function fetchRSS(url){
     try {
       const r1 = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
       if (r1.ok) return await r1.text();
       throw new Error("allorigins failed");
     } catch(e){
-      const r2 = await fetch(`https://r.jina.ai/http://${url.replace(/^https?:\/\//,'')}`);
+      const r2 = await fetch(`https://r.jina.ai/http/${url.replace(/^https?:\/\//,'')}`);
       if (r2.ok) return await r2.text();
       throw new Error("fallback failed");
     }
   }
 
-  function extractImage(desc){
-    const m = desc.match(/<img[^>]+src=["']([^"']+)["']/i);
-    return m ? m[1] : "https://assets.st-note.com/production/uploads/images/default/ogp.png";
+  // --- 画像抽出（enclosure → content:encoded → description）
+  function extractImageFromItem(item){
+    const enclosure = item.querySelector("enclosure");
+    if (enclosure && enclosure.getAttribute("url")) return enclosure.getAttribute("url");
+
+    const content = item.getElementsByTagName("content:encoded")[0]?.textContent ?? "";
+    let m = content.match(/<img[^>]+(?:src|data-src|data-original)=["']([^"']+)["']/i);
+    if (m) return m[1];
+
+    const desc = item.querySelector("description")?.textContent ?? "";
+    m = desc.match(/<img[^>]+(?:src|data-src|data-original)=["']([^"']+)["']/i);
+    if (m) return m[1];
+
+    return "https://assets.st-note.com/production/uploads/images/default/ogp.png";
   }
 
-  try{
-    const xmlText = await fetchTextWithFallback(RSS);
-    const xml = new DOMParser().parseFromString(xmlText, "application/xml");
-    const items = Array.from(xml.querySelectorAll("item")).slice(0,3);
+  function renderCard(grid, item){
+    const title = item.querySelector("title")?.textContent ?? "";
+    const link  = item.querySelector("link")?.textContent ?? "#";
+    const pub   = item.querySelector("pubDate")?.textContent ?? "";
+    const date  = pub ? new Date(pub).toLocaleDateString("ja-JP") : "";
+    const img   = extractImageFromItem(item);
 
-    if (!items.length){
-      grid.innerHTML = '<p style="color:#666">記事が見つかりませんでした。</p>';
-      return;
+    grid.insertAdjacentHTML("beforeend", `
+      <article class="note-card">
+        <a class="note-link" href="${link}" target="_blank" rel="noopener">
+          <div class="note-thumb-wrap">
+            <img class="note-thumb" src="${img}" alt="" loading="lazy" referrerpolicy="no-referrer">
+          </div>
+          <div class="note-meta">
+            <h3 class="note-title">${title}</h3>
+            <time class="note-date">${date}</time>
+          </div>
+        </a>
+      </article>
+    `);
+  }
+
+  async function init(){
+    const grid = document.getElementById("note-grid-latest");
+    try{
+      const xmlText = await fetchRSS(RSS);
+      const xml = new DOMParser().parseFromString(xmlText, "application/xml");
+      const items = Array.from(xml.querySelectorAll("item")).slice(0, LIMIT);
+      if (!items.length){ grid.innerHTML = '<p style="color:#666">記事が見つかりませんでした。</p>'; return; }
+      items.forEach(it => renderCard(grid, it));
+    }catch(err){
+      console.error("note RSS 読み込みエラー:", err);
+      grid.innerHTML = '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
     }
-
-    items.forEach(item=>{
-      const title = item.querySelector("title")?.textContent ?? "";
-      const link  = item.querySelector("link")?.textContent ?? "#";
-      const pub   = item.querySelector("pubDate")?.textContent ?? "";
-      const date  = pub ? new Date(pub).toLocaleDateString("ja-JP") : "";
-      const desc  = item.querySelector("description")?.textContent ?? "";
-      const img   = extractImage(desc);
-
-      grid.insertAdjacentHTML("beforeend", `
-        <article class="note-card">
-          <a class="note-link" href="${link}" target="_blank" rel="noopener">
-            <div class="note-thumb-wrap">
-              <img class="note-thumb" src="${img}" alt="">
-            </div>
-            <div class="note-meta">
-              <h3 class="note-title">${title}</h3>
-              <time class="note-date">${date}</time>
-            </div>
-          </a>
-        </article>
-      `);
-    });
-  }catch(err){
-    console.error("note RSS 読み込みエラー:", err);
-    grid.innerHTML = '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
   }
+  init();
 })();
 </script>
+<!-- ===== note 最新3件（横並び）ここまで ===== -->
 
-<style>
-/* 横並び3カードのスタイル（そのまま使えます） */
-.note-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
-@media (max-width:980px){ .note-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media (max-width:640px){ .note-grid{ grid-template-columns:1fr; } }
-.note-card{ background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.08); transition:transform .15s, box-shadow .15s; }
-.note-card:hover{ transform:translateY(-3px); box-shadow:0 10px 22px rgba(0,0,0,.12); }
-.note-link{ display:block; color:inherit; text-decoration:none; }
-.note-thumb-wrap{ aspect-ratio:16/9; background:#f3f3f3; }
-.note-thumb{ width:100%; height:100%; object-fit:cover; display:block; }
-.note-meta{ padding:.9rem .95rem 1rem; }
-.note-title{ font-size:1rem; line-height:1.5; margin:0 0 .35rem; }
-.note-date{ font-size:.85rem; color:#666; }
-.note-actions{ text-align:center; margin-top:1rem; }
-.btn-more{ display:inline-block; padding:.7rem 1.2rem; border-radius:999px; background:#F4B400; color:#222; font-weight:700; text-decoration:none; box-shadow:0 4px 12px rgba(244,180,0,.35); }
-.btn-more:hover{ filter:brightness(.95); }
-</style>
 
 
 
