@@ -1,9 +1,13 @@
-name: Update note feed (RSS -> JSON)
+name: Update note RSS mirror
 
 on:
   schedule:
-    - cron: "15 0 * * *"   # 毎日09:15 JST（00:15 UTC）
-  workflow_dispatch: {}
+    - cron: '0 */6 * * *'   # 6時間ごと（お好みで）
+  workflow_dispatch:        # 手動実行も可
+  push:
+    paths:
+      - .github/workflows/update-note-feed.yml
+
 permissions:
   contents: write
 
@@ -12,20 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Generate note-feed.json from RSS
+      - name: Fetch note RSS
         run: |
-          python scripts/fetch_note_feed.py \
-            "https://note.com/loyal_dill1011/m/m9a97295e24a9/rss/" \
-            "note-feed.json"
-
-      - name: Commit & push if changed
-        uses: stefanzweifel/git-auto-commit-action@v5
+          mkdir -p note
+          curl -L --fail --compressed "https://note.com/loyal_dill1011/rss" -o note/feed.xml
+      - name: Commit & push
+        uses: EndBug/add-and-commit@v9
         with:
-          commit_message: "chore: update note-feed.json from RSS"
-          file_pattern: note-feed.json
+          add: 'note/feed.xml'
+          message: 'chore: update note RSS mirror'
