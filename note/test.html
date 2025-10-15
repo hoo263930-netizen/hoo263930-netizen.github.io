@@ -17,15 +17,45 @@
     return u;
   };
 
-  // HTMLから最初の<img>を抽出（src / data-src / data-original / srcset）
-  const decode = h => new DOMParser().parseFromString(h||"","text/html").documentElement.textContent || "";
-  const firstImg = (html)=>{
-    const d = new DOMParser().parseFromString(decode(html),"text/html");
+// --- ここから画像抽出ロジックを差し替え ---
+const mediaNS = "http://search.yahoo.com/mrss/";
+let raw = "";
+
+// 1) media:thumbnail（NS対応で確実に）
+const thumbs = it.getElementsByTagNameNS(mediaNS, "thumbnail");
+if (thumbs && thumbs.length) {
+  const n = thumbs[0];
+  raw = (n.getAttribute("url") || n.textContent || "").trim();
+}
+
+// 2) enclosure の url 属性
+if (!raw) {
+  const enc = it.querySelector("enclosure[url]");
+  if (enc) raw = enc.getAttribute("url") || "";
+}
+
+// 3) content:encoded / description から最初の <img>
+if (!raw) {
+  const html = it.querySelector("content\\:encoded")?.textContent
+            || it.querySelector("description")?.textContent || "";
+  if (html) {
+    const d = new DOMParser().parseFromString(
+      new DOMParser().parseFromString(html, "text/html").documentElement.textContent || html,
+      "text/html"
+    );
     const img = d.querySelector("img");
-    if (!img) return "";
-    const srcset = (img.getAttribute("srcset")||"").split(" ")[0];
-    return abs(srcset || img.getAttribute("src") || img.getAttribute("data-src") || img.getAttribute("data-original") || "");
-  };
+    raw = (img?.getAttribute("src")
+        || img?.getAttribute("data-src")
+        || img?.getAttribute("data-original")
+        || "").trim();
+  }
+}
+
+// 4) 絶対化・最終フォールバック
+raw = abs(raw || FALLBACK);
+
+// --- ここまで画像抽出ロジック ---
+
 
   // 画像用プロキシ（ホットリンク回避）
   const prox  = (u)=> u ? `https://images.weserv.nl/?url=${encodeURIComponent(u.replace(/^https?:\/\//,''))}&output=jpg` : "";
