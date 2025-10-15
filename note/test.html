@@ -1,14 +1,8 @@
-<!doctype html><meta charset="utf-8">
-<title>note画像テスト（ミラー版）</title>
-<div id="card" style="max-width:780px;margin:24px auto;font:16px/1.6 system-ui"></div>
-
-
-
 <script>
 (async () => {
-  const RSS = "/note/feed.xml";                 // ← Actionsで作ったミラーを読む
+  const RSS = "/note/feed.xml";
 
-  // 絶対URL化
+  // 便利関数
   const abs = (u)=>{
     if (!u) return "";
     if (/^https?:\/\//i.test(u)) return u;
@@ -16,85 +10,86 @@
     if (u.startsWith("/"))  return "https://note.com" + u;
     return u;
   };
-
-// --- ここから画像抽出ロジックを差し替え ---
-const mediaNS = "http://search.yahoo.com/mrss/";
-let raw = "";
-
-// 1) media:thumbnail（NS対応で確実に）
-const thumbs = it.getElementsByTagNameNS(mediaNS, "thumbnail");
-if (thumbs && thumbs.length) {
-  const n = thumbs[0];
-  raw = (n.getAttribute("url") || n.textContent || "").trim();
-}
-
-// 2) enclosure の url 属性
-if (!raw) {
-  const enc = it.querySelector("enclosure[url]");
-  if (enc) raw = enc.getAttribute("url") || "";
-}
-
-// 3) content:encoded / description から最初の <img>
-if (!raw) {
-  const html = it.querySelector("content\\:encoded")?.textContent
-            || it.querySelector("description")?.textContent || "";
-  if (html) {
-    const d = new DOMParser().parseFromString(
-      new DOMParser().parseFromString(html, "text/html").documentElement.textContent || html,
-      "text/html"
-    );
-    const img = d.querySelector("img");
-    raw = (img?.getAttribute("src")
-        || img?.getAttribute("data-src")
-        || img?.getAttribute("data-original")
-        || "").trim();
-  }
-}
-
-// 4) 絶対化・最終フォールバック
-raw = abs(raw || FALLBACK);
-
-// --- ここまで画像抽出ロジック ---
-
-
-  // 画像用プロキシ（ホットリンク回避）
-  const prox  = (u)=> u ? `https://images.weserv.nl/?url=${encodeURIComponent(u.replace(/^https?:\/\//,''))}&output=jpg` : "";
   const FALLBACK = "https://assets.st-note.com/production/uploads/images/default/ogp.png";
+  const prox  = (u)=> u ? `https://images.weserv.nl/?url=${encodeURIComponent(u.replace(/^https?:\/\//,''))}&output=jpg` : "";
+
+  // HTML文字列 -> 最初の<img>src 抜き
+  const firstImgFromHTML = (html)=>{
+    if (!html) return "";
+    const decoded = new DOMParser().parseFromString(html, "text/html").documentElement.textContent || html;
+    const doc = new DOMParser().parseFromString(decoded, "text/html");
+    const img = doc.querySelector("img");
+    return img ? (img.getAttribute("src") || img.getAttribute("data-src") || img.getAttribute("data-original") || "") : "";
+  };
 
   // RSSを読む
   const res = await fetch(RSS, {cache:"no-store"});
   if (!res.ok) throw new Error("mirror fetch failed: "+res.status);
   const xml = new DOMParser().parseFromString(await res.text(), "text/xml");
-  const it  = xml.querySelector("item");
+
+  const it  = xml.querySelector("item");            // ← ここで it を決める
   const title = it.querySelector("title")?.textContent ?? "";
   const link  = it.querySelector("link")?.textContent ?? "#";
 
-  // 画像URL候補を順に
-  let img = it.querySelector("enclosure")?.getAttribute("url")
-          || it.querySelector("media\\:thumbnail")?.getAttribute("url")
-          || it.querySelector("media\\:content")?.getAttribute("url") || "";
-  if (!img) img = firstImg(it.querySelector("content\\:encoded")?.textContent || "");
-  if (!img) img = firstImg(it.querySelector("description")?.textContent || "");
-  img = abs(img || FALLBACK);
+  // 画像抽出（優先順: media:thumbnail → enclosure[url] → 本文<img>）
+  const mediaNS = "http://search.yahoo.com/mrss/";
+  let raw = "";
 
-  // プロキシ経由（直リンクがだめでも必ず絵が出るように onerror フォールバック）
-  const srcProx = prox(img);
+  // 1) media:thumbnail（NS対応）
+  const thumbs = it.getElementsByTagNameNS(mediaNS, "thumbnail");
+  if (thumbs && thumbs.length) {
+    const n = thumbs[0];
+    raw = (n.getAttribute("url") || n.textContent || "").trim();
+  }
 
-  // 画面に描画＋ログを出す
+  // 2) enclosure の url
+  if (!raw) {
+    const enc = it.querySelector("enclosure[url]");
+    if (enc) raw = enc.getAttribute("url") || "";
+  }
+
+  // 3) content:encoded / description から最初の<img>
+  if (!raw) {
+    const html = it.querySelector("content\\:encoded")?.textContent
+              || it.querySelector("description")?.textContent || "";
+    raw = firstImgFromHTML(html);
+  }
+
+  // 絶対化 + 最終フォールバック
+  const imgRaw = abs(raw || FALLBACK);
+
+  // 表示（weserv経由をまず試す）
   const el = document.getElementById("card");
+  const srcProx = prox(imgRaw);
+
   el.innerHTML = `
     <a href="${link}" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none">
       <div style="aspect-ratio:16/9;background:#eee;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.08)">
-        <img id="ph" src="${srcProx}" alt="${title}" loading="eager"
-             style="width:100%;height:100%;object-fit:cover;display:block"
-             onerror="this.onerror=null; this.src='https://images.weserv.nl/?url=assets.st-note.com/production/uploads/images/default/ogp.png&output=jpg'">
+        <img id="ph" alt="${title}" loading="eager"
+             style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
       <div style="padding:12px 14px"><strong>${title}</strong></div>
       <div style="font-size:12px;color:#666;padding:0 14px 12px">
-        raw: ${img}<br>proxied: ${srcProx}
+        raw: ${imgRaw}<br>proxied: ${srcProx}
       </div>
     </a>
   `;
+
+  // フォールバック連鎖（weserv → raw 直 → weserv(FALLBACK) → FALLBACK）
+  const ph = document.getElementById("ph");
+  const candidates = [
+    srcProx,
+    imgRaw,
+    prox(FALLBACK),
+    FALLBACK
+  ].filter(Boolean);
+
+  let i = 0;
+  const tryNext = () => {
+    if (i >= candidates.length) return;
+    ph.src = candidates[i++];
+  };
+  ph.addEventListener("error", tryNext);
+  tryNext(); // 最初の候補から開始
 })();
 </script>
-
