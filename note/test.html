@@ -1,23 +1,63 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>note画像テスト（自己診断つき）</title>
+<style>
+  body{font:16px/1.6 system-ui;margin:24px}
+  h1{margin:0 0 12px}
+  #log{white-space:pre-wrap;background:#f7f7f7;border:1px solid #ddd;padding:12px;border-radius:8px}
+  .card{border:1px solid #ddd;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.08);margin-top:12px}
+  .ph{aspect-ratio:16/9;background:#eee}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  a{color:inherit;text-decoration:none}
+</style>
+<h1>note画像テスト（最新1件）</h1>
+<div id="log">診断ログをここに表示します…</div>
+<div id="card" class="card"></div>
+
 <script>
 (async () => {
-  const CANDIDATES = [
-    "https://r.jina.ai/http/https://note.com/loyal_dill1011/rss",
-    "https://r.jina.ai/http/note.com/loyal_dill1011/rss",
-    "https://api.allorigins.win/raw?url="+encodeURIComponent("https://note.com/loyal_dill1011/rss")
-  ];
-  const fetchAny = async (urls)=>{let e; for(const u of urls){try{const r=await fetch(u); if(!r.ok)throw new Error(r.status); return r.text();}catch(err){e=err}} throw e};
+  const log = (m)=>{ console.log(m); document.getElementById("log").textContent += (document.getElementById("log").textContent ? "\n" : "") + m; };
 
-  // ★ 修正版 abs()
+  // 1) 取得候補（キャッシュ無視のため t= を付与）
+  const ORIG = "https://note.com/loyal_dill1011/rss";
+  const CANDIDATES = [
+    "https://r.jina.ai/http/https://note.com/loyal_dill1011/rss?t="+Date.now(),
+    "https://r.jina.ai/http/note.com/loyal_dill1011/rss?t="+Date.now(),
+    "https://api.allorigins.win/raw?url="+encodeURIComponent(ORIG)+"&t="+Date.now()
+  ];
+  log("試行URL:\n- " + CANDIDATES.join("\n- "));
+
+  // 2) fetch 成功するまで順に試す
+  async function fetchAny(urls){
+    let lastErr;
+    for(const u of urls){
+      try{
+        const r = await fetch(u, {cache:"no-store"});
+        log(`TRY: ${u} -> ${r.status}`);
+        if(!r.ok) throw new Error(`HTTP ${r.status}`);
+        const txt = await r.text();
+        log(`OK: 受信 ${txt.length} 文字`);
+        return txt;
+      }catch(e){
+        log(`NG: ${u} で失敗: ${e.message}`);
+        lastErr = e;
+      }
+    }
+    throw lastErr || new Error("全候補失敗");
+  }
+
+  // 3) URL整形
   const abs = (u) => {
-    if (!u) return "";
-    if (/^https?:\/\//i.test(u)) return u;
-    if (u.startsWith("//")) return "https:" + u;
-    if (u.startsWith("/"))  return "https://note.com" + u;
+    if(!u) return "";
+    if(/^https?:\/\//i.test(u)) return u;
+    if(u.startsWith("//")) return "https:"+u;
+    if(u.startsWith("/"))  return "https://note.com"+u;
     return u;
   };
 
-  const decodeHTML = h => new DOMParser().parseFromString(h||"","text/html").documentElement.textContent || "";
-  const firstImg = (html) => {
+  // 4) HTML中の最初の<img>を抽出（src / data-src / data-original / srcset）
+  const decodeHTML = (h)=> new DOMParser().parseFromString(h||"","text/html").documentElement.textContent || "";
+  const firstImgFromHTML = (html)=>{
     const doc = new DOMParser().parseFromString(decodeHTML(html),"text/html");
     const img = doc.querySelector("img");
     if(!img) return "";
@@ -25,36 +65,45 @@
     return abs(srcset || img.getAttribute("src") || img.getAttribute("data-src") || img.getAttribute("data-original") || "");
   };
 
-  // 画像用プロキシ（任意。直リンクで出なければ使う）
-  const imgProxy = (u) => u ? `https://images.weserv.nl/?url=${encodeURIComponent(u.replace(/^https?:\/\//,''))}&output=jpg` : "";
-  const fallback = "https://assets.st-note.com/production/uploads/images/default/ogp.png";
+  // 5) 画像プロキシ（ホットリンク回避）
+  const imgProxy = (u)=> u ? `https://images.weserv.nl/?url=${encodeURIComponent(u.replace(/^https?:\/\//,''))}&output=jpg` : "";
+  const FALLBACK = "https://assets.st-note.com/production/uploads/images/default/ogp.png";
 
-  const xmlText = await fetchAny(CANDIDATES);
-  const xml = new DOMParser().parseFromString(xmlText,"text/xml");
-  const item = xml.querySelector("item");
-  const title = item.querySelector("title")?.textContent ?? "";
-  const link  = item.querySelector("link")?.textContent ?? "#";
+  try{
+    const xmlText = await fetchAny(CANDIDATES);
+    const xml = new DOMParser().parseFromString(xmlText,"text/xml");
+    const item = xml.querySelector("item");
+    if(!item){ log("item が見つかりません"); return; }
 
-  let img = item.querySelector("enclosure")?.getAttribute("url")
-         || item.querySelector("media\\:thumbnail")?.getAttribute("url")
-         || item.querySelector("media\\:content")?.getAttribute("url") || "";
-  if(!img) img = firstImg(item.querySelector("content\\:encoded")?.textContent||"");
-  if(!img) img = firstImg(item.querySelector("description")?.textContent||"");
-  img = abs(img || fallback);
+    const title = item.querySelector("title")?.textContent ?? "";
+    const link  = item.querySelector("link")?.textContent ?? "#";
 
-  // 必要に応じてプロキシ
-  const imgForTag = imgProxy(img) || img;
+    let img = item.querySelector("enclosure")?.getAttribute("url")
+            || item.querySelector("media\\:thumbnail")?.getAttribute("url")
+            || item.querySelector("media\\:content")?.getAttribute("url") || "";
+    if(!img) img = firstImgFromHTML(item.querySelector("content\\:encoded")?.textContent || "");
+    if(!img) img = firstImgFromHTML(item.querySelector("description")?.textContent || "");
+    img = abs(img || FALLBACK);
 
-  console.log("[TEST] raw:", img);
-  console.log("[TEST] proxied:", imgForTag);
+    const prox = imgProxy(img);
+    log("画像URL(raw): " + img);
+    log("画像URL(proxied): " + prox);
 
-  document.getElementById("card").innerHTML = `
-    <a href="${link}" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none">
-      <div style="aspect-ratio:16/9;background:#eee">
-        <img id="ph" src="${imgForTag}" alt="${title}" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"
-             onerror="this.src='https://images.weserv.nl/?url=assets.st-note.com/production/uploads/images/default/ogp.png&output=jpg'">
-      </div>
-      <div style="padding:12px 14px"><strong>${title}</strong></div>
-    </a>`;
+    document.getElementById("card").innerHTML = `
+      <a href="${link}" target="_blank" rel="noopener">
+        <div class="ph"><img id="ph" src="${prox}" alt="${title}" loading="eager"></div>
+        <div style="padding:12px 14px"><strong>${title}</strong></div>
+      </a>
+    `;
+
+    const ph = document.getElementById("ph");
+    ph.addEventListener("load",  ()=> log("IMG: load OK"));
+    ph.addEventListener("error", ()=> {
+      log("IMG: onerror 発火 → FALLBACK に切替");
+      ph.src = imgProxy(FALLBACK);
+    });
+  }catch(e){
+    log("致命的エラー: " + e.message);
+  }
 })();
 </script>
