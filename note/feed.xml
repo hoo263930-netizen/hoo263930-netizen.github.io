@@ -2,9 +2,12 @@
 <rss xmlns:webfeeds="http://webfeeds.org/rss/1.0" xmlns:note="https://note.com" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
   <channel>
     <title>遊べるお寺プロジェクト@Kosen</title>
-    <description>滋賀県の僧侶、社会福祉士として、地域と人に向き合う日々を過ごしています。
-仏教の教えを現代の言葉や活動で届けたい。
-“生きること”や“つながること”の意味を楽しく考えていければ。</description>
+    <description>仏教はもっと遊んでいい。面白くなければ人も世界も動かない。
+お寺×遊び×つながりをテーマに、地域で楽しく動いています。
+今日をちょっと面白くする“きっかけ”をお寺から。
+
+HPはこちら↓
+https://hoo263930-netizen.github.io</description>
     <link>https://note.com/loyal_dill1011</link>
     <atom:link rel="self" type="application/rss+xml" href="https://note.com/loyal_dill1011/rss/"/>
     <copyright>遊べるお寺プロジェクト@Kosen</copyright>
@@ -14,7 +17,7 @@
     <webfeeds:related layout="card" target="browser"/>
     <webfeeds:analytics id="UA-48687000-1" engine="GoogleAnalytics"/>
     <language>ja</language>
-    <lastBuildDate>Mon, 20 Oct 2025 11:03:50 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 20 Oct 2025 15:38:04 +0900</lastBuildDate>
     <item>
       <title>地元フェスタ初参加！ ― スーパー大繁盛射的と麻雀の課題</title>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/223414484/rectangle_large_type_2_b319f16e429788cfbff4d7959cbe4917.jpeg?width=800</media:thumbnail>
