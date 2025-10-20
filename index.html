@@ -280,6 +280,90 @@
 
 
 
+
+      <!-- 公式LINE のご案内 -->
+<section class="line-info">
+  <div class="line-inner">
+    <div class="line-media">
+      <!-- 正方形画像（Canvaで作成したもの） -->
+      <img class="square-img" src="/images/line-badge.png" alt="公式LINEご案内画像">
+    </div>
+
+    <div class="line-copy">
+      <h2>💬 公式LINEのご案内</h2>
+      <p>
+        遊べるお寺プロジェクトでは、イベント情報や活動報告を<br>
+        <strong>月初と月末</strong>に「LINE公式アカウント」でお届けしています。<br>
+        お寺×遊び×つながりの最新情報を受け取りたい方は、ぜひご登録ください。
+      </p>
+
+      <ul class="line-benefits">
+        <li>📅 次回イベントの案内</li>
+        <li>📝 月末の活動レポート</li>
+        <li>🧘‍♂️ たまに“おもしろ仏教”トーク</li>
+      </ul>
+
+      <div class="line-actions">
+        <a class="line-btn" href="https://lin.ee/XXXXXX" target="_blank" rel="noopener">友だち追加はこちら</a>
+        <div class="line-qr">
+          <img src="/images/line_qr.png" alt="LINE友だち追加用QR" width="160" height="160">
+          <small>スマホでQRを読み取って追加できます</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* レイアウト（collabと同系統） */
+.line-info { padding: 48px 0; }
+.line-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .line-inner { grid-template-columns: 1fr; }
+}
+
+/* 画像：正方形を維持して見栄えよく */
+.square-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;            /* 余白なしでピッタリ */
+  border-radius: 16px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.08);
+}
+
+/* テキスト領域 */
+.line-copy h2 { margin: 0 0 12px; font-size: clamp(22px, 2.4vw, 28px); }
+.line-copy p { line-height: 1.9; margin: 0 0 12px; }
+
+/* 箇条書き（軽め） */
+.line-benefits { margin: 8px 0 16px; padding-left: 1.2em; }
+.line-benefits li { margin: 4px 0; }
+
+/* ボタン＆QR並び */
+.line-actions {
+  display: flex; gap: 24px; align-items: center; flex-wrap: wrap;
+}
+
+/* ボタン（collab-btnに合わせる場合は classをcollab-btnに変更でもOK） */
+.line-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: #06C755;         /* LINEグリーン */
+  color: #fff; text-decoration: none; font-weight: 700;
+  box-shadow: 0 4px 14px rgba(6,199,85,.25);
+  transition: transform .04s ease-in-out, box-shadow .2s ease;
+}
+.line-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(6,199,85,.3); }
+
+.line-qr small { display: block; margin-top: 6px; color: #666; }
+</style>
+
       
 
 
