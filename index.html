@@ -140,173 +140,110 @@
   <h2 class="section-title">最新のnote</h2>
   <div id="note-grid-latest" class="note-grid"></div>
   <div class="note-actions">
-    <a class="btn-more" href="./note/index.html">もっと読む</a>
+    <a class="btn-more" href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">もっと読む</a>
   </div>
 </section>
 
 <style>
-/* noteカード部分のスタイル */
-.note-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-@media (max-width: 900px) { .note-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 640px) { .note-grid { grid-template-columns: 1fr; } }
+/* ===== noteカード部分のスタイル ===== */
+.note-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 16px; 
+}
+@media (max-width: 900px) { 
+  .note-grid { grid-template-columns: repeat(2, 1fr); } 
+}
+@media (max-width: 640px) { 
+  .note-grid { grid-template-columns: 1fr; } 
+}
 
-.note-card { background: #fff; border-radius: 14px; overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,.08); transition: transform .15s, box-shadow .15s; }
-.note-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,.12); }
+.note-card { 
+  background: #fff; 
+  border-radius: 14px; 
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08); 
+  transition: transform .15s, box-shadow .15s; 
+}
+.note-card:hover { 
+  transform: translateY(-3px); 
+  box-shadow: 0 10px 22px rgba(0,0,0,.12); 
+}
 
-.note-thumb-wrap { aspect-ratio: 16/9; background:#f3f3f3; overflow:hidden; }
-.note-thumb { width:100%; height:100%; object-fit:cover; display:block; }
+.note-thumb-wrap { 
+  aspect-ratio: 16/9; 
+  background:#f3f3f3; 
+  overflow:hidden; 
+}
+.note-thumb { 
+  width:100%; 
+  height:100%; 
+  object-fit:cover; 
+  display:block; 
+}
+.noimg {
+  width:100%;
+  height:100%;
+  display:grid;
+  place-items:center;
+  color:#999;
+  font-size:.9rem;
+}
 
 .note-meta { padding: .9rem .95rem 1rem; }
 .note-title { font-size: 1rem; line-height: 1.5; margin: 0 0 .35rem; }
-
-
-<!-- head内のどこか（できれば<title>の下）に追加 -->
-<meta http-equiv="Content-Security-Policy"
-  content="default-src 'self';
-           connect-src 'self' https://r.jina.ai;
-           img-src 'self' https: data:;
-           script-src 'self' 'unsafe-inline' https:;
-           style-src 'self' 'unsafe-inline' https:;">
-
-
-
-
-  
 .note-date { font-size: .85rem; color: #666; }
 
 .note-actions { text-align: center; margin-top: 1rem; }
-.btn-more { display:inline-block; padding:.7rem 1.2rem; border-radius:999px;
-  background:#F4B400; color:#222; font-weight:700; text-decoration:none;
-  box-shadow:0 4px 12px rgba(244,180,0,.35); }
+.btn-more { 
+  display:inline-block; 
+  padding:.7rem 1.2rem; 
+  border-radius:999px;
+  background:#F4B400; 
+  color:#222; 
+  font-weight:700; 
+  text-decoration:none;
+  box-shadow:0 4px 12px rgba(244,180,0,.35); 
+}
 </style>
-<!-- ===== note 最新3件（横並び）ここまで ===== -->
-
-
-
-<script>
-(function(){
-  const GRID_ID = "note-grid-latest";
-  const LIMIT = 3;
-  const RSS_URL = "https://r.jina.ai/http/note.com/loyal_dill1011/rss"; // CORS回避
-
-  // ---- 安全ガード：グリッドが無ければ何もしない
-  const grid = document.getElementById(GRID_ID);
-  if (!grid) { console.warn("[note] grid not found"); return; }
-
-  // ---- ユーティリティ
-  const abs = (u) => {
-    if (!u) return "";
-    if (u.startsWith("http")) return u;
-    if (u.startsWith("//")) return "https:" + u;
-    if (u.startsWith("/"))  return "https://note.com" + u;
-    return u;
-  };
-  const decodeHTML = (html) =>
-    new DOMParser().parseFromString(html || "", "text/html").documentElement.textContent || "";
-
-  const firstImgFromHTML = (html) => {
-    const decoded = decodeHTML(html);
-    const doc = new DOMParser().parseFromString(decoded, "text/html");
-    const img = doc.querySelector("img");
-    if (!img) return "";
-    return abs(img.getAttribute("src") || img.getAttribute("data-src") || img.getAttribute("data-original"));
-  };
-
-  const fallbackImg = "https://assets.st-note.com/production/uploads/images/default/ogp.png";
-
-  const renderCard = ({title, link, date, img}) => {
-    grid.insertAdjacentHTML("beforeend", `
-      <article class="note-card">
-        <a class="note-link" href="${link}" target="_blank" rel="noopener">
-          <div class="note-thumb-wrap">
-            <img class="note-thumb" src="${img}" alt="${title}" loading="lazy" referrerpolicy="no-referrer">
-          </div>
-          <div class="note-meta">
-            <h3 class="note-title">${title}</h3>
-            <time class="note-date">${date}</time>
-          </div>
-        </a>
-      </article>
-    `);
-  };
-
-  async function main(){
-    try {
-      const res = await fetch(RSS_URL);
-      if (!res.ok) throw new Error("RSS fetch " + res.status);
-      const xml = new DOMParser().parseFromString(await res.text(), "text/xml");
-      const items = Array.from(xml.querySelectorAll("item")).slice(0, LIMIT);
-
-      if (!items.length) {
-        grid.innerHTML = '<p style="color:#666">記事が見つかりませんでした。</p>';
-        return;
-      }
-
-      for (const it of items) {
-        const title = it.querySelector("title")?.textContent ?? "";
-        const link  = it.querySelector("link")?.textContent ?? "#";
-        const pub   = it.querySelector("pubDate")?.textContent ?? "";
-        const date  = pub ? new Date(pub).toLocaleDateString("ja-JP") : "";
-
-        // 画像の拾い順：enclosure → media:* → content:encoded → description → デフォルト
-        let img = it.querySelector("enclosure")?.getAttribute("url")
-               || it.querySelector("media\\:thumbnail")?.getAttribute("url")
-               || it.querySelector("media\\:content")?.getAttribute("url")
-               || "";
-
-        if (!img) {
-          const contentNode = it.querySelector("content\\:encoded");
-          img = firstImgFromHTML(contentNode?.textContent || "");
-        }
-        if (!img) {
-          img = firstImgFromHTML(it.querySelector("description")?.textContent || "");
-        }
-        img = abs(img || fallbackImg);
-
-        renderCard({title, link, date, img});
-      }
-    } catch (e) {
-      console.error("[note] error:", e);
-      grid.innerHTML = '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
-    }
-  }
-  main();
-})();
-</script>
-
 
 <script>
 (async () => {
-  const wrap = document.querySelector('#note');
+  const grid = document.getElementById('note-grid-latest');
+  if (!grid) return;
+
   try {
+    // GitHub Actionsで生成されるJSONを読み込む
     const res = await fetch('/assets/note_feed.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('no json');
     const data = await res.json();
     const items = (data.items || []).slice(0, 3);
-    wrap.innerHTML = `
-      <div class="note-grid">
-        ${items.map(it => `
-          <a class="note-card" href="${it.link}" target="_blank" rel="noopener">
-            <div class="note-thumb">
-              ${it.image ? `<img src="${it.image}" loading="lazy" alt="">` : `<div class="noimg">No Image</div>`}
-            </div>
-            <div class="note-meta">
-              <h3>${it.title}</h3>
-              <time>${new Date(it.pubDate).toLocaleDateString('ja-JP')}</time>
-            </div>
-          </a>
-        `).join('')}
-      </div>
-      <div style="text-align:center;margin-top:16px">
-        <a class="btn" href="https://note.com/loyal_dill1011" target="_blank">もっと読む</a>
-      </div>`;
+
+    // noteカードを生成
+    const cards = items.map(it => `
+      <article class="note-card">
+        <a class="note-link" href="${it.link}" target="_blank" rel="noopener">
+          <div class="note-thumb-wrap">
+            ${it.image
+              ? `<img class="note-thumb" src="${it.image}" alt="${it.title}" loading="lazy">`
+              : `<div class="noimg">No Image</div>`}
+          </div>
+          <div class="note-meta">
+            <h3 class="note-title">${it.title}</h3>
+            <time class="note-date">${new Date(it.pubDate).toLocaleDateString('ja-JP')}</time>
+          </div>
+        </a>
+      </article>
+    `).join('');
+
+    grid.innerHTML = cards || '<p style="color:#666">記事が見つかりませんでした。</p>';
   } catch (e) {
-    wrap.innerHTML = `<p style="color:#c00">noteの読み込みに失敗しました。</p>`;
-    console.error(e);
+    console.error('[note]', e);
+    grid.innerHTML = '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
   }
 })();
 </script>
+<!-- ===== note 最新3件（横並び）ここまで ===== -->
 
 
 
