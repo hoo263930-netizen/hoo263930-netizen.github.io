@@ -20,42 +20,54 @@ body{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helv
   <h1>最新のnote（画像つき）テスト</h1>
   <section id="note" class="note-section"></section>
 
-  <script>
-  (async () => {
-    const feed = 'https://note.com/loyal_dill1011/rss';
-    const url = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feed);
-    const wrap = document.querySelector('#note');
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('fetch failed');
-      const data = await res.json();
+<script>
+(async () => {
+  const feed = 'https://note.com/loyal_dill1011/rss';
+  const rss2json = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feed);
+  const ogProxy = 'https://r.jina.ai/'; // 記事のOGタグを解析してくれる無料API
+  const wrap = document.querySelector('#note');
 
-      const items = (data.items || []).slice(0, 3).map(it => {
-        const img =
-          (it.description?.match(/<img[^>]+src="([^"]+)"/)?.[1]) ||
-          it.enclosure?.link ||
-          it.thumbnail || '';
+  try {
+    const res = await fetch(rss2json);
+    if (!res.ok) throw new Error('RSS fetch failed');
+    const data = await res.json();
 
-        return `
-          <a class="note-card" href="${it.link}" target="_blank" rel="noopener">
-            <div class="note-thumb">${img ? `<img src="${img}" loading="lazy" alt="">` : `<div class="noimg">No Image</div>`}</div>
-            <div class="note-meta">
-              <h3>${it.title}</h3>
-              <time>${new Date(it.pubDate).toLocaleDateString('ja-JP')}</time>
-            </div>
-          </a>`;
-      }).join('');
+    const items = (data.items || []).slice(0, 3);
+    const cards = await Promise.all(items.map(async it => {
+      // まずRSS内から探す
+      let img = (it.description?.match(/<img[^>]+src="([^"]+)"/)?.[1]) || it.enclosure?.link || it.thumbnail || '';
+      // なければOG画像を取得
+      if (!img) {
+        try {
+          const ogRes = await fetch(ogProxy + it.link);
+          const text = await ogRes.text();
+          img = text.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i)?.[1] || '';
+        } catch (e) {
+          console.warn('OG fetch failed for', it.link);
+        }
+      }
 
-      wrap.innerHTML = `
-        <div class="note-grid">${items}</div>
-        <div style="text-align:center;margin-top:16px">
-          <a class="btn" href="/note/">もっと読む</a>
-        </div>`;
-    } catch (e) {
-      wrap.innerHTML = `<p style="color:#c00">noteの読み込みに失敗しました。</p>`;
-      console.error(e);
-    }
-  })();
-  </script>
+      return `
+        <a class="note-card" href="${it.link}" target="_blank" rel="noopener">
+          <div class="note-thumb">${img ? `<img src="${img}" loading="lazy" alt="">` : `<div class="noimg">No Image</div>`}</div>
+          <div class="note-meta">
+            <h3>${it.title}</h3>
+            <time>${new Date(it.pubDate).toLocaleDateString('ja-JP')}</time>
+          </div>
+        </a>`;
+    }));
+
+    wrap.innerHTML = `
+      <div class="note-grid">${cards.join('')}</div>
+      <div style="text-align:center;margin-top:16px">
+        <a class="btn" href="https://note.com/loyal_dill1011" target="_blank">もっと読む</a>
+      </div>`;
+  } catch (e) {
+    wrap.innerHTML = `<p style="color:#c00">noteの読み込みに失敗しました。</p>`;
+    console.error(e);
+  }
+})();
+</script>
+
 </body>
 </html>
