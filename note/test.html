@@ -1,110 +1,109 @@
-<!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>note画像テスト</title>
+<!-- ===== note 最新3件（横並び）ここから ===== -->
+<section id="note-latest" class="section">
+  <h2 class="section-title">最新のnote</h2>
+  <div id="note-grid-latest" class="note-grid"></div>
+  <div class="note-actions">
+    <a class="btn-more" href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">もっと読む</a>
+  </div>
+</section>
+
 <style>
-body{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,Meiryo,"Noto Sans JP",sans-serif;margin:20px}
-.note-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.note-card{display:block;border:1px solid #eee;border-radius:12px;overflow:hidden;background:#fff;text-decoration:none;color:inherit}
-.note-thumb{aspect-ratio:16/9;background:#f6f6f6}
-.note-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.note-meta{padding:12px}
-.note-meta h3{font-size:16px;line-height:1.4;margin:0 0 6px}
-.noimg{width:100%;height:100%;display:grid;place-items:center;color:#999;font-size:12px}
-.btn{display:inline-block;padding:.6em 1.2em;border-radius:999px;border:1px solid #333;text-decoration:none}
+/* ===== noteカード部分のスタイル ===== */
+.note-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 16px; 
+}
+@media (max-width: 900px) { 
+  .note-grid { grid-template-columns: repeat(2, 1fr); } 
+}
+@media (max-width: 640px) { 
+  .note-grid { grid-template-columns: 1fr; } 
+}
+
+.note-card { 
+  background: #fff; 
+  border-radius: 14px; 
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08); 
+  transition: transform .15s, box-shadow .15s; 
+}
+.note-card:hover { 
+  transform: translateY(-3px); 
+  box-shadow: 0 10px 22px rgba(0,0,0,.12); 
+}
+
+.note-thumb-wrap { 
+  aspect-ratio: 16/9; 
+  background:#f3f3f3; 
+  overflow:hidden; 
+}
+.note-thumb { 
+  width:100%; 
+  height:100%; 
+  object-fit:cover; 
+  display:block; 
+}
+.noimg {
+  width:100%;
+  height:100%;
+  display:grid;
+  place-items:center;
+  color:#999;
+  font-size:.9rem;
+}
+
+.note-meta { padding: .9rem .95rem 1rem; }
+.note-title { font-size: 1rem; line-height: 1.5; margin: 0 0 .35rem; }
+.note-date { font-size: .85rem; color: #666; }
+
+.note-actions { text-align: center; margin-top: 1rem; }
+.btn-more { 
+  display:inline-block; 
+  padding:.7rem 1.2rem; 
+  border-radius:999px;
+  background:#F4B400; 
+  color:#222; 
+  font-weight:700; 
+  text-decoration:none;
+  box-shadow:0 4px 12px rgba(244,180,0,.35); 
+}
 </style>
-</head>
-<body>
-  <h1>最新のnote（画像つき）テスト</h1>
-  <section id="note" class="note-section"></section>
 
 <script>
 (async () => {
-  const feed = 'https://note.com/loyal_dill1011/rss';
-  const rss2json = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feed);
-  const ogProxy = 'https://r.jina.ai/'; // 記事のOGタグを解析してくれる無料API
-  const wrap = document.querySelector('#note');
+  const grid = document.getElementById('note-grid-latest');
+  if (!grid) return;
 
   try {
-    const res = await fetch(rss2json);
-    if (!res.ok) throw new Error('RSS fetch failed');
-    const data = await res.json();
-
-    const items = (data.items || []).slice(0, 3);
-    const cards = await Promise.all(items.map(async it => {
-      // まずRSS内から探す
-      let img = (it.description?.match(/<img[^>]+src="([^"]+)"/)?.[1]) || it.enclosure?.link || it.thumbnail || '';
-      // なければOG画像を取得
-      if (!img) {
-        try {
-          const ogRes = await fetch(ogProxy + it.link);
-          const text = await ogRes.text();
-          img = text.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i)?.[1] || '';
-        } catch (e) {
-          console.warn('OG fetch failed for', it.link);
-        }
-      }
-
-      return `
-        <a class="note-card" href="${it.link}" target="_blank" rel="noopener">
-          <div class="note-thumb">${img ? `<img src="${img}" loading="lazy" alt="">` : `<div class="noimg">No Image</div>`}</div>
-          <div class="note-meta">
-            <h3>${it.title}</h3>
-            <time>${new Date(it.pubDate).toLocaleDateString('ja-JP')}</time>
-          </div>
-        </a>`;
-    }));
-
-    wrap.innerHTML = `
-      <div class="note-grid">${cards.join('')}</div>
-      <div style="text-align:center;margin-top:16px">
-        <a class="btn" href="https://note.com/loyal_dill1011" target="_blank">もっと読む</a>
-      </div>`;
-  } catch (e) {
-    wrap.innerHTML = `<p style="color:#c00">noteの読み込みに失敗しました。</p>`;
-    console.error(e);
-  }
-})();
-</script>
-
-
-
-
-
-  <script>
-(async () => {
-  const wrap = document.querySelector('#note');
-  try {
+    // GitHub Actionsで生成されるJSONを読み込む
     const res = await fetch('/assets/note_feed.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('no json');
     const data = await res.json();
     const items = (data.items || []).slice(0, 3);
-    wrap.innerHTML = `
-      <div class="note-grid">
-        ${items.map(it => `
-          <a class="note-card" href="${it.link}" target="_blank" rel="noopener">
-            <div class="note-thumb">
-              ${it.image ? `<img src="${it.image}" loading="lazy" alt="">` : `<div class="noimg">No Image</div>`}
-            </div>
-            <div class="note-meta">
-              <h3>${it.title}</h3>
-              <time>${new Date(it.pubDate).toLocaleDateString('ja-JP')}</time>
-            </div>
-          </a>
-        `).join('')}
-      </div>
-      <div style="text-align:center;margin-top:16px">
-        <a class="btn" href="https://note.com/loyal_dill1011" target="_blank">もっと読む</a>
-      </div>`;
+
+    // noteカードを生成
+    const cards = items.map(it => `
+      <article class="note-card">
+        <a class="note-link" href="${it.link}" target="_blank" rel="noopener">
+          <div class="note-thumb-wrap">
+            ${it.image
+              ? `<img class="note-thumb" src="${it.image}" alt="${it.title}" loading="lazy">`
+              : `<div class="noimg">No Image</div>`}
+          </div>
+          <div class="note-meta">
+            <h3 class="note-title">${it.title}</h3>
+            <time class="note-date">${new Date(it.pubDate).toLocaleDateString('ja-JP')}</time>
+          </div>
+        </a>
+      </article>
+    `).join('');
+
+    grid.innerHTML = cards || '<p style="color:#666">記事が見つかりませんでした。</p>';
   } catch (e) {
-    wrap.innerHTML = `<p style="color:#c00">noteの読み込みに失敗しました。</p>`;
-    console.error(e);
+    console.error('[note]', e);
+    grid.innerHTML = '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
   }
 })();
 </script>
-
-
-</body>
-</html>
+<!-- ===== note 最新3件（横並び）ここまで ===== -->
