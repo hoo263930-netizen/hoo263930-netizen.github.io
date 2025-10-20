@@ -316,48 +316,57 @@
 
 
       
+<!-- noteセクションのすぐ下に置く -->
+<section id="line" class="line-info band">
+  <div class="container">
+    <div class="line-inner">
+      <div class="line-media">
+        <img class="square-img" src="/images/line-badge.png" alt="公式LINEご案内画像">
+      </div>
+      <div class="line-copy">
+        <h2>💬 公式LINEのご案内</h2>
+        <p>
+          遊べるお寺プロジェクトでは、イベント情報や活動報告を
+          <strong>月初と月末</strong>に「LINE公式アカウント」でお届けしています。<br>
+          お寺×遊び×つながりの最新情報を受け取りたい方は、ぜひご登録ください。
+        </p>
+        <ul class="line-benefits">
+          <li>📅 次回イベントの案内</li>
+          <li>📝 月末の活動レポート</li>
+          <li>🧘‍♂️ たまに“おもしろ仏教”トーク</li>
+        </ul>
+        <div class="line-actions">
+          <a class="line-btn" href="https://lin.ee/XXXXXX" target="_blank" rel="noopener">友だち追加はこちら</a>
+          <div class="line-qr">
+            <img src="/images/line_qr.png" alt="LINE友だち追加用QR" width="160" height="160">
+            <small>スマホでQRを読み取って追加できます</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-      /* セクションの上下余白と背景帯 */
-.note-section { margin-bottom: 36px; }              /* noteの下を少し空ける */
-.band { background: #f7fff9; }                      /* うっすらLINE感の帯 */
+<style>
+/* --- ここからCSS --- */
+.note-section { margin-bottom: 36px; }
+.band { background: #f7fff9; }
 .line-info { padding: 48px 0; }
 .container { width: min(1100px, 92%); margin: 0 auto; }
+.line-inner { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 32px; align-items: center; }
+@media (max-width: 900px) { .line-inner { grid-template-columns: 1fr; } }
+.square-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 16px; box-shadow: 0 6px 22px rgba(0,0,0,.08); }
+.line-copy h2 { margin: 0 0 10px; font-size: clamp(22px, 2.4vw, 28px); }
+.line-copy p { margin: 0 0 10px; line-height: 1.9; }
+.line-benefits { margin: 6px 0 16px; padding-left: 1.2em; }
+.line-benefits li { margin: 4px 0; }
+.line-actions { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+.line-btn { display: inline-block; padding: 12px 20px; border-radius: 999px; background: #06C755; color: #fff; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(6,199,85,.25); }
+.line-btn:hover { filter: brightness(1.05); }
+.line-qr small { display: block; margin-top: 6px; color: #666; }
+/* --- ここまでCSS --- */
+</style>
 
-/* 2カラム配置と揃え */
-.line-inner{
-  display:grid; grid-template-columns: 0.85fr 1.15fr;
-  gap: 32px; align-items: center;
-}
-@media (max-width: 900px){ .line-inner{ grid-template-columns: 1fr; } }
-
-/* 正方形画像をしっかり見せる */
-.square-img{
-  width:100%; aspect-ratio:1/1; object-fit:cover;
-  border-radius:16px; box-shadow:0 6px 22px rgba(0,0,0,.08);
-}
-
-/* 文章と見出し */
-.line-copy h2{ margin:0 0 10px; font-size:clamp(22px,2.4vw,28px); }
-.line-copy p{ margin:0 0 10px; line-height:1.9; }
-.line-benefits{ margin:6px 0 16px; padding-left:1.2em; }
-.line-benefits li{ margin:4px 0; }
-
-/* ボタン＆QR並び */
-.line-actions{ display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
-.line-btn{
-  display:inline-block; padding:12px 20px; border-radius:999px;
-  background:#06C755; color:#fff; font-weight:700; text-decoration:none;
-  box-shadow:0 4px 14px rgba(6,199,85,.25);
-}
-.line-btn:hover{ filter:brightness(1.05); }
-.line-qr small{ display:block; margin-top:6px; color:#666; }
-
-/* 画像が読めない時の見栄え（パス間違い検知用） */
-img[alt][src=""], img:not([src]){
-  background:#eee; color:#999; display:inline-block;
-  width:180px; height:180px; border-radius:12px;
-}
 
 
 
