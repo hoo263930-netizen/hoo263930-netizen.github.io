@@ -69,5 +69,42 @@ body{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helv
 })();
 </script>
 
+
+
+
+
+  <script>
+(async () => {
+  const wrap = document.querySelector('#note');
+  try {
+    const res = await fetch('/assets/note_feed.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('no json');
+    const data = await res.json();
+    const items = (data.items || []).slice(0, 3);
+    wrap.innerHTML = `
+      <div class="note-grid">
+        ${items.map(it => `
+          <a class="note-card" href="${it.link}" target="_blank" rel="noopener">
+            <div class="note-thumb">
+              ${it.image ? `<img src="${it.image}" loading="lazy" alt="">` : `<div class="noimg">No Image</div>`}
+            </div>
+            <div class="note-meta">
+              <h3>${it.title}</h3>
+              <time>${new Date(it.pubDate).toLocaleDateString('ja-JP')}</time>
+            </div>
+          </a>
+        `).join('')}
+      </div>
+      <div style="text-align:center;margin-top:16px">
+        <a class="btn" href="https://note.com/loyal_dill1011" target="_blank">もっと読む</a>
+      </div>`;
+  } catch (e) {
+    wrap.innerHTML = `<p style="color:#c00">noteの読み込みに失敗しました。</p>`;
+    console.error(e);
+  }
+})();
+</script>
+
+
 </body>
 </html>
