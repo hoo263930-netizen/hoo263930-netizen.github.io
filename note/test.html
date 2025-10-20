@@ -1,95 +1,61 @@
-<script>
-(async () => {
-  const RSS = "/note/feed.xml";
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>note画像テスト</title>
+<style>
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,Meiryo,"Noto Sans JP",sans-serif;margin:20px}
+.note-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.note-card{display:block;border:1px solid #eee;border-radius:12px;overflow:hidden;background:#fff;text-decoration:none;color:inherit}
+.note-thumb{aspect-ratio:16/9;background:#f6f6f6}
+.note-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.note-meta{padding:12px}
+.note-meta h3{font-size:16px;line-height:1.4;margin:0 0 6px}
+.noimg{width:100%;height:100%;display:grid;place-items:center;color:#999;font-size:12px}
+.btn{display:inline-block;padding:.6em 1.2em;border-radius:999px;border:1px solid #333;text-decoration:none}
+</style>
+</head>
+<body>
+  <h1>最新のnote（画像つき）テスト</h1>
+  <section id="note" class="note-section"></section>
 
-  // 便利関数
-  const abs = (u)=>{
-    if (!u) return "";
-    if (/^https?:\/\//i.test(u)) return u;
-    if (u.startsWith("//")) return "https:" + u;
-    if (u.startsWith("/"))  return "https://note.com" + u;
-    return u;
-  };
-  const FALLBACK = "https://assets.st-note.com/production/uploads/images/default/ogp.png";
-  const prox  = (u)=> u ? `https://images.weserv.nl/?url=${encodeURIComponent(u.replace(/^https?:\/\//,''))}&output=jpg` : "";
+  <script>
+  (async () => {
+    const feed = 'https://note.com/loyal_dill1011/rss';
+    const url = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feed);
+    const wrap = document.querySelector('#note');
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('fetch failed');
+      const data = await res.json();
 
-  // HTML文字列 -> 最初の<img>src 抜き
-  const firstImgFromHTML = (html)=>{
-    if (!html) return "";
-    const decoded = new DOMParser().parseFromString(html, "text/html").documentElement.textContent || html;
-    const doc = new DOMParser().parseFromString(decoded, "text/html");
-    const img = doc.querySelector("img");
-    return img ? (img.getAttribute("src") || img.getAttribute("data-src") || img.getAttribute("data-original") || "") : "";
-  };
+      const items = (data.items || []).slice(0, 3).map(it => {
+        const img =
+          (it.description?.match(/<img[^>]+src="([^"]+)"/)?.[1]) ||
+          it.enclosure?.link ||
+          it.thumbnail || '';
 
-  // RSSを読む
-  const res = await fetch(RSS, {cache:"no-store"});
-  if (!res.ok) throw new Error("mirror fetch failed: "+res.status);
-  const xml = new DOMParser().parseFromString(await res.text(), "text/xml");
+        return `
+          <a class="note-card" href="${it.link}" target="_blank" rel="noopener">
+            <div class="note-thumb">${img ? `<img src="${img}" loading="lazy" alt="">` : `<div class="noimg">No Image</div>`}</div>
+            <div class="note-meta">
+              <h3>${it.title}</h3>
+              <time>${new Date(it.pubDate).toLocaleDateString('ja-JP')}</time>
+            </div>
+          </a>`;
+      }).join('');
 
-  const it  = xml.querySelector("item");            // ← ここで it を決める
-  const title = it.querySelector("title")?.textContent ?? "";
-  const link  = it.querySelector("link")?.textContent ?? "#";
-
-  // 画像抽出（優先順: media:thumbnail → enclosure[url] → 本文<img>）
-  const mediaNS = "http://search.yahoo.com/mrss/";
-  let raw = "";
-
-  // 1) media:thumbnail（NS対応）
-  const thumbs = it.getElementsByTagNameNS(mediaNS, "thumbnail");
-  if (thumbs && thumbs.length) {
-    const n = thumbs[0];
-    raw = (n.getAttribute("url") || n.textContent || "").trim();
-  }
-
-  // 2) enclosure の url
-  if (!raw) {
-    const enc = it.querySelector("enclosure[url]");
-    if (enc) raw = enc.getAttribute("url") || "";
-  }
-
-  // 3) content:encoded / description から最初の<img>
-  if (!raw) {
-    const html = it.querySelector("content\\:encoded")?.textContent
-              || it.querySelector("description")?.textContent || "";
-    raw = firstImgFromHTML(html);
-  }
-
-  // 絶対化 + 最終フォールバック
-  const imgRaw = abs(raw || FALLBACK);
-
-  // 表示（weserv経由をまず試す）
-  const el = document.getElementById("card");
-  const srcProx = prox(imgRaw);
-
-  el.innerHTML = `
-    <a href="${link}" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none">
-      <div style="aspect-ratio:16/9;background:#eee;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.08)">
-        <img id="ph" alt="${title}" loading="eager"
-             style="width:100%;height:100%;object-fit:cover;display:block">
-      </div>
-      <div style="padding:12px 14px"><strong>${title}</strong></div>
-      <div style="font-size:12px;color:#666;padding:0 14px 12px">
-        raw: ${imgRaw}<br>proxied: ${srcProx}
-      </div>
-    </a>
-  `;
-
-  // フォールバック連鎖（weserv → raw 直 → weserv(FALLBACK) → FALLBACK）
-  const ph = document.getElementById("ph");
-  const candidates = [
-    srcProx,
-    imgRaw,
-    prox(FALLBACK),
-    FALLBACK
-  ].filter(Boolean);
-
-  let i = 0;
-  const tryNext = () => {
-    if (i >= candidates.length) return;
-    ph.src = candidates[i++];
-  };
-  ph.addEventListener("error", tryNext);
-  tryNext(); // 最初の候補から開始
-})();
-</script>
+      wrap.innerHTML = `
+        <div class="note-grid">${items}</div>
+        <div style="text-align:center;margin-top:16px">
+          <a class="btn" href="/note/">もっと読む</a>
+        </div>`;
+    } catch (e) {
+      wrap.innerHTML = `<p style="color:#c00">noteの読み込みに失敗しました。</p>`;
+      console.error(e);
+    }
+  })();
+  </script>
+</body>
+</html>
