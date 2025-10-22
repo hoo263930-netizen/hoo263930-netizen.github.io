@@ -437,6 +437,44 @@
 
 
 
+
+  /* ▼ LINE セクションの下余白を徹底的に詰める */
+#line{
+  padding: 40px 0 8px !important;   /* 下だけ8pxに固定 */
+  border-radius: 24px;
+  background:#2E7D32;
+  color:#fff;
+  overflow: hidden;
+  margin: 0 auto 28px;
+  width: min(1100px,94%);
+}
+
+/* 余白・最小高さ系をまとめて無効化 */
+#line .container,
+#line .line-inner,
+#line .line-copy,
+#line .line-media,
+#line .line-qr{
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  min-height: auto !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+/* QRの下説明にだけ8pxだけ与えて見切れ防止（必要なければ 0 に） */
+#line .line-qr{ text-align:center; }
+#line .line-qr small{ display:block; margin: 6px 0 8px !important; color:rgba(255,255,255,.8); }
+
+/* キャラ側の白カードはそのまま */
+#line .white-card{
+  background:#fff !important;
+  border-radius:20px;
+  padding:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
   
 </style>
 
