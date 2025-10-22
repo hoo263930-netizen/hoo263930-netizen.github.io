@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>遊べるお寺プロジェクト</title>
   <meta name="description" content="楽しく学び、遊んでつながる。遊べるお寺プロジェクトの公式サイト。イベント情報・活動報告・お問い合わせはこちら。" />
+
+  <!-- 外部（LINE公式ボタン画像）への接続を先に用意して待ち時間短縮 -->
+  <link rel="preconnect" href="https://scdn.line-apps.com" crossorigin>
+
   <style>
     :root{
       --sky:#22a7ff;   /* アクセント青（ナビ下線） */
@@ -13,6 +17,9 @@
       --paper:#fff;
       --maxw:1100px;
       --rail:16px;
+      /* LINE用カラー */
+      --deep-green:#2E7D32;
+      --line-green:#06C755;
     }
     @media(min-width:900px){ :root{ --rail:24px; } }
 
@@ -41,39 +48,32 @@
     nav a + a{ border-left:2px solid #ddd; }
     nav a:hover{ color:#111; background:#fafafa; }
 
-/* ヒーロー */
-.hero{
-  margin:0;
-  background:#fff;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:clamp(380px, 62vw, 760px);
-  border-bottom:1px solid #eee;
-}
-
-.hero img{
-  height:100%;        /* ← 高さをヒーローに合わせる */
-  width:auto;         /* ← 横は自動（比率維持） */
-  max-width:100%;
-  object-fit:contain; /* ← 全体表示（左右切れ防止） */
-  display:block;
-  background:#fff;
-  opacity:0;
-  transition:opacity .6s ease;
-}
-.hero img.is-loaded{ opacity:1; }
-
-/* スマホは縦長になりやすいので、幅基準に切替 */
-@media (max-width:600px){
-  .hero{ height:clamp(260px, 60vw, 420px); }
-  .hero img{
-    width:100%;
-    height:auto;
-  }
-}
-
-
+    /* ヒーロー */
+    .hero{
+      margin:0;
+      background:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:clamp(380px, 62vw, 760px);
+      border-bottom:1px solid #eee;
+    }
+    .hero img{
+      height:100%;        /* ← 高さをヒーローに合わせる */
+      width:auto;         /* ← 横は自動（比率維持） */
+      max-width:100%;
+      object-fit:contain; /* ← 全体表示（左右切れ防止） */
+      display:block;
+      background:#fff;
+      opacity:0;
+      transition:opacity .6s ease;
+    }
+    .hero img.is-loaded{ opacity:1; }
+    /* スマホは縦長になりやすいので、幅基準に切替 */
+    @media (max-width:600px){
+      .hero{ height:clamp(260px, 60vw, 420px); }
+      .hero img{ width:100%; height:auto; }
+    }
 
     /* 本文 */
     main{ padding:28px var(--rail) 56px; }
@@ -95,6 +95,73 @@
     .collab-btn:hover{ filter:brightness(.96); }
     .collab-btn:active{ transform:translateY(1px); }
     @media(min-width:880px){ .collab-inner{ grid-template-columns:380px 1fr; padding:clamp(28px,4vw,44px);} }
+
+    /* ===== noteカード部分のスタイル ===== */
+    .note-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
+    @media (max-width: 900px){ .note-grid{ grid-template-columns: repeat(2,1fr);} }
+    @media (max-width: 640px){ .note-grid{ grid-template-columns: 1fr;} }
+    .note-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.08); transition: transform .15s, box-shadow .15s; }
+    .note-card:hover { transform: translateY(-3px); box-shadow:0 10px 22px rgba(0,0,0,.12); }
+    .note-thumb-wrap { aspect-ratio:16/9; background:#f3f3f3; overflow:hidden; }
+    .note-thumb { width:100%; height:100%; object-fit:cover; display:block; }
+    .noimg { width:100%; height:100%; display:grid; place-items:center; color:#999; font-size:.9rem; }
+    .note-meta { padding:.9rem .95rem 1rem; }
+    .note-title { font-size:1rem; line-height:1.5; margin:0 0 .35rem; }
+    .note-date { font-size:.85rem; color:#666; }
+    .note-actions { text-align:center; margin-top:1rem; }
+    .btn-more { display:inline-block; padding:.7rem 1.2rem; border-radius:999px; background:#F4B400; color:#222; font-weight:700; text-decoration:none; box-shadow:0 4px 12px rgba(244,180,0,.35); }
+
+    /* ===== LINE セクション：最終版（角丸・下短め・高速化） ===== */
+    #line{
+      background:var(--deep-green); color:#fff;
+      padding:32px 0 6px;              /* ← 下を短く固定 */
+      border-radius:24px; overflow:hidden;
+      margin:0 auto 28px;
+      width:min(1100px,94%);           /* 緑“カード”として独立 */
+    }
+    /* 既存テーマの背景/影の干渉を無効化 */
+    #line .line-wrap,
+    #line .line-inner,
+    #line .line-copy{
+      background:transparent !important;
+      box-shadow:none !important;
+      border:0 !important;
+      padding-bottom:0 !important;
+      margin-bottom:0 !important;
+      min-height:auto !important;
+    }
+    /* レイアウト */
+    #line .line-wrap{ width:min(1100px,92%); margin:0 auto; }
+    #line .line-inner{
+      display:grid;
+      grid-template-columns:0.85fr 1.15fr;
+      gap:28px; align-items:start;
+    }
+    @media (max-width:900px){ #line .line-inner{ grid-template-columns:1fr; } }
+
+    /* 左だけ白カード（透過の粗さを隠す） */
+    #line .white-card{
+      background:#fff !important; border-radius:20px; padding:16px;
+      box-shadow:0 8px 20px rgba(0,0,0,.15);
+    }
+    #line .square-img{ display:block; width:100%; height:auto; border-radius:14px; }
+
+    /* テキスト */
+    #line .line-copy h2{
+      margin:0 0 10px; font-size:clamp(22px,2.4vw,28px); color:#fff;
+    }
+    #line .line-copy p, #line .line-benefits{ color:rgba(255,255,255,.9); }
+    #line .line-benefits{ margin:6px 0 12px; padding-left:1.2em; }
+    #line .line-benefits li{ margin:4px 0; }
+
+    /* ボタン＆QR */
+    #line .line-buttons{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin:8px 0 12px; }
+    #line .line-qr{ text-align:center; }
+    #line .line-qr img{
+      background:#fff; border-radius:12px; padding:6px;
+      box-shadow:0 3px 10px rgba(0,0,0,.3);
+    }
+    #line .line-qr small{ display:block; margin:6px 0 6px; color:rgba(255,255,255,.8); }
 
     /* フッター */
     footer{ background:#f7f7f7; border-top:1px solid #eee; padding:14px var(--rail); text-align:center; font-size:.9rem; color:#666; }
@@ -130,362 +197,52 @@
         </p>
       </section>
 
-
-
-
-      
-
-<!-- ===== note 最新3件（横並び）ここから ===== -->
-<section id="note-latest" class="section">
-  <h2 class="section-title">最新のnote</h2>
-  <div id="note-grid-latest" class="note-grid"></div>
-  <div class="note-actions">
-    <a class="btn-more" href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">もっと読む</a>
-  </div>
-</section>
-
-<style>
-/* ===== noteカード部分のスタイル ===== */
-.note-grid { 
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 16px; 
-}
-@media (max-width: 900px) { 
-  .note-grid { grid-template-columns: repeat(2, 1fr); } 
-}
-@media (max-width: 640px) { 
-  .note-grid { grid-template-columns: 1fr; } 
-}
-
-.note-card { 
-  background: #fff; 
-  border-radius: 14px; 
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,.08); 
-  transition: transform .15s, box-shadow .15s; 
-}
-.note-card:hover { 
-  transform: translateY(-3px); 
-  box-shadow: 0 10px 22px rgba(0,0,0,.12); 
-}
-
-.note-thumb-wrap { 
-  aspect-ratio: 16/9; 
-  background:#f3f3f3; 
-  overflow:hidden; 
-}
-.note-thumb { 
-  width:100%; 
-  height:100%; 
-  object-fit:cover; 
-  display:block; 
-}
-.noimg {
-  width:100%;
-  height:100%;
-  display:grid;
-  place-items:center;
-  color:#999;
-  font-size:.9rem;
-}
-
-.note-meta { padding: .9rem .95rem 1rem; }
-.note-title { font-size: 1rem; line-height: 1.5; margin: 0 0 .35rem; }
-.note-date { font-size: .85rem; color: #666; }
-
-.note-actions { text-align: center; margin-top: 1rem; }
-.btn-more { 
-  display:inline-block; 
-  padding:.7rem 1.2rem; 
-  border-radius:999px;
-  background:#F4B400; 
-  color:#222; 
-  font-weight:700; 
-  text-decoration:none;
-  box-shadow:0 4px 12px rgba(244,180,0,.35); 
-}
-</style>
-
-<script>
-(async () => {
-  const grid = document.getElementById('note-grid-latest');
-  if (!grid) return;
-
-  try {
-    // GitHub Actionsで生成されるJSONを読み込む
-    const res = await fetch('/assets/note_feed.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('no json');
-    const data = await res.json();
-    const items = (data.items || []).slice(0, 3);
-
-    // noteカードを生成
-    const cards = items.map(it => `
-      <article class="note-card">
-        <a class="note-link" href="${it.link}" target="_blank" rel="noopener">
-          <div class="note-thumb-wrap">
-            ${it.image
-              ? `<img class="note-thumb" src="${it.image}" alt="${it.title}" loading="lazy">`
-              : `<div class="noimg">No Image</div>`}
-          </div>
-          <div class="note-meta">
-            <h3 class="note-title">${it.title}</h3>
-            <time class="note-date">${new Date(it.pubDate).toLocaleDateString('ja-JP')}</time>
-          </div>
-        </a>
-      </article>
-    `).join('');
-
-    grid.innerHTML = cards || '<p style="color:#666">記事が見つかりませんでした。</p>';
-  } catch (e) {
-    console.error('[note]', e);
-    grid.innerHTML = '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
-  }
-})();
-</script>
-<!-- ===== note 最新3件（横並び）ここまで ===== -->
-
-
-
-      
-
-
-<section id="line" class="line-info line-solid">
-  <div class="container">
-    <div class="line-inner">
-      <!-- キャラ部分だけ白カード -->
-      <div class="line-media white-card">
-        <img class="square-img" src="/images/line.png" alt="公式LINEご案内画像" loading="lazy">
-      </div>
-
-      <div class="line-copy">
-        <h2>💬 公式LINEのご案内</h2>
-        <p>
-          遊べるお寺プロジェクトでは、イベント情報や活動報告を
-          <strong>月初と月末</strong>に「LINE公式アカウント」でお届けしています。<br>
-          お寺×遊び×つながりの最新情報を受け取りたい方は、ぜひご登録ください。
-        </p>
-
-        <ul class="line-benefits">
-          <li>📅 月初に今月のイベント案内</li>
-          <li>📝 月末の活動レポート</li>
-        </ul>
-
-        <div class="line-buttons">
-          <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
-            <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
-                 alt="友だち追加" height="36" border="0">
-          </a>
+      <!-- ===== note 最新3件（横並び） ===== -->
+      <section id="note-latest" class="section">
+        <h2 class="section-title">最新のnote</h2>
+        <div id="note-grid-latest" class="note-grid"></div>
+        <div class="note-actions">
+          <a class="btn-more" href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">もっと読む</a>
         </div>
+      </section>
 
-        <div class="line-qr">
-          <img src="/images/line_qr.png" alt="LINE友だち追加用QR" width="160" height="160" loading="lazy">
-          <small>スマホでQRを読み取って追加できます</small>
+      <!-- ===== LINE セクション（角丸・下短め・白カード） ===== -->
+      <section id="line" class="line-info">
+        <div class="line-wrap">
+          <div class="line-inner">
+            <!-- 左：キャラ画像を白カードに載せる（透過の粗を隠す） -->
+            <div class="line-media white-card">
+              <img class="square-img" src="/images/line.png" alt="公式LINEご案内画像" width="560" height="560" decoding="async" fetchpriority="high">
+            </div>
+
+            <!-- 右：本文＋ボタン＋QR -->
+            <div class="line-copy">
+              <h2>💬 公式LINEのご案内</h2>
+              <p>
+                遊べるお寺プロジェクトでは、イベント情報や活動報告を
+                <strong>月初と月末</strong>に「LINE公式アカウント」でお届けしています。<br>
+                お寺×遊び×つながりの最新情報を受け取りたい方は、ぜひご登録ください。
+              </p>
+              <ul class="line-benefits">
+                <li>📅 月初に今月のイベント案内</li>
+                <li>📝 月末の活動レポート</li>
+              </ul>
+
+              <div class="line-buttons">
+                <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
+                  <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
+                      alt="友だち追加" width="136" height="36" loading="lazy" decoding="async">
+                </a>
+              </div>
+
+              <div class="line-qr">
+                <img src="/images/line_qr.png" alt="LINE友だち追加用QR" width="160" height="160" loading="lazy" decoding="async">
+                <small>スマホでQRを読み取って追加できます</small>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<style>
-:root {
-  --deep-green: #2E7D32; /* 背景 */
-  --line-green: #06C755; /* ボタン */
-}
-
-.line-info.line-solid {
-  background: var(--deep-green);
-  color: #fff;
-  padding: 60px 0;
-}
-
-.container {
-  width: min(1100px, 92%);
-  margin: 0 auto;
-}
-
-.line-inner {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 32px;
-  align-items: center;
-}
-@media (max-width: 900px) {
-  .line-inner { grid-template-columns: 1fr; }
-}
-
-/* ✅ キャラ部分だけ白背景カード */
-.white-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-.square-img {
-  width: 100%;
-  height: auto;
-  border-radius: 14px;
-}
-
-/* テキスト部分 */
-.line-copy h2 {
-  margin: 0 0 10px;
-  font-size: clamp(22px, 2.4vw, 28px);
-  color: #fff;
-}
-.line-copy p {
-  margin: 0 0 10px;
-  line-height: 1.9;
-  color: rgba(255,255,255,0.9);
-}
-.line-benefits {
-  margin: 6px 0 16px;
-  padding-left: 1.2em;
-  color: rgba(255,255,255,0.9);
-}
-.line-benefits li { margin: 4px 0; }
-
-.line-buttons {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-}
-
-/* QR */
-.line-qr {
-  margin-top: 8px;
-  text-align: center;
-}
-.line-qr img {
-  border-radius: 12px;
-  background: #fff;
-  padding: 6px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-}
-.line-qr small {
-  display: block;
-  margin-top: 6px;
-  color: rgba(255,255,255,0.8);
-}
-
-
-/* --- LINEセクションを全面深緑にしつつ、内側の白を打ち消す --- */
-#line { 
-  background: #2E7D32; /* 深い緑 */
-  color: #fff;
-  padding: 60px 0;
-}
-
-/* 既存テーマの白背景を強制オフ（重要！） */
-#line .container,
-#line .line-inner,
-#line .line-copy,
-#line .section,
-#line .section-body,
-#line .card,
-#line .content,
-#line .band { 
-  background: transparent !important;
-  box-shadow: none !important;
-  border: 0 !important;
-}
-
-/* キャラ側だけ白カードにする */
-#line .white-card {
-  background: #fff !important;
-  border-radius: 20px;
-  padding: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.15);
-}
-
-/* 画像の角丸は軽めでOK */
-#line .square-img { 
-  width: 100%;
-  height: auto;
-  border-radius: 14px;
-}
-
-/* 文字色（本文は少し淡く） */
-#line .line-copy h2 { color: #fff; }
-#line .line-copy p,
-#line .line-benefits { color: rgba(255,255,255,.9); }
-
-/* ボタン行・QR */
-#line .line-buttons { display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin: 12px 0 16px; }
-#line .line-qr { text-align:center; margin-top: 8px; }
-#line .line-qr img { background:#fff; border-radius:12px; padding:6px; box-shadow:0 3px 10px rgba(0,0,0,.3); }
-#line .line-qr small { color: rgba(255,255,255,.8); }
-
-
-
-
-
-
-
-/* LINEセクション全体（深緑部分） */
-#line {
-  background: #2E7D32;
-  color: #fff;
-  padding: 40px 0 8px; /* ← 下を8pxにして、全体の高さを圧縮 */
-  border-radius: 24px;
-  overflow: hidden;
-  margin: 0 auto 32px; /* ← 下の外側余白もやや短縮 */
-  width: min(1100px, 94%);
-}
-
-
-
-
-  /* ▼ LINE セクションの下余白を徹底的に詰める */
-#line{
-  padding: 40px 0 8px !important;   /* 下だけ8pxに固定 */
-  border-radius: 24px;
-  background:#2E7D32;
-  color:#fff;
-  overflow: hidden;
-  margin: 0 auto 28px;
-  width: min(1100px,94%);
-}
-
-/* 余白・最小高さ系をまとめて無効化 */
-#line .container,
-#line .line-inner,
-#line .line-copy,
-#line .line-media,
-#line .line-qr{
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-  min-height: auto !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  border: 0 !important;
-}
-
-/* QRの下説明にだけ8pxだけ与えて見切れ防止（必要なければ 0 に） */
-#line .line-qr{ text-align:center; }
-#line .line-qr small{ display:block; margin: 6px 0 8px !important; color:rgba(255,255,255,.8); }
-
-/* キャラ側の白カードはそのまま */
-#line .white-card{
-  background:#fff !important;
-  border-radius:20px;
-  padding:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,.15);
-}
-
-  
-</style>
-
-
-
-
-      
-
-      
-      
-
+      </section>
 
       <!-- コラボ募集 -->
       <section class="collab">
@@ -510,62 +267,77 @@
   </div>
 
   <!-- 月別フォルダからランダム表示（10月= /images/top/10/） -->
-<script>
-(function(){
-  // 今月の数字（例: 10月 -> "10"）
-  const month = String(new Date().getMonth() + 1).padStart(2, '0');
+  <script>
+  (function(){
+    const month = String(new Date().getMonth() + 1).padStart(2, '0');
+    const folder = `/images/top/${month}/`;
+    const baseNames = ['banner1','banner2','banner3','banner4','banner5'];
+    const exts = ['webp','png','jpg']; // 優先順
 
-  // フォルダ（10月は '/images/top/10/'）
-  const folder = `/images/top/${month}/`;
+    const heroImg = document.getElementById('hero-image');
 
-  // ✅ 用意したバナー5枚（ここを4→5に）
-  const baseNames = ['banner1','banner2','banner3','banner4','banner5'];
-  const exts = ['webp','png','jpg']; // 優先順で解決
+    Promise.all(baseNames.map(resolveExisting))
+      .then(list => list.filter(Boolean))
+      .then(valid => {
+        if (valid.length === 0) throw new Error('候補画像が見つかりません');
+        const pick = valid[Math.floor(Math.random() * valid.length)];
+        const pre = new Image();
+        pre.onload = () => { heroImg.src = pick; heroImg.classList.add('is-loaded'); };
+        pre.onerror = () => fallback();
+        pre.src = pick;
+      })
+      .catch(fallback);
 
-  const heroImg = document.getElementById('hero-image');
+    function resolveExisting(base){
+      return new Promise(resolve => {
+        let i = 0;
+        const tryNext = () => {
+          if (i >= exts.length) return resolve(null);
+          const url = `${folder}${base}.${exts[i++]}`;
+          const img = new Image();
+          img.onload = () => resolve(url);
+          img.onerror = tryNext;
+          img.src = url + '?v=1'; // キャッシュ抑制
+        };
+        tryNext();
+      });
+    }
+    function fallback(){
+      heroImg.classList.add('is-loaded');
+      console.warn('月別ランダム画像の表示に失敗しました。パスとファイル名をご確認ください。');
+    }
+  })();
+  </script>
 
-  // 候補URLを順にプリフライトして、存在するものだけに絞る
-  Promise.all(baseNames.map(resolveExisting))
-    .then(list => list.filter(Boolean))
-    .then(valid => {
-      if (valid.length === 0) throw new Error('候補画像が見つかりません');
-      const pick = valid[Math.floor(Math.random() * valid.length)];
-      const pre = new Image();
-      pre.onload = () => {
-        heroImg.src = pick;
-        heroImg.classList.add('is-loaded'); // フェードイン
-      };
-      pre.onerror = () => fallback();
-      pre.src = pick;
-    })
-    .catch(fallback);
-
-  function resolveExisting(base){
-    return new Promise(resolve => {
-      let i = 0;
-      const tryNext = () => {
-        if (i >= exts.length) return resolve(null);
-        const url = `${folder}${base}.${exts[i++]}`;
-        const img = new Image();
-        img.onload = () => resolve(url);
-        img.onerror = tryNext;
-        img.src = url + '?v=1'; // キャッシュ抑制
-      };
-      tryNext();
-    });
-  }
-
-  function fallback(){
-    // 任意のデフォルト（無ければ何もしない）
-    // heroImg.src = '/images/cover.png';
-    heroImg.classList.add('is-loaded');
-    console.warn('月別ランダム画像の表示に失敗しました。パスとファイル名をご確認ください。');
-  }
-})();
-</script>
-
-
-
-  
+  <!-- note 最新3件の描画 -->
+  <script>
+  (async () => {
+    const grid = document.getElementById('note-grid-latest');
+    if (!grid) return;
+    try {
+      const res = await fetch('/assets/note_feed.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('no json');
+      const data = await res.json();
+      const items = (data.items || []).slice(0, 3);
+      const cards = items.map(it => `
+        <article class="note-card">
+          <a class="note-link" href="${it.link}" target="_blank" rel="noopener">
+            <div class="note-thumb-wrap">
+              ${it.image ? `<img class="note-thumb" src="${it.image}" alt="${it.title}" loading="lazy" decoding="async">` : `<div class="noimg">No Image</div>`}
+            </div>
+            <div class="note-meta">
+              <h3 class="note-title">${it.title}</h3>
+              <time class="note-date">${new Date(it.pubDate).toLocaleDateString('ja-JP')}</time>
+            </div>
+          </a>
+        </article>
+      `).join('');
+      grid.innerHTML = cards || '<p style="color:#666">記事が見つかりませんでした。</p>';
+    } catch (e) {
+      console.error('[note]', e);
+      grid.innerHTML = '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
+    }
+  })();
+  </script>
 </body>
 </html>
