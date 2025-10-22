@@ -250,12 +250,14 @@
       
 
 
-<section id="line" class="line-info band">
+<!-- noteのすぐ下 -->
+<section id="line" class="line-info band band--tint">
   <div class="container">
     <div class="line-inner">
       <div class="line-media">
         <img class="square-img" src="/images/line.png" alt="公式LINEご案内画像" loading="lazy">
       </div>
+
       <div class="line-copy">
         <h2>💬 公式LINEのご案内</h2>
         <p>
@@ -268,15 +270,13 @@
           <li>📝 月末の活動レポート</li>
         </ul>
 
-        <!-- ボタン部分 -->
+        <!-- 左の丸ボタンは削除。公式画像ボタンだけ残す -->
         <div class="line-buttons">
-          <a class="line-btn" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">🌿 友だち追加はこちら</a>
-          <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
+          <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener" aria-label="LINEで友だち追加">
             <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0">
           </a>
         </div>
 
-        <!-- QRコード -->
         <div class="line-qr">
           <img src="/images/line_qr.png" alt="LINE友だち追加用QR" width="160" height="160" loading="lazy">
           <small>スマホでQRを読み取って追加できます</small>
@@ -287,8 +287,14 @@
 </section>
 
 <style>
+:root{
+  --line-green:#06C755;
+  --line-green-tint:#E9F9F0; /* 薄い帯用 */
+}
+
 .note-section { margin-bottom: 36px; }
 .band { background: #f7fff9; }
+.band--tint { background: var(--line-green-tint); } /* ← これで淡いLINEグリーン帯に */
 .line-info { padding: 48px 0; }
 .container { width: min(1100px, 92%); margin: 0 auto; }
 .line-inner { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 32px; align-items: center; }
@@ -299,39 +305,14 @@
 .line-benefits { margin: 6px 0 16px; padding-left: 1.2em; }
 .line-benefits li { margin: 4px 0; }
 
-/* ボタン部分を横並びに */
-.line-buttons {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 16px;
-}
+.line-buttons { display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-bottom:16px; }
 
-.line-btn {
-  display: inline-block;
-  padding: 12px 20px;
-  border-radius: 999px;
-  background: #06C755;
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 4px 14px rgba(6,199,85,.25);
-  white-space: nowrap;
-}
-.line-btn:hover { filter: brightness(1.05); }
-
-/* QRコード中央寄せ */
-.line-qr {
-  margin-top: 8px;
-  text-align: center;
-}
-.line-qr img {
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.1);
-}
-.line-qr small { display: block; margin-top: 6px; color: #666; }
+/* QR */
+.line-qr { margin-top: 8px; text-align: center; }
+.line-qr img { border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,.1); }
+.line-qr small { display:block; margin-top:6px; color:#666; }
 </style>
+
 
 
 
