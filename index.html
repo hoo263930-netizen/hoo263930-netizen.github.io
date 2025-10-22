@@ -250,7 +250,7 @@
       
 
 
-<section id="line" class="line-info band band--solid">
+<section id="line" class="line-info line-solid">
   <div class="container">
     <div class="line-inner">
       <div class="line-media">
@@ -264,6 +264,7 @@
           <strong>月初と月末</strong>に「LINE公式アカウント」でお届けしています。<br>
           お寺×遊び×つながりの最新情報を受け取りたい方は、ぜひご登録ください。
         </p>
+
         <ul class="line-benefits">
           <li>📅 月初に今月のイベント案内</li>
           <li>📝 月末の活動レポート</li>
@@ -271,7 +272,8 @@
 
         <div class="line-buttons">
           <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
-            <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0">
+            <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
+                 alt="友だち追加" height="36" border="0">
           </a>
         </div>
 
@@ -285,40 +287,90 @@
 </section>
 
 <style>
-:root{
-  --line-green:#06C755;
-  --deep-green:#2E7D32; /* LINE版の深緑 */
+:root {
+  --deep-green: #2E7D32; /* 背景の深緑 */
+  --line-green: #06C755; /* LINEボタン用の明るい緑 */
 }
-.band--solid {
+
+.line-info.line-solid {
   background: var(--deep-green);
   color: #fff;
+  padding: 60px 0;
 }
-.note-section { margin-bottom: 36px; }
-.line-info { padding: 48px 0; }
-.container { width: min(1100px, 92%); margin: 0 auto; }
-.line-inner { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 32px; align-items: center; }
-@media (max-width: 900px) { .line-inner { grid-template-columns: 1fr; } }
-.square-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 16px; box-shadow: 0 6px 22px rgba(0,0,0,.15); }
 
-.line-copy h2 { margin: 0 0 10px; font-size: clamp(22px, 2.4vw, 28px); color: #fff; }
-.line-copy p { margin: 0 0 10px; line-height: 1.9; color: rgba(255,255,255,0.85); }
-.line-benefits { margin: 6px 0 16px; padding-left: 1.2em; color: rgba(255,255,255,0.85); }
+/* 内側の白背景を打ち消す */
+.container, .line-inner, .line-copy {
+  background: transparent !important;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.line-inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 32px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .line-inner { grid-template-columns: 1fr; }
+}
+
+.square-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+}
+
+.line-copy h2 {
+  margin: 0 0 10px;
+  font-size: clamp(22px, 2.4vw, 28px);
+  color: #fff;
+}
+
+.line-copy p {
+  margin: 0 0 10px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.9);
+}
+
+.line-benefits {
+  margin: 6px 0 16px;
+  padding-left: 1.2em;
+  color: rgba(255,255,255,0.9);
+}
+
 .line-benefits li { margin: 4px 0; }
 
-.line-buttons { display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-bottom:16px; }
-.line-btn {
-  display: inline-block; padding: 12px 20px; border-radius: 999px;
-  background: var(--line-green); color:#fff; font-weight:700;
-  text-decoration:none; box-shadow: 0 4px 14px rgba(6,199,85,.25);
+.line-buttons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
 }
-.line-btn:hover { filter: brightness(1.1); }
 
-.line-qr { margin-top: 8px; text-align: center; }
-.line-qr img { border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,.2); }
-.line-qr small { display:block; margin-top:6px; color: rgba(255,255,255,0.7); }
+/* QR中央寄せ＋白縁で浮かせる */
+.line-qr {
+  margin-top: 8px;
+  text-align: center;
+}
+.line-qr img {
+  border-radius: 12px;
+  background: #fff;
+  padding: 6px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+.line-qr small {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255,255,255,0.8);
+}
 </style>
-
-
 
 
 
