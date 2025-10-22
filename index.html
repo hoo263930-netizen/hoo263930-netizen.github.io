@@ -253,7 +253,8 @@
 <section id="line" class="line-info line-solid">
   <div class="container">
     <div class="line-inner">
-      <div class="line-media">
+      <!-- キャラ部分だけ白カード -->
+      <div class="line-media white-card">
         <img class="square-img" src="/images/line.png" alt="公式LINEご案内画像" loading="lazy">
       </div>
 
@@ -288,19 +289,14 @@
 
 <style>
 :root {
-  --deep-green: #2E7D32; /* 背景の深緑 */
-  --line-green: #06C755; /* LINEボタン用の明るい緑 */
+  --deep-green: #2E7D32; /* 背景 */
+  --line-green: #06C755; /* ボタン */
 }
 
 .line-info.line-solid {
   background: var(--deep-green);
   color: #fff;
   padding: 60px 0;
-}
-
-/* 内側の白背景を打ち消す */
-.container, .line-inner, .line-copy {
-  background: transparent !important;
 }
 
 .container {
@@ -318,32 +314,35 @@
   .line-inner { grid-template-columns: 1fr; }
 }
 
+/* ✅ キャラ部分だけ白背景カード */
+.white-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
 .square-img {
   width: 100%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+  height: auto;
+  border-radius: 14px;
 }
 
+/* テキスト部分 */
 .line-copy h2 {
   margin: 0 0 10px;
   font-size: clamp(22px, 2.4vw, 28px);
   color: #fff;
 }
-
 .line-copy p {
   margin: 0 0 10px;
   line-height: 1.9;
   color: rgba(255,255,255,0.9);
 }
-
 .line-benefits {
   margin: 6px 0 16px;
   padding-left: 1.2em;
   color: rgba(255,255,255,0.9);
 }
-
 .line-benefits li { margin: 4px 0; }
 
 .line-buttons {
@@ -354,7 +353,7 @@
   margin-bottom: 16px;
 }
 
-/* QR中央寄せ＋白縁で浮かせる */
+/* QR */
 .line-qr {
   margin-top: 8px;
   text-align: center;
