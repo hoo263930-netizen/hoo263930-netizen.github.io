@@ -369,9 +369,64 @@
   margin-top: 6px;
   color: rgba(255,255,255,0.8);
 }
+
+
+/* --- LINEセクションを全面深緑にしつつ、内側の白を打ち消す --- */
+#line { 
+  background: #2E7D32; /* 深い緑 */
+  color: #fff;
+  padding: 60px 0;
+}
+
+/* 既存テーマの白背景を強制オフ（重要！） */
+#line .container,
+#line .line-inner,
+#line .line-copy,
+#line .section,
+#line .section-body,
+#line .card,
+#line .content,
+#line .band { 
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+/* キャラ側だけ白カードにする */
+#line .white-card {
+  background: #fff !important;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+/* 画像の角丸は軽めでOK */
+#line .square-img { 
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+
+/* 文字色（本文は少し淡く） */
+#line .line-copy h2 { color: #fff; }
+#line .line-copy p,
+#line .line-benefits { color: rgba(255,255,255,.9); }
+
+/* ボタン行・QR */
+#line .line-buttons { display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin: 12px 0 16px; }
+#line .line-qr { text-align:center; margin-top: 8px; }
+#line .line-qr img { background:#fff; border-radius:12px; padding:6px; box-shadow:0 3px 10px rgba(0,0,0,.3); }
+#line .line-qr small { color: rgba(255,255,255,.8); }
+
+
+
+  
 </style>
 
 
+
+
+      
 
       
       
