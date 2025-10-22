@@ -1,47 +1,29 @@
 <section class="note-section">
-  <h2>📝 最新のnote記事</h2>
-  <div class="note-cards">
-    <article class="note-card">
-      <h3 class="note-title">学童での健康マージャン体験会を企画中です</h3>
-      <p class="note-meta">2025/10/22｜地域・企画</p>
-      <p class="note-desc">冬休みに向けて、子どもたちと地域の人が一緒に遊べる...</p>
-    </article>
-    <!-- 以降カードを並べる -->
+  <h2>📝 最新のnote記事（テスト）</h2>
+  <div id="note-grid"></div>
+  <div class="note-actions">
+    <a class="btn-more" href="https://note.com/loyal_dill1011" target="_blank">もっと読む</a>
   </div>
 </section>
 
-<style>
-.note-section { padding:40px 20px; background:#faf9f6; }
-.note-section h2 { font-size:1.6em; margin-bottom:20px; text-align:center; }
-.note-cards {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-}
-.note-card {
-  background:white;
-  border-radius:14px;
-  box-shadow:0 4px 14px rgba(0,0,0,0.08);
-  padding:18px;
-  transition:transform .2s, box-shadow .2s;
-}
-.note-card:hover {
-  transform:translateY(-3px);
-  box-shadow:0 6px 18px rgba(0,0,0,0.15);
-}
-.note-title {
-  font-weight:700;
-  font-size:1.1em;
-  margin-bottom:6px;
-}
-.note-meta {
-  font-size:.85em;
-  color:#777;
-  margin-bottom:10px;
-}
-.note-desc {
-  font-size:.95em;
-  line-height:1.5;
-  color:#444;
-}
-</style>
+<script>
+  fetch("https://api.rss2json.com/v1/api.json?rss_url=https://note.com/loyal_dill1011/rss")
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById("note-grid");
+      container.innerHTML = data.items.slice(0, 3).map(item => `
+        <div class="note-card">
+          <h3 class="note-title">
+            <a href="${item.link}" target="_blank">${item.title}</a>
+          </h3>
+          <p class="note-meta">${new Date(item.pubDate).toLocaleDateString()}</p>
+          <p class="note-desc">${item.description.replace(/<[^>]+>/g, '').slice(0, 80)}...</p>
+        </div>
+      `).join('');
+    })
+    .catch(error => {
+      document.getElementById("note-grid").innerHTML =
+        "<p style='color:red;'>noteの読み込みに失敗しました。</p>";
+      console.error("note読み込みエラー:", error);
+    });
+</script>
