@@ -1,109 +1,47 @@
-<!-- ===== note 最新3件（横並び）ここから ===== -->
-<section id="note-latest" class="section">
-  <h2 class="section-title">最新のnote</h2>
-  <div id="note-grid-latest" class="note-grid"></div>
-  <div class="note-actions">
-    <a class="btn-more" href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">もっと読む</a>
+<section class="note-section">
+  <h2>📝 最新のnote記事</h2>
+  <div class="note-cards">
+    <article class="note-card">
+      <h3 class="note-title">学童での健康マージャン体験会を企画中です</h3>
+      <p class="note-meta">2025/10/22｜地域・企画</p>
+      <p class="note-desc">冬休みに向けて、子どもたちと地域の人が一緒に遊べる...</p>
+    </article>
+    <!-- 以降カードを並べる -->
   </div>
 </section>
 
 <style>
-/* ===== noteカード部分のスタイル ===== */
-.note-grid { 
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 16px; 
-}
-@media (max-width: 900px) { 
-  .note-grid { grid-template-columns: repeat(2, 1fr); } 
-}
-@media (max-width: 640px) { 
-  .note-grid { grid-template-columns: 1fr; } 
-}
-
-.note-card { 
-  background: #fff; 
-  border-radius: 14px; 
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,.08); 
-  transition: transform .15s, box-shadow .15s; 
-}
-.note-card:hover { 
-  transform: translateY(-3px); 
-  box-shadow: 0 10px 22px rgba(0,0,0,.12); 
-}
-
-.note-thumb-wrap { 
-  aspect-ratio: 16/9; 
-  background:#f3f3f3; 
-  overflow:hidden; 
-}
-.note-thumb { 
-  width:100%; 
-  height:100%; 
-  object-fit:cover; 
-  display:block; 
-}
-.noimg {
-  width:100%;
-  height:100%;
+.note-section { padding:40px 20px; background:#faf9f6; }
+.note-section h2 { font-size:1.6em; margin-bottom:20px; text-align:center; }
+.note-cards {
   display:grid;
-  place-items:center;
-  color:#999;
-  font-size:.9rem;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
 }
-
-.note-meta { padding: .9rem .95rem 1rem; }
-.note-title { font-size: 1rem; line-height: 1.5; margin: 0 0 .35rem; }
-.note-date { font-size: .85rem; color: #666; }
-
-.note-actions { text-align: center; margin-top: 1rem; }
-.btn-more { 
-  display:inline-block; 
-  padding:.7rem 1.2rem; 
-  border-radius:999px;
-  background:#F4B400; 
-  color:#222; 
-  font-weight:700; 
-  text-decoration:none;
-  box-shadow:0 4px 12px rgba(244,180,0,.35); 
+.note-card {
+  background:white;
+  border-radius:14px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+  padding:18px;
+  transition:transform .2s, box-shadow .2s;
+}
+.note-card:hover {
+  transform:translateY(-3px);
+  box-shadow:0 6px 18px rgba(0,0,0,0.15);
+}
+.note-title {
+  font-weight:700;
+  font-size:1.1em;
+  margin-bottom:6px;
+}
+.note-meta {
+  font-size:.85em;
+  color:#777;
+  margin-bottom:10px;
+}
+.note-desc {
+  font-size:.95em;
+  line-height:1.5;
+  color:#444;
 }
 </style>
-
-<script>
-(async () => {
-  const grid = document.getElementById('note-grid-latest');
-  if (!grid) return;
-
-  try {
-    // GitHub Actionsで生成されるJSONを読み込む
-    const res = await fetch('/assets/note_feed.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('no json');
-    const data = await res.json();
-    const items = (data.items || []).slice(0, 3);
-
-    // noteカードを生成
-    const cards = items.map(it => `
-      <article class="note-card">
-        <a class="note-link" href="${it.link}" target="_blank" rel="noopener">
-          <div class="note-thumb-wrap">
-            ${it.image
-              ? `<img class="note-thumb" src="${it.image}" alt="${it.title}" loading="lazy">`
-              : `<div class="noimg">No Image</div>`}
-          </div>
-          <div class="note-meta">
-            <h3 class="note-title">${it.title}</h3>
-            <time class="note-date">${new Date(it.pubDate).toLocaleDateString('ja-JP')}</time>
-          </div>
-        </a>
-      </article>
-    `).join('');
-
-    grid.innerHTML = cards || '<p style="color:#666">記事が見つかりませんでした。</p>';
-  } catch (e) {
-    console.error('[note]', e);
-    grid.innerHTML = '<p style="color:#c00">noteの読み込みに失敗しました。</p>';
-  }
-})();
-</script>
-<!-- ===== note 最新3件（横並び）ここまで ===== -->
