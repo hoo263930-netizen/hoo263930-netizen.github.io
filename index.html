@@ -250,8 +250,7 @@
       
 
 
-<!-- noteのすぐ下 -->
-<section id="line" class="line-info band band--tint">
+<section id="line" class="line-info band band--solid">
   <div class="container">
     <div class="line-inner">
       <div class="line-media">
@@ -270,9 +269,8 @@
           <li>📝 月末の活動レポート</li>
         </ul>
 
-        <!-- 左の丸ボタンは削除。公式画像ボタンだけ残す -->
         <div class="line-buttons">
-          <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener" aria-label="LINEで友だち追加">
+          <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
             <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0">
           </a>
         </div>
@@ -289,30 +287,36 @@
 <style>
 :root{
   --line-green:#06C755;
-  --line-green-tint:#E9F9F0; /* 薄い帯用 */
+  --deep-green:#2E7D32; /* LINE版の深緑 */
 }
-
+.band--solid {
+  background: var(--deep-green);
+  color: #fff;
+}
 .note-section { margin-bottom: 36px; }
-.band { background: #f7fff9; }
-.band--tint { background: var(--line-green-tint); } /* ← これで淡いLINEグリーン帯に */
 .line-info { padding: 48px 0; }
 .container { width: min(1100px, 92%); margin: 0 auto; }
 .line-inner { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 32px; align-items: center; }
 @media (max-width: 900px) { .line-inner { grid-template-columns: 1fr; } }
-.square-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 16px; box-shadow: 0 6px 22px rgba(0,0,0,.08); }
-.line-copy h2 { margin: 0 0 10px; font-size: clamp(22px, 2.4vw, 28px); }
-.line-copy p { margin: 0 0 10px; line-height: 1.9; }
-.line-benefits { margin: 6px 0 16px; padding-left: 1.2em; }
+.square-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 16px; box-shadow: 0 6px 22px rgba(0,0,0,.15); }
+
+.line-copy h2 { margin: 0 0 10px; font-size: clamp(22px, 2.4vw, 28px); color: #fff; }
+.line-copy p { margin: 0 0 10px; line-height: 1.9; color: rgba(255,255,255,0.85); }
+.line-benefits { margin: 6px 0 16px; padding-left: 1.2em; color: rgba(255,255,255,0.85); }
 .line-benefits li { margin: 4px 0; }
 
 .line-buttons { display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-bottom:16px; }
+.line-btn {
+  display: inline-block; padding: 12px 20px; border-radius: 999px;
+  background: var(--line-green); color:#fff; font-weight:700;
+  text-decoration:none; box-shadow: 0 4px 14px rgba(6,199,85,.25);
+}
+.line-btn:hover { filter: brightness(1.1); }
 
-/* QR */
 .line-qr { margin-top: 8px; text-align: center; }
-.line-qr img { border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,.1); }
-.line-qr small { display:block; margin-top:6px; color:#666; }
+.line-qr img { border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+.line-qr small { display:block; margin-top:6px; color: rgba(255,255,255,0.7); }
 </style>
-
 
 
 
