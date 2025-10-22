@@ -420,6 +420,29 @@
 
 
 
+
+
+
+
+  /* LINEセクション全体（深緑部分） */
+#line {
+  background: #2E7D32;
+  color: #fff;
+  padding: 48px 0 24px; /* ← 下を短く調整 */
+  border-radius: 24px;  /* ← 角を丸く */
+  overflow: hidden;     /* ← 角丸がはみ出さないように */
+  margin: 0 auto 40px;  /* ← 下に少しだけ外側余白 */
+  width: min(1100px, 94%); /* ページ幅に自然に収まる */
+}
+
+/* すでにあった内側の透過設定などはそのままでOK */
+#line .container,
+#line .line-inner,
+#line .line-copy {
+  background: transparent !important;
+}
+
+
   
 </style>
 
