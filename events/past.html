@@ -1,148 +1,113 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>これまでのイベント | 遊べるお寺プロジェクト</title>
-<link rel="icon" href="/favicon.ico">
 <style>
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Noto Sans JP',sans-serif;background:#fbfbf7;color:#111}
-.wrapper{max-width:1100px;margin:0 auto;padding:32px 16px}
+:root{
+  --sky:#22a7ff; --sand:#f7ce52; --ink:#2b2b2b; --paper:#fff; --maxw:1100px; --rail:16px;
+}
+@media (min-width:900px){ :root{ --rail:24px; } }
+html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75;
+  font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+body{ background:var(--sand); }
+.container{ max-width:var(--maxw); margin:0 auto; background:var(--paper);
+  min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
+main{ padding:28px var(--rail) 56px; }
+h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
 
-/* 見出し */
-.page-title{display:flex;align-items:center;gap:10px;font-size:1.6rem;margin:4px 0 18px}
-.page-title::before{content:"📚";}
+/* イベントカード（events/index.html と同じ） */
+.event-list{ display:grid; gap:28px; margin-top:10px; }
+.event{ border:1px solid #dfe6ee; border-radius:14px; padding:18px; background:#fff; }
+.event-wrap{ display:grid; grid-template-columns:minmax(260px, 420px) 1fr; gap:22px; align-items:start; }
+.event-media a{ display:block; border-radius:10px; overflow:hidden; border:1px solid #e9eef3; background:#fff; }
+.event-media img{ width:100%; height:auto; display:block; max-height:340px; object-fit:contain; background:#fff; }
+.thumbs{ display:grid; gap:10px; grid-template-columns:1fr; }
+.thumbs img{ max-height:160px; object-fit:contain; }
+.event-body h3{ margin:0 0 .35em; font-size:clamp(20px,2.6vw,28px); }
+.event-date{ margin:.2em 0 1em; color:#666; font-weight:600; }
+.event-body p{ margin:.7em 0; }
+.event-body ul{ margin:.4em 0 0 1.2em; padding:0; }
+.badge{ display:inline-block; margin-left:.5rem; padding:.15em .55em; border-radius:8px; font-size:.8rem;
+  background:#e9f6ff; color:#056; font-weight:700; }
+@media (max-width:800px){ .event-wrap{ grid-template-columns:1fr; } .event-media img{ max-height:280px; } }
 
-/* グリッドとカード（noteと統一） */
-.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.08);transition:.2s}
-.card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
-.thumb{background:#f2f2f0;display:flex;align-items:center;justify-content:center;height:180px}
-.thumb img{width:100%;height:180px;object-fit:cover;display:block}
-.thumb.noimg::before{content:"🪷";font-size:40px;opacity:.4}
-.body{padding:16px 20px}
-.title{margin:0 0 6px;font-weight:700;font-size:1.05rem;line-height:1.35}
-.meta{font-size:.86rem;color:#666;margin:0 0 8px}
-.desc{margin:0 0 10px;color:#444;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0}
-.tag{font-size:.78rem;background:#f0f0ea;border-radius:999px;padding:4px 8px;color:#333}
-.actions{margin-top:10px}
-.actions a,.actions a:visited{color:#111;text-decoration:underline}
-
-/* 年フィルタ */
-.controls{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 18px}
-select{padding:8px 10px;border-radius:10px;border:1px solid #ddd;background:#fff}
+/* 年見出し */
+.year{ margin:6px 0 12px; padding-left:8px; border-left:4px solid #f3b700; color:#333; }
+.backlink{ text-align:center; margin:18px 0 0; }
+.backlink a{ color:#111; font-weight:700; }
 </style>
 </head>
 <body>
-  <div class="wrapper">
-    <h1 class="page-title">これまでのイベント</h1>
+  <div class="container">
+    <main>
+      <h1>これまでのイベント</h1>
 
-    <div class="controls">
-      <label>年で絞り込み：
-        <select id="yearFilter">
-          <option value="">すべて</option>
-        </select>
-      </label>
+      <h2 class="year">2025年</h2>
+      <section class="event-list" id="past-2025">
+        <!-- ▼ この中に「移動させるセクション」を貼り付けていきます ▼ -->
+
+
+
+
+
+        <article class="event" id="takibi-werewolf">
+  <div class="event-wrap">
+    <div class="event-media">
+      <a href="/images/events/takibi.png" target="_blank" rel="noopener">
+        <img src="/images/events/takibi.png" alt="焚火＆人狼会のチラシ" loading="lazy">
+      </a>
     </div>
-
-    <div id="grid" class="grid" aria-live="polite"></div>
+    <div class="event-body">
+      <h3>焚火＆人狼会</h3>
+      <p class="event-date">
+        開催日：2025年10月12日（日）／ 時間：15:30〜20:30頃（オリーブフェスタ後）<br>
+        場所：滋賀県高島市今津町深清水 南宗清水オリーブ畑
+      </p>
+      <p>
+        昼は青空の下でボードゲーム、夜は焚火を囲んでゆったり過ごす特別な夜。<br>
+        人狼やインサイダーなどの小箱ゲーム中心で、初めての方も安心して楽しめます。
+      </p>
+      <p>🌿 対象：自然の中で遊びたい方／ボードゲームに興味がある方</p>
+      <p>🔥 申込：チラシのQRから（Googleフォーム）</p>
+    </div>
   </div>
+</article>
 
-<script>
-/** ▼ ここにイベントを追記していくだけ ▼
- *  title: タイトル
- *  date : YYYY-MM-DD
- *  location: 任意
- *  cover: 画像URL（空でもOK／空だと🪷プレースホルダー）
- *  link : レポート（note等）へのURL
- *  desc : 一言コメント
- *  tags : ["タグ","タグ"]
- */
-const EVENTS = [
-  {
-    title: "外国籍の幼児さん達に座禅指導した記録",
-    date:  "2025-10-24",
-    location: "某 多文化共生団体（温浴施設併設）",
-    cover: "", // 画像なし→🪷で表示
-    link:  "https://note.com/loyal_dill1011", // 該当記事URLに差し替え
-    desc:  "未就学児が多め。やさしい言葉で“心をよく見る”座禅を実践。親御さんからも好評。",
-    tags:  ["座禅指導","多文化共生","出張会"]
-  },
-  {
-    title: "地元フェスタ初参加！— スーパー大繁盛射的と麻雀の課題",
-    date:  "2025-10-19",
-    location: "地元フェスタ会場",
-    cover:  "https://images.unsplash.com/photo-1598136490945-21d90c3fdf9f?q=80&w=1400&auto=format&fit=crop", // 仮。手元写真に差し替えOK
-    link:   "https://note.com/loyal_dill1011",
-    desc:   "射的が大人気！一方で“麻雀”の言葉のイメージ課題も再認識。次回は表現と導線を工夫へ。",
-    tags:   ["フェスタ","射的","麻雀"]
-  },
-  {
-    title: "突発ブースから始まったボードゲーム会 〜焚き火はなくても火は灯った日〜",
-    date:  "2025-10-12",
-    location: "屋外イベント広場",
-    cover:  "https://images.unsplash.com/photo-1605514440967-8d3b6e9c9b7e?q=80&w=1400&auto=format&fit=crop", // 仮
-    link:   "https://note.com/loyal_dill1011",
-    desc:   "小さなきっかけから交流が広がった一日。次は“健康マージャンのクイズ版”で参加しやすく。",
-    tags:   ["ボードゲーム","交流"]
-  }
-];
 
-// ====== 以下は触らずOK ======
-const $grid = document.getElementById("grid");
-const $year = document.getElementById("yearFilter");
+        <article class="event" id="takasima-fes">
+  <div class="event-wrap">
+    <div class="event-media">
+      <a href="/images/events/takasima.png" target="_blank" rel="noopener">
+        <img src="/images/events/takasima.png" alt="たかしま子どもフェスティバルのチラシ" loading="lazy">
+      </a>
+    </div>
+    <div class="event-body">
+      <h3>たかしま子どもフェスティバル出展</h3>
+      <p class="event-date">
+        開催日：2025年10月19日（日）／ 時間：10:00〜15:00<br>
+        場所：高島公民館・ガリバーホール（滋賀県高島市）
+      </p>
+      <p>「遊べるお寺プロジェクト」として2つの体験ブースを出します！</p>
+      <ul>
+        <li>🀄 <strong>健康麻雀ブース『役満できるかな』</strong> … 初心者歓迎。役作りに挑戦！</li>
+        <li>🔫 <strong>サバイバル射的ブース</strong> … サバゲー用の安全な銃で的当てチャレンジ！</li>
+      </ul>
+      <p>
+        ご家族・お友達とぜひ遊びに来てください。<br>
+        <em>（主催：たかしま子どもフェスティバル実行委員会／高島市教育委員会）</em>
+      </p>
+    </div>
+  </div>
+</article>
 
-function ymd(s){ const d=new Date(s); return isNaN(d)?["","",""]:[d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")]; }
-function fmtDate(s){ const [y,m,d]=ymd(s); return y?`${y}/${m}/${d}`:""; }
-function esc(s){ return (s||"").replace(/[&<>"']/g,m=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[m])); }
 
-function render(list){
-  if(!list.length){ $grid.innerHTML = "<p style='color:#666'>該当するイベントはありません。</p>"; return; }
-  $grid.innerHTML = list.map(ev=>{
-    const dateStr = fmtDate(ev.date);
-    const tags = (ev.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("");
-    const imgPart = ev.cover
-      ? `<div class="thumb"><img src="${esc(ev.cover)}" loading="lazy" decoding="async"
-            referrerpolicy="no-referrer"
-            onerror="this.parentNode.classList.add('noimg'); this.remove();" alt=""></div>`
-      : `<div class="thumb noimg"></div>`;
-    return `
-      <article class="card">
-        ${imgPart}
-        <div class="body">
-          <h3 class="title">${esc(ev.title)}</h3>
-          <p class="meta">${dateStr}${ev.location ? " ｜ " + esc(ev.location) : ""}</p>
-          <p class="desc">${esc(ev.desc)}</p>
-          <div class="tags">${tags}</div>
-          <div class="actions">${ev.link ? `<a href="${esc(ev.link)}" target="_blank" rel="noopener">レポートを読む</a>` : ""}</div>
-        </div>
-      </article>`;
-  }).join("");
-}
+        
+      </section>
 
-function initFilter(){
-  // 年の候補を作成（降順）
-  const years = Array.from(new Set(EVENTS.map(e=>ymd(e.date)[0]).filter(Boolean))).sort((a,b)=>b-a);
-  years.forEach(y=>{
-    const opt = document.createElement("option");
-    opt.value = String(y); opt.textContent = y;
-    $year.appendChild(opt);
-  });
-  $year.addEventListener("change", ()=>{
-    const y = $year.value;
-    const list = EVENTS
-      .filter(e=>!y || String(ymd(e.date)[0])===y)
-      .sort((a,b)=> new Date(b.date)-new Date(a.date));
-    render(list);
-  });
-}
-
-(function start(){
-  initFilter();
-  const sorted = EVENTS.slice().sort((a,b)=> new Date(b.date)-new Date(a.date));
-  render(sorted);
-})();
-</script>
+      <p class="backlink"><a href="/events/">▶ 今後のイベントへ戻る</a></p>
+    </main>
+  </div>
 </body>
 </html>
