@@ -15,6 +15,7 @@
   transition:transform .2s, box-shadow .2s;
 }
 .note-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
+.note-thumb{background:#f2f2f0}            /* ← ここに移動 */
 .note-thumb img{width:100%;height:180px;object-fit:cover;display:block;}
 .note-content{padding:16px 20px;}
 .note-title{font-weight:700;margin:0 0 6px;font-size:1.05rem;line-height:1.35}
@@ -34,7 +35,6 @@
   const el = document.getElementById("note-grid");
   el.innerHTML = '<div class="note-card"><div class="note-content">読み込み中…</div></div>';
 
-  // img抽出ヘルパー（本文HTMLから最初の<img src>を取る）
   const pickImgFromHTML = (html) => {
     if (!html) return "";
     const div = document.createElement("div");
@@ -43,31 +43,25 @@
     return im?.getAttribute("src") || "";
   };
 
-  // 相対→絶対URL化（失敗時は元を返す）
   const toAbs = (u, base) => {
     try { return new URL(u, base).href; } catch { return u || ""; }
   };
 
   try {
-    const res = await fetch(
-      "https://api.rss2json.com/v1/api.json?rss_url=https://note.com/loyal_dill1011/rss"
-    );
+    const res = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://note.com/loyal_dill1011/rss");
     const data = await res.json();
-
     const fmt = (s) => new Date(s).toLocaleDateString("ja-JP");
 
-    const items = (data.items || []).slice(0, 3).map((item) => {
-      // --- フォールバック順に候補を取る ---
-      const c1 = item.thumbnail;                                       // 旧来の定番
-      const c2 = item.enclosure?.link || item.enclosure?.url || "";    // 単体enclosure
+    const items = (data.items || []).slice(0,3).map(item => {
+      const c1 = item.thumbnail;
+      const c2 = item.enclosure?.link || item.enclosure?.url || "";
       const c3 = Array.isArray(item.enclosures) && item.enclosures[0]
-                 ? (item.enclosures[0].link || item.enclosures[0].url || "")
-                 : "";
-      const c4 = pickImgFromHTML(item.content);                        // 本文HTML内の最初の<img>
-      const c5 = pickImgFromHTML(item.description);                    // 説明HTML内の最初の<img>
+                  ? (item.enclosures[0].link || item.enclosures[0].url || "")
+                  : "";
+      const c4 = pickImgFromHTML(item.content);
+      const c5 = pickImgFromHTML(item.description);
 
       let img = c1 || c2 || c3 || c4 || c5 || "";
-      // 絶対URLへ（note側は基本絶対だけど保険）
       img = toAbs(img, item.link);
 
       const descText = (item.description || "")
@@ -75,21 +69,15 @@
         .replace(/\s+/g, " ")
         .slice(0, 80);
 
-      return {
-        title: item.title,
-        link: item.link,
-        date: item.pubDate,
-        img,
-        desc: descText
-      };
+      return { title:item.title, link:item.link, date:item.pubDate, img, desc:descText };
     });
 
-    // 描画
-    el.innerHTML = items.map(({ title, link, date, img, desc }) => {
-      const dateStr = fmt(date);
-      const imgPart = img
-        ? `<div class="note-thumb"><img src="${img}" loading="lazy" alt=""></div>`
-        : ""; // 画像なしでも崩れない
+    // デバッグしたければ一時的に有効化
+    // console.table(items.map(i => ({ title:i.title, hasImg: !!i.img, img:i.img })));
+
+    el.innerHTML = items.map(({title,link,date,img,desc}) => {
+      const dateStr = new Date(date).toLocaleDateString("ja-JP");
+      const imgPart = img ? `<div class="note-thumb"><img src="${img}" loading="lazy" alt=""></div>` : "";
       return `
         <article class="note-card">
           ${imgPart}
@@ -101,16 +89,9 @@
         </article>`;
     }).join("");
 
-    // デバッグしたい場合は以下を一時的にON
-    // console.table(items.map(i => ({title:i.title, img:i.img})));
-  } catch (e) {
+  } catch(e) {
     console.error(e);
     el.innerHTML = "<p style='color:red'>noteの読み込みに失敗しました。</p>";
   }
 })();
-
-  .note-thumb{background:#f2f2f0}
-
 </script>
-
-
