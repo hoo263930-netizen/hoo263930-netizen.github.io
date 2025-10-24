@@ -80,18 +80,30 @@
       const imgPart = img ? `<div class="note-thumb"><img src="${img}" loading="lazy" alt=""></div>` : "";
       return `
         <article class="note-card">
-          ${imgPart}
-          <div class="note-content">
-            <h3 class="note-title"><a href="${link}" target="_blank" rel="noopener">${title}</a></h3>
-            <p class="note-meta">${dateStr}</p>
-            <p class="note-desc">${desc}</p>
-          </div>
-        </article>`;
-    }).join("");
+
+        
+const imgPart = img
+  ? `<div class="note-thumb">
+       <img src="${img}" loading="lazy" decoding="async"
+            referrerpolicy="no-referrer"
+            onerror="this.closest('.note-thumb')?.remove();"
+            alt="">
+     </div>`
+  : "";
+
 
   } catch(e) {
     console.error(e);
     el.innerHTML = "<p style='color:red'>noteの読み込みに失敗しました。</p>";
   }
 })();
+
+  // デバッグ用（必要なときだけオン）
+console.table(items.map(i => ({ title: i.title, img: i.img })));
+
+
+  const viaProxy = (u) => u ? `https://images.weserv.nl/?url=${encodeURIComponent(u.replace(/^https?:\/\//,''))}` : "";
+// img を決めた直後に:
+// img = viaProxy(img);
+
 </script>
