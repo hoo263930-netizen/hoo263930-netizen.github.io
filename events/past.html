@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>これまでのイベント | 遊べるお寺プロジェクト</title>
+<link rel="icon" href="/favicon.ico">
+<style>
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Noto Sans JP',sans-serif;background:#fbfbf7;color:#111}
+.wrapper{max-width:1100px;margin:0 auto;padding:32px 16px}
+
+/* 見出し */
+.page-title{display:flex;align-items:center;gap:10px;font-size:1.6rem;margin:4px 0 18px}
+.page-title::before{content:"📚";}
+
+/* グリッドとカード（noteと統一） */
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.08);transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
+.thumb{background:#f2f2f0;display:flex;align-items:center;justify-content:center;height:180px}
+.thumb img{width:100%;height:180px;object-fit:cover;display:block}
+.thumb.noimg::before{content:"🪷";font-size:40px;opacity:.4}
+.body{padding:16px 20px}
+.title{margin:0 0 6px;font-weight:700;font-size:1.05rem;line-height:1.35}
+.meta{font-size:.86rem;color:#666;margin:0 0 8px}
+.desc{margin:0 0 10px;color:#444;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0}
+.tag{font-size:.78rem;background:#f0f0ea;border-radius:999px;padding:4px 8px;color:#333}
+.actions{margin-top:10px}
+.actions a,.actions a:visited{color:#111;text-decoration:underline}
+
+/* 年フィルタ */
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 18px}
+select{padding:8px 10px;border-radius:10px;border:1px solid #ddd;background:#fff}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1 class="page-title">これまでのイベント</h1>
+
+    <div class="controls">
+      <label>年で絞り込み：
+        <select id="yearFilter">
+          <option value="">すべて</option>
+        </select>
+      </label>
+    </div>
+
+    <div id="grid" class="grid" aria-live="polite"></div>
+  </div>
+
+<script>
+/** ▼ ここにイベントを追記していくだけ ▼
+ *  title: タイトル
+ *  date : YYYY-MM-DD
+ *  location: 任意
+ *  cover: 画像URL（空でもOK／空だと🪷プレースホルダー）
+ *  link : レポート（note等）へのURL
+ *  desc : 一言コメント
+ *  tags : ["タグ","タグ"]
+ */
+const EVENTS = [
+  {
+    title: "外国籍の幼児さん達に座禅指導した記録",
+    date:  "2025-10-24",
+    location: "某 多文化共生団体（温浴施設併設）",
+    cover: "", // 画像なし→🪷で表示
+    link:  "https://note.com/loyal_dill1011", // 該当記事URLに差し替え
+    desc:  "未就学児が多め。やさしい言葉で“心をよく見る”座禅を実践。親御さんからも好評。",
+    tags:  ["座禅指導","多文化共生","出張会"]
+  },
+  {
+    title: "地元フェスタ初参加！— スーパー大繁盛射的と麻雀の課題",
+    date:  "2025-10-19",
+    location: "地元フェスタ会場",
+    cover:  "https://images.unsplash.com/photo-1598136490945-21d90c3fdf9f?q=80&w=1400&auto=format&fit=crop", // 仮。手元写真に差し替えOK
+    link:   "https://note.com/loyal_dill1011",
+    desc:   "射的が大人気！一方で“麻雀”の言葉のイメージ課題も再認識。次回は表現と導線を工夫へ。",
+    tags:   ["フェスタ","射的","麻雀"]
+  },
+  {
+    title: "突発ブースから始まったボードゲーム会 〜焚き火はなくても火は灯った日〜",
+    date:  "2025-10-12",
+    location: "屋外イベント広場",
+    cover:  "https://images.unsplash.com/photo-1605514440967-8d3b6e9c9b7e?q=80&w=1400&auto=format&fit=crop", // 仮
+    link:   "https://note.com/loyal_dill1011",
+    desc:   "小さなきっかけから交流が広がった一日。次は“健康マージャンのクイズ版”で参加しやすく。",
+    tags:   ["ボードゲーム","交流"]
+  }
+];
+
+// ====== 以下は触らずOK ======
+const $grid = document.getElementById("grid");
+const $year = document.getElementById("yearFilter");
+
+function ymd(s){ const d=new Date(s); return isNaN(d)?["","",""]:[d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")]; }
+function fmtDate(s){ const [y,m,d]=ymd(s); return y?`${y}/${m}/${d}`:""; }
+function esc(s){ return (s||"").replace(/[&<>"']/g,m=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[m])); }
+
+function render(list){
+  if(!list.length){ $grid.innerHTML = "<p style='color:#666'>該当するイベントはありません。</p>"; return; }
+  $grid.innerHTML = list.map(ev=>{
+    const dateStr = fmtDate(ev.date);
+    const tags = (ev.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("");
+    const imgPart = ev.cover
+      ? `<div class="thumb"><img src="${esc(ev.cover)}" loading="lazy" decoding="async"
+            referrerpolicy="no-referrer"
+            onerror="this.parentNode.classList.add('noimg'); this.remove();" alt=""></div>`
+      : `<div class="thumb noimg"></div>`;
+    return `
+      <article class="card">
+        ${imgPart}
+        <div class="body">
+          <h3 class="title">${esc(ev.title)}</h3>
+          <p class="meta">${dateStr}${ev.location ? " ｜ " + esc(ev.location) : ""}</p>
+          <p class="desc">${esc(ev.desc)}</p>
+          <div class="tags">${tags}</div>
+          <div class="actions">${ev.link ? `<a href="${esc(ev.link)}" target="_blank" rel="noopener">レポートを読む</a>` : ""}</div>
+        </div>
+      </article>`;
+  }).join("");
+}
+
+function initFilter(){
+  // 年の候補を作成（降順）
+  const years = Array.from(new Set(EVENTS.map(e=>ymd(e.date)[0]).filter(Boolean))).sort((a,b)=>b-a);
+  years.forEach(y=>{
+    const opt = document.createElement("option");
+    opt.value = String(y); opt.textContent = y;
+    $year.appendChild(opt);
+  });
+  $year.addEventListener("change", ()=>{
+    const y = $year.value;
+    const list = EVENTS
+      .filter(e=>!y || String(ymd(e.date)[0])===y)
+      .sort((a,b)=> new Date(b.date)-new Date(a.date));
+    render(list);
+  });
+}
+
+(function start(){
+  initFilter();
+  const sorted = EVENTS.slice().sort((a,b)=> new Date(b.date)-new Date(a.date));
+  render(sorted);
+})();
+</script>
+</body>
+</html>
