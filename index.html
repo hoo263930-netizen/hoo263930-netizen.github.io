@@ -382,13 +382,19 @@
     <footer>© 2025 遊べるお寺プロジェクト</footer>
   </div>
 
-  <!-- 月別フォルダからランダム表示（10月= /images/top/10/） -->
+
+
+  <!-- 月別フォルダからランダム表示（例：11月= /images/top/11/） -->
   <script>
   (function(){
     const month = String(new Date().getMonth() + 1).padStart(2, '0');
     const folder = `/images/top/${month}/`;
-    const baseNames = ['banner1','banner2','banner3','banner4','banner5'];
-    const exts = ['webp','png','jpg']; // 優先順
+
+    // ✅ 1〜99までの連番に対応
+    const baseNames = Array.from({ length: 99 }, (_, i) => `banner${i + 1}`);
+
+    // ✅ .jpeg も含めてすべて対応
+    const exts = ['webp','png','jpg','jpeg']; // 優先順
 
     const heroImg = document.getElementById('hero-image');
 
@@ -398,12 +404,16 @@
         if (valid.length === 0) throw new Error('候補画像が見つかりません');
         const pick = valid[Math.floor(Math.random() * valid.length)];
         const pre = new Image();
-        pre.onload = () => { heroImg.src = pick; heroImg.classList.add('is-loaded'); };
+        pre.onload = () => { 
+          heroImg.src = pick; 
+          heroImg.classList.add('is-loaded'); 
+        };
         pre.onerror = () => fallback();
         pre.src = pick;
       })
       .catch(fallback);
 
+    // 画像の存在を順番にチェックする関数
     function resolveExisting(base){
       return new Promise(resolve => {
         let i = 0;
@@ -418,12 +428,18 @@
         tryNext();
       });
     }
+
+    // 画像が見つからなかったときのフォールバック処理
     function fallback(){
       heroImg.classList.add('is-loaded');
       console.warn('月別ランダム画像の表示に失敗しました。パスとファイル名をご確認ください。');
     }
   })();
   </script>
+
+
+
+  
 
   <!-- note 最新3件の描画 -->
   <script>
