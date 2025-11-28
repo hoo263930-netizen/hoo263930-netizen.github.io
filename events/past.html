@@ -25,12 +25,10 @@ html,body{
   font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
 }
 
-/* 背景：左右の黄色を出す */
 body{
   background:var(--sand);
 }
 
-/* 中央の白い箱 */
 .container{
   max-width:var(--maxw);
   margin:0 auto;
@@ -48,7 +46,6 @@ h1{
   font-size:clamp(24px,3.2vw,36px);
 }
 
-/* イベントカード */
 .event-list{
   display:grid;
   gap:28px;
@@ -86,12 +83,12 @@ h1{
   background:#fff;
 }
 
-/* サムネイル縦並び用 */
 .thumbs{
   display:grid;
   gap:10px;
   grid-template-columns:1fr;
 }
+
 .thumbs img{
   max-height:160px;
   object-fit:contain;
@@ -101,17 +98,11 @@ h1{
   margin:0 0 .35em;
   font-size:clamp(20px,2.6vw,28px);
 }
+
 .event-date{
   margin:.2em 0 1em;
   color:#666;
   font-weight:600;
-}
-.event-body p{
-  margin:.7em 0;
-}
-.event-body ul{
-  margin:.4em 0 0 1.2em;
-  padding:0;
 }
 
 .badge{
@@ -134,7 +125,6 @@ h1{
   }
 }
 
-/* 年見出し */
 .year{
   margin:6px 0 12px;
   padding-left:8px;
@@ -144,7 +134,7 @@ h1{
 
 .backlink{
   text-align:center;
-  margin:18px 0 0;
+  margin:18px 0;
 }
 .backlink a{
   color:#111;
@@ -152,280 +142,210 @@ h1{
 }
 </style>
 </head>
+
 <body>
-  <div class="container">
-    <main>
-      <h1>これまでのイベント</h1>
+<div class="container">
+<main>
 
-      <!-- 2025年のイベント -->
-      <h2 class="year">2025年</h2>
-      <section class="event-list" id="past-2025">
+<h1>これまでのイベント</h1>
 
-        <!-- 高島フェスタ 出展 -->
-        <article class="event" id="takashima-festa-2025">
-          <div class="event-wrap">
-            <div class="event-media">
-              <div class="thumbs">
-                <a href="/images/events/takashima_festa1.jpg" target="_blank" rel="noopener">
-                  <img src="/images/events/takashima_festa1.jpg" alt="高島フェスタ チラシ（表）" loading="lazy">
-                </a>
-                <a href="/images/events/takashima_festa2.jpg" target="_blank" rel="noopener">
-                  <img src="/images/events/takashima_festa2.jpg" alt="高島フェスタ チラシ（裏）" loading="lazy">
-                </a>
-              </div>
-            </div>
-            <div class="event-body">
-              <h3>高島フェスタ 出展</h3>
-              <p class="event-date">
-                開催日：2025年11月24日（月）／ 時間：10:00〜15:00<br>
-                場所：今津東コミュニティセンター
-              </p>
-              <p><strong>遊べるお寺プロジェクト</strong>として体験ブースを展開しました。</p>
-              <ul>
-                <li>🀄 <strong>健康麻雀ブース「役満できるかな」</strong> … 初めてでもOK。役づくりのコツを楽しく体験！</li>
-                <li>🔫 <strong>サバイバル射的ブース</strong> … 安全なNerfで的当てチャレンジ！</li>
-              </ul>
-              <p>
-                ご家族やお友達とお気軽に遊びに来ていただき、
-                「またやってほしい」という声も多くいただきました。
-              </p>
-            </div>
-          </div>
-        </article>
+<h2 class="year">2025年</h2>
 
-        <!-- 焚火＆人狼会 -->
-        <article class="event" id="takibi-werewolf">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/events/takibi.png" target="_blank" rel="noopener">
-                <img src="/images/events/takibi.png" alt="焚火＆人狼会のチラシ" loading="lazy">
-              </a>
-            </div>
-            <div class="event-body">
-              <h3>焚火＆人狼会</h3>
-              <p class="event-date">
-                開催日：2025年10月12日（日）／ 時間：15:30〜20:30頃（オリーブフェスタ後）<br>
-                場所：滋賀県高島市今津町深清水 南宗清水オリーブ畑
-              </p>
-              <p>
-                昼は青空の下でボードゲーム、夜は焚火を囲んでゆったり過ごす特別な夜。<br>
-                人狼やインサイダーなどの小箱ゲームを中心に、初めての方も安心して楽しめる会となりました。
-              </p>
-              <p>🌿 対象：自然の中で遊びたい方／ボードゲームに興味がある方</p>
-              <p>🔥 申込：チラシのQRから（Googleフォーム）</p>
-            </div>
-          </div>
-        </article>
+<section class="event-list">
 
-        <!-- たかしま子どもフェスティバル -->
-        <article class="event" id="takasima-fes">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/events/takasima.png" target="_blank" rel="noopener">
-                <img src="/images/events/takasima.png" alt="たかしま子どもフェスティバルのチラシ" loading="lazy">
-              </a>
-            </div>
-            <div class="event-body">
-              <h3>たかしま子どもフェスティバル出展</h3>
-              <p class="event-date">
-                開催日：2025年10月19日（日）／ 時間：10:00〜15:00<br>
-                場所：高島公民館・ガリバーホール（滋賀県高島市）
-              </p>
-              <p>「遊べるお寺プロジェクト」として2つの体験ブースを出展しました。</p>
-              <ul>
-                <li>🀄 <strong>健康麻雀ブース『役満できるかな』</strong> … 初心者歓迎。役作りに挑戦！</li>
-                <li>🔫 <strong>サバイバル射的ブース</strong> … サバゲー用の安全な銃で的当てチャレンジ！</li>
-              </ul>
-              <p>
-                親子連れの参加も多く、遊びを通じて地域の方々とつながるきっかけになりました。
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <!-- お寺の謎＠新潟 -->
-        <article class="event" id="niigata-nazotoki-2025">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/events/nazotoki_niigata_2025.png" target="_blank" rel="noopener">
-                <img src="/images/events/nazo1.png" alt="お寺の謎を君は解けるか？ 謎解きポップ" loading="lazy">
-              </a>
-            </div>
-            <div class="event-body">
-              <h3>お寺の謎を君は解けるか？（新潟マルシェ 謎解き企画）</h3>
-              <p class="event-date">
-                開催：2025年7月頃／ 場所：浄広寺（新潟県）（マルシェ会場ブース）
-              </p>
-              <p>
-                新潟のお寺で行われたマルシェに出展し、お寺をテーマにした体験型謎解きを実施しました。
-                境内や建物をモチーフにした問題を解きながら巡ることで、
-                お堂や仏さまに新しい発見や気づきが生まれるようにデザインした企画です。
-              </p>
-              <p>💡 参加費：500円（クリア特典つき）</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- 蟲神器 公認大会（2025） -->
-        <article class="event" id="mushijingi-2025-0503">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/events/mushijingi_2025.png" target="_blank" rel="noopener">
-                <img src="/images/events/mushi1.jpg" alt="蟲神器公認大会のチラシ" loading="lazy">
-              </a>
-            </div>
-            <div class="event-body">
-              <h3>蟲神器（むしじんぎ）公認大会 in 今津</h3>
-              <p class="event-date">
-                開催日：2025年5月3日（土）／ 時間：13:00〜17:00<br>
-                場所：今津ヴォーリズ資料館 2F（滋賀県高島市）
-              </p>
-              <p>
-                人気カードゲーム『蟲神器』の公認大会を高島で初開催。
-                初心者も経験者も一緒になって対戦を楽しみ、公認大会ならではの限定カード参加賞も配布されました。
-              </p>
-              <p>
-                大会後のサイドイベントではフリープレイや交流戦も行い、地域のプレイヤー同士のつながりが生まれました。
-              </p>
-              <p>🌿 主催：遊べるお寺プロジェクト KOSEN</p>
-              <p>💡 参加費：無料</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- お寺の庭で ナーフ会 -->
-        <article class="event" id="nerf-2025-0504">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/events/nerf_event_2025.png" target="_blank" rel="noopener">
-                <img src="/images/events/nerf1.jpg" alt="お寺の庭でおためし体験ナーフ会のチラシ" loading="lazy">
-              </a>
-            </div>
-            <div class="event-body">
-              <h3>お寺の庭で おためし体験ナーフ会</h3>
-              <p class="event-date">
-                開催日：2025年5月4日（日）／ 時間：13:00〜17:00<br>
-                場所：長善寺（滋賀県高島市マキノ町小荒路581）
-              </p>
-              <p>
-                柔らかいスポンジ弾を使った「安全に楽しめるサバイバルゲーム」として開催した、
-                初めてのナーフ体験イベントです。小学生から大人まで幅広い参加者が集まり、
-                チーム戦や的当てで盛り上がりました。
-              </p>
-              <p>🌿 対象：小学生以上〜大人（ルールを守れる方）</p>
-              <p>💡 参加費：無料</p>
-            </div>
-          </div>
-        </article>
-
-      </section> <!-- /#past-2025 -->
-
-
-      <!-- 2024年のイベント -->
-      <h2 class="year">2024年</h2>
-      <section class="event-list" id="past-2024">
-
-        <!-- 路上遊びフェスタ -->
-        <article class="event" id="rojou-asobi">
-          <div class="event-wrap">
-            <div class="event-media">
-              <div class="thumbs">
-                <a href="/images/events/rojou1.JPG" target="_blank" rel="noopener">
-                  <img src="/images/events/rojou1.JPG" alt="路上遊びフェスタのチラシ1" loading="lazy">
-                </a>
-                <a href="/images/events/rojou2.JPG" target="_blank" rel="noopener">
-                  <img src="/images/events/rojou2.JPG" alt="路上遊びフェスタのチラシ2" loading="lazy">
-                </a>
-              </div>
-            </div>
-            <div class="event-body">
-              <h3>路上遊びフェスタ</h3>
-              <p class="event-date">開催日：2024年11月8日（金）</p>
-              <p>
-                昔ながらの遊びや、みんなで楽しめる企画を路上に広げる体験型イベントです。<br>
-                「遊べるお寺プロジェクト」では、屋外にこたつを出して“外コタツ麻雀”を実施しました。
-                非日常感もありつつ、地域の方とじっくり話せる場になりました。
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <!-- 学童向け Nerf＋座禅 -->
-        <article class="event" id="gakudou-nerf-zaizen">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/events/gakudou1.jpg" target="_blank" rel="noopener">
-                <img src="/images/events/gakudou1.jpg" alt="学童向け Nerfサバイバルゲーム＆座禅体験のチラシ" loading="lazy">
-              </a>
-            </div>
-            <div class="event-body">
-              <h3>学童向け Nerfサバイバルゲーム＆座禅体験</h3>
-              <p class="event-date">
-                開催：夏休み期間／ 場所：学童保育 ＋ お寺（座禅会場）
-              </p>
-              <p>
-                夏休みの学童イベントとして、「動」と「静」を一緒に体験してもらう1日プログラムを実施しました。
-                午前中はお寺での座禅体験で心を静め、午後はNerf銃を使ったサバイバルゲームで思い切り体を動かしました。
-              </p>
-              <p>
-                子どもたちからは「またやりたい！」という声も多く、遊びと心の学びが両立した企画となりました。
-              </p>
-              <p>🌿 対象：学童保育に通う子どもたち</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- 蟲神器 公認大会（夏） -->
-        <article class="event" id="mushijingi-2024-0803">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/events/mushijingi_2024_summer.png" target="_blank" rel="noopener">
-                <img src="/images/events/mushi2.jpg" alt="蟲神器公認大会（夏）のチラシ" loading="lazy">
-              </a>
-            </div>
-            <div class="event-body">
-              <h3>蟲神器 公認大会（夏） in 今津</h3>
-              <p class="event-date">
-                開催日：2024年8月3日（土）／ 時間：13:00〜15:30<br>
-                場所：今津ヴォーリズ資料館 2F（滋賀県高島市）
-              </p>
-              <p>
-                幼虫ブロック（小・中・高校生）と成虫ブロック（大人）に分けて開催した、夏の蟲神器公認大会です。
-                スイスドロー方式で何度も対戦できる形式で、初めて大会に参加する子どもたちも楽しんでくれました。
-              </p>
-              <p>🌿 対象：幼虫ブロック（小〜高校生）／ 成虫ブロック（大人）</p>
-              <p>💡 参加費：無料</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- 健康麻雀会（継続企画） -->
-        <article class="event" id="kenko-mahjong">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/events/mj1.PNG" target="_blank" rel="noopener">
-                <img src="/images/events/mj1.PNG" alt="健康麻雀会のチラシ" loading="lazy">
-              </a>
-            </div>
-            <div class="event-body">
-              <h3>健康麻雀会 <span class="badge">継続開催</span></h3>
-              <p class="event-date">
-                開催日：毎月第４日曜日（予定）<br>
-                2025年以降も継続して開催中
-              </p>
-              <p>
-                初心者から経験者まで、どなたでも参加できる健康麻雀の集いです。<br>
-                点数計算が不安な方もスタッフがサポート。
-                和やかな雰囲気の中、世代を超えて交流しながら“頭の体操”とリフレッシュを楽しめます。
-              </p>
-            </div>
-          </div>
-        </article>
-
-      </section> <!-- /#past-2024 -->
-
-      <p class="backlink"><a href="/events/">▶ 今後のイベントへ戻る</a></p>
-    </main>
+<!-- ▼ 1. 健康麻雀会 -->
+<article class="event" id="kenko-mahjong">
+  <div class="event-wrap">
+    <div class="event-media">
+      <a href="/images/events/mj1.PNG" target="_blank" rel="noopener">
+        <img src="/images/events/mj1.PNG" alt="健康麻雀会のチラシ" loading="lazy">
+      </a>
+    </div>
+    <div class="event-body">
+      <h3>健康麻雀会</h3>
+      <p class="event-date">毎月第４日曜日（継続開催）</p>
+      <p>
+        初心者から経験者まで参加できる健康麻雀の定例会です。点数計算が不安な方もスタッフがサポート。
+        和やかな雰囲気の中で世代を超えた交流が生まれ、リフレッシュにも最適な企画です。
+      </p>
+    </div>
   </div>
+</article>
+
+
+<!-- ▼ 2. お寺の庭でナーフ会 -->
+<article class="event" id="nerf-2025-0504">
+  <div class="event-wrap">
+    <div class="event-media">
+      <a href="/images/events/nerf1.jpg" target="_blank" rel="noopener">
+        <img src="/images/events/nerf1.jpg" alt="お寺の庭でナーフ会のチラシ" loading="lazy">
+      </a>
+    </div>
+
+    <div class="event-body">
+      <h3>お寺の庭で おためし体験ナーフ会</h3>
+      <p class="event-date">2025年5月4日（日）／ 長善寺</p>
+      <p>
+        柔らかいスポンジ弾を使った安全なナーフ体験イベント。
+        小学生〜大人まで幅広い参加者が集まり、チーム戦や的当てで大盛り上がりでした。
+      </p>
+      <p>参加費：無料</p>
+    </div>
+  </div>
+</article>
+
+
+<!-- ▼ 3. 蟲神器（5月3日） -->
+<article class="event" id="mushijingi-2025-0503">
+  <div class="event-wrap">
+    <div class="event-media">
+      <a href="/images/events/mushi1.jpg" target="_blank" rel="noopener">
+        <img src="/images/events/mushi1.jpg" alt="蟲神器公認大会のチラシ" loading="lazy">
+      </a>
+    </div>
+    <div class="event-body">
+      <h3>蟲神器（むしじんぎ）公認大会 in 今津</h3>
+      <p class="event-date">2025年5月3日（土）／ 今津ヴォーリズ資料館</p>
+      <p>
+        人気カードゲーム『蟲神器』の公認大会を初開催。
+        初心者の方も参加しやすく、限定カードの参加賞も好評でした。
+      </p>
+      <p>参加費：無料</p>
+    </div>
+  </div>
+</article>
+
+
+<!-- ▼ 4. 蟲神器（8月3日・夏） -->
+<article class="event" id="mushijingi-2024-0803">
+  <div class="event-wrap">
+    <div class="event-media">
+      <a href="/images/events/mushi2.jpg" target="_blank" rel="noopener">
+        <img src="/images/events/mushi2.jpg" alt="蟲神器 公認大会 夏" loading="lazy">
+      </a>
+    </div>
+    <div class="event-body">
+      <h3>蟲神器 公認大会（夏） in 今津</h3>
+      <p class="event-date">2025年8月3日（日）／ 今津ヴォーリズ資料館</p>
+      <p>
+        幼虫・成虫ブロックに分かれての夏大会。スイスドロー方式で何度も対戦！
+        初めての大会参加の子どもたちも楽しめるよう工夫されたイベントでした。
+      </p>
+      <p>参加費：無料</p>
+    </div>
+  </div>
+</article>
+
+
+<!-- ▼ 5. 学童イベント（座禅＋Nerf） -->
+<article class="event" id="gakudou-nerf-zaizen">
+  <div class="event-wrap">
+    <div class="event-media">
+      <a href="/images/events/gakudou1.jpg" target="_blank" rel="noopener">
+        <img src="/images/events/gakudou1.jpg" alt="学童向けイベント" loading="lazy">
+      </a>
+    </div>
+    <div class="event-body">
+      <h3>学童向け「座禅＋Nerfサバイバルゲーム」</h3>
+      <p class="event-date">2025年夏休み期間</p>
+      <p>
+        午前はお寺で座禅体験、午後はNerfでサバイバルゲーム。
+        「静」と「動」をどちらも味わえる1日プログラムとして大好評でした。
+      </p>
+    </div>
+  </div>
+</article>
+
+
+<!-- ▼ 6. 新潟マルシェ 謎解き -->
+<article class="event" id="niigata-nazotoki-2025">
+  <div class="event-wrap">
+    <div class="event-media">
+      <a href="/images/events/nazo1.png" target="_blank" rel="noopener">
+        <img src="/images/events/nazo1.png" alt="新潟謎解き" loading="lazy">
+      </a>
+    </div>
+    <div class="event-body">
+      <h3>お寺の謎を君は解けるか？（新潟マルシェ）</h3>
+      <p class="event-date">2025年7月頃／ 新潟県・浄広寺</p>
+      <p>
+        新潟のお寺で行われたマルシェにて、境内を巡りながら解く体験型謎解きを実施。
+        子どもから大人まで幅広く楽しめる企画でした。
+      </p>
+      <p>参加費：500円（クリア特典あり）</p>
+    </div>
+  </div>
+</article>
+
+
+<!-- ▼ 7. 焚火＆人狼会 -->
+<article class="event" id="takibi-werewolf">
+  <div class="event-wrap">
+    <div class="event-media">
+      <a href="/images/events/takibi.png" target="_blank" rel="noopener">
+        <img src="/images/events/takibi.png" alt="焚火＆人狼会" loading="lazy">
+      </a>
+    </div>
+    <div class="event-body">
+      <h3>焚火＆人狼会</h3>
+      <p class="event-date">2025年10月12日（日）／ 深清水オリーブ畑</p>
+      <p>
+        昼はボードゲーム、夜は焚火を囲んで語り合う特別な交流イベント。
+        ゲーム初心者も楽しめるアットホームな時間になりました。
+      </p>
+    </div>
+  </div>
+</article>
+
+
+<!-- ▼ 8. たかしま子どもフェスティバル -->
+<article class="event" id="takasima-fes">
+  <div class="event-wrap">
+    <div class="event-media">
+      <a href="/images/events/takasima.png" target="_blank" rel="noopener">
+        <img src="/images/events/takasima.png" alt="たかしま子どもフェスティバル" loading="lazy">
+      </a>
+    </div>
+    <div class="event-body">
+      <h3>たかしま子どもフェスティバル</h3>
+      <p class="event-date">2025年10月19日（日）／ ガリバーホール</p>
+      <p>
+        健康麻雀とサバイバル射的の2ブースを出展。親子の参加が多く、地域の子どもたちと交流できる良い機会となりました。
+      </p>
+    </div>
+  </div>
+</article>
+
+
+<!-- ▼ 9. 高島フェスタ -->
+<article class="event" id="takashima-festa-2025-last">
+  <div class="event-wrap">
+    <div class="event-media">
+      <div class="thumbs">
+        <a href="/images/events/takashima_festa1.jpg" target="_blank" rel="noopener">
+          <img src="/images/events/takashima_festa1.jpg" alt="高島フェスタ" loading="lazy">
+        </a>
+        <a href="/images/events/takashima_festa2.jpg" target="_blank" rel="noopener">
+          <img src="/images/events/takashima_festa2.jpg" alt="高島フェスタ裏" loading="lazy">
+        </a>
+      </div>
+    </div>
+    <div class="event-body">
+      <h3>高島フェスタ 出展</h3>
+      <p class="event-date">2025年11月24日（月）／ 今津東コミュニティセンター</p>
+      <p>
+        健康麻雀・ナーフ射的の2ブースを出展。
+        子どもから大人まで多くの方が参加し、地域の交流が生まれるイベントとなりました。
+      </p>
+    </div>
+  </div>
+</article>
+
+</section>
+
+<p class="backlink"><a href="/events/">▶ 今後のイベントへ戻る</a></p>
+
+</main>
+</div>
 </body>
 </html>
