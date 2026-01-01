@@ -1,107 +1,181 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>これまでのイベント | 遊べるお寺プロジェクト</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>これまでのイベント | 遊べるお寺プロジェクト</title>
+  <meta name="description" content="遊べるお寺プロジェクトのこれまでのイベント。チラシと紹介文でわかりやすくご案内します。" />
 
-<style>
-:root{
-  --sky:#22a7ff; --sand:#f7ce52; --ink:#2b2b2b; --paper:#fff; --maxw:1100px; --rail:16px;
-}
-@media (min-width:900px){ :root{ --rail:24px; } }
+  <style>
+    :root{
+      --sky:#22a7ff;
+      --sand:#f7ce52;
+      --ink:#2b2b2b;
+      --paper:#fff;
+      --maxw:1100px;
+      --rail:16px;
+    }
+    @media (min-width:900px){ :root{ --rail:24px; } }
 
-html,body{
-  margin:0; padding:0; color:var(--ink); line-height:1.75;
-  font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
-}
-body{ background:var(--sand); }
-.container{
-  max-width:var(--maxw); margin:0 auto; background:var(--paper);
-  min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05);
-}
-main{ padding:28px var(--rail) 56px; }
-h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
+    /* ベース */
+    html,body{
+      margin:0; padding:0; color:var(--ink); line-height:1.75;
+      font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    }
+    body{ background:var(--sand); }
+    .container{
+      max-width:var(--maxw);
+      margin:0 auto;
+      background:var(--paper);
+      min-height:100vh;
+      box-shadow:0 0 6px rgba(0,0,0,.05);
+    }
 
-/* 年ジャンプ（ボタン風） */
-.year-nav{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin: 6px 0 18px;
-}
-.year-nav a{
-  display:inline-block;
-  padding:8px 12px;
-  border:1px solid #dfe6ee;
-  border-radius:999px;
-  text-decoration:none;
-  color:#111;
-  font-weight:700;
-  background:#fff;
-}
-.year-nav a:hover{ background:#f7fbff; }
+    /* ヘッダー/ナビ（共通っぽい部分） */
+    header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
+    .visually-hidden{ position:absolute; left:-9999px; }
 
-/* 年見出し */
-.year{
-  margin:6px 0 12px; padding-left:8px;
-  border-left:4px solid #f3b700; color:#333;
-  scroll-margin-top: 12px;
-}
+    nav.site-nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
+    nav.site-nav::after{
+      content:""; position:absolute; left:0; right:0; bottom:-2px;
+      height:3px; background:var(--sky);
+    }
+    nav.site-nav .wrap{
+      max-width:var(--maxw); margin:0 auto; padding:0 var(--rail);
+      display:flex; gap:0; justify-content:center; overflow:auto;
+    }
+    nav.site-nav a{
+      color:#333; text-decoration:none;
+      padding:18px clamp(14px,2.6vw,28px);
+      font-weight:700;
+      font-size:clamp(18px,2.2vw,22px);
+      white-space:nowrap;
+    }
+    nav.site-nav a + a{ border-left:2px solid #ddd; }
+    nav.site-nav a:hover{ background:#fafafa; }
 
-/* イベント一覧（1列） */
-.event-list{ display:grid; gap:28px; margin-top:10px; }
+    main{ padding:28px var(--rail) 56px; }
+    h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
 
-/* イベントカード */
-.event{
-  border:1px solid #dfe6ee; border-radius:14px;
-  padding:18px; background:#fff;
-}
-.event-wrap{
-  display:grid;
-  grid-template-columns:minmax(260px, 420px) 1fr;
-  gap:22px; align-items:start;
-}
+    /* 年ジャンプ（ボタン風） */
+    .year-nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 6px 0 18px;
+    }
+    .year-nav a{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid #dfe6ee;
+      border-radius:999px;
+      text-decoration:none;
+      color:#111;
+      font-weight:700;
+      background:#fff;
+    }
+    .year-nav a:hover{ background:#f7fbff; }
 
-.event-media a{
-  display:block; border-radius:10px; overflow:hidden;
-  border:1px solid #e9eef3; background:#fff;
-}
-.event-media img{
-  width:100%; height:auto; display:block;
-  max-height:340px; object-fit:contain; background:#fff;
-}
+    /* 年見出し */
+    .year{
+      margin:6px 0 12px;
+      padding-left:8px;
+      border-left:4px solid #f3b700;
+      color:#333;
+      scroll-margin-top: 12px;
+    }
 
-.thumbs{ display:grid; gap:10px; grid-template-columns:1fr; }
-.thumbs img{ max-height:160px; object-fit:contain; }
+    /* イベント一覧 */
+    .event-list{ display:grid; gap:28px; margin-top:10px; }
 
-.event-body h3{
-  margin:0 0 .35em;
-  font-size:clamp(20px,2.6vw,28px);
-}
-.event-date{ margin:.2em 0 1em; color:#666; font-weight:600; }
-.event-body p{ margin:.7em 0; }
-.event-body ul{ margin:.4em 0 0 1.2em; padding:0; }
+    /* イベントカード */
+    .event{
+      border:1px solid #dfe6ee;
+      border-radius:14px;
+      padding:18px;
+      background:#fff;
+    }
+    .event-wrap{
+      display:grid;
+      grid-template-columns:minmax(260px, 420px) 1fr;
+      gap:22px;
+      align-items:start;
+    }
 
-.badge{
-  display:inline-block; margin-left:.5rem; padding:.15em .55em;
-  border-radius:8px; font-size:.8rem;
-  background:#e9f6ff; color:#056; font-weight:700;
-}
+    .event-media a{
+      display:block;
+      border-radius:10px;
+      overflow:hidden;
+      border:1px solid #e9eef3;
+      background:#fff;
+    }
+    .event-media img{
+      width:100%;
+      height:auto;
+      display:block;
+      max-height:340px;
+      object-fit:contain;
+      background:#fff;
+    }
 
-.backlink{ text-align:center; margin:18px 0; }
-.backlink a{ color:#111; font-weight:700; text-decoration:none; }
-.backlink a:hover{ text-decoration:underline; }
+    /* 2枚チラシ（縦並び） */
+    .thumbs{ display:grid; gap:10px; grid-template-columns:1fr; }
+    .thumbs img{ max-height:160px; object-fit:contain; }
 
-@media (max-width:800px){
-  .event-wrap{ grid-template-columns:1fr; }
-  .event-media img{ max-height:280px; }
-}
-</style>
+    .event-body h3{
+      margin:0 0 .35em;
+      font-size:clamp(20px,2.6vw,28px);
+    }
+    .event-date{ margin:.2em 0 1em; color:#666; font-weight:600; }
+    .event-body p{ margin:.7em 0; }
+    .event-body ul{ margin:.4em 0 0 1.2em; padding:0; }
+
+    /* noteリンク（あなたの他カードと統一） */
+    .event-note{ margin-top:12px; }
+    .event-note a{
+      color:#1f6fff;
+      font-weight:800;
+      text-decoration:underline;
+    }
+    .event-note a:hover{ filter:brightness(.95); }
+
+    .badge{
+      display:inline-block;
+      margin-left:.5rem;
+      padding:.15em .55em;
+      border-radius:8px;
+      font-size:.8rem;
+      background:#e9f6ff;
+      color:#056;
+      font-weight:700;
+    }
+
+    .backlink{ text-align:center; margin:18px 0; }
+    .backlink a{ color:#111; font-weight:700; text-decoration:none; }
+    .backlink a:hover{ text-decoration:underline; }
+
+    @media (max-width:800px){
+      .event-wrap{ grid-template-columns:1fr; }
+      .event-media img{ max-height:280px; }
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
+    <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
+
+    <!-- 上部ナビ（他ページと合わせる） -->
+    <nav class="site-nav" aria-label="主なナビゲーション">
+      <div class="wrap">
+        <a href="/">ホーム</a>
+        <a href="/project/">プロジェクト</a>
+        <a href="/events/">イベント</a>
+        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告</a>
+        <a href="/contact/">お問い合わせ</a>
+      </div>
+    </nav>
+
     <main>
       <h1>これまでのイベント</h1>
 
@@ -109,63 +183,50 @@ h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
       <nav class="year-nav" aria-label="年別ジャンプ">
         <a href="#y2026">2026</a>
         <a href="#y2025">2025</a>
+        <a href="#y2024">2024</a>
       </nav>
 
       <!-- 2026 -->
       <h2 class="year" id="y2026">2026年</h2>
       <section class="event-list" id="past-2026">
-
-        <!-- ✅ ここに「蟲神器（2026/1/18）」の記事を貼る -->
-        <!-- 例）
-        <article class="event" id="mushijingi-2026-0118"> ... </article>
-        -->
-
+        <!-- ✅ ここに「蟲神器（2026/1/18）」の “過去イベント版” を入れる -->
       </section>
 
       <!-- 2025 -->
       <h2 class="year" id="y2025">2025年</h2>
       <section class="event-list" id="past-2025">
 
+        <!-- 除昼の鐘（2025/12/31） -->
+        <article class="event" id="jyuchu-kane-2025">
+          <div class="event-wrap">
+            <div class="event-media">
+              <a href="/images/events/kanetuki1.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/kanetuki1.jpg" alt="除昼の鐘を突きにいこう！のチラシ" loading="lazy">
+              </a>
+            </div>
 
+            <div class="event-body">
+              <h3>除昼の鐘を突きにいこう！</h3>
 
+              <p class="event-date">
+                開催日：2025年12月31日（水）／ 時間：13:00〜16:00<br>
+                場所：長善寺（滋賀県高島市マキノ町小荒路581・金色の観音様が目印）
+              </p>
 
+              <p>
+                夜中の「除夜の鐘」ではなく、お昼の時間帯に開催する年末イベントとして実施しました。
+                鐘をついたあとは、境内の「あたたかコーナー」で焼き芋・お茶・ボードゲーム・ぜんざいなどを
+                楽しめる、ゆったりとした時間となりました。
+              </p>
 
-        
-
-   <!-- 除昼の鐘 -->
-<article class="event" id="jyoya-2024">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/kanetuki1.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/kanetuki1.jpg" alt="除昼の鐘を突きにいこう！のチラシ" loading="lazy">
-      </a>
-    </div>
-
-    <div class="event-body">
-      <h3>
-        除昼の鐘を突きにいこう！
-      </h3>
-
-      <p class="event-date">
-        開催日：2025年12月31日（水）／ 時間：13:00〜16:00<br>
-        場所：長善寺（滋賀県高島市マキノ町小荒路581・金色の観音様が目印）
-      </p>
-
-      <p>
-        夜中の「除夜の鐘」ではなく、お昼の時間帯に開催する年末イベントとして実施しました。
-        鐘をついたあとは、境内の「あたたかコーナー」で焼き芋・お茶・ボードゲーム・ぜんざいなどを
-        楽しめる、ゆったりとした時間となりました。
-      </p>
-
-      <p class="event-note">
-        <a href="https://note.com/loyal_dill1011/n/n1ce0c564f5cb"
-           target="_blank" rel="noopener">
-          📘 イベントレポートを読む（note）
-        </a>
-      </p>
-    </div>
-  </div>
-</article>
+              <p class="event-note">
+                <a href="https://note.com/loyal_dill1011/n/n1ce0c564f5cb" target="_blank" rel="noopener">
+                  📘 イベントレポートを読む（note）
+                </a>
+              </p>
+            </div>
+          </div>
+        </article>
 
         <!-- ① 高島フェスタ -->
         <article class="event" id="takashima-festa-2025">
@@ -180,6 +241,7 @@ h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
                 </a>
               </div>
             </div>
+
             <div class="event-body">
               <h3>高島フェスタ 出展</h3>
               <p class="event-date">
@@ -202,13 +264,14 @@ h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
         </article>
 
         <!-- ② たかしま子どもフェス -->
-        <article class="event" id="takasima-fes">
+        <article class="event" id="takasima-kodomo-fes-2025">
           <div class="event-wrap">
             <div class="event-media">
               <a href="/images/events/takasima.png" target="_blank" rel="noopener">
                 <img src="/images/events/takasima.png" alt="たかしま子どもフェスティバルのチラシ" loading="lazy">
               </a>
             </div>
+
             <div class="event-body">
               <h3>たかしま子どもフェスティバル出展</h3>
               <p class="event-date">
@@ -231,18 +294,17 @@ h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
         </article>
 
         <!-- ③ 焚火＆人狼会 -->
-        <article class="event" id="takibi-werewolf">
+        <article class="event" id="takibi-werewolf-2025">
           <div class="event-wrap">
             <div class="event-media">
               <a href="/images/events/takibi.png" target="_blank" rel="noopener">
                 <img src="/images/events/takibi.png" alt="焚火＆人狼会のチラシ" loading="lazy">
               </a>
             </div>
+
             <div class="event-body">
               <h3>焚火＆人狼会</h3>
-              <p class="event-date">
-                開催日：2025年10月12日（日）／ 時間：15:30〜20:30
-              </p>
+              <p class="event-date">開催日：2025年10月12日（日）／ 時間：15:30〜20:30</p>
               <p>オリーブフェスタにボードゲームを出しました！お子さんからも大好評でした。</p>
               <p class="event-note">
                 <a href="https://note.com/loyal_dill1011/n/n7dfb163d46a2" target="_blank" rel="noopener">
@@ -261,6 +323,7 @@ h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
                 <img src="/images/events/nazo1.jpg" alt="お寺の謎を君は解けるか？ 謎解きポップ" loading="lazy">
               </a>
             </div>
+
             <div class="event-body">
               <h3>お寺の謎を君は解けるか？（新潟マルシェ）</h3>
               <p class="event-date">開催：2025年7月頃 ／ 場所：浄広寺（新潟県）</p>
@@ -279,13 +342,14 @@ h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
         </article>
 
         <!-- ⑤ 学童（座禅＋Nerf） -->
-        <article class="event" id="gakudou-nerf-zaizen">
+        <article class="event" id="gakudou-nerf-zaizen-2025">
           <div class="event-wrap">
             <div class="event-media">
               <a href="/images/events/gakudou1.jpg" target="_blank" rel="noopener">
                 <img src="/images/events/gakudou1.jpg" alt="学童向け Nerfサバイバルゲーム＆座禅体験のチラシ" loading="lazy">
               </a>
             </div>
+
             <div class="event-body">
               <h3>学童向け Nerfサバイバルゲーム＆座禅体験</h3>
               <p class="event-date">開催：夏休み期間 ／ 場所：学童保育＋お寺</p>
@@ -302,22 +366,6 @@ h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
           </div>
         </article>
 
-        <!-- ⑥ 蟲神器（夏 8/3） -->
-        <article class="event" id="mushijingi-2024-0803">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/events/mushi2.jpg" target="_blank" rel="noopener">
-                <img src="/images/events/mushi2.jpg" alt="蟲神器公認大会（夏）のチラシ" loading="lazy">
-              </a>
-            </div>
-            <div class="event-body">
-              <h3>蟲神器 公認大会（夏）</h3>
-              <p class="event-date">開催日：2024年8月3日（土）／ 場所：今津ヴォーリズ資料館</p>
-              <p>子ども〜大人まで幅広い参加があり、白熱した大会となりました。幼虫ブロックと成虫ブロックに分かれて実施しました。</p>
-            </div>
-          </div>
-        </article>
-
         <!-- ⑦ 蟲神器（5/3） -->
         <article class="event" id="mushijingi-2025-0503">
           <div class="event-wrap">
@@ -326,6 +374,7 @@ h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
                 <img src="/images/events/mushi1.jpg" alt="蟲神器公認大会のチラシ" loading="lazy">
               </a>
             </div>
+
             <div class="event-body">
               <h3>蟲神器 公認大会 in 今津</h3>
               <p class="event-date">開催日：2025年5月3日（土）／ 場所：今津ヴォーリズ資料館</p>
@@ -347,6 +396,7 @@ h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
                 <img src="/images/events/nerf1.jpg" alt="ナーフ会のチラシ" loading="lazy">
               </a>
             </div>
+
             <div class="event-body">
               <h3>お寺の庭で おためし体験ナーフ会</h3>
               <p class="event-date">開催日：2025年5月4日（日）／ 場所：長善寺</p>
@@ -368,6 +418,7 @@ h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
                 <img src="/images/events/mj1.PNG" alt="健康麻雀会のチラシ" loading="lazy">
               </a>
             </div>
+
             <div class="event-body">
               <h3>健康麻雀会</h3>
               <p class="event-date">毎月第４日曜日（通年開催）</p>
@@ -381,6 +432,26 @@ h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
           </div>
         </article>
 
+      </section>
+
+      <!-- 2024 -->
+      <h2 class="year" id="y2024">2024年</h2>
+      <section class="event-list" id="past-2024">
+        <!-- ⑥ 蟲神器（夏 8/3） -->
+        <article class="event" id="mushijingi-2024-0803">
+          <div class="event-wrap">
+            <div class="event-media">
+              <a href="/images/events/mushi2.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/mushi2.jpg" alt="蟲神器公認大会（夏）のチラシ" loading="lazy">
+              </a>
+            </div>
+            <div class="event-body">
+              <h3>蟲神器 公認大会（夏）</h3>
+              <p class="event-date">開催日：2024年8月3日（土）／ 場所：今津ヴォーリズ資料館</p>
+              <p>子ども〜大人まで幅広い参加があり、白熱した大会となりました。幼虫ブロックと成虫ブロックに分かれて実施しました。</p>
+            </div>
+          </div>
+        </article>
       </section>
 
       <p class="backlink"><a href="/events/">▶ 今後のイベントへ戻る</a></p>
