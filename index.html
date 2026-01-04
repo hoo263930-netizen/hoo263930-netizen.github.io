@@ -63,7 +63,6 @@
       border-bottom:1px solid #eee;
       padding: 0; /* 余白なし */
     }
-    /* 切れずに全体表示（左右が余るのはOK） */
     .hero-img{
       width:100%;
       height:auto;
@@ -100,6 +99,33 @@
     .collab-btn:hover{ filter:brightness(.96); }
     .collab-btn:active{ transform:translateY(1px); }
     @media(min-width:880px){ .collab-inner{ grid-template-columns:380px 1fr; padding:clamp(28px,4vw,44px);} }
+
+    /* ★追加：collab ボタン2つ並び（ここは <style> の中に置く） */
+    .collab-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .collab-actions .collab-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .collab-btn-sub{
+      opacity:0.95;
+      transform: translateY(0);
+    }
+    @media (max-width: 700px){
+      .collab-actions{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .collab-actions .collab-btn{
+        width:100%;
+        max-width: 320px;
+      }
+    }
 
     /* ===== note（最新3件） ===== */
     .note-section{ padding:36px 18px; background:#fafaf7; border-radius:18px; }
@@ -265,75 +291,33 @@
         </div>
       </section>
 
-      <!-- コラボ募集（あなたのを維持） -->
+      <!-- ✅ コラボ募集（修正版） -->
       <section class="collab">
         <div class="collab-inner">
           <div class="collab-media">
             <img src="/images/collab-badge.png" alt="コラボ募集イメージ">
           </div>
+
           <div class="collab-copy">
-<div class="collab-copy">
-  <h2>コラボ・講師依頼のご案内</h2>
-  <p>
-    遊べるお寺プロジェクトでは、地域・学校・福祉施設・企業などでのコラボ企画や講師依頼を承っております。<br><br>
-    健康麻雀や座禅体験、サバイバルゲーム、ボードゲームなど、多彩なプログラムを通じて、人と人が自然につながる場をつくります。<br><br>
-    出張企画やご相談は、お問い合わせフォームよりご連絡ください。<br><br>
+            <h2>コラボ・講師依頼のご案内</h2>
+            <p>
+              遊べるお寺プロジェクトでは、地域・学校・福祉施設・企業などでのコラボ企画や講師依頼を承っております。<br><br>
+              健康麻雀や座禅体験、サバイバルゲーム、ボードゲームなど、多彩なプログラムを通じて、人と人が自然につながる場をつくります。<br><br>
+              出張企画やご相談は、お問い合わせフォームよりご連絡ください。<br><br>
+              また、地域活動や場づくりについて、オンラインで話しながら整理する相談も行っています。<br>
+              詳細はココナラにまとめています。
+            </p>
 
-また、地域活動や場づくりについて、オンラインで話しながら整理する相談も行っています。<br>
-詳細はココナラにまとめています。
-
-  </p>
-
-  <div class="collab-actions">
-    <a class="collab-btn" href="/contact/">お問い合わせはこちら</a>
-    <a class="collab-btn collab-btn-sub" href="https://coconala.com/users/5816878" target="_blank" rel="noopener">
-      オンライン相談（ココナラ）
-    </a>
-  </div>
-</div>
-
-
-
-
-
-            /* collab: ボタンを2つ並べる */
-.collab-actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;      /* 画面が狭いと折り返す */
-  margin-top:14px;
-}
-
-.collab-actions .collab-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-}
-
-/* 2つ目ボタンは控えめに（メインより主張しすぎない） */
-.collab-btn-sub{
-  opacity:0.95;
-  transform: translateY(0);
-}
-
-/* スマホでは縦並びで押しやすく */
-@media (max-width: 700px){
-  .collab-actions{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-  .collab-actions .collab-btn{
-    width:100%;
-    max-width: 320px;  /* 既存のボタン幅に合わせたいなら調整 */
-  }
-}
-
-
-
-
-            
-
+            <div class="collab-actions">
+              <a class="collab-btn" href="/contact/">お問い合わせはこちら</a>
+              <a class="collab-btn collab-btn-sub" href="https://coconala.com/users/5816878" target="_blank" rel="noopener">
+                オンライン相談（ココナラ）
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
+
     </main>
 
     <footer>© 2025 遊べるお寺プロジェクト</footer>
