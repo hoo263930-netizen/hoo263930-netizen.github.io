@@ -17,7 +17,17 @@ https://hoo263930-netizen.github.io</description>
     <webfeeds:related layout="card" target="browser"/>
     <webfeeds:analytics id="UA-48687000-1" engine="GoogleAnalytics"/>
     <language>ja</language>
-    <lastBuildDate>Sat, 17 Jan 2026 11:07:13 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 17 Jan 2026 15:39:35 +0900</lastBuildDate>
+    <item>
+      <title>本を書いているとnoteが止まってしまう話</title>
+      <media:thumbnail>https://assets.st-note.com/production/uploads/images/244443869/rectangle_large_type_2_f20d0cb422ef60f577e77ecc109e4fca.png?width=800</media:thumbnail>
+      <description><![CDATA[<p name="faca418d-18f1-452e-b991-60beb0549287" id="faca418d-18f1-452e-b991-60beb0549287">最近、noteの更新が少し止まっています。<br>書いていないというほどではないのですが、<br>自分の感覚としては「今はnoteに気が向いていないな」という状態です。</p><p name="3dd9dacc-10bb-4342-92ce-e29ddc9fd1aa" id="3dd9dacc-10bb-4342-92ce-e29ddc9fd1aa">理由は単純で、<br>いま、本の原稿を書いているからです。</p><br/><a href='https://note.com/loyal_dill1011/n/n7ced8341cfed'>続きをみる</a>]]></description>
+      <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
+      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <pubDate>Sat, 17 Jan 2026 11:10:58 +0900</pubDate>
+      <link>https://note.com/loyal_dill1011/n/n7ced8341cfed</link>
+      <guid>https://note.com/loyal_dill1011/n/n7ced8341cfed</guid>
+    </item>
     <item>
       <title>眠れない夜が怖くなくなる、ちょっとした考え方</title>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/243107641/rectangle_large_type_2_da3a66fe35adfb68f00edb026472eab8.png?width=800</media:thumbnail>
@@ -257,16 +267,6 @@ https://hoo263930-netizen.github.io</description>
       <pubDate>Wed, 26 Nov 2025 20:18:40 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/nff7a4b1624c0</link>
       <guid>https://note.com/loyal_dill1011/n/nff7a4b1624c0</guid>
-    </item>
-    <item>
-      <title>4枚麻雀で伝えたい麻雀のフェスタブース</title>
-      <media:thumbnail>https://assets.st-note.com/production/uploads/images/230434473/rectangle_large_type_2_0ac33ad2b95d3ced65ba2903320e9738.png?width=800</media:thumbnail>
-      <description><![CDATA[<p name="e663f853-3e19-4c98-9615-344eee24e150" id="e663f853-3e19-4c98-9615-344eee24e150"><br></p><p name="d6903ae7-b6d0-43ec-847d-5b541c4a7095" id="d6903ae7-b6d0-43ec-847d-5b541c4a7095"><br></p><br/><a href='https://note.com/loyal_dill1011/n/n12dd2ea01d50'>続きをみる</a>]]></description>
-      <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
-      <pubDate>Wed, 19 Nov 2025 07:55:18 +0900</pubDate>
-      <link>https://note.com/loyal_dill1011/n/n12dd2ea01d50</link>
-      <guid>https://note.com/loyal_dill1011/n/n12dd2ea01d50</guid>
     </item>
   </channel>
 </rss>
