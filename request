@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>遊べるお寺プロジェクト｜活動紹介</title>
+  <meta name="description" content="遊べるお寺プロジェクトの活動紹介ページ。活動の目的、健康麻雀会、座禅会、サバイバルゲーム、その他の活動、情報発信、参加のご案内。" />
+  <style>
+    :root{
+      --sky:#22a7ff;   /* 青の下線 */
+      --sand:#f7ce52;  /* 両脇の黄 */
+      --ink:#2b2b2b;
+      --paper:#fff;
+      --maxw:1100px;
+      --rail:16px;
+    }
+    @media (min-width:900px){ :root{ --rail:24px; } }
+
+    /* ベース（トップ/イベントと同じ） */
+    html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+    body{ background:var(--sand); }
+    .container{ max-width:var(--maxw); margin:0 auto; background:var(--paper); min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
+
+    header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
+    .visually-hidden{ position:absolute; left:-9999px; }
+
+    /* ナビ（共通スタイル） */
+    nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
+    nav::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:3px; background:var(--sky); }
+    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail); display:flex; gap:0; justify-content:center; overflow:auto; }
+    nav a{
+      color:#333; text-decoration:none;
+      padding:18px clamp(14px,2.6vw,28px);
+      font-weight:700; font-size:clamp(18px,2.2vw,22px);
+      white-space:nowrap;
+    }
+    nav a + a{ border-left:2px solid #ddd; }
+    nav a:hover{ background:#fafafa; }
+
+    /* 本文レイアウト */
+    main{ padding:28px var(--rail) 56px; }
+    h2{ margin:.2em 0 .6em; font-size:clamp(20px,2.8vw,26px); }
+    p{ margin:.6em 0; }
+
+    /* ブロック */
+    .wrap{ max-width:var(--maxw); margin:0 auto; }
+    .block{ border:1px solid #dfe6ee; border-radius:14px; padding:18px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.05); }
+
+    /* バッジ */
+    .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 8px; }
+    .badge{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; background:#ffeaa8; color:#523e00; }
+
+    /* 画像 */
+    .media-1{ margin:10px 0; }
+    .media-1 img, .media-2 img{ width:100%; height:auto; display:block; border-radius:12px; background:#f4f7ff; border:1px solid #e9eef3; }
+    .media-1.small{ max-width:520px; }
+    .media-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:10px 0; }
+    figure{ margin:0; }
+    figcaption{ font-size:13px; color:#5d6673; margin-top:6px; background:#fcfdff; padding:6px 8px; border-radius:8px; border:1px dashed #e6ecf7; }
+    @media (max-width:760px){ .media-2{ grid-template-columns:1fr; } .media-1.small{ max-width:100%; } }
+
+    /* ボタン */
+    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .btn{ display:inline-block; text-decoration:none; font-weight:700; padding:.7rem 1.1rem; border-radius:999px; }
+    .btn.primary{ background:#36b37e; color:#fff; }
+    .btn.ghost{ background:#fff; color:#222; border:1px solid #ddd; }
+    .btn.dark{ background:#222; color:#fff; }
+
+    /* フッター */
+    footer{ background:#111; color:#ddd; padding:16px var(--rail); text-align:center; font-size:.9rem; }
+    footer a{ color:#fff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ヘッダー（共通・非表示タイトルのみ） -->
+    <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
+
+    <!-- ナビ（共通） -->
+    <nav aria-label="主なナビゲーション">
+      <div class="wrap">
+        <a href="/">ホーム</a>
+        <a href="/project/">プロジェクト</a>
+        <a href="/events/">イベント</a>
+        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）</a>
+        <a href="/contact/">お問い合わせ</a>
+      </div>
+    </nav>
+
+    <main>
+
+
+
+
+      <h1>ご依頼・ご相談</h1>
+
+<p>
+地域での体験イベントや講座、麻雀体験、対話の場づくりなどを行っています。<br>
+まずはお気軽にご相談ください。
+</p>
+
+<h2>お手伝いできること</h2>
+<ul>
+  <li>健康麻雀・体験麻雀の開催</li>
+  <li>地域イベントでの体験ブース出展</li>
+  <li>ワークショップ・対話会</li>
+  <li>コミュニティづくりの相談</li>
+</ul>
+
+<h2>これまでの活動</h2>
+<p>
+公民館イベント／地域マルシェ出展／健康麻雀会 など
+</p>
+
+<h2>ご依頼の流れ</h2>
+<ol>
+  <li>LINEまたはメールで相談</li>
+  <li>内容確認</li>
+  <li>実施</li>
+</ol>
+
+<h2>料金について</h2>
+<p>
+内容により異なりますので、まずはご相談ください。
+</p>
+
+<h2>お問い合わせ</h2>
+<p>
+<a href="https://lin.ee/xxxxx">LINEで相談する</a>
+</p>
+
+<p>
+正式なご依頼は、<a href="https://coconala.com/xxxxx">ココナラからも可能です</a>。
+</p>
+
+
+
+
+
+      
+
+    <footer>© 2025 遊べるお寺プロジェクト</footer>
+  </div>
+</body>
+</html>
