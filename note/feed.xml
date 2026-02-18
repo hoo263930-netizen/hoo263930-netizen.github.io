@@ -17,7 +17,17 @@ https://hoo263930-netizen.github.io</description>
     <webfeeds:related layout="card" target="browser"/>
     <webfeeds:analytics id="UA-48687000-1" engine="GoogleAnalytics"/>
     <language>ja</language>
-    <lastBuildDate>Wed, 18 Feb 2026 16:10:38 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 18 Feb 2026 22:21:48 +0900</lastBuildDate>
+    <item>
+      <title>バーチャルお寺を作ってみた話</title>
+      <media:thumbnail>https://assets.st-note.com/production/uploads/images/252777141/rectangle_large_type_2_283c1ac6437f3046c1cdc17dfe1dc954.png?width=800</media:thumbnail>
+      <description><![CDATA[<p name="ad3a04ef-15e0-4bf3-9890-699b025e281d" id="ad3a04ef-15e0-4bf3-9890-699b025e281d"><br></p><figure name="7ddd142c-ea6c-42fa-ab39-99d74a87e4eb" id="7ddd142c-ea6c-42fa-ab39-99d74a87e4eb"><img src="https://assets.st-note.com/img/1771414615-c4DVkqU7WzuCpX9elowRS0fT.png" alt="" width="620" height="380"><figcaption>デフォルトの室内</figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n6e096e49fd1f'>続きをみる</a>]]></description>
+      <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
+      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <pubDate>Wed, 18 Feb 2026 20:42:19 +0900</pubDate>
+      <link>https://note.com/loyal_dill1011/n/n6e096e49fd1f</link>
+      <guid>https://note.com/loyal_dill1011/n/n6e096e49fd1f</guid>
+    </item>
     <item>
       <title>活動パネルを作って、「遊べるお寺」をやっている理由を考えた</title>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/251222102/rectangle_large_type_2_a37684ec10e18279fbf1d478d6875702.jpeg?width=800</media:thumbnail>
@@ -257,16 +267,6 @@ https://hoo263930-netizen.github.io</description>
       <pubDate>Wed, 31 Dec 2025 20:03:45 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/nd7ca31916cc3</link>
       <guid>https://note.com/loyal_dill1011/n/nd7ca31916cc3</guid>
-    </item>
-    <item>
-      <title>大晦日、焚き火と鐘と</title>
-      <media:thumbnail>https://assets.st-note.com/production/uploads/images/240288522/rectangle_large_type_2_81b2559513886188712971884f28c699.jpeg?width=800</media:thumbnail>
-      <description><![CDATA[<p name="5071418b-379b-483c-8541-631ad3103af1" id="5071418b-379b-483c-8541-631ad3103af1"><br></p><p name="5e3f0d4f-1696-4583-aa56-9a27e9a82987" id="5e3f0d4f-1696-4583-aa56-9a27e9a82987"><br></p><br/><a href='https://note.com/loyal_dill1011/n/n1ce0c564f5cb'>続きをみる</a>]]></description>
-      <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
-      <pubDate>Wed, 31 Dec 2025 17:59:51 +0900</pubDate>
-      <link>https://note.com/loyal_dill1011/n/n1ce0c564f5cb</link>
-      <guid>https://note.com/loyal_dill1011/n/n1ce0c564f5cb</guid>
     </item>
   </channel>
 </rss>
