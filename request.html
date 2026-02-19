@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>遊べるお寺プロジェクト｜活動紹介</title>
-  <meta name="description" content="遊べるお寺プロジェクトの活動紹介ページ。活動の目的、健康麻雀会、座禅会、サバイバルゲーム、その他の活動、情報発信、参加のご案内。" />
+  <title>遊べるお寺プロジェクト｜ご依頼・ご相談</title>
+  <meta name="description" content="遊べるお寺プロジェクトへのご依頼・ご相談ページ。健康麻雀、体験イベント、対話会、地域の場づくりなど、企画から当日運営まで対応します。" />
   <style>
     :root{
       --sky:#22a7ff;   /* 青の下線 */
@@ -39,7 +39,9 @@
 
     /* 本文レイアウト */
     main{ padding:28px var(--rail) 56px; }
-    h2{ margin:.2em 0 .6em; font-size:clamp(20px,2.8vw,26px); }
+    h1{ margin:.1em 0 .3em; font-size:clamp(26px,3.2vw,34px); }
+    h2{ margin:1.2em 0 .6em; font-size:clamp(20px,2.8vw,26px); }
+    h3{ margin:1em 0 .4em; font-size:clamp(16px,2.2vw,20px); }
     p{ margin:.6em 0; }
 
     /* ブロック */
@@ -50,21 +52,26 @@
     .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 8px; }
     .badge{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; background:#ffeaa8; color:#523e00; }
 
-    /* 画像 */
-    .media-1{ margin:10px 0; }
-    .media-1 img, .media-2 img{ width:100%; height:auto; display:block; border-radius:12px; background:#f4f7ff; border:1px solid #e9eef3; }
-    .media-1.small{ max-width:520px; }
-    .media-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:10px 0; }
-    figure{ margin:0; }
-    figcaption{ font-size:13px; color:#5d6673; margin-top:6px; background:#fcfdff; padding:6px 8px; border-radius:8px; border:1px dashed #e6ecf7; }
-    @media (max-width:760px){ .media-2{ grid-template-columns:1fr; } .media-1.small{ max-width:100%; } }
-
     /* ボタン */
     .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
     .btn{ display:inline-block; text-decoration:none; font-weight:700; padding:.7rem 1.1rem; border-radius:999px; }
     .btn.primary{ background:#36b37e; color:#fff; }
     .btn.ghost{ background:#fff; color:#222; border:1px solid #ddd; }
     .btn.dark{ background:#222; color:#fff; }
+
+    /* 追加：依頼ページ用 */
+    .lead{ font-size:16px; }
+    .muted{ color:#5d6673; font-size:14px; }
+    .hr{ border:0; border-top:1px solid #eee; margin:18px 0; }
+    .cards{ display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:10px; }
+    @media (max-width:900px){ .cards{ grid-template-columns:1fr; } }
+    ul{ padding-left:1.2em; }
+    li{ margin:.2em 0; }
+
+    /* FAQ */
+    details{ border:1px solid #e6ecf7; border-radius:12px; padding:12px 14px; background:#fcfdff; margin:10px 0; }
+    summary{ font-weight:800; cursor:pointer; }
+    details p{ margin:.6em 0 0; }
 
     /* フッター */
     footer{ background:#111; color:#ddd; padding:16px var(--rail); text-align:center; font-size:.9rem; }
@@ -88,56 +95,233 @@
     </nav>
 
     <main>
+      <div class="wrap">
 
+        <!-- 1) ファーストビュー -->
+        <section class="block">
+          <h1>ご依頼・ご相談</h1>
 
+          <div class="badges">
+            <span class="badge">滋賀拠点</span>
+            <span class="badge">地域イベント</span>
+            <span class="badge">健康麻雀</span>
+            <span class="badge">対話・ワークショップ</span>
+            <span class="badge">企画〜当日運営</span>
+          </div>
 
+          <p class="lead">
+            地域での体験イベントや講座、麻雀体験、対話の場づくりなどを行っています。<br>
+            「何をやればいいか分からない」段階からでも大丈夫です。まずはお気軽にご相談ください。
+          </p>
 
-      <h1>ご依頼・ご相談</h1>
+          <div class="cta">
+            <!-- ★ここ差し替え：LINEのURL -->
+            <a class="btn primary" href="https://lin.ee/xxxxx">LINEで相談する</a>
+            <a class="btn ghost" href="/events/">実績・雰囲気を見る</a>
+            <a class="btn dark" href="/contact/">お問い合わせフォーム</a>
+          </div>
 
-<p>
-地域での体験イベントや講座、麻雀体験、対話の場づくりなどを行っています。<br>
-まずはお気軽にご相談ください。
-</p>
+          <p class="muted">
+            ※返信目安：2〜3日以内（お急ぎの場合はその旨お知らせください）
+          </p>
+        </section>
 
-<h2>お手伝いできること</h2>
-<ul>
-  <li>健康麻雀・体験麻雀の開催</li>
-  <li>地域イベントでの体験ブース出展</li>
-  <li>ワークショップ・対話会</li>
-  <li>コミュニティづくりの相談</li>
-</ul>
+        <!-- 2) こんな相談に合います -->
+        <h2>こんなご相談に合います</h2>
+        <section class="block">
+          <ul>
+            <li>地域の交流イベントをやりたいが、何から決めればいいか分からない</li>
+            <li>初参加でも居づらくならない「安心な場」を作りたい</li>
+            <li>高齢者・子ども・初心者が混ざる場を、トラブルなく回したい</li>
+            <li>企画だけでなく、当日の進行・運営まで任せたい</li>
+            <li>小規模でも継続できる形に整えたい</li>
+          </ul>
+        </section>
 
-<h2>これまでの活動</h2>
-<p>
-公民館イベント／地域マルシェ出展／健康麻雀会 など
-</p>
+        <!-- 3) できること（メニュー） -->
+        <h2>お手伝いできること</h2>
+        <section class="block">
+          <div class="cards">
 
-<h2>ご依頼の流れ</h2>
-<ol>
-  <li>LINEまたはメールで相談</li>
-  <li>内容確認</li>
-  <li>実施</li>
-</ol>
+            <div class="block" style="box-shadow:none;">
+              <div class="badges"><span class="badge">人気</span><span class="badge">初心者歓迎</span></div>
+              <h3>健康麻雀・体験麻雀</h3>
+              <p class="muted">導入／体験会／運営サポート。初心者が混ざっても回る設計で進行します。</p>
+              <ul>
+                <li>ルール説明・サポート</li>
+                <li>場の雰囲気づくり</li>
+                <li>継続開催の相談</li>
+              </ul>
+            </div>
 
-<h2>料金について</h2>
-<p>
-内容により異なりますので、まずはご相談ください。
-</p>
+            <div class="block" style="box-shadow:none;">
+              <div class="badges"><span class="badge">単発向き</span><span class="badge">集客イベント</span></div>
+              <h3>体験ブース・イベント出展</h3>
+              <p class="muted">地域イベント／文化祭／マルシェなどの体験ブース企画・運営を行います。</p>
+              <ul>
+                <li>体験の導線設計</li>
+                <li>当日の運営・進行</li>
+                <li>子ども〜大人対応</li>
+              </ul>
+            </div>
 
-<h2>お問い合わせ</h2>
-<p>
-<a href="https://lin.ee/xxxxx">LINEで相談する</a>
-</p>
+            <div class="block" style="box-shadow:none;">
+              <div class="badges"><span class="badge">対話</span><span class="badge">学び</span></div>
+              <h3>ワークショップ・対話会</h3>
+              <p class="muted">哲学対話、ふり返り会、ゆる仏教など。安心して話せる場づくりをします。</p>
+              <ul>
+                <li>テーマ設計</li>
+                <li>進行（ファシリテーション）</li>
+                <li>参加者の安全配慮</li>
+              </ul>
+            </div>
 
-<p>
-正式なご依頼は、<a href="https://coconala.com/xxxxx">ココナラからも可能です</a>。
-</p>
+          </div>
 
+          <hr class="hr">
 
+          <p class="muted">
+            上記以外にも、内容は組み合わせ・調整可能です。<br>
+            「この条件でできる？」という段階から気軽にご相談ください。
+          </p>
+        </section>
 
+        <!-- 4) 実績 -->
+        <h2>これまでの活動</h2>
+        <section class="block">
+          <p>
+            公民館イベント／地域マルシェ出展／健康麻雀会／学童での体験企画／対話会 など
+          </p>
+          <div class="cta">
+            <a class="btn ghost" href="/events/">イベント・活動の一覧を見る</a>
+            <a class="btn ghost" href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）を見る</a>
+          </div>
+        </section>
 
+        <!-- 5) 依頼の流れ -->
+        <h2>ご依頼の流れ</h2>
+        <section class="block">
+          <ol>
+            <li><strong>ご連絡</strong>（LINE／フォーム）</li>
+            <li><strong>内容確認</strong>（日時・場所・人数・目的など）</li>
+            <li><strong>提案・すり合わせ</strong>（必要に応じてオンライン打合せ）</li>
+            <li><strong>実施</strong>（当日の運営まで対応）</li>
+            <li><strong>ふり返り</strong>（任意：次回に向けた提案も可能）</li>
+          </ol>
 
-      
+          <hr class="hr">
+
+          <h3>最初のご連絡で教えていただきたいこと</h3>
+          <ul>
+            <li>開催希望日（候補でもOK）</li>
+            <li>場所（市町名＋会場名）</li>
+            <li>参加予定人数／年齢層</li>
+            <li>目的（交流／学び／地域活性／研修など）</li>
+            <li>希望する内容（麻雀／体験ブース／対話会 など）</li>
+            <li>ご予算感（決まっていれば）</li>
+          </ul>
+        </section>
+
+        <!-- 6) 料金の目安（A案：短く） -->
+        <h2>料金の目安（仮）</h2>
+        <section class="block">
+          <p>
+            内容（準備量・人数・移動距離）によって工数が変わるため、下記は<strong>目安</strong>です。<br>
+            まずは「日時／場所／人数／目的」を教えてください。内容に合わせてご提案・お見積りします。
+          </p>
+          <ul>
+            <li><strong>ミニ（既製プログラム）</strong>：60分 … <strong>10,000円〜</strong></li>
+            <li><strong>スタンダード（いちばん多い形）</strong>：90〜120分 … <strong>15,000円〜</strong></li>
+            <li><strong>半日（複数卓・運営込み等）</strong>：3〜4時間 … <strong>30,000円〜</strong></li>
+            <li><strong>地域応援枠（条件付き）</strong>：60分 … <strong>5,000円</strong>（※月◯件まで／移動◯分圏内／既製内容のみ）</li>
+          </ul>
+          <p class="muted">
+            ※交通費：別途（実費）<br>
+            ※印刷物・材料費が必要な場合：実費または事前相談<br>
+            ※行政・学校等で講師料規定がある場合：規定に合わせて内容・範囲を調整します
+          </p>
+        </section>
+
+        <!-- 7) FAQ（B案：ここで詳細） -->
+        <h2>よくある質問（FAQ）</h2>
+        <section class="block">
+          <details>
+            <summary>料金はどうやって決まりますか？</summary>
+            <p>「実施時間」「準備量（新規制作の有無）」「人数・運営負荷」「移動距離」で決まります。まずは概要を伺い、内容に合わせてお見積りします。</p>
+          </details>
+
+          <details>
+            <summary>予算が限られているのですが、相談できますか？</summary>
+            <p>可能です。ご予算に合わせて「時間を短くする」「内容を既製プログラムにする」「材料・印刷を主催者側で用意する」など、無理のない形に調整します。（※条件が合う場合は地域応援枠のご相談も可能です）</p>
+          </details>
+
+          <details>
+            <summary>謎解き／脱出ゲームみたいに準備が重いものも、同じ料金ですか？</summary>
+            <p>新規の企画・制作（謎作成、資料作成、印刷物など）が発生する場合は、別途お見積りになります。「講師料（当日運営）」と「制作費（準備）」を分けてご案内することがあります。</p>
+          </details>
+
+          <details>
+            <summary>交通費はどうなりますか？</summary>
+            <p>原則、実費でお願いしています（車移動）。遠方の場合は、移動負担分をご相談する場合があります。</p>
+          </details>
+
+          <details>
+            <summary>材料費や印刷費は料金に含まれますか？</summary>
+            <p>内容によります。印刷物・景品・消耗品などが必要な場合は、実費（または上限を決めて）で事前相談のうえ進めます。</p>
+          </details>
+
+          <details>
+            <summary>何人くらいまで対応できますか？</summary>
+            <p>内容によりますが、少人数〜中規模まで対応可能です。大人数の場合は「複数卓」「サポート役の追加」「進行の簡略化」など、運営が崩れない設計で調整します。</p>
+          </details>
+
+          <details>
+            <summary>会場側で用意するものはありますか？</summary>
+            <p>机・椅子・電源など、会場設備は主催者様側でご用意いただく形が基本です。必要物は事前にお伝えします。</p>
+          </details>
+
+          <details>
+            <summary>請求書・領収書は出せますか？</summary>
+            <p>はい。団体・行政の手続きに合わせて対応します。</p>
+          </details>
+
+          <details>
+            <summary>キャンセルや日程変更はできますか？</summary>
+            <p>できる限り調整します。なお、すでに購入・印刷した物品がある場合は、その実費のみご負担をお願いすることがあります。</p>
+          </details>
+        </section>
+
+        <!-- 8) プロフィール（短く） -->
+        <h2>簡単なプロフィール</h2>
+        <section class="block">
+          <p>
+            滋賀県高島市を拠点に「遊べるお寺プロジェクト」として、地域の交流・居場所づくりに関わる企画を行っています。<br>
+            参加しやすさ・安心感・当日の進行を大事にしながら、単発企画から継続開催まで相談に乗れます。
+          </p>
+        </section>
+
+        <!-- 9) お問い合わせ -->
+        <h2>お問い合わせ</h2>
+        <section class="block">
+          <p>まずはLINEかお問い合わせフォームからご連絡ください。</p>
+
+          <div class="cta">
+            <!-- ★ここ差し替え：LINEのURL -->
+            <a class="btn primary" href="https://lin.ee/xxxxx">LINEで相談する</a>
+            <a class="btn dark" href="/contact/">お問い合わせフォーム</a>
+          </div>
+
+          <hr class="hr">
+
+          <p class="muted">
+            正式なご依頼は、ココナラからも可能です。<br>
+            <!-- ★ここ差し替え：ココナラURL -->
+            <a href="https://coconala.com/xxxxx" target="_blank" rel="noopener">ココナラのページへ</a>
+          </p>
+        </section>
+
+      </div>
+    </main>
 
     <footer>© 2025 遊べるお寺プロジェクト</footer>
   </div>
