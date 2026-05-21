@@ -1,100 +1,233 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>お問い合わせ | 遊べるお寺プロジェクト</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>お問い合わせ｜遊べるお寺プロジェクト</title>
+  <meta name="description" content="遊べるお寺プロジェクトへのお問い合わせページ。講座、イベント、企画協力、地域活動のご相談などはこちらからご連絡ください。" />
   <style>
     :root{
-      --sky:#5ac2ff;
+      --sky:#22a7ff;
       --sand:#f7ce52;
       --ink:#2b2b2b;
-      --paper:#ffffff;
-      --maxw:780px;
+      --paper:#fff;
+      --maxw:1100px;
+      --rail:16px;
     }
-    body{ margin:0; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; color:var(--ink); line-height:1.7; background:var(--paper);}
-    header{ background:var(--sand); padding:14px 16px; text-align:center; font-weight:700; }
-    nav{ background:#222; color:#fff; }
-    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 12px; display:flex; gap:12px; overflow:auto; }
-    nav a{ color:#fff; text-decoration:none; padding:10px 8px; }
-    nav a:hover{ border-bottom:2px solid var(--sand); }
-    main{ max-width:var(--maxw); margin:0 auto; padding:24px 16px 48px; }
-    h1{ margin-top:0; }
-    form{ display:grid; gap:14px; margin-top:1.5rem; }
-    label{ font-weight:700; }
-    input, textarea{
-      width:100%; padding:.7rem .8rem; border:1px solid #ccc; border-radius:6px; font-size:1rem;
+    @media (min-width:900px){ :root{ --rail:24px; } }
+
+    html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+    body{ background:var(--sand); }
+    .container{ max-width:var(--maxw); margin:0 auto; background:var(--paper); min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
+
+    header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
+    .visually-hidden{ position:absolute; left:-9999px; }
+
+    nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
+    nav::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:3px; background:var(--sky); }
+    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail); display:flex; gap:0; justify-content:center; overflow:auto; }
+    nav a{
+      color:#333; text-decoration:none;
+      padding:18px clamp(14px,2.6vw,28px);
+      font-weight:700; font-size:clamp(18px,2.2vw,22px);
+      white-space:nowrap;
+    }
+    nav a + a{ border-left:2px solid #ddd; }
+    nav a:hover{ background:#fafafa; }
+
+    main{ padding:28px var(--rail) 56px; }
+    h1{ margin:.1em 0 .3em; font-size:clamp(28px,3.8vw,42px); line-height:1.45; }
+    h2{ margin:1.2em 0 .6em; font-size:clamp(20px,2.8vw,26px); }
+    h3{ margin:1em 0 .4em; font-size:clamp(16px,2.2vw,20px); }
+    p{ margin:.6em 0; }
+
+    .wrap{ max-width:var(--maxw); margin:0 auto; }
+    .block{ border:1px solid #dfe6ee; border-radius:14px; padding:18px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.05); }
+    .hero{ background:linear-gradient(180deg,#fffdf5 0%,#ffffff 100%); border-color:#efd98a; }
+    .section-note{ background:#fffdf5; border-color:#efd98a; }
+
+    .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 8px; }
+    .badge{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; background:#ffeaa8; color:#523e00; }
+    .badge.green{ background:#e5f5ec; color:#145c3b; }
+
+    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .btn{ display:inline-block; text-decoration:none; font-weight:700; padding:.7rem 1.1rem; border-radius:999px; }
+    .btn.primary{ background:#36b37e; color:#fff; }
+    .btn.ghost{ background:#fff; color:#222; border:1px solid #ddd; }
+    .btn.dark{ background:#222; color:#fff; }
+
+    .lead{ font-size:16px; }
+    .muted{ color:#5d6673; font-size:14px; }
+    .hr{ border:0; border-top:1px solid #eee; margin:18px 0; }
+    .cards{ display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-top:10px; }
+    @media (max-width:900px){ .cards{ grid-template-columns:1fr; } }
+
+    ul{ padding-left:1.2em; }
+    li{ margin:.2em 0; }
+
+    form{ display:grid; gap:16px; max-width:720px; margin-top:12px; }
+    label{ display:block; font-weight:700; margin-bottom:.3em; }
+    input,textarea{
+      width:100%; box-sizing:border-box;
+      padding:12px;
+      border:1px solid #cfd7e3;
+      border-radius:10px;
+      font-family:inherit;
+      font-size:16px;
+      background:#fff;
     }
     textarea{ min-height:160px; resize:vertical; }
     button{
-      background:var(--sky); color:#fff; border:none;
-      padding:.9rem 1.2rem; border-radius:8px; font-size:1rem; cursor:pointer;
+      width:fit-content;
+      background:#222;
+      color:#fff;
+      font-weight:700;
+      border:none;
+      padding:.75rem 1.4rem;
+      border-radius:999px;
+      cursor:pointer;
+      font-family:inherit;
+      font-size:16px;
     }
-    button:hover{ filter:brightness(.95); }
-    footer{ background:#f7f7f7; border-top:1px solid #eee; padding:14px 16px; text-align:center; font-size:.9rem; color:#666; }
+    button:hover{ opacity:.88; }
+
+    footer{ background:#111; color:#ddd; padding:16px var(--rail); text-align:center; font-size:.9rem; }
+    footer a{ color:#fff; }
   </style>
 </head>
 <body>
+  <div class="container">
+    <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
 
-  <!-- ヘッダー -->
-  <header>お問い合わせ</header>
+    <nav aria-label="主なナビゲーション">
+      <div class="wrap">
+        <a href="/">ホーム</a>
+        <a href="/project/">プロジェクト</a>
+        <a href="/events/">イベント</a>
+        <a href="/request.html">ご依頼・講師相談</a>
+        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）</a>
+        <a href="/contact/">お問い合わせ</a>
+      </div>
+    </nav>
 
-  <!-- ナビ -->
-  <nav>
-    <div class="wrap">
-      <a href="/">ホーム</a>
-      <a href="/project/">プロジェクト</a>
-      <a href="/events/">イベント</a>
-      <a href="/report/">活動報告</a>
-      <a href="/contact/">お問い合わせ</a>
-    </div>
-  </nav>
+    <main>
+      <div class="wrap">
 
-  <!-- 本文 -->
-  <main>
-    <h1>お問い合わせフォーム</h1>
-    <p>ご質問・ご依頼など、こちらのフォームからお気軽にお送りください。送信後に確認メールが届きます。</p>
+        <section class="block hero">
+          <p class="muted">お問い合わせ</p>
+          <h1>ご相談・お問い合わせ</h1>
 
-    <form action="https://formspree.io/f/mrbybkoe" method="POST">
-      <!-- 名前 -->
-      <label for="name">お名前</label>
-      <input type="text" id="name" name="name" required>
+          <div class="badges">
+            <span class="badge">講座相談</span>
+            <span class="badge">イベント依頼</span>
+            <span class="badge">企画協力</span>
+            <span class="badge green">地域活動の相談</span>
+          </div>
 
-      <!-- メール -->
-      <label for="email">メールアドレス</label>
-      <input type="email" id="email" name="email" required>
+          <p class="lead">
+            遊べるお寺プロジェクトへのご質問、ご依頼、企画相談などはこちらからご連絡ください。
+          </p>
+          <p class="lead">
+            「こういうことはできますか？」という段階でも構いません。内容、場所、対象者、予算、時期などを伺いながら、できる形を一緒に考えます。
+          </p>
 
-      <!-- 題名 -->
-      <label for="subject">題名</label>
-      <input type="text" id="subject" name="subject" placeholder="例：イベントについて">
+          <div class="cta">
+            <a class="btn primary" href="https://lin.ee/ZITRIHg" target="_blank" rel="noopener">公式LINEで相談する</a>
+            <a class="btn ghost" href="/request.html">ご依頼・講師相談ページを見る</a>
+          </div>
+        </section>
 
-      <!-- 本文 -->
-      <label for="message">本文</label>
-      <textarea id="message" name="message" required></textarea>
+        <h2>お問い合わせフォーム</h2>
+        <section class="block">
+          <p>
+            メールでのご連絡をご希望の場合は、下記フォームよりお送りください。
+          </p>
+          <p class="muted">
+            開催希望日、場所、参加予定人数、相談したい内容などが分かる範囲で入っていると、やり取りがスムーズです。
+          </p>
 
-      <!-- 任意の隠しフィールド -->
-      <input type="hidden" name="_subject" value="HPからのお問い合わせ">
-      <input type="hidden" name="_redirect" value="https://hoo263930-netizen.github.io/contact/sent.html">
-      <input type="text" name="_gotcha" style="display:none">
+          <form action="https://formspree.io/f/mrbybkoe" method="POST">
+            <div>
+              <label for="name">お名前</label>
+              <input type="text" id="name" name="name" required>
+            </div>
 
-<!-- 送信ボタン -->
-<button type="submit">送信</button>
+            <div>
+              <label for="email">メールアドレス</label>
+              <input type="email" id="email" name="email" required>
+            </div>
 
-<p style="font-size:.9rem; opacity:.8;">
-  ※ 個人情報は返信目的のみに使用します。
-</p>
+            <div>
+              <label for="subject">題名</label>
+              <input type="text" id="subject" name="subject" placeholder="例：イベントについて">
+            </div>
 
-<p style="font-size:.9rem; opacity:.8; line-height:1.6;">
-  ※ 返信がない場合は、メールアドレスの入力間違いの可能性があります。<br>
-  数日たっても返信が届かない場合は、再度お問い合わせください。
-</p>
-</form>
-</main>
+            <div>
+              <label for="message">本文</label>
+              <textarea id="message" name="message" required placeholder="例：〇月ごろに公民館で健康麻雀の体験会を検討しています。対象は高齢者向けで、参加人数は10〜20名程度の予定です。"></textarea>
+            </div>
 
-  <!-- フッター -->
-  <footer>
-    <p>&copy; 2025 遊べるお寺プロジェクト</p>
-  </footer>
+            <input type="hidden" name="_subject" value="HPからのお問い合わせ">
+            <input type="hidden" name="_redirect" value="https://hoo263930-netizen.github.io/contact/sent.html">
+            <input type="text" name="_gotcha" style="display:none">
 
+            <button type="submit">送信する</button>
+
+            <p class="muted">
+              ※個人情報は返信目的のみに使用します。<br>
+              ※返信がない場合は、メールアドレスの入力間違いの可能性があります。数日たっても返信が届かない場合は、再度お問い合わせください。
+            </p>
+          </form>
+        </section>
+
+        <h2>ご連絡前に分かると助かること</h2>
+        <section class="block section-note">
+          <ul>
+            <li>ご相談の内容（講座、イベント、企画相談、地域活動の相談など）</li>
+            <li>開催希望時期、または候補日</li>
+            <li>場所（市町名、会場名など）</li>
+            <li>対象者、参加予定人数</li>
+            <li>目的（交流、学び、居場所づくり、研修、地域活性など）</li>
+            <li>ご予算感や、団体内の講師料規定があればその内容</li>
+          </ul>
+          <p class="muted">
+            すべて決まっていなくても問題ありません。未定の部分は、相談しながら整理します。
+          </p>
+        </section>
+
+        <h2>外部サービスからのご相談</h2>
+        <section class="block">
+          <p class="muted">
+            相談内容に応じて、MENTA・ココナラのページもご利用いただけます。
+          </p>
+
+          <div class="cards">
+            <div class="block" style="box-shadow:none;">
+              <h3>MENTA</h3>
+              <p class="muted">
+                個人的な活動相談、地域活動の始め方、企画の壁打ち、働き方や発信の相談など、継続的・個別的に相談したい方向けです。
+              </p>
+              <div class="cta">
+                <a class="btn ghost" href="https://menta.work/user/219766" target="_blank" rel="noopener">MENTAで相談する</a>
+              </div>
+            </div>
+
+            <div class="block" style="box-shadow:none;">
+              <h3>ココナラ</h3>
+              <p class="muted">
+                イベント企画、講座、体験会、地域活動のサポートなど、具体的なご依頼や単発での依頼をご希望の方向けです。
+              </p>
+              <div class="cta">
+                <a class="btn ghost" href="https://coconala.com/users/5816878" target="_blank" rel="noopener">ココナラから依頼する</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <footer>© 2025 遊べるお寺プロジェクト</footer>
+  </div>
 </body>
 </html>
