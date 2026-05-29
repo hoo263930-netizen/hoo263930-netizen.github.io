@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Message Sent | Chozenji Temple</title>
+  <meta name="description" content="Your inquiry to Chozenji Temple has been sent." />
+
+  <style>
+    :root {
+      --main: #2f4f3f;
+      --main-dark: #243b30;
+      --sub: #8a6f45;
+      --bg: #f7f4ee;
+      --white: #ffffff;
+      --text: #2b2b2b;
+      --muted: #666666;
+      --line: rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Times New Roman", "Yu Mincho", "YuMincho", serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .site-title {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      color: var(--main);
+      white-space: nowrap;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .site-nav a {
+      color: var(--text);
+      padding-bottom: 3px;
+      border-bottom: 1px solid transparent;
+    }
+
+    .site-nav a:hover,
+    .site-nav a.current {
+      color: var(--sub);
+      border-bottom: 1px solid var(--sub);
+    }
+
+    .site-nav .language-link {
+      padding: 5px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--main);
+    }
+
+    main {
+      min-height: calc(100vh - 170px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 72px 24px;
+    }
+
+    .card {
+      max-width: 760px;
+      width: 100%;
+      background: var(--white);
+      padding: 42px 34px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      text-align: center;
+    }
+
+    .label {
+      color: var(--sub);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      font-family: Arial, sans-serif;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      color: var(--main);
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: normal;
+      letter-spacing: 0.08em;
+    }
+
+    p {
+      margin: 0 auto 18px;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .button-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 11px 24px;
+      border-radius: 999px;
+      background: var(--main);
+      color: var(--white);
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--main);
+      border: 1px solid var(--main);
+    }
+
+    footer {
+      background: var(--main-dark);
+      color: var(--white);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 14px;
+    }
+
+    footer p {
+      color: var(--white);
+      margin: 4px 0;
+    }
+
+    @media (max-width: 820px) {
+      .header-inner {
+        display: block;
+        text-align: center;
+        padding: 12px 18px;
+      }
+
+      .site-title {
+        font-size: 20px;
+      }
+
+      .site-nav {
+        margin-top: 10px;
+        justify-content: center;
+        gap: 10px 12px;
+        font-size: 13px;
+      }
+
+      main {
+        padding: 56px 20px;
+      }
+
+      .card {
+        padding: 34px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="site-title" href="index-en.html">Chozenji</a>
+
+      <nav class="site-nav">
+        <a href="index-en.html#about">About Chozenji</a>
+        <a href="zazen-en.html">Zazen</a>
+        <a href="kuyo-en.html">Memorial Services</a>
+        <a href="grave-en.html">Memorial Grave</a>
+        <a href="access-en.html">Access</a>
+        <a href="contact-en.html" class="current">Contact</a>
+        <a class="language-link" href="contact-sent.html">日本語</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="label">SENT</div>
+      <h1>Message Sent</h1>
+      <p>
+        Thank you for contacting Chozenji Temple. Your message has been sent.
+      </p>
+      <p>
+        We will reply if necessary. If you do not receive a reply after a few days, please check your email address and spam folder.
+      </p>
+
+      <div class="button-wrap">
+        <a class="button" href="index-en.html">Back to Top</a>
+        <a class="button secondary" href="contact-en.html">Back to Contact</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Chozenji Temple</p>
+    <p>581 Koaraji, Makino-cho, Takashima, Shiga 520-1803, Japan</p>
+    <p>&copy; Chozenji. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
