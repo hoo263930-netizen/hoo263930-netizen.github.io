@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>イベント | 遊べるお寺プロジェクト</title>
   <meta name="description" content="遊べるお寺プロジェクトのイベント情報。チラシと紹介文でわかりやすくご案内します。" />
+
   <style>
     :root{
       --sky:#22a7ff;
@@ -16,447 +17,530 @@
     }
     @media (min-width:900px){ :root{ --rail:24px; } }
 
-    /* ベース */
     html,body{
-      margin:0; padding:0; color:var(--ink); line-height:1.75;
+      margin:0;
+      padding:0;
+      color:var(--ink);
+      line-height:1.75;
       font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
     }
+
     body{ background:var(--sand); }
+
     .container{
-      max-width:var(--maxw); margin:0 auto; background:var(--paper);
-      min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05);
+      max-width:var(--maxw);
+      margin:0 auto;
+      background:var(--paper);
+      min-height:100vh;
+      box-shadow:0 0 6px rgba(0,0,0,.05);
     }
 
-    header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
-    .visually-hidden{ position:absolute; left:-9999px; }
+    header{
+      background:#fff;
+      border-bottom:2px solid var(--sand);
+      padding:0 var(--rail);
+    }
 
-    nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
-    nav::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:3px; background:var(--sky); }
+    .visually-hidden{
+      position:absolute;
+      left:-9999px;
+    }
+
+    nav{
+      background:#fff;
+      position:relative;
+      border-bottom:2px solid var(--sand);
+    }
+
+    nav::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-2px;
+      height:3px;
+      background:var(--sky);
+    }
+
     nav .wrap{
-      max-width:var(--maxw); margin:0 auto; padding:0 var(--rail);
-      display:flex; gap:0; justify-content:center; overflow:auto;
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:0 var(--rail);
+      display:flex;
+      gap:0;
+      justify-content:center;
+      overflow:auto;
     }
+
     nav a{
-      color:#333; text-decoration:none; padding:18px clamp(14px,2.6vw,28px);
-      font-weight:700; font-size:clamp(18px,2.2vw,22px); white-space:nowrap;
+      color:#333;
+      text-decoration:none;
+      padding:18px clamp(14px,2.6vw,28px);
+      font-weight:700;
+      font-size:clamp(18px,2.2vw,22px);
+      white-space:nowrap;
     }
+
     nav a + a{ border-left:2px solid #ddd; }
     nav a:hover{ background:#fafafa; }
 
-    main{ padding:28px var(--rail) 56px; }
-    h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
-    footer{
-      background:#f7f7f7; border-top:1px solid #eee; padding:14px var(--rail);
-      text-align:center; font-size:.9rem; color:#666;
+    main{
+      padding:28px var(--rail) 56px;
     }
 
-    /* イベントカード */
-    .event-list{ display:grid; gap:28px; margin-top:10px; }
+    h1{
+      margin:.2em 0 .4em;
+      font-size:clamp(24px,3.2vw,36px);
+    }
+
+    .page-lead{
+      margin:0 0 18px;
+      color:#555;
+    }
+
+    .past-link-top{
+      text-align:right;
+      margin:0 0 22px;
+    }
+
+    .past-link-bottom{
+      text-align:center;
+      margin:28px 0 0;
+    }
+
+    .past-link-top a,
+    .past-link-bottom a{
+      display:inline-block;
+      padding:.55rem 1rem;
+      border-radius:999px;
+      background:#f0f3f8;
+      color:#1b2b44;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    .past-link-bottom a{
+      padding:.7rem 1.2rem;
+      background:#f3b700;
+      color:#111;
+      box-shadow:0 6px 14px rgba(243,183,0,.25);
+    }
+
+    .event-list{
+      display:grid;
+      gap:28px;
+      margin-top:10px;
+    }
+
+    .event-section-title{
+      margin:10px 0 -8px;
+      padding:.45rem .85rem;
+      border-left:6px solid var(--sky);
+      background:#f7fbff;
+      font-size:clamp(20px,2.4vw,26px);
+    }
+
+    .event-section-note{
+      margin:-12px 0 -6px;
+      color:#666;
+      font-size:.95rem;
+    }
+
     .event{
-      border:1px solid #dfe6ee; border-radius:14px; padding:18px; background:#fff;
-    }
-    .event-wrap{
-      display:grid; grid-template-columns:minmax(260px, 420px) 1fr;
-      gap:22px; align-items:start;
-    }
-
-    .event-media a{ display:block; border-radius:10px; overflow:hidden; border:1px solid #e9eef3; background:#fff; }
-    .event-media img{
-      width:100%; height:auto; display:block;
-      max-height:340px;             /* ← 画像の高さを統一 */
-      object-fit:contain;           /* 比率を保ったまま収める */
+      border:1px solid #dfe6ee;
+      border-radius:14px;
+      padding:18px;
       background:#fff;
     }
-    /* 2枚チラシ（縦並び） */
-    .thumbs{ display:grid; gap:10px; grid-template-columns:1fr; }
-    .thumbs img{ max-height:160px; object-fit:contain; }
 
-    .event-body h3{ margin:0 0 .35em; font-size:clamp(20px,2.6vw,28px); }
-    .event-date{ margin:.2em 0 1em; color:#666; font-weight:600; }
-    .event-body p{ margin:.7em 0; }
-    .event-body ul{ margin:.4em 0 0 1.2em; padding:0; }
-
-    .event-cta{ margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
-    .btn{
-      display:inline-block; text-decoration:none; font-weight:700;
-      background:#1f6fff; color:#fff; padding:.65rem 1.2rem; border-radius:999px;
-      box-shadow:0 4px 14px rgba(31,111,255,.18);
+    .event.featured{
+      border:2px solid #f3b700;
+      background:#fffdf2;
     }
-    .btn:hover{ filter:brightness(.96); }
-    .btn.sec{ background:#f0f3f8; color:#1b2b44; box-shadow:none; }
+
+    .event-wrap{
+      display:grid;
+      grid-template-columns:minmax(260px, 420px) 1fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .event-media a{
+      display:block;
+      border-radius:10px;
+      overflow:hidden;
+      border:1px solid #e9eef3;
+      background:#fff;
+    }
+
+    .event-media img{
+      width:100%;
+      height:auto;
+      display:block;
+      max-height:340px;
+      object-fit:contain;
+      background:#fff;
+    }
+
+    .flyer-double{
+      display:grid;
+      gap:10px;
+    }
+
+    .flyer-double img{
+      max-height:210px;
+      object-fit:contain;
+    }
+
+    .event-body h3{
+      margin:0 0 .35em;
+      font-size:clamp(20px,2.6vw,28px);
+    }
+
+    .event-date{
+      margin:.2em 0 1em;
+      color:#666;
+      font-weight:600;
+    }
+
+    .event-body p{
+      margin:.7em 0;
+    }
 
     .badge{
-      display:inline-block; margin-left:.5rem; padding:.15em .55em; border-radius:8px;
-      font-size:.8rem; background:#e9f6ff; color:#056; font-weight:700;
+      display:inline-block;
+      margin-left:.5rem;
+      padding:.15em .55em;
+      border-radius:8px;
+      font-size:.8rem;
+      background:#e9f6ff;
+      color:#056;
+      font-weight:700;
+    }
+
+    .badge.important{
+      background:#fff0b8;
+      color:#5a4300;
+    }
+
+    .event-cta{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      font-weight:700;
+      background:#1f6fff;
+      color:#fff;
+      padding:.65rem 1.2rem;
+      border-radius:999px;
+      box-shadow:0 4px 14px rgba(31,111,255,.18);
+    }
+
+    .btn:hover{
+      filter:brightness(.96);
+    }
+
+    .btn.sec{
+      background:#f0f3f8;
+      color:#1b2b44;
+      box-shadow:none;
+    }
+
+    footer{
+      background:#f7f7f7;
+      border-top:1px solid #eee;
+      padding:14px var(--rail);
+      text-align:center;
+      font-size:.9rem;
+      color:#666;
     }
 
     @media (max-width:800px){
-      .event-wrap{ grid-template-columns:1fr; }
-      .event-media img{ max-height:280px; } /* スマホはさらに控えめ */
+      .event-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .event-media img{
+        max-height:280px;
+      }
+
+      .flyer-double img{
+        max-height:220px;
+      }
+
+      .past-link-top{
+        text-align:left;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
+    <header>
+      <span class="visually-hidden">遊べるお寺プロジェクト</span>
+    </header>
 
-<nav aria-label="主なナビゲーション">
-  <div class="wrap">
-    <a href="/">ホーム</a>
-    <a href="/project/">プロジェクト</a>
-    <a href="/events/">イベント</a>
-    <a href="/request.html">ご依頼・講師相談</a>
-    <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）</a>
-    <a href="/contact/">お問い合わせ</a>
-  </div>
-</nav>
+    <nav aria-label="主なナビゲーション">
+      <div class="wrap">
+        <a href="/">ホーム</a>
+        <a href="/project/">プロジェクト</a>
+        <a href="/events/">イベント</a>
+        <a href="/request.html">ご依頼・講師相談</a>
+        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）</a>
+        <a href="/contact/">お問い合わせ</a>
+      </div>
+    </nav>
 
     <main>
       <h1>今後のイベント情報</h1>
 
+      <p class="page-lead">
+        遊べるお寺プロジェクトが関わるイベント・講座・定期活動のご案内です。
+        詳細は各チラシや申込フォームをご確認ください。
+      </p>
+
+      <div class="past-link-top">
+        <a href="/events/past.html">▶ これまでのイベントを見る</a>
+      </div>
+
       <section class="event-list">
 
-
-
-
-        <p style="text-align:right; margin:-6px 0 18px;">
-  <a href="/events/past.html"
-     style="display:inline-block; padding:.55rem 1rem; border-radius:999px;
-            background:#f0f3f8; color:#1b2b44; text-decoration:none; font-weight:700;">
-    ▶ これまでのイベントを見る
-  </a>
-</p>
-
-
-
-
-
-
-
-
-
-
-
+        <h2 class="event-section-title">注目イベント</h2>
+        <p class="event-section-note">
+          現在、参加者を募集している主なイベントです。
+        </p>
 
         <!-- みんなの健康麻雀大会＆カフェ -->
-<article class="event" id="mahjong-tournament-2026-0808">
-  <div class="event-wrap">
-    <div class="event-media flyer-double">
-      <a href="/images/events/mjt1.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/mjt1.jpg" alt="みんなの健康麻雀大会＆カフェ チラシ表面" loading="lazy">
-      </a>
-      <a href="/images/events/mjt2.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/mjt2.jpg" alt="みんなの健康麻雀大会＆カフェ チラシ裏面" loading="lazy">
-      </a>
-    </div>
+        <article class="event featured" id="mahjong-tournament-2026-0808">
+          <div class="event-wrap">
+            <div class="event-media flyer-double">
+              <a href="/images/events/mjt1.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/mjt1.jpg" alt="みんなの健康麻雀大会＆カフェ チラシ表面" loading="lazy">
+              </a>
+              <a href="/images/events/mjt2.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/mjt2.jpg" alt="みんなの健康麻雀大会＆カフェ チラシ裏面" loading="lazy">
+              </a>
+            </div>
 
-    <div class="event-body">
-      <h3>みんなの健康麻雀大会＆カフェ <span class="badge">参加者募集中</span></h3>
+            <div class="event-body">
+              <h3>みんなの健康麻雀大会＆カフェ <span class="badge important">参加者募集中</span></h3>
 
-      <p class="event-date">
-        2026年<br>
-        8月8日（土）<br>
-        12:30〜16:30（受付 12:00〜）<br>
-        会場：虹の会 ハーモニー<br>
-        住所：高島市新旭町藁園2607
-      </p>
+              <p class="event-date">
+                2026年8月8日（土）12:30〜16:30（受付 12:00〜）<br>
+                会場：虹の会 ハーモニー<br>
+                住所：高島市新旭町藁園2607
+              </p>
 
-      <p>
-        麻雀とカフェを通じて、地域の人が気軽に集まり、交流できる場をつくるイベントです。<br>
-        健康麻雀は「賭けない・飲まない・吸わない・怒らない」を大切にしながら、頭を使い、人と交流しながら楽しめる麻雀です。
-      </p>
+              <p>
+                健康麻雀の大会と、気軽に立ち寄れるカフェを組み合わせた交流イベントです。
+                大会参加の方も、カフェのみの方も歓迎です。
+              </p>
 
-      <p>
-        大会に参加する方も、カフェに立ち寄る方も、それぞれの形で楽しめます。<br>
-        空いている卓で、麻雀を少し体験できる場合もあります。
-      </p>
+              <p>
+                参加費：一般 700円 / 高校生以下 300円 / カフェのみ 200円<br>
+                大会定員：16名ほど<br>
+                申込締切：2026年7月31日（金）
+              </p>
 
-      <p>
-        参加費：一般 700円 / 高校生以下 300円 / カフェのみ 200円<br>
-        大会定員：16名ほど<br>
-        申込締切：2026年7月31日（金）
-      </p>
-
-      <p>
-        大会へのお申し込みは、できるだけGoogleフォームからお願いします。<br>
-        Googleフォームでのお申し込みが難しい場合は、公式LINEまたはメールでも受け付けています。
-      </p>
-
-      <p>
-        <a href="https://forms.gle/mL4FiyG9EnGNnzwp6" target="_blank" rel="noopener">
-          大会参加申し込みフォームはこちら
-        </a>
-      </p>
-
-<p>
-  大会ルールはこちらからご確認ください。<br>
-  <a href="/images/events/mahjong-rule1.jpg" target="_blank" rel="noopener">
-    大会ルールを見る（1枚目）
-  </a><br>
-  <a href="/images/events/mahjong-rule2.jpg" target="_blank" rel="noopener">
-    大会ルールを見る（2枚目）
-  </a>
-</p>
-    </div>
-  </div>
-</article>
+              <div class="event-cta">
+                <a class="btn" href="https://forms.gle/mL4FiyG9EnGNnzwp6" target="_blank" rel="noopener">
+                  大会参加申し込みフォーム
+                </a>
+                <a class="btn sec" href="/images/events/mahjong-rule1.jpg" target="_blank" rel="noopener">
+                  大会ルール 1枚目
+                </a>
+                <a class="btn sec" href="/images/events/mahjong-rule2.jpg" target="_blank" rel="noopener">
+                  大会ルール 2枚目
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
 
 
+        <h2 class="event-section-title">近日開催イベント</h2>
+        <p class="event-section-note">
+          開催日が近い順に掲載しています。
+        </p>
 
         <!-- はじめての香りづくり体験会 -->
-<article class="event" id="aroma-workshop-2026-0711">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/aroma-workshop-20260711.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/aroma-workshop-20260711.jpg" alt="はじめての香りづくり体験会のチラシ" loading="lazy">
-      </a>
-    </div>
+        <article class="event" id="aroma-workshop-2026-0711">
+          <div class="event-wrap">
+            <div class="event-media">
+              <a href="/images/events/aroma-workshop-20260711.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/aroma-workshop-20260711.jpg" alt="はじめての香りづくり体験会のチラシ" loading="lazy">
+              </a>
+            </div>
 
-    <div class="event-body">
-      <h3>はじめての香りづくり体験会 <span class="badge">事前予約制</span></h3>
+            <div class="event-body">
+              <h3>はじめての香りづくり体験会 <span class="badge">事前予約制</span></h3>
 
-      <p class="event-date">
-        2026年<br>
-        7月11日（土）<br>
-        13:30〜15:30<br>
-        会場：コミュニティサロン Wan<br>
-        住所：滋賀県高島市安曇川町南船木301-1
-      </p>
+              <p class="event-date">
+                2026年7月11日（土）13:30〜15:30<br>
+                会場：コミュニティサロン Wan<br>
+                住所：滋賀県高島市安曇川町南船木301-1
+              </p>
 
-      <p>
-        好きな香りを選んで、自分だけのアロマアイテムを作る体験型のイベントです。<br>
-        初めての方も、おひとりでの参加も歓迎です。
-      </p>
+              <p>
+                好きな香りを選び、自分だけのアロマアイテムを作る体験会です。
+                初めての方、おひとりでの参加も歓迎です。
+              </p>
 
-      <p>
-        参加費：2,000円（材料費込み）<br>
-        対象：20歳以上の社会人<br>
-        定員：8名
-      </p>
+              <p>
+                参加費：2,000円（材料費込み）<br>
+                対象：20歳以上の社会人<br>
+                定員：8名
+              </p>
 
-      <p>
-        難しい知識は必要ありません。<br>
-        香りが好きな方、少人数でゆったり過ごしたい方は、お気軽にご参加ください。
-      </p>
+              <p>
+                ※香りを使用します。肌に不安がある方は、ご自身の判断でご参加ください。
+              </p>
 
-      <p>
-        ※香りを使用します。肌に不安がある方は、使用を控えるなど、ご自身の判断でご参加ください。
-      </p>
-
-      <p>
-        お申し込みは、公式LINEまたはGoogleフォームからお願いします。
-      </p>
-
-      <p>
-        <a href="https://forms.gle/ZvdLQ1Es6qJzpJ4J6" target="_blank" rel="noopener">
-          申込フォームはこちら
-        </a>
-      </p>
-    </div>
-  </div>
-</article>
-
-
-
-        <!-- 小さな活動を伝える チラシ作り講座 -->
-<article class="event" id="flyer-course-2026-0719">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/flyer-course-20260719.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/flyer-course-20260719.jpg" alt="小さな活動を伝える チラシ作り講座のチラシ" loading="lazy">
-      </a>
-    </div>
-
-    <div class="event-body">
-      <h3>小さな活動を伝える チラシ作り講座 <span class="badge">申込受付中</span></h3>
-
-      <p class="event-date">
-        2026年<br>
-        7月19日（日）<br>
-        13:30〜16:00<br>
-        会場：コミュニティサロン Wan
-      </p>
-
-      <p>
-        当日は、完成品の制作代行ではなく、<br>
-        <strong>自分でチラシを作れるようになるための「たたき台」づくり</strong>を目指します。
-      </p>
-
-      <p>
-        参加費：1,500円<br>
-        定員：6名（先着順）<br>
-        持ち物：スマホ・タブレット・パソコンのいずれか
-      </p>
-      <p>
-        可能であれば、事前にCanvaとChatGPTを使える状態でご参加ください。<br>
-        パソコン・タブレットの方が作業しやすいです。
-      </p>
-
-      <p>
-        申込はGoogleフォームから受け付けています。<br>
-        フォームが難しい方は、公式LINE・メール・コミュサロWanでも受付可能です。
-      </p>
-      <p>
-  <a href="https://forms.gle/jxoWnjtTUjaoZn8a8" target="_blank" rel="noopener">
-    申込フォームはこちら
-  </a>
-</p>
-    </div>
-  </div>
-</article>
-
-
-<!-- ぱぴぷ vol.3 出展 -->
-<article class="event" id="papipu-2026-0725">
-  <div class="event-wrap">
-    <div class="event-media flyer-double">
-      <a href="/images/events/papipu-2026-0725-info.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/papipu-2026-0725-info.jpg" alt="ぱぴぷ vol.3 Summer さまざまな燈 出展案内" loading="lazy">
-      </a>
-      <a href="/images/events/papipu-2026-0725-main.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/papipu-2026-0725-main.jpg" alt="ぱぴぷ vol.3 Summer さまざまな燈 メインビジュアル" loading="lazy">
-      </a>
-    </div>
-
-    <div class="event-body">
-      <h3>ぱぴぷ vol.3 Summer さまざまな燈 <span class="badge">出展予定</span></h3>
-
-      <p class="event-date">
-        2026年<br>
-        7月25日（土）<br>
-        17:00〜20:00<br>
-        会場：虹の会 ハーモニー
-      </p>
-
-      <p>
-        高島市新旭町で開催される「ぱぴぷ vol.3 Summer さまざまな燈」に、
-        遊べるお寺プロジェクトとして出展します。
-      </p>
-
-      <p>
-        当日は、子どもから大人まで気軽に楽しめる
-        <strong>健康麻雀の体験ブース</strong>を予定しています。
-        麻雀をしたことがない方や、久しぶりの方にも分かりやすくお伝えします。
-      </p>
-    </div>
-  </div>
-</article>
-
-
+              <div class="event-cta">
+                <a class="btn" href="https://forms.gle/ZvdLQ1Es6qJzpJ4J6" target="_blank" rel="noopener">
+                  申込フォームはこちら
+                </a>
+                <a class="btn sec" href="/images/events/aroma-workshop-20260711.jpg" target="_blank" rel="noopener">
+                  チラシを大きく見る
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
 
 
         <!-- みんなのボドゲ会 IN ぱれっと -->
-<article class="event" id="boardgame-palette-2026-0718">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/boardgame-palette-20260718.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/boardgame-palette-20260718.jpg" alt="みんなのボドゲ会 IN ぱれっとのチラシ" loading="lazy">
-      </a>
-    </div>
+        <article class="event" id="boardgame-palette-2026-0718">
+          <div class="event-wrap">
+            <div class="event-media">
+              <a href="/images/events/boardgame-palette-20260718.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/boardgame-palette-20260718.jpg" alt="みんなのボドゲ会 IN ぱれっとのチラシ" loading="lazy">
+              </a>
+            </div>
 
-    <div class="event-body">
-      <h3>みんなのボドゲ会 IN ぱれっと <span class="badge">申込不要</span></h3>
+            <div class="event-body">
+              <h3>みんなのボドゲ会 IN ぱれっと <span class="badge">申込不要</span></h3>
 
-      <p class="event-date">
-        2026年<br>
-        7月18日（土）<br>
-        13:00〜16:30<br>
-        会場：虹の会 ぱれっと<br>
-        住所：高島市新旭町藁園3086
-      </p>
+              <p class="event-date">
+                2026年7月18日（土）13:00〜16:30<br>
+                会場：虹の会 ぱれっと<br>
+                住所：高島市新旭町藁園3086
+              </p>
 
-      <p>
-        新旭で、ボードゲームや人狼ゲームなどを楽しむ交流イベントを開催します。<br>
-        どなたでも参加できます。おひとりでの参加も歓迎です。
-      </p>
+              <p>
+                ボードゲームや人狼ゲームなどを楽しむ交流イベントです。
+                どなたでも参加できます。おひとりでの参加も歓迎です。
+              </p>
 
-      <p>
-        参加費：無料<br>
-        申込：不要・当日参加OK
-      </p>
+              <p>
+                参加費：無料<br>
+                申込：不要・当日参加OK
+              </p>
 
-      <p>
-        小学生から高校生、保護者の方も歓迎です。<br>
-        初めての方でも遊びやすいゲームを用意しながら、楽しくつながれる時間をつくります。
-      </p>
-    </div>
-  </div>
-</article>
-        
-
-<!-- みんなのボドゲ会 in ココハウス -->
-<article class="event" id="cocohouse-boardgame">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/coco1.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/coco1.jpg" alt="みんなのボドゲ会 in ココハウスのチラシ" loading="lazy">
-      </a>
-    </div>
-
-    <div class="event-body">
-      <h3>みんなのボドゲ会 in ココハウス <span class="badge">6月27日は中止</span></h3>
-
-      <p class="event-date">
-        開催予定日（月1回開催）<br>
-        ※変更する場合は、こちらの予定日を書き換えますのでご確認ください<br>
-        2026年<br>
-        5月6日（水）/ <strong>6月27日（土）【中止】</strong> / 7月開催予定
-      </p>
-
-      <p>
-        <strong>【中止のお知らせ】</strong><br>
-        6月27日（土）に予定していた「みんなのボドゲ会 in ココハウス」は、悪天候の影響を考慮し、今回は中止とさせていただきます。<br>
-        また改めて開催日を検討し、決まり次第お知らせします。
-      </p>
-
-      <p>
-        時間：13:00〜16:30
-      </p>
-
-      <p>
-        ココハウスで開催する、ボードゲームや人狼ゲームなどを楽しむ交流イベントです。<br>
-        詳しい内容・対象・場所などはチラシをご確認ください。
-      </p>
-    </div>
-  </div>
-</article>
+              <div class="event-cta">
+                <a class="btn sec" href="/images/events/boardgame-palette-20260718.jpg" target="_blank" rel="noopener">
+                  チラシを大きく見る
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
 
 
-<!-- 朝のお寺じかん -->
-<article class="event" id="morning-temple-time">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/asatera1.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/asatera1.jpg" alt="朝のお寺じかんのチラシ" loading="lazy">
-      </a>
-    </div>
+        <!-- 小さな活動を伝える チラシ作り講座 -->
+        <article class="event" id="flyer-course-2026-0719">
+          <div class="event-wrap">
+            <div class="event-media">
+              <a href="/images/events/flyer-course-20260719.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/flyer-course-20260719.jpg" alt="小さな活動を伝える チラシ作り講座のチラシ" loading="lazy">
+              </a>
+            </div>
 
-    <div class="event-body">
-      <h3>朝のお寺じかん <span class="badge">毎月開催予定</span></h3>
+            <div class="event-body">
+              <h3>小さな活動を伝える チラシ作り講座 <span class="badge">申込受付中</span></h3>
 
-      <p class="event-date">
-  開催予定日（月1回開催）<br>
- ※変更する場合は、こちらの予定日を書き換えますのでご確認ください<br><br>
+              <p class="event-date">
+                2026年7月19日（日）13:30〜16:00<br>
+                会場：コミュニティサロン Wan
+              </p>
 
-          2026年<br>
-  5月23日（土） / 6月27日（土）/ 7月開催予定<br>
-        時間：7:00〜9:00
-      </p>
+              <p>
+                CanvaとChatGPTを使い、自分の活動を伝えるチラシのたたき台を作る講座です。
+              </p>
 
-      <p>
-        朝のお寺で、座禅やお経、軽い草むしり、お茶を楽しむ小さな会です。<br>
-        詳しい内容・参加費・参加方法などはチラシをご確認ください。
-      </p>
-    </div>
-  </div>
-</article>
+              <p>
+                参加費：1,500円<br>
+                定員：6名（先着順）<br>
+                持ち物：スマホ・タブレット・パソコンのいずれか
+              </p>
+
+              <p>
+                可能であれば、事前にCanvaとChatGPTを使える状態でご参加ください。
+              </p>
+
+              <div class="event-cta">
+                <a class="btn" href="https://forms.gle/jxoWnjtTUjaoZn8a8" target="_blank" rel="noopener">
+                  申込フォームはこちら
+                </a>
+                <a class="btn sec" href="/images/events/flyer-course-20260719.jpg" target="_blank" rel="noopener">
+                  チラシを大きく見る
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
 
 
+        <!-- ぱぴぷ vol.3 出展 -->
+        <article class="event" id="papipu-2026-0725">
+          <div class="event-wrap">
+            <div class="event-media flyer-double">
+              <a href="/images/events/papipu-2026-0725-info.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/papipu-2026-0725-info.jpg" alt="ぱぴぷ vol.3 Summer さまざまな燈 出展案内" loading="lazy">
+              </a>
+              <a href="/images/events/papipu-2026-0725-main.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/papipu-2026-0725-main.jpg" alt="ぱぴぷ vol.3 Summer さまざまな燈 メインビジュアル" loading="lazy">
+              </a>
+            </div>
 
-        
+            <div class="event-body">
+              <h3>ぱぴぷ vol.3 Summer さまざまな燈 <span class="badge">出展予定</span></h3>
+
+              <p class="event-date">
+                2026年7月25日（土）17:00〜20:00<br>
+                会場：虹の会 ハーモニー
+              </p>
+
+              <p>
+                「ぱぴぷ vol.3 Summer さまざまな燈」に、遊べるお寺プロジェクトとして出展します。
+                当日は健康麻雀の体験ブースを予定しています。
+              </p>
+
+              <div class="event-cta">
+                <a class="btn sec" href="/images/events/papipu-2026-0725-info.jpg" target="_blank" rel="noopener">
+                  出展案内を見る
+                </a>
+                <a class="btn sec" href="/images/events/papipu-2026-0725-main.jpg" target="_blank" rel="noopener">
+                  メインビジュアルを見る
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
 
 
-        <!-- 健康麻雀会（既存） -->
+        <h2 class="event-section-title">定期開催・継続イベント</h2>
+        <p class="event-section-note">
+          定期的に開催している活動です。日程は変更になる場合があります。
+        </p>
+
+        <!-- 健康麻雀会 -->
         <article class="event" id="kenko-mahjong">
           <div class="event-wrap">
             <div class="event-media">
@@ -464,136 +548,151 @@
                 <img src="/images/events/mj2.jpg" alt="健康麻雀会のチラシ" loading="lazy">
               </a>
             </div>
+
             <div class="event-body">
               <h3>健康麻雀会 <span class="badge">参加者募集中</span></h3>
-              <p class="event-date">
-                開催予定日（毎月第４日曜日）<br>※変更する場合は、こちらの予定日を書き換えますのでご確認ください<br>
 
-                2026年<br>
-                1月25日 / 2月22日 / 3月15日<br>
-                4月26日 / 5月24日 / 6月28日<br>
-                7月26日 / 8月23日 / 9月27日<br>
-                10月25日 / 11月22日 / 12月20日<br>                
+              <p class="event-date">
+                開催予定日：毎月第4日曜日<br>
+                2026年：7月26日 / 8月23日 / 9月27日 / 10月25日 / 11月22日 / 12月20日
               </p>
+
               <p>
-                初心者から経験者まで、どなたでも参加できる健康麻雀の集いです。<br>
-                点数計算が不安な方もスタッフがサポート。和やかな雰囲気の中、
-                世代を超えて交流しながら“頭の体操”とリフレッシュを一緒に楽しみましょう。
+                初心者から経験者まで参加できる健康麻雀の集いです。
+                点数計算が不安な方もサポートします。
               </p>
-                参加費：500円<br>
+
+              <p>
+                参加費：500円
+              </p>
             </div>
           </div>
         </article>
 
 
+        <!-- 健康麻雀 勉強会 -->
+        <article class="event" id="mjstudy">
+          <div class="event-wrap">
+            <div class="event-media">
+              <a href="/images/events/mjstudy.png" target="_blank" rel="noopener">
+                <img src="/images/events/mjstudy.png" alt="健康麻雀勉強会のチラシ" loading="lazy">
+              </a>
+            </div>
 
-      
-<!-- 麻雀勉強会 -->
-<article class="event" id="mjstudy">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/mjstudy.png" target="_blank" rel="noopener">
-        <img src="/images/events/mjstudy.png" alt="健康麻雀勉強会" loading="lazy">
-      </a>
-    </div>
+            <div class="event-body">
+              <h3>健康麻雀 勉強会 <span class="badge">初心者歓迎</span></h3>
 
-    <div class="event-body">
-      <h3>健康麻雀 勉強会 <span class="badge">初心者歓迎</span></h3>
+              <p class="event-date">
+                健康麻雀会と同日・午前開催予定<br>
+                7月26日「大会に参加するためのルール・コツ」
+              </p>
 
-      <p class="event-date">
-        開催予定日（健康麻雀会と同日・午前開催予定）<br>
-        ※開催日・内容は、決まり次第こちらを書き換えます<br>
-        2026年<br>
-        4月26日「ポン・チー・役について」<br>
-        5月24日「カン・ルールについて（フリテンなど）」<br>
-        6月28日「ルールについて②（フリテン・食い変えなど）」<br>
-        7月26日「大会に参加するためのルール・コツ」<br>
-        8月23日<br>
-        9月27日<br>
-        10月25日<br>
-        11月22日<br>
-        12月20日
-      </p>
+              <p>
+                これから健康麻雀を始めたい方、ルールを確認したい方向けの勉強会です。
+              </p>
 
-      <p>
-        <a href="https://forms.gle/BMFreXaao5bbmqkx8" target="_blank" rel="noopener">
-          申込フォームはこちら
-        </a>
-      </p>
-    </div>
-  </div>
-</article>
+              <div class="event-cta">
+                <a class="btn" href="https://forms.gle/BMFreXaao5bbmqkx8" target="_blank" rel="noopener">
+                  申込フォームはこちら
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
 
 
-        
-<!-- 仏教カフェ -->
-<article class="event" id="buddhist-cafe">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/cafe2.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/cafe2.jpg" alt="仏教カフェのチラシ" loading="lazy">
-      </a>
-    </div>
+        <!-- 仏教カフェ -->
+        <article class="event" id="buddhist-cafe">
+          <div class="event-wrap">
+            <div class="event-media">
+              <a href="/images/events/cafe2.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/cafe2.jpg" alt="仏教カフェのチラシ" loading="lazy">
+              </a>
+            </div>
 
-    <div class="event-body">
-      <h3>仏教カフェ <span class="badge">申込受付中</span></h3>
+            <div class="event-body">
+              <h3>仏教カフェ <span class="badge">隔月開催</span></h3>
 
-      <p class="event-date">
-        隔月・第3土曜日を目安に開催<br>
-        ※日程やテーマは変更になる場合があります。最新の予定はこのページでご確認ください。<br><br>
+              <p class="event-date">
+                隔月・第3土曜日を目安に開催<br>
+                時間：14:00〜15:30<br>
+                会場：今津ヴォーリズ資料館 2F
+              </p>
 
-        2026年の開催記録・予定<br>
-        4月18日（土）開催：テーマ「我慢」<br>
-        6月20日（土）開催：テーマ「墓じまい」<br>
-        8月開催予定：テーマ未定<br>
-        10月開催予定：テーマ未定<br>
-        12月開催予定：テーマ未定<br><br>
+              <p>
+                仏教の言葉や考え方をきっかけに、日々のことをゆるく語り合う会です。
+              </p>
 
-        時間：14:00〜15:30<br>
-        会場：今津ヴォーリズ資料館 2F（カフェの2Fです）
-      </p>
+              <p>
+                参加費：300円（学生無料）<br>
+                次回予定：8月開催予定（テーマ未定）
+              </p>
 
-      <p>
-        仏教の言葉や考え方をきっかけに、日々のことをゆるく語り合う会です。<br>
-        毎回ひとつのテーマをもとに、身近な悩みや違和感について話します。
-      </p>
-
-
-      <p>
-        参加費：300円（学生無料）
-      </p>
-
-      <p>
-        <a href="https://forms.gle/U62m4b73cqNmmyes5" target="_blank" rel="noopener">
-          参加申し込みフォームはこちら
-        </a>
-      </p>
-    </div>
-  </div>
-</article>
+              <div class="event-cta">
+                <a class="btn" href="https://forms.gle/U62m4b73cqNmmyes5" target="_blank" rel="noopener">
+                  参加申し込みフォームはこちら
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
 
 
+        <!-- 朝のお寺じかん -->
+        <article class="event" id="morning-temple-time">
+          <div class="event-wrap">
+            <div class="event-media">
+              <a href="/images/events/asatera1.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/asatera1.jpg" alt="朝のお寺じかんのチラシ" loading="lazy">
+              </a>
+            </div>
+
+            <div class="event-body">
+              <h3>朝のお寺じかん <span class="badge">毎月開催予定</span></h3>
+
+              <p class="event-date">
+                月1回開催予定<br>
+                時間：7:00〜9:00<br>
+                次回日程：7月開催予定
+              </p>
+
+              <p>
+                朝のお寺で、座禅やお経、軽い草むしり、お茶を楽しむ小さな会です。
+              </p>
+            </div>
+          </div>
+        </article>
 
 
+        <!-- みんなのボドゲ会 in ココハウス -->
+        <article class="event" id="cocohouse-boardgame">
+          <div class="event-wrap">
+            <div class="event-media">
+              <a href="/images/events/coco1.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/coco1.jpg" alt="みんなのボドゲ会 in ココハウスのチラシ" loading="lazy">
+              </a>
+            </div>
+
+            <div class="event-body">
+              <h3>みんなのボドゲ会 in ココハウス <span class="badge">次回調整中</span></h3>
+
+              <p class="event-date">
+                月1回開催予定<br>
+                時間：13:00〜16:30<br>
+                次回日程：調整中
+              </p>
+
+              <p>
+                ココハウスで開催する、ボードゲームや人狼ゲームなどを楽しむ交流イベントです。
+              </p>
+            </div>
+          </div>
+        </article>
 
 
-
-
-
-        
-   
-
-
-
-        <p style="text-align:center; margin:28px 0 0;">
-  <a href="/events/past.html"
-     style="display:inline-block; padding:.7rem 1.2rem; border-radius:999px;
-            background:#f3b700; color:#111; text-decoration:none; font-weight:700;
-            box-shadow:0 6px 14px rgba(243,183,0,.25);">
-    ▶ これまでのイベントを見る
-  </a>
-</p>
-
+        <div class="past-link-bottom">
+          <a href="/events/past.html">▶ これまでのイベントを見る</a>
+        </div>
 
       </section>
     </main>
