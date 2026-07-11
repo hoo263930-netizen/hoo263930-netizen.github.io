@@ -17,7 +17,17 @@ https://hoo263930-netizen.github.io</description>
     <webfeeds:related layout="card" target="browser"/>
     <webfeeds:analytics id="UA-48687000-1" engine="GoogleAnalytics"/>
     <language>ja</language>
-    <lastBuildDate>Sat, 11 Jul 2026 04:42:08 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 11 Jul 2026 12:23:54 +0900</lastBuildDate>
+    <item>
+      <title>参加することで、自分がやりたかったことが見えてくる</title>
+      <media:thumbnail>https://assets.st-note.com/production/uploads/images/291998215/rectangle_large_type_2_8a850843466a3fb84f29f2b23e1a43b0.png?width=800</media:thumbnail>
+      <description><![CDATA[<figure name="a2c9645f-46d9-41e5-a5c1-d3b24211f7ff" id="a2c9645f-46d9-41e5-a5c1-d3b24211f7ff"><img src="https://assets.st-note.com/img/1783328476-mPLcNCj09Uh8AQSysizZGD67.png" alt="" width="620" height="413" style="width: 372px; height: 247.79999999999998px;"><figcaption></figcaption></figure><p name="3c6d3a12-0796-41c5-8e4f-e61531af6537" id="3c6d3a12-0796-41c5-8e4f-e61531af6537"><br>前回の記事では、奈良で参加した宿泊イベントについて書きました。</p><br/><a href='https://note.com/loyal_dill1011/n/n6ebf280ff82d'>続きをみる</a>]]></description>
+      <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
+      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <pubDate>Sat, 11 Jul 2026 12:00:00 +0900</pubDate>
+      <link>https://note.com/loyal_dill1011/n/n6ebf280ff82d</link>
+      <guid>https://note.com/loyal_dill1011/n/n6ebf280ff82d</guid>
+    </item>
     <item>
       <title>山奥キャンプでの濃すぎる2日間</title>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/291986885/rectangle_large_type_2_9919725f2ccc6d70afd19b24ef17020e.jpeg?width=800</media:thumbnail>
@@ -256,15 +266,6 @@ https://hoo263930-netizen.github.io</description>
       <pubDate>Sat, 23 May 2026 12:00:00 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n55b00c3370f1</link>
       <guid>https://note.com/loyal_dill1011/n/n55b00c3370f1</guid>
-    </item>
-    <item>
-      <title>地域活動にもマーケティングが必要だと感じた話</title>
-      <media:thumbnail>https://assets.st-note.com/production/uploads/images/277278317/rectangle_large_type_2_4a150ee2875295b6083b480039a430be.png?width=800</media:thumbnail>
-      <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
-      <pubDate>Thu, 21 May 2026 21:30:00 +0900</pubDate>
-      <link>https://note.com/loyal_dill1011/n/n3716054b438b</link>
-      <guid>https://note.com/loyal_dill1011/n/n3716054b438b</guid>
     </item>
   </channel>
 </rss>
