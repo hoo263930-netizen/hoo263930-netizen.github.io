@@ -17,7 +17,17 @@ https://hoo263930-netizen.github.io</description>
     <webfeeds:related layout="card" target="browser"/>
     <webfeeds:analytics id="UA-48687000-1" engine="GoogleAnalytics"/>
     <language>ja</language>
-    <lastBuildDate>Thu, 23 Jul 2026 04:35:48 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2026 12:30:23 +0900</lastBuildDate>
+    <item>
+      <title>AIとCanvaを使ったチラシ作り講座を開催しました</title>
+      <media:thumbnail>https://assets.st-note.com/production/uploads/images/296228399/rectangle_large_type_2_846899f33f70d6e40c67c516157f404a.jpeg?width=800</media:thumbnail>
+      <description><![CDATA[<p name="1e52a9a0-be2f-41aa-b3ed-51e80cd73a8b" id="1e52a9a0-be2f-41aa-b3ed-51e80cd73a8b"><br></p><figure name="f795f753-bdb1-478c-a11d-6b24343c5200" id="f795f753-bdb1-478c-a11d-6b24343c5200"><img src="https://assets.st-note.com/img/1784604101-fWVU5NkvlwunLbidrmJ7zc0B.jpg" alt="" width="620" height="826" style="width: 372px; height: 495.59999999999997px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/nf34be5c42627'>続きをみる</a>]]></description>
+      <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
+      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <pubDate>Thu, 23 Jul 2026 12:00:00 +0900</pubDate>
+      <link>https://note.com/loyal_dill1011/n/nf34be5c42627</link>
+      <guid>https://note.com/loyal_dill1011/n/nf34be5c42627</guid>
+    </item>
     <item>
       <title>誰も来なくても、企画を続けた方がいい理由</title>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/296308708/rectangle_large_type_2_2209af303c4fd9a1848730e5c5d31907.jpeg?width=800</media:thumbnail>
@@ -256,16 +266,6 @@ https://hoo263930-netizen.github.io</description>
       <pubDate>Sat, 06 Jun 2026 12:00:00 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/neb3520759d93</link>
       <guid>https://note.com/loyal_dill1011/n/neb3520759d93</guid>
-    </item>
-    <item>
-      <title>住職、面接に落ちまくる</title>
-      <media:thumbnail>https://assets.st-note.com/production/uploads/images/281430761/rectangle_large_type_2_57616548fa27258d297aee8aa60c8a80.png?width=800</media:thumbnail>
-      <description><![CDATA[<p name="6d017371-7549-48c9-8011-b8c0d259c8db" id="6d017371-7549-48c9-8011-b8c0d259c8db"><br></p><figure name="9296fd5d-8026-4bab-a668-f54699710f30" id="9296fd5d-8026-4bab-a668-f54699710f30"><img src="https://assets.st-note.com/img/1780280825-aU0oIpWMgFeTbq1lzNdjZ6Pn.png" alt="" width="620" height="349"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n5ca37823f027'>続きをみる</a>]]></description>
-      <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
-      <pubDate>Thu, 04 Jun 2026 12:00:00 +0900</pubDate>
-      <link>https://note.com/loyal_dill1011/n/n5ca37823f027</link>
-      <guid>https://note.com/loyal_dill1011/n/n5ca37823f027</guid>
     </item>
   </channel>
 </rss>
