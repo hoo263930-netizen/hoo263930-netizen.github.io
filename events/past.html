@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>これまでのイベント | 遊べるお寺プロジェクト</title>
-  <meta name="description" content="遊べるお寺プロジェクトのこれまでのイベント。チラシと紹介文でわかりやすくご案内します。" />
+  <meta
+    name="description"
+    content="遊べるお寺プロジェクトのこれまでのイベント。チラシと紹介文でわかりやすくご案内します。"
+  />
 
   <style>
     :root{
@@ -15,14 +18,31 @@
       --maxw:1100px;
       --rail:16px;
     }
-    @media (min-width:900px){ :root{ --rail:24px; } }
 
-    /* ベース */
-    html,body{
-      margin:0; padding:0; color:var(--ink); line-height:1.75;
-      font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    @media (min-width:900px){
+      :root{
+        --rail:24px;
+      }
     }
-    body{ background:var(--sand); }
+
+    /* 基本設定 */
+    html,
+    body{
+      margin:0;
+      padding:0;
+      color:var(--ink);
+      line-height:1.75;
+      font-family:
+        "Yu Gothic",
+        "Hiragino Kaku Gothic ProN",
+        Meiryo,
+        sans-serif;
+    }
+
+    body{
+      background:var(--sand);
+    }
+
     .container{
       max-width:var(--maxw);
       margin:0 auto;
@@ -31,39 +51,78 @@
       box-shadow:0 0 6px rgba(0,0,0,.05);
     }
 
-    /* ヘッダー/ナビ（共通っぽい部分） */
-    header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
-    .visually-hidden{ position:absolute; left:-9999px; }
+    header{
+      background:#fff;
+      border-bottom:2px solid var(--sand);
+      padding:0 var(--rail);
+    }
 
-    nav.site-nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
+    .visually-hidden{
+      position:absolute;
+      left:-9999px;
+    }
+
+    /* 上部メニュー */
+    nav.site-nav{
+      background:#fff;
+      position:relative;
+      border-bottom:2px solid var(--sand);
+    }
+
     nav.site-nav::after{
-      content:""; position:absolute; left:0; right:0; bottom:-2px;
-      height:3px; background:var(--sky);
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-2px;
+      height:3px;
+      background:var(--sky);
     }
+
     nav.site-nav .wrap{
-      max-width:var(--maxw); margin:0 auto; padding:0 var(--rail);
-      display:flex; gap:0; justify-content:center; overflow:auto;
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:0 var(--rail);
+      display:flex;
+      gap:0;
+      justify-content:center;
+      overflow:auto;
     }
+
     nav.site-nav a{
-      color:#333; text-decoration:none;
+      color:#333;
+      text-decoration:none;
       padding:18px clamp(14px,2.6vw,28px);
       font-weight:700;
       font-size:clamp(18px,2.2vw,22px);
       white-space:nowrap;
     }
-    nav.site-nav a + a{ border-left:2px solid #ddd; }
-    nav.site-nav a:hover{ background:#fafafa; }
 
-    main{ padding:28px var(--rail) 56px; }
-    h1{ margin:.2em 0 .6em; font-size:clamp(24px,3.2vw,36px); }
+    nav.site-nav a + a{
+      border-left:2px solid #ddd;
+    }
 
-    /* 年ジャンプ（ボタン風） */
+    nav.site-nav a:hover{
+      background:#fafafa;
+    }
+
+    main{
+      padding:28px var(--rail) 56px;
+    }
+
+    h1{
+      margin:.2em 0 .6em;
+      font-size:clamp(24px,3.2vw,36px);
+    }
+
+    /* 年別ジャンプ */
     .year-nav{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      margin: 6px 0 18px;
+      margin:6px 0 18px;
     }
+
     .year-nav a{
       display:inline-block;
       padding:8px 12px;
@@ -74,19 +133,26 @@
       font-weight:700;
       background:#fff;
     }
-    .year-nav a:hover{ background:#f7fbff; }
+
+    .year-nav a:hover{
+      background:#f7fbff;
+    }
 
     /* 年見出し */
     .year{
-      margin:6px 0 12px;
+      margin:30px 0 12px;
       padding-left:8px;
       border-left:4px solid #f3b700;
       color:#333;
-      scroll-margin-top: 12px;
+      scroll-margin-top:12px;
     }
 
     /* イベント一覧 */
-    .event-list{ display:grid; gap:28px; margin-top:10px; }
+    .event-list{
+      display:grid;
+      gap:28px;
+      margin-top:10px;
+    }
 
     /* イベントカード */
     .event{
@@ -94,12 +160,19 @@
       border-radius:14px;
       padding:18px;
       background:#fff;
+      overflow:hidden;
     }
+
     .event-wrap{
       display:grid;
-      grid-template-columns:minmax(260px, 420px) 1fr;
+      grid-template-columns:minmax(260px,420px) minmax(0,1fr);
       gap:22px;
       align-items:start;
+    }
+
+    /* 通常の画像 */
+    .event-media{
+      min-width:0;
     }
 
     .event-media a{
@@ -109,6 +182,7 @@
       border:1px solid #e9eef3;
       background:#fff;
     }
+
     .event-media img{
       width:100%;
       height:auto;
@@ -118,26 +192,81 @@
       background:#fff;
     }
 
-    /* 2枚チラシ（縦並び） */
-    .thumbs{ display:grid; gap:10px; grid-template-columns:1fr; }
-    .thumbs img{ max-height:160px; object-fit:contain; }
+    /* ぱぴぷなど、2枚のチラシを横に並べる */
+    .flyer-double{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      align-items:start;
+    }
+
+    .flyer-double a{
+      min-width:0;
+    }
+
+    .flyer-double img{
+      width:100%;
+      height:340px;
+      max-height:340px;
+      object-fit:contain;
+    }
+
+    /* 高島フェスタなどの2枚画像 */
+    .thumbs{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .thumbs a{
+      min-width:0;
+    }
+
+    .thumbs img{
+      width:100%;
+      height:260px;
+      max-height:260px;
+      object-fit:contain;
+    }
+
+    .event-body{
+      min-width:0;
+    }
 
     .event-body h3{
       margin:0 0 .35em;
       font-size:clamp(20px,2.6vw,28px);
     }
-    .event-date{ margin:.2em 0 1em; color:#666; font-weight:600; }
-    .event-body p{ margin:.7em 0; }
-    .event-body ul{ margin:.4em 0 0 1.2em; padding:0; }
 
-    /* noteリンク（あなたの他カードと統一） */
-    .event-note{ margin-top:12px; }
+    .event-date{
+      margin:.2em 0 1em;
+      color:#666;
+      font-weight:600;
+    }
+
+    .event-body p{
+      margin:.7em 0;
+    }
+
+    .event-body ul{
+      margin:.4em 0 0 1.2em;
+      padding:0;
+    }
+
+    /* noteリンク */
+    .event-note{
+      margin-top:12px;
+    }
+
     .event-note a{
       color:#1f6fff;
       font-weight:800;
       text-decoration:underline;
     }
-    .event-note a:hover{ filter:brightness(.95); }
+
+    .event-note a:hover{
+      filter:brightness(.95);
+    }
 
     .badge{
       display:inline-block;
@@ -150,20 +279,91 @@
       font-weight:700;
     }
 
-    .backlink{ text-align:center; margin:18px 0; }
-    .backlink a{ color:#111; font-weight:700; text-decoration:none; }
-    .backlink a:hover{ text-decoration:underline; }
+    .backlink{
+      text-align:center;
+      margin:30px 0 18px;
+    }
+
+    .backlink a{
+      display:inline-block;
+      padding:.7rem 1.2rem;
+      border-radius:999px;
+      background:#f3b700;
+      color:#111;
+      font-weight:700;
+      text-decoration:none;
+      box-shadow:0 6px 14px rgba(243,183,0,.25);
+    }
+
+    .backlink a:hover{
+      filter:brightness(.97);
+    }
 
     @media (max-width:800px){
-      .event-wrap{ grid-template-columns:1fr; }
-      .event-media img{ max-height:280px; }
+      .event-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .event-media img{
+        max-height:360px;
+      }
+
+      /* スマホでも2枚を横に並べる */
+      .flyer-double{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .flyer-double img{
+        height:260px;
+        max-height:260px;
+      }
+
+      .thumbs{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .thumbs img{
+        height:220px;
+        max-height:220px;
+      }
+    }
+
+    @media (max-width:480px){
+      .event{
+        padding:12px;
+      }
+
+      .event-wrap{
+        gap:16px;
+      }
+
+      .flyer-double{
+        gap:6px;
+      }
+
+      .flyer-double img{
+        height:220px;
+        max-height:220px;
+      }
+
+      .thumbs{
+        gap:6px;
+      }
+
+      .thumbs img{
+        height:190px;
+        max-height:190px;
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
+
+    <header>
+      <span class="visually-hidden">遊べるお寺プロジェクト</span>
+    </header>
 
     <!-- 上部ナビ -->
     <nav class="site-nav" aria-label="主なナビゲーション">
@@ -172,42 +372,67 @@
         <a href="/project/">プロジェクト</a>
         <a href="/events/">イベント</a>
         <a href="/request.html">ご依頼・講師相談</a>
-        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）</a>
+        <a
+          href="https://note.com/loyal_dill1011"
+          target="_blank"
+          rel="noopener"
+        >
+          活動報告（note）
+        </a>
         <a href="/contact/">お問い合わせ</a>
       </div>
     </nav>
 
     <main>
+
       <h1>これまでのイベント</h1>
 
-      <!-- 年ジャンプ -->
+      <!-- 年別ジャンプ -->
       <nav class="year-nav" aria-label="年別ジャンプ">
-        <a href="#y2026">2026</a>
-        <a href="#y2025">2025</a>
+        <a href="#y2026">2026年</a>
+        <a href="#y2025">2025年</a>
       </nav>
 
-      <!-- 2026 -->
+      <!-- 2026年 -->
       <h2 class="year" id="y2026">2026年</h2>
+
       <section class="event-list" id="past-2026">
-        <!-- ✅ ここから “過去イベント版” を入れる -->
 
-
-
-
-        <!-- ぱぴぷ vol.3 出展 -->
+        <!-- ぱぴぷ vol.3 -->
         <article class="event" id="papipu-2026-0725">
           <div class="event-wrap">
+
             <div class="event-media flyer-double">
-              <a href="/images/events/papipu-2026-0725-info.jpg" target="_blank" rel="noopener">
-                <img src="/images/events/papipu-2026-0725-info.jpg" alt="ぱぴぷ vol.3 Summer さまざまな燈 出展案内" loading="lazy">
+              <a
+                href="/images/events/papipu-2026-0725-info.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/papipu-2026-0725-info.jpg"
+                  alt="ぱぴぷ vol.3 Summer さまざまな燈 出展案内"
+                  loading="lazy"
+                >
               </a>
-              <a href="/images/events/papipu-2026-0725-main.jpg" target="_blank" rel="noopener">
-                <img src="/images/events/papipu-2026-0725-main.jpg" alt="ぱぴぷ vol.3 Summer さまざまな燈 メインビジュアル" loading="lazy">
+
+              <a
+                href="/images/events/papipu-2026-0725-main.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/papipu-2026-0725-main.jpg"
+                  alt="ぱぴぷ vol.3 Summer さまざまな燈 メインビジュアル"
+                  loading="lazy"
+                >
               </a>
             </div>
 
             <div class="event-body">
-              <h3>ぱぴぷ vol.3 Summer さまざまな燈 <span class="badge"></span></h3>
+              <h3>
+                ぱぴぷ vol.3 Summer さまざまな燈
+                <span class="badge">開催終了</span>
+              </h3>
 
               <p class="event-date">
                 2026年7月25日（土）17:00〜20:00<br>
@@ -215,33 +440,48 @@
               </p>
 
               <p>
-                「ぱぴぷ vol.3 Summer さまざまな燈」に、遊べるお寺プロジェクトとして、健康麻雀の体験ブース・ボードゲーム体験ブースを出展しました。
-                          </p>
-        <a href="https://note.com/loyal_dill1011/n/ncc539ce17161" target="_blank" rel="noopener">
-          📘 イベントレポートを読む（note）
-        </a>
+                「ぱぴぷ vol.3 Summer さまざまな燈」に、
+                遊べるお寺プロジェクトとして、
+                健康麻雀の体験ブース・ボードゲーム体験ブースを出展しました。
+              </p>
 
-              
-              </div>
+              <p class="event-note">
+                <a
+                  href="https://note.com/loyal_dill1011/n/ncc539ce17161"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  📘 イベントレポートを読む（note）
+                </a>
+              </p>
             </div>
+
           </div>
         </article>
 
-
-
-
-
-        <!-- 小さな活動を伝える チラシ作り講座 -->
+        <!-- チラシ作り講座 -->
         <article class="event" id="flyer-course-2026-0719">
           <div class="event-wrap">
+
             <div class="event-media">
-              <a href="/images/events/flyer-course-20260719.jpg" target="_blank" rel="noopener">
-                <img src="/images/events/flyer-course-20260719.jpg" alt="小さな活動を伝える チラシ作り講座のチラシ" loading="lazy">
+              <a
+                href="/images/events/flyer-course-20260719.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/flyer-course-20260719.jpg"
+                  alt="小さな活動を伝える チラシ作り講座のチラシ"
+                  loading="lazy"
+                >
               </a>
             </div>
 
             <div class="event-body">
-              <h3>小さな活動を伝える チラシ作り講座 <span class="badge">申込受付中</span></h3>
+              <h3>
+                小さな活動を伝える チラシ作り講座
+                <span class="badge">開催終了</span>
+              </h3>
 
               <p class="event-date">
                 2026年7月19日（日）13:30〜16:00<br>
@@ -249,30 +489,47 @@
               </p>
 
               <p>
-                CanvaとChatGPTを使い、自分の活動を伝えるチラシのたたき台を作る講座を開催しました。
+                CanvaとChatGPTを使い、
+                自分の活動を伝えるチラシのたたき台を作る講座を開催しました。
               </p>
-      <p>
-        <a href="https://https://note.com/loyal_dill1011/n/nf34be5c42627" target="_blank" rel="noopener">
-          📘 イベントレポートを読む（note）
-        </a>
 
-              </div>
+              <p class="event-note">
+                <a
+                  href="https://note.com/loyal_dill1011/n/nf34be5c42627"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  📘 イベントレポートを読む（note）
+                </a>
+              </p>
             </div>
+
           </div>
         </article>
 
-
-                <!-- はじめての香りづくり体験会 -->
+        <!-- 香りづくり体験会 -->
         <article class="event" id="aroma-workshop-2026-0711">
           <div class="event-wrap">
+
             <div class="event-media">
-              <a href="/images/events/aroma-workshop-20260711.jpg" target="_blank" rel="noopener">
-                <img src="/images/events/aroma-workshop-20260711.jpg" alt="はじめての香りづくり体験会のチラシ" loading="lazy">
+              <a
+                href="/images/events/aroma-workshop-20260711.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/aroma-workshop-20260711.jpg"
+                  alt="はじめての香りづくり体験会のチラシ"
+                  loading="lazy"
+                >
               </a>
             </div>
 
             <div class="event-body">
-              <h3>はじめての香りづくり体験会 <span class="badge">事前予約制</span></h3>
+              <h3>
+                はじめての香りづくり体験会
+                <span class="badge">開催終了</span>
+              </h3>
 
               <p class="event-date">
                 2026年7月11日（土）13:30〜15:30<br>
@@ -284,228 +541,314 @@
                 好きな香りを選び、自分だけのアロマアイテムを作る体験会です。
                 来られた方みなさんで体験や交流を楽しみました。
               </p>
-      <p>
-        <a href="https://note.com/loyal_dill1011/n/nc364b2f6d42c" target="_blank" rel="noopener">
-          📘 イベントレポートを読む（note）
-        </a>
 
-              </div>
+              <p class="event-note">
+                <a
+                  href="https://note.com/loyal_dill1011/n/nc364b2f6d42c"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  📘 イベントレポートを読む（note）
+                </a>
+              </p>
             </div>
+
           </div>
         </article>
 
-<!-- みんなの健康麻雀 in 新旭 -->
-<article class="event" id="shinasahi-mahjong-2026-0619">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/mj3.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/mj3.jpg" alt="みんなの健康麻雀 in 新旭" loading="lazy">
-      </a>
-    </div>
+        <!-- みんなの健康麻雀 in 新旭 -->
+        <article class="event" id="shinasahi-mahjong-2026-0619">
+          <div class="event-wrap">
 
-    <div class="event-body">
-      <h3>みんなの健康麻雀 in 新旭 <span class="badge">開催終了</span></h3>
+            <div class="event-media">
+              <a
+                href="/images/events/mj3.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/mj3.jpg"
+                  alt="みんなの健康麻雀 in 新旭"
+                  loading="lazy"
+                >
+              </a>
+            </div>
 
-      <p class="event-date">
-        2026年<br>
-        6月19日（金）<br>
-        会場：藁園自治会館
-      </p>
+            <div class="event-body">
+              <h3>
+                みんなの健康麻雀 in 新旭
+                <span class="badge">開催終了</span>
+              </h3>
 
-      <p>
-        新旭地域での継続開催に向けて、健康麻雀のおためし開催を行いました。
-      </p>
+              <p class="event-date">
+                2026年6月19日（金）<br>
+                会場：藁園自治会館
+              </p>
 
-      <p>
-        <a href="https://note.com/loyal_dill1011/n/n8ab0992ead82" target="_blank" rel="noopener">
-          📘 イベントレポートを読む（note）
-        </a>
-      </p>
-    </div>
-  </div>
-</article>
+              <p>
+                新旭地域での継続開催に向けて、
+                健康麻雀のおためし開催を行いました。
+              </p>
 
-
-<!-- 終わらない披露宴からの脱出 -->
-<article class="event" id="owaranai-hiroen-2026-0613">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/dassyutu1.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/dassyutu1.jpg" alt="終わらない披露宴からの脱出" loading="lazy">
-      </a>
-    </div>
-
-    <div class="event-body">
-      <h3>終わらない披露宴からの脱出 <span class="badge">開催終了</span></h3>
-
-      <p class="event-date">
-        2026年<br>
-        6月13日（土）<br>
-        会場：今津サンブリッジホテル
-      </p>
-
-      <p>
-        今津サンブリッジホテルのチャペルを舞台に、謎解きと交流を組み合わせたイベントを開催しました。
-      </p>
-
-      <p>
-        <a href="https://note.com/loyal_dill1011/n/nee20e873fe28" target="_blank" rel="noopener">
-          📘 イベントレポートを読む（note）
-        </a>
-      </p>
-    </div>
-  </div>
-</article>
-
-        
-
-<!-- 遊び万博 -->
-<article class="event" id="asobibanpaku-2026-0221">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/banpaku.png" target="_blank" rel="noopener">
-        <img src="/images/events/banpaku.png" alt="banpaku" loading="lazy">
-      </a>
-    </div>
-
-    <div class="event-body">
-      <h3>世界あそび万博　出展 <span class="badge"></span></h3>
-
-      <p class="event-date">
-        2026年<br>
-        2月21日（日）<br>
-        13:30〜15:30<br>
-        会場：今津東コミュニティセンター　3階大ホール
-      </p>
-
-      <p>
-        世界５か国のあそびが紹介されます。<br>
-        遊べるお寺プロジェクトからは、麻雀のブースとして出展しました！<br>
-      </p>
-    </div>
-  </div>
-</article>
-
-
-        <!-- 脱出ゲーム -->
-<article class="event" id="dassyutu-2026-0207">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/dassyutu.png" target="_blank" rel="noopener">
-        <img src="/images/events/dassyutu.png" alt="町の文化祭（昨年度の様子・参考）" loading="lazy">
-      </a>
-    </div>
-
-    <div class="event-body">
-      <h3>
-        公民館で脱出ゲーム
-      </h3>
-
-      <p class="event-date">
-        開催日：2026年2月8日（日）<br>
- 市役所と共催で公民館で脱出ゲームを行いました。<br>
-        ゲーム後は、謎解きのキーワードで哲学たいわを行い、楽しみながら考える力を伸ばしました<br>
-            </p>
-
-                   <p class="event-note">
-                <a href="https://note.com/loyal_dill1011/n/n4468e913ce5d" target="_blank" rel="noopener">
+              <p class="event-note">
+                <a
+                  href="https://note.com/loyal_dill1011/n/n8ab0992ead82"
+                  target="_blank"
+                  rel="noopener"
+                >
                   📘 イベントレポートを読む（note）
                 </a>
               </p>
-        
-    </div><!-- /.event-body -->
-  </div><!-- /.event-wrap -->
-</article><!-- /#mushijingi-2026-0207 -->
+            </div>
 
+          </div>
+        </article>
 
+        <!-- 終わらない披露宴からの脱出 -->
+        <article class="event" id="owaranai-hiroen-2026-0613">
+          <div class="event-wrap">
 
+            <div class="event-media">
+              <a
+                href="/images/events/dassyutu1.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/dassyutu1.jpg"
+                  alt="終わらない披露宴からの脱出"
+                  loading="lazy"
+                >
+              </a>
+            </div>
 
-        
+            <div class="event-body">
+              <h3>
+                終わらない披露宴からの脱出
+                <span class="badge">開催終了</span>
+              </h3>
 
-<!-- 町の文化祭 -->
-<article class="event" id="bunkasai-2026-0131">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/bunkasai2.png" target="_blank" rel="noopener">
-        <img src="/images/events/bunkasai2.png" alt="町の文化祭のチラシ" loading="lazy">
-      </a>
-    </div>
+              <p class="event-date">
+                2026年6月13日（土）<br>
+                会場：今津サンブリッジホテル
+              </p>
 
-    <div class="event-body">
-      <h3>
-        サンブリッジホテル　町の文化祭 出展 
-      </h3>
+              <p>
+                今津サンブリッジホテルのチャペルを舞台に、
+                謎解きと交流を組み合わせたイベントを開催しました。
+              </p>
 
-      <p class="event-date">
-開催日：2026年1月31日（土）・2月1日（日）<br>
-
-今津サンブリッジホテルで開催される「町の文化祭」に、 遊べるお寺プロジェクトとしてブース出展しました。<br>
-お寺を拠点に行っている、遊びや交流の活動紹介や、初心者でも麻雀を楽しめる内容を開催しました。
-            </p>
-
-                   <p class="event-note">
-                <a href="https://note.com/loyal_dill1011/n/n1c49dc83261e" target="_blank" rel="noopener">
+              <p class="event-note">
+                <a
+                  href="https://note.com/loyal_dill1011/n/nee20e873fe28"
+                  target="_blank"
+                  rel="noopener"
+                >
                   📘 イベントレポートを読む（note）
                 </a>
               </p>
-        
-    </div><!-- /.event-body -->
-  </div><!-- /.event-wrap -->
-</article><!-- /#mushijingi-2026-0131 -->
+            </div>
 
+          </div>
+        </article>
 
+        <!-- 世界あそび万博 -->
+        <article class="event" id="asobibanpaku-2026-0221">
+          <div class="event-wrap">
 
+            <div class="event-media">
+              <a
+                href="/images/events/banpaku.png"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/banpaku.png"
+                  alt="世界あそび万博の案内"
+                  loading="lazy"
+                >
+              </a>
+            </div>
 
+            <div class="event-body">
+              <h3>
+                世界あそび万博 出展
+                <span class="badge">開催終了</span>
+              </h3>
 
+              <p class="event-date">
+                2026年2月21日（日）13:30〜15:30<br>
+                会場：今津東コミュニティセンター 3階大ホール
+              </p>
 
+              <p>
+                世界5か国の遊びが紹介されるイベントに、
+                遊べるお寺プロジェクトから麻雀ブースを出展しました。
+              </p>
+            </div>
 
-        
+          </div>
+        </article>
 
-<!-- 蟲神器 公認大会（近日開催） -->
-<article class="event" id="mushijingi-2026-0118">
-  <div class="event-wrap">
-    <div class="event-media">
-      <a href="/images/events/mushi3.jpg" target="_blank" rel="noopener">
-        <img src="/images/events/mushi3.jpg" alt="蟲神器 公認大会のチラシ" loading="lazy">
-      </a>
-    </div>
+        <!-- 公民館で脱出ゲーム -->
+        <article class="event" id="dassyutu-2026-0208">
+          <div class="event-wrap">
 
-    <div class="event-body">
-      <h3>
-        蟲神器 公認大会 ヴォーリズ杯（第3回）
-      </h3>
+            <div class="event-media">
+              <a
+                href="/images/events/dassyutu.png"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/dassyutu.png"
+                  alt="公民館で脱出ゲームの案内"
+                  loading="lazy"
+                >
+              </a>
+            </div>
 
-      <p class="event-date">
-開催日：2026年1月18日（日）<br>
+            <div class="event-body">
+              <h3>公民館で脱出ゲーム</h3>
 
-３回目となる公認大会。初心者も参加しやすく、限定カードの参加賞も配布しました。
-            </p>
+              <p class="event-date">
+                開催日：2026年2月8日（日）
+              </p>
 
-                   <p class="event-note">
-                <a href="https://note.com/loyal_dill1011/n/n45138d05cf71" target="_blank" rel="noopener">
+              <p>
+                市役所と共催で、公民館を会場とした脱出ゲームを行いました。
+                ゲーム後は、謎解きのキーワードをもとに哲学対話を行い、
+                楽しみながら考える時間をつくりました。
+              </p>
+
+              <p class="event-note">
+                <a
+                  href="https://note.com/loyal_dill1011/n/n4468e913ce5d"
+                  target="_blank"
+                  rel="noopener"
+                >
                   📘 イベントレポートを読む（note）
                 </a>
               </p>
-        
-    </div><!-- /.event-body -->
-  </div><!-- /.event-wrap -->
-</article><!-- /#mushijingi-2026-0118 -->
+            </div>
 
+          </div>
+        </article>
 
+        <!-- 町の文化祭 -->
+        <article class="event" id="bunkasai-2026-0131">
+          <div class="event-wrap">
 
-        
+            <div class="event-media">
+              <a
+                href="/images/events/bunkasai2.png"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/bunkasai2.png"
+                  alt="町の文化祭のチラシ"
+                  loading="lazy"
+                >
+              </a>
+            </div>
+
+            <div class="event-body">
+              <h3>サンブリッジホテル 町の文化祭 出展</h3>
+
+              <p class="event-date">
+                開催日：2026年1月31日（土）・2月1日（日）<br>
+                会場：今津サンブリッジホテル
+              </p>
+
+              <p>
+                「町の文化祭」に、遊べるお寺プロジェクトとして
+                ブース出展しました。
+                お寺を拠点に行っている遊びや交流の活動紹介、
+                初心者でも麻雀を楽しめる体験を行いました。
+              </p>
+
+              <p class="event-note">
+                <a
+                  href="https://note.com/loyal_dill1011/n/n1c49dc83261e"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  📘 イベントレポートを読む（note）
+                </a>
+              </p>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- 蟲神器 公認大会 -->
+        <article class="event" id="mushijingi-2026-0118">
+          <div class="event-wrap">
+
+            <div class="event-media">
+              <a
+                href="/images/events/mushi3.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/mushi3.jpg"
+                  alt="蟲神器 公認大会のチラシ"
+                  loading="lazy"
+                >
+              </a>
+            </div>
+
+            <div class="event-body">
+              <h3>蟲神器 公認大会 ヴォーリズ杯（第3回）</h3>
+
+              <p class="event-date">
+                開催日：2026年1月18日（日）
+              </p>
+
+              <p>
+                3回目となる公認大会を開催しました。
+                初心者も参加しやすい大会として、
+                限定カードの参加賞も配布しました。
+              </p>
+
+              <p class="event-note">
+                <a
+                  href="https://note.com/loyal_dill1011/n/n45138d05cf71"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  📘 イベントレポートを読む（note）
+                </a>
+              </p>
+            </div>
+
+          </div>
+        </article>
+
       </section>
 
-      <!-- 2025 -->
+      <!-- 2025年 -->
       <h2 class="year" id="y2025">2025年</h2>
+
       <section class="event-list" id="past-2025">
 
-        <!-- 除昼の鐘（2025/12/31） -->
+        <!-- 除昼の鐘 -->
         <article class="event" id="jyuchu-kane-2025">
           <div class="event-wrap">
+
             <div class="event-media">
-              <a href="/images/events/kanetuki1.jpg" target="_blank" rel="noopener">
-                <img src="/images/events/kanetuki1.jpg" alt="除昼の鐘を突きにいこう！のチラシ" loading="lazy">
+              <a
+                href="/images/events/kanetuki1.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/kanetuki1.jpg"
+                  alt="除昼の鐘を突きにいこう！のチラシ"
+                  loading="lazy"
+                >
               </a>
             </div>
 
@@ -513,260 +856,460 @@
               <h3>除昼の鐘を突きにいこう！</h3>
 
               <p class="event-date">
-                開催日：2025年12月31日（水）／ 時間：13:00〜16:00<br>
-                場所：長善寺（滋賀県高島市マキノ町小荒路581・金色の観音様が目印）
+                開催日：2025年12月31日（水）13:00〜16:00<br>
+                場所：長善寺
               </p>
 
               <p>
-                夜中の「除夜の鐘」ではなく、お昼の時間帯に開催する年末イベントとして実施しました。
-                鐘をついたあとは、境内の「あたたかコーナー」で焼き芋・お茶・ボードゲーム・ぜんざいなどを
-                楽しめる、ゆったりとした時間となりました。
+                夜中の「除夜の鐘」ではなく、
+                お昼の時間帯に開催する年末イベントとして実施しました。
+                鐘をついたあとは、境内で焼き芋・お茶・ボードゲーム・
+                ぜんざいなどを楽しむ時間となりました。
               </p>
 
               <p class="event-note">
-                <a href="https://note.com/loyal_dill1011/n/n1ce0c564f5cb" target="_blank" rel="noopener">
+                <a
+                  href="https://note.com/loyal_dill1011/n/n1ce0c564f5cb"
+                  target="_blank"
+                  rel="noopener"
+                >
                   📘 イベントレポートを読む（note）
                 </a>
               </p>
             </div>
+
           </div>
         </article>
 
-        <!-- ① 高島フェスタ -->
+        <!-- 高島フェスタ -->
         <article class="event" id="takashima-festa-2025">
           <div class="event-wrap">
+
             <div class="event-media">
               <div class="thumbs">
-                <a href="/images/events/takashima_festa1.jpg" target="_blank" rel="noopener">
-                  <img src="/images/events/takashima_festa1.jpg" alt="高島フェスタ チラシ（表）" loading="lazy">
+
+                <a
+                  href="/images/events/takashima_festa1.jpg"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <img
+                    src="/images/events/takashima_festa1.jpg"
+                    alt="高島フェスタ チラシ表面"
+                    loading="lazy"
+                  >
                 </a>
-                <a href="/images/events/takashima_festa2.jpg" target="_blank" rel="noopener">
-                  <img src="/images/events/takashima_festa2.jpg" alt="高島フェスタ チラシ（裏）" loading="lazy">
+
+                <a
+                  href="/images/events/takashima_festa2.jpg"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <img
+                    src="/images/events/takashima_festa2.jpg"
+                    alt="高島フェスタ チラシ裏面"
+                    loading="lazy"
+                  >
                 </a>
+
               </div>
             </div>
 
             <div class="event-body">
               <h3>高島フェスタ 出展</h3>
+
               <p class="event-date">
-                開催日：2025年11月24日（月）／ 時間：10:00〜15:00<br>
+                開催日：2025年11月24日（月）10:00〜15:00<br>
                 場所：今津東コミュニティセンター
               </p>
-              <p><strong>遊べるお寺プロジェクト</strong>として体験ブースを展開しました。</p>
+
+              <p>
+                遊べるお寺プロジェクトとして、
+                体験ブースを出展しました。
+              </p>
+
               <ul>
-                <li>🀄 <strong>健康麻雀ブース「4人で4枚麻雀！」</strong></li>
-                <li>🔫 <strong>サバイバル射的ブース</strong></li>
+                <li>健康麻雀ブース「4人で4枚麻雀！」</li>
+                <li>サバイバル射的ブース</li>
               </ul>
-              <p>たくさんの方に来ていただき、笑顔が溢れる一日となりました。</p>
+
               <p class="event-note">
-                <a href="https://note.com/loyal_dill1011/n/nff7a4b1624c0" target="_blank" rel="noopener">
+                <a
+                  href="https://note.com/loyal_dill1011/n/nff7a4b1624c0"
+                  target="_blank"
+                  rel="noopener"
+                >
                   📘 イベントレポートを読む（note）
                 </a>
               </p>
             </div>
+
           </div>
         </article>
 
-        <!-- ② たかしま子どもフェス -->
+        <!-- たかしま子どもフェスティバル -->
         <article class="event" id="takasima-kodomo-fes-2025">
           <div class="event-wrap">
+
             <div class="event-media">
-              <a href="/images/events/takasima.png" target="_blank" rel="noopener">
-                <img src="/images/events/takasima.png" alt="たかしま子どもフェスティバルのチラシ" loading="lazy">
+              <a
+                href="/images/events/takasima.png"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/takasima.png"
+                  alt="たかしま子どもフェスティバルのチラシ"
+                  loading="lazy"
+                >
               </a>
             </div>
 
             <div class="event-body">
               <h3>たかしま子どもフェスティバル出展</h3>
+
               <p class="event-date">
-                開催日：2025年10月19日（日）／ 時間：10:00〜15:00<br>
-                場所：高島公民館・ガリバーホール（滋賀県高島市）
+                開催日：2025年10月19日（日）10:00〜15:00<br>
+                場所：高島公民館・ガリバーホール
               </p>
-              <p>「遊べるお寺プロジェクト」として２つの体験ブースを出展しました。</p>
+
+              <p>
+                遊べるお寺プロジェクトとして、
+                2つの体験ブースを出展しました。
+              </p>
+
               <ul>
-                <li>🀄 健康麻雀ブース『役満できるかな』</li>
-                <li>🔫 サバイバル射的体験</li>
+                <li>健康麻雀ブース「役満できるかな」</li>
+                <li>サバイバル射的体験</li>
               </ul>
-              <p>家族連れや子どもたちで大にぎわいのブースとなりました。</p>
+
               <p class="event-note">
-                <a href="https://note.com/loyal_dill1011/n/n2a1b079f18f3" target="_blank" rel="noopener">
+                <a
+                  href="https://note.com/loyal_dill1011/n/n2a1b079f18f3"
+                  target="_blank"
+                  rel="noopener"
+                >
                   📘 イベントレポートを読む（note）
                 </a>
               </p>
             </div>
+
           </div>
         </article>
 
-        <!-- ③ 焚火＆人狼会 -->
+        <!-- 焚火＆人狼会 -->
         <article class="event" id="takibi-werewolf-2025">
           <div class="event-wrap">
+
             <div class="event-media">
-              <a href="/images/events/takibi.png" target="_blank" rel="noopener">
-                <img src="/images/events/takibi.png" alt="焚火＆人狼会のチラシ" loading="lazy">
+              <a
+                href="/images/events/takibi.png"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/takibi.png"
+                  alt="焚火＆人狼会のチラシ"
+                  loading="lazy"
+                >
               </a>
             </div>
 
             <div class="event-body">
               <h3>焚火＆人狼会</h3>
-              <p class="event-date">開催日：2025年10月12日（日）／ 時間：15:30〜20:30</p>
-              <p>オリーブフェスタにボードゲームを出しました！お子さんからも大好評でした。</p>
-              <p class="event-note">
-                <a href="https://note.com/loyal_dill1011/n/n7dfb163d46a2" target="_blank" rel="noopener">
-                  📘 イベントレポートを読む（note）
-                </a>
+
+              <p class="event-date">
+                開催日：2025年10月12日（日）15:30〜20:30
               </p>
-            </div>
-          </div>
-        </article>
 
-        <!-- ④ 新潟 謎解き -->
-        <article class="event" id="niigata-nazotoki-2025">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/events/nazo1.jpg" target="_blank" rel="noopener">
-                <img src="/images/events/nazo1.jpg" alt="お寺の謎を君は解けるか？ 謎解きポップ" loading="lazy">
-              </a>
-            </div>
-
-            <div class="event-body">
-              <h3>お寺の謎を君は解けるか？（新潟マルシェ）</h3>
-              <p class="event-date">開催：2025年7月頃 ／ 場所：浄広寺（新潟県）</p>
               <p>
-                新潟のお寺で開催されたマルシェに出展し、
-                お寺をテーマにした体験型謎解きを実施しました。
-                建物や仏さまにまつわる問題を解くことで、小さな発見のある企画になりました。
+                オリーブフェスタにボードゲームを出展しました。
+                子どもたちにも多く遊んでもらいました。
               </p>
+
               <p class="event-note">
-                <a href="https://note.com/loyal_dill1011/n/n9c045f28df3e" target="_blank" rel="noopener">
+                <a
+                  href="https://note.com/loyal_dill1011/n/n7dfb163d46a2"
+                  target="_blank"
+                  rel="noopener"
+                >
                   📘 イベントレポートを読む（note）
                 </a>
               </p>
             </div>
+
           </div>
         </article>
 
-
-
-        
-        <!-- ⑥ 蟲神器（夏 8/3） -->
-            <section class="event-list" id="past-2025">
+        <!-- 蟲神器 公認大会 夏 -->
         <article class="event" id="mushijingi-2025-0803">
           <div class="event-wrap">
+
             <div class="event-media">
-              <a href="/images/events/mushi2.jpg" target="_blank" rel="noopener">
-                <img src="/images/events/mushi2.jpg" alt="蟲神器公認大会（夏）のチラシ" loading="lazy">
+              <a
+                href="/images/events/mushi2.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/mushi2.jpg"
+                  alt="蟲神器公認大会 夏のチラシ"
+                  loading="lazy"
+                >
               </a>
             </div>
+
             <div class="event-body">
               <h3>蟲神器 公認大会（夏）</h3>
-              <p class="event-date">開催日：2025年8月3日（土）／ 場所：今津ヴォーリズ資料館</p>
-              <p>子ども〜大人まで幅広い参加があり、白熱した大会となりました。幼虫ブロックと成虫ブロックに分かれて実施しました。</p>
+
+              <p class="event-date">
+                開催日：2025年8月3日<br>
+                場所：今津ヴォーリズ資料館
+              </p>
+
+              <p>
+                子どもから大人まで幅広い参加があり、
+                幼虫ブロックと成虫ブロックに分かれて大会を実施しました。
+              </p>
             </div>
+
           </div>
         </article>
-      </section>
 
-        <!-- ⑤ 学童（座禅＋Nerf） -->
-            <section class="event-list" id="past-2025">
+        <!-- 学童向けイベント -->
         <article class="event" id="gakudou-nerf-zaizen-2025">
           <div class="event-wrap">
+
             <div class="event-media">
-              <a href="/images/events/gakudou1.jpg" target="_blank" rel="noopener">
-                <img src="/images/events/gakudou1.jpg" alt="学童向け Nerfサバイバルゲーム＆座禅体験のチラシ" loading="lazy">
+              <a
+                href="/images/events/gakudou1.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/gakudou1.jpg"
+                  alt="学童向けNerfサバイバルゲームと座禅体験"
+                  loading="lazy"
+                >
               </a>
             </div>
 
             <div class="event-body">
               <h3>学童向け Nerfサバイバルゲーム＆座禅体験</h3>
-              <p class="event-date">開催：夏休み期間 ／ 場所：学童保育</p>
-              <p>
-                午前は座禅で心を静め、午後は Nerf サバゲーで体を動かすメリハリ企画。
-                子どもたちからは「またやりたい！」の声がたくさん上がりました。
+
+              <p class="event-date">
+                開催：2025年夏休み期間<br>
+                場所：学童保育
               </p>
+
+              <p>
+                午前は座禅で心を静め、
+                午後はNerfサバイバルゲームで体を動かす企画を行いました。
+              </p>
+
               <p class="event-note">
-                <a href="https://note.com/loyal_dill1011/n/nba5500e91aa4" target="_blank" rel="noopener">
+                <a
+                  href="https://note.com/loyal_dill1011/n/nba5500e91aa4"
+                  target="_blank"
+                  rel="noopener"
+                >
                   📘 イベントレポートを読む（note）
                 </a>
               </p>
             </div>
+
           </div>
         </article>
 
-        <!-- ⑦ 蟲神器（5/3） -->
-                  <section class="event-list" id="past-2025">
-        <article class="event" id="mushijingi-2025-0503">
+        <!-- 新潟マルシェ -->
+        <article class="event" id="niigata-nazotoki-2025">
           <div class="event-wrap">
+
             <div class="event-media">
-              <a href="/images/events/mushi1.jpg" target="_blank" rel="noopener">
-                <img src="/images/events/mushi1.jpg" alt="蟲神器公認大会のチラシ" loading="lazy">
+              <a
+                href="/images/events/nazo1.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/nazo1.jpg"
+                  alt="お寺の謎を君は解けるか？の案内"
+                  loading="lazy"
+                >
               </a>
             </div>
 
             <div class="event-body">
-              <h3>蟲神器 公認大会 in 今津</h3>
-              <p class="event-date">開催日：2025年5月3日（土）／ 場所：今津ヴォーリズ資料館</p>
-              <p>高島で初開催となる公認大会。初心者も参加しやすく、限定カードの参加賞も配布しました。</p>
+              <h3>お寺の謎を君は解けるか？（新潟マルシェ）</h3>
+
+              <p class="event-date">
+                開催：2025年7月頃<br>
+                場所：浄広寺（新潟県）
+              </p>
+
+              <p>
+                新潟のお寺で開催されたマルシェに出展し、
+                お寺をテーマにした体験型謎解きを実施しました。
+              </p>
+
               <p class="event-note">
-                <a href="https://note.com/loyal_dill1011/n/nafb918b724c5" target="_blank" rel="noopener">
+                <a
+                  href="https://note.com/loyal_dill1011/n/n9c045f28df3e"
+                  target="_blank"
+                  rel="noopener"
+                >
                   📘 イベントレポートを読む（note）
                 </a>
               </p>
             </div>
+
           </div>
         </article>
 
-        <!-- ⑧ ナーフ会 -->
-                        <section class="event-list" id="past-2025">
+        <!-- ナーフ会 -->
         <article class="event" id="nerf-2025-0504">
           <div class="event-wrap">
+
             <div class="event-media">
-              <a href="/images/events/nerf1.jpg" target="_blank" rel="noopener">
-                <img src="/images/events/nerf1.jpg" alt="ナーフ会のチラシ" loading="lazy">
+              <a
+                href="/images/events/nerf1.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/nerf1.jpg"
+                  alt="お寺の庭でおためし体験ナーフ会のチラシ"
+                  loading="lazy"
+                >
               </a>
             </div>
 
             <div class="event-body">
               <h3>お寺の庭で おためし体験ナーフ会</h3>
-              <p class="event-date">開催日：2025年5月4日（日）／ 場所：長善寺</p>
-              <p>小学生〜大人まで楽しめる Nerf サバイバルゲーム体験会。チーム戦や的当てで多くの参加者が盛り上がりました。</p>
+
+              <p class="event-date">
+                開催日：2025年5月4日（日）<br>
+                場所：長善寺
+              </p>
+
+              <p>
+                小学生から大人まで楽しめる
+                Nerfサバイバルゲーム体験会を開催しました。
+              </p>
+
               <p class="event-note">
-                <a href="https://note.com/loyal_dill1011/n/n041a14b1c4f8" target="_blank" rel="noopener">
+                <a
+                  href="https://note.com/loyal_dill1011/n/n041a14b1c4f8"
+                  target="_blank"
+                  rel="noopener"
+                >
                   📘 イベントレポートを読む（note）
                 </a>
               </p>
             </div>
+
           </div>
         </article>
 
-        <!-- ⑨ 健康麻雀（最古） -->
-                              <section class="event-list" id="past-2025">
-        <article class="event" id="kenko-mahjong">
+        <!-- 蟲神器 公認大会 -->
+        <article class="event" id="mushijingi-2025-0503">
           <div class="event-wrap">
+
             <div class="event-media">
-              <a href="/images/events/mj1.PNG" target="_blank" rel="noopener">
-                <img src="/images/events/mj1.PNG" alt="健康麻雀会のチラシ" loading="lazy">
+              <a
+                href="/images/events/mushi1.jpg"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/mushi1.jpg"
+                  alt="蟲神器公認大会のチラシ"
+                  loading="lazy"
+                >
+              </a>
+            </div>
+
+            <div class="event-body">
+              <h3>蟲神器 公認大会 in 今津</h3>
+
+              <p class="event-date">
+                開催日：2025年5月3日（土）<br>
+                場所：今津ヴォーリズ資料館
+              </p>
+
+              <p>
+                高島で初開催となる公認大会です。
+                初心者も参加しやすい大会として、
+                限定カードの参加賞も配布しました。
+              </p>
+
+              <p class="event-note">
+                <a
+                  href="https://note.com/loyal_dill1011/n/nafb918b724c5"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  📘 イベントレポートを読む（note）
+                </a>
+              </p>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- 健康麻雀会 -->
+        <article class="event" id="kenko-mahjong-past">
+          <div class="event-wrap">
+
+            <div class="event-media">
+              <a
+                href="/images/events/mj1.PNG"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/images/events/mj1.PNG"
+                  alt="健康麻雀会のチラシ"
+                  loading="lazy"
+                >
               </a>
             </div>
 
             <div class="event-body">
               <h3>健康麻雀会</h3>
-              <p class="event-date">毎月第４日曜日（通年開催）</p>
-              <p>初心者から経験者まで参加できる健康麻雀の集いです。「掛けない・怒らない・飲まない」の安心スタイルで続けています。</p>
+
+              <p class="event-date">
+                毎月第4日曜日を中心に開催
+              </p>
+
+              <p>
+                初心者から経験者まで参加できる健康麻雀の集いです。
+                賭けない・飲まない・吸わない・怒らないを大切にしながら、
+                継続して開催しています。
+              </p>
+
               <p class="event-note">
-                <a href="https://note.com/loyal_dill1011/n/n57697fdba082" target="_blank" rel="noopener">
+                <a
+                  href="https://note.com/loyal_dill1011/n/n57697fdba082"
+                  target="_blank"
+                  rel="noopener"
+                >
                   📘 イベントレポートを読む（note）
                 </a>
               </p>
             </div>
+
           </div>
         </article>
 
       </section>
 
-  
+      <p class="backlink">
+        <a href="/events/">▶ 今後のイベントへ戻る</a>
+      </p>
 
-      <p class="backlink"><a href="/events/">▶ 今後のイベントへ戻る</a></p>
     </main>
+
   </div>
 </body>
 </html>
