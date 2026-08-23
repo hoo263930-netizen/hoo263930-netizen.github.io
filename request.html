@@ -65,6 +65,9 @@
     /* 写真つきの項目 */
     .photo{ margin:0 0 14px; border-radius:12px; overflow:hidden; background:#f2f4f7; }
     .photo img{ display:block; width:100%; height:auto; }
+    .photos{ display:grid; gap:8px; margin:0 0 14px; }
+    .photos .photo{ margin:0; }
+    .photo-pair{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
 
     .menu{ display:grid; gap:16px; margin-top:12px; }
     @media (min-width:820px){
@@ -152,8 +155,18 @@
           </section>
 
           <section class="block menu-item">
-            <div class="photo">
-              <img src="images/request/zazen.jpg" alt="座布団が並べられた、お寺の本堂の様子" loading="lazy" width="1200" height="900">
+            <div class="photos">
+              <div class="photo">
+                <img src="images/request/zazen-hall.jpg" alt="座布団を丸く並べた、座禅会の会場" loading="lazy" width="1200" height="900">
+              </div>
+              <div class="photo-pair">
+                <div class="photo">
+                  <img src="images/request/shakyo-hand.jpg" alt="筆で写経をしている手元" loading="lazy" width="1200" height="900">
+                </div>
+                <div class="photo">
+                  <img src="images/request/shakyo-room.jpg" alt="出張先の会場で写経会を行っている様子" loading="lazy" width="1200" height="900">
+                </div>
+              </div>
             </div>
             <div class="body">
               <div class="badges"><span class="badge">お寺体験</span><span class="badge">住職がうかがいます</span></div>
@@ -168,8 +181,13 @@
           </section>
 
           <section class="block menu-item">
-            <div class="photo">
-              <img src="images/request/kids-boardgame.jpg" alt="子どもたちがテーブルでボードゲームを遊んでいる様子" loading="lazy" width="1200" height="900">
+            <div class="photos">
+              <div class="photo">
+                <img src="images/request/kids-gym.jpg" alt="体育館で子どもたちが遊んでいる様子" loading="lazy" width="1200" height="900">
+              </div>
+              <div class="photo">
+                <img src="images/request/kids-boardgame.jpg" alt="子どもたちがテーブルでボードゲームを遊んでいる様子" loading="lazy" width="1200" height="900">
+              </div>
             </div>
             <div class="body">
               <div class="badges"><span class="badge">子ども</span><span class="badge">親子</span></div>
