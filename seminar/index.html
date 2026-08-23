@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>講座 | 遊べるお寺プロジェクト</title>
+  <meta name="description" content="遊べるお寺プロジェクトの講座のご案内。地域活動の始め方、チラシ作り、健康麻雀などの講座を開いています。" />
+
+  <style>
+    :root{
+      --sky:#22a7ff;
+      --sand:#f7ce52;
+      --ink:#2b2b2b;
+      --paper:#fff;
+      --maxw:1100px;
+      --rail:16px;
+    }
+    @media (min-width:900px){ :root{ --rail:24px; } }
+
+    html,body{
+      margin:0;
+      padding:0;
+      color:var(--ink);
+      line-height:1.75;
+      font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    }
+
+    body{ background:var(--sand); }
+
+    .container{
+      max-width:var(--maxw);
+      margin:0 auto;
+      background:var(--paper);
+      min-height:100vh;
+      box-shadow:0 0 6px rgba(0,0,0,.05);
+    }
+
+    header{
+      background:#fff;
+      border-bottom:2px solid var(--sand);
+      padding:0 var(--rail);
+    }
+
+    .visually-hidden{
+      position:absolute;
+      left:-9999px;
+    }
+
+    nav{
+      background:#fff;
+      position:relative;
+      border-bottom:2px solid var(--sand);
+    }
+
+    nav::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-2px;
+      height:3px;
+      background:var(--sky);
+    }
+
+    nav .wrap{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:0 var(--rail);
+      display:flex;
+      gap:0;
+      justify-content:center;
+      overflow:auto;
+    }
+
+    nav a{
+      color:#333;
+      text-decoration:none;
+      padding:18px clamp(14px,2.6vw,28px);
+      font-weight:700;
+      font-size:clamp(18px,2.2vw,22px);
+      white-space:nowrap;
+    }
+
+    nav a + a{ border-left:2px solid #ddd; }
+    nav a:hover{ background:#fafafa; }
+
+    main{
+      padding:28px var(--rail) 56px;
+    }
+
+    h1{
+      margin:.2em 0 .4em;
+      font-size:clamp(24px,3.2vw,36px);
+    }
+
+    .page-lead{
+      margin:0 0 18px;
+      color:#555;
+    }
+
+    .past-link-top{
+      text-align:right;
+      margin:0 0 22px;
+    }
+
+    .past-link-bottom{
+      text-align:center;
+      margin:28px 0 0;
+    }
+
+    .past-link-top a,
+    .past-link-bottom a{
+      display:inline-block;
+      padding:.55rem 1rem;
+      border-radius:999px;
+      background:#f0f3f8;
+      color:#1b2b44;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    .past-link-bottom a{
+      padding:.7rem 1.2rem;
+      background:#f3b700;
+      color:#111;
+      box-shadow:0 6px 14px rgba(243,183,0,.25);
+    }
+
+    .event-list{
+      display:grid;
+      gap:28px;
+      margin-top:10px;
+    }
+
+    .event-section-title{
+      margin:10px 0 -8px;
+      padding:.45rem .85rem;
+      border-left:6px solid var(--sky);
+      background:#f7fbff;
+      font-size:clamp(20px,2.4vw,26px);
+    }
+
+    .event-section-note{
+      margin:-12px 0 -6px;
+      color:#666;
+      font-size:.95rem;
+    }
+
+    .event{
+      border:1px solid #dfe6ee;
+      border-radius:14px;
+      padding:18px;
+      background:#fff;
+    }
+
+    .event.featured{
+      border:2px solid #f3b700;
+      background:#fffdf2;
+    }
+
+    .event-wrap{
+      display:grid;
+      grid-template-columns:minmax(260px, 420px) 1fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .event-media a{
+      display:block;
+      border-radius:10px;
+      overflow:hidden;
+      border:1px solid #e9eef3;
+      background:#fff;
+    }
+
+    .event-media img{
+      width:100%;
+      height:auto;
+      display:block;
+      max-height:340px;
+      object-fit:contain;
+      background:#fff;
+    }
+
+    /* 2枚チラシ：PCでは横並び、スマホでは下のmedia指定で縦並び */
+    .flyer-double{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:10px;
+      align-items:start;
+    }
+
+    .flyer-double a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .flyer-double img{
+      width:100%;
+      max-height:300px;
+      object-fit:contain;
+    }
+
+    .event-body h3{
+      margin:0 0 .35em;
+      font-size:clamp(20px,2.6vw,28px);
+    }
+
+    .event-date{
+      margin:.2em 0 1em;
+      color:#666;
+      font-weight:600;
+    }
+
+    .event-body p{
+      margin:.7em 0;
+    }
+
+    .badge{
+      display:inline-block;
+      margin-left:.5rem;
+      padding:.15em .55em;
+      border-radius:8px;
+      font-size:.8rem;
+      background:#e9f6ff;
+      color:#056;
+      font-weight:700;
+    }
+
+    .badge.important{
+      background:#fff0b8;
+      color:#5a4300;
+    }
+
+    .event-cta{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      font-weight:700;
+      background:#1f6fff;
+      color:#fff;
+      padding:.65rem 1.2rem;
+      border-radius:999px;
+      box-shadow:0 4px 14px rgba(31,111,255,.18);
+    }
+
+    .btn:hover{
+      filter:brightness(.96);
+    }
+
+    .btn.sec{
+      background:#f0f3f8;
+      color:#1b2b44;
+      box-shadow:none;
+    }
+
+    footer{
+      background:#f7f7f7;
+      border-top:1px solid #eee;
+      padding:14px var(--rail);
+      text-align:center;
+      font-size:.9rem;
+      color:#666;
+    }
+
+    @media (max-width:800px){
+      .event-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .event-media img{
+        max-height:280px;
+      }
+
+      .flyer-double{
+        grid-template-columns:1fr;
+      }
+
+      .flyer-double img{
+        max-height:220px;
+      }
+
+
+      .past-link-top{
+        text-align:left;
+      }
+    }
+
+    /* ===== 講座ページ専用 ===== */
+
+    .next-table{
+      width:100%;
+      border-collapse:collapse;
+      margin:6px 0 4px;
+      font-size:clamp(15px,1.7vw,17px);
+    }
+
+    .next-table th,
+    .next-table td{
+      border-bottom:1px solid #e3e9f0;
+      padding:.7rem .6rem;
+      text-align:left;
+      vertical-align:top;
+    }
+
+    .next-table th{
+      background:#f7fbff;
+      color:#456;
+      white-space:nowrap;
+      font-size:.9rem;
+    }
+
+    .next-table .nt-date{
+      white-space:nowrap;
+      font-weight:700;
+    }
+
+    .next-table .nt-name a{
+      color:#1b2b44;
+      font-weight:700;
+    }
+
+    .next-wrap{ overflow-x:auto; }
+
+    .course-meta{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:.35em 1.1em;
+      margin:.2em 0 1em;
+      font-size:.98rem;
+    }
+
+    .course-meta dt{
+      color:#666;
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    .course-meta dd{
+      margin:0;
+      font-weight:600;
+    }
+
+    .course-record{
+      margin:.8em 0;
+      padding:.55rem .85rem;
+      background:#f7fbff;
+      border-left:4px solid var(--sky);
+      font-size:.92rem;
+      color:#456;
+    }
+
+    .course-record a{ color:#1f6fff; }
+
+    .line-note{
+      margin:.9em 0 0;
+      padding:.55rem .85rem;
+      background:#f2fbf3;
+      border-left:4px solid #45b26b;
+      font-size:.92rem;
+      color:#2f5d3f;
+    }
+
+    .todo{
+      display:block;
+      padding:2.2rem 1rem;
+      border:2px dashed #cbd6e2;
+      border-radius:10px;
+      text-align:center;
+      color:#8a97a6;
+      font-size:.9rem;
+      background:#fbfcfe;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="visually-hidden">遊べるお寺プロジェクト</span>
+    </header>
+
+    <nav aria-label="主なナビゲーション">
+      <div class="wrap">
+        <a href="/">ホーム</a>
+        <a href="/project/">プロジェクト</a>
+        <a href="/events/">イベント</a>
+        <a href="/seminar/">講座</a>
+        <a href="/request.html">ご依頼・講師相談</a>
+        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）</a>
+        <a href="/contact/">お問い合わせ</a>
+      </div>
+    </nav>
+
+    <main>
+      <h1>講座のご案内</h1>
+
+      <p class="page-lead">
+        地域で何かを始めたい方、すでに活動していて少し行き詰まっている方に向けた講座を開いています。
+        少人数で、その場で手を動かして持ち帰ってもらう形が中心です。<br>
+        申込のいらない集まりは<a href="/events/">イベントのページ</a>を、
+        団体・施設からのご依頼は<a href="/request.html">ご依頼・講師相談</a>をご覧ください。
+      </p>
+
+      <section class="event-list">
+
+        <!-- ============================================================
+             上段：次回の開催予定
+             ▼更新するのは、この表の中身だけです。
+               ・日程が決まったら行を書き換える
+               ・終わったら行を消す（下の講座カードはそのまま残す）
+             ============================================================ -->
+        <h2 class="event-section-title">次回の開催予定</h2>
+        <p class="event-section-note">
+          日程が決まっている講座です。詳しい内容は下の「開いている講座」をご覧ください。
+        </p>
+
+        <div class="next-wrap">
+          <table class="next-table">
+            <thead>
+              <tr>
+                <th>日時</th>
+                <th>講座</th>
+                <th>会場</th>
+                <th>参加費</th>
+                <th>申込</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="nt-date">2026年<br>9月4日（金）<br>19:00〜21:00</td>
+                <td class="nt-name"><a href="#flyer-course">小さな活動を伝える<br>チラシ作り講座<br>（ステップアップ編）</a></td>
+                <td>コミュニティサロン Wan</td>
+                <td>2,000円<br>（当日払い）</td>
+                <td>公式LINE<br>定員4名</td>
+              </tr>
+              <tr>
+                <td class="nt-date">2026年<br>9月11日（金）<br>19:00〜21:00</td>
+                <td class="nt-name"><a href="#first-step">地域活動、はじめの一歩セミナー</a></td>
+                <td>コミュニティサロン Wan</td>
+                <td>1,500円<br>（当日払い）</td>
+                <td>公式LINE<br>定員4名</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ============================================================
+             下段：開いている講座（カタログ）
+             ▼講座を1つ増やすときは、この article をまるごと複製して
+               (1)タイトル (2)画像 (3)日程 (4)会場 (5)参加費 (6)申込 を差し替えます。
+             ============================================================ -->
+        <h2 class="event-section-title">開いている講座</h2>
+        <p class="event-section-note">
+          いま開いている講座の一覧です。日程が出ていないものも、ご希望があれば開催を検討します。
+        </p>
+
+        <!-- 地域活動、はじめの一歩セミナー -->
+        <article class="event" id="first-step">
+          <div class="event-wrap">
+            <div class="event-media">
+              <!-- TODO：HP用チラシ（日付なし）ができたら、ここを画像に差し替える -->
+              <span class="todo">チラシ準備中</span>
+            </div>
+
+            <div class="event-body">
+              <h3>地域活動、はじめの一歩セミナー <span class="badge important">次回 9月11日</span></h3>
+
+              <dl class="course-meta">
+                <dt>日程</dt><dd>2026年9月11日（金）19:00〜21:00</dd>
+                <dt>会場</dt><dd>コミュニティサロン Wan（高島市安曇川町南船木301-1）</dd>
+                <dt>参加費</dt><dd>1,500円（当日払い）</dd>
+                <dt>定員</dt><dd>4名</dd>
+              </dl>
+
+              <p>
+                地域で何かを始めたいけれど、何から手をつければいいか分からない。
+                そういう方のための少人数の会です。<br>
+                続ける前提で大きく始めるのではなく、一人でも回せる大きさで始めるにはどうするか、という話をします。
+              </p>
+
+              <p>※この回だけの参加でも大丈夫です。</p>
+
+              <div class="event-cta">
+                <a class="btn" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
+                  公式LINEから申し込む
+                </a>
+              </div>
+
+              <p class="line-note">
+                公式LINEで「セミナー」とお送りください。
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 小さな活動を伝える チラシ作り講座 -->
+        <article class="event" id="flyer-course">
+          <div class="event-wrap">
+            <div class="event-media">
+              <!-- TODO：HP用チラシ（日付なし）ができたら差し替える。今は2026年7月・基礎編のチラシ -->
+              <a href="/images/events/flyer-course-20260719.jpg" target="_blank" rel="noopener">
+                <img src="/images/events/flyer-course-20260719.jpg" alt="小さな活動を伝える チラシ作り講座のチラシ（2026年7月・基礎編）" loading="lazy">
+              </a>
+            </div>
+
+            <div class="event-body">
+              <h3>小さな活動を伝える チラシ作り講座 <span class="badge important">次回 9月4日</span></h3>
+
+              <dl class="course-meta">
+                <dt>日程</dt><dd>2026年9月4日（金）19:00〜21:00（ステップアップ編）</dd>
+                <dt>会場</dt><dd>コミュニティサロン Wan</dd>
+                <dt>参加費</dt><dd>2,000円（当日払い）</dd>
+                <dt>定員</dt><dd>4名</dd>
+              </dl>
+
+              <p>
+                CanvaとChatGPTを使って、自分の活動を伝えるチラシのたたき台を、その場で作る講座です。
+                パソコンやスマホの操作に自信がない方でも大丈夫です。<br>
+                9月4日は、前回きちんと時間を取れなかった「AIへの指示の出し方」を中心にやります。
+                <strong>初めての方も参加できます。</strong>
+              </p>
+
+              <p class="course-record">
+                これまで1回開催／前回 2026年7月<br>
+                <a href="https://note.com/loyal_dill1011/n/nf34be5c42627" target="_blank" rel="noopener">前回の様子を読む（note）</a>
+              </p>
+
+              <div class="event-cta">
+                <a class="btn" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
+                  公式LINEから申し込む
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 健康麻雀講座 -->
+        <article class="event" id="mahjong-course">
+          <div class="event-wrap">
+            <div class="event-media">
+              <!-- TODO：HP用チラシ（日付なし）ができたら差し替える -->
+              <a href="/images/request/mahjong-lesson.jpg" target="_blank" rel="noopener">
+                <img src="/images/request/mahjong-lesson.jpg" alt="健康麻雀を教えている様子" loading="lazy">
+              </a>
+            </div>
+
+            <div class="event-body">
+              <h3>健康麻雀講座 <span class="badge">次の募集は10月ごろ</span></h3>
+
+              <dl class="course-meta">
+                <dt>日程</dt><dd>毎月 第2・第4金曜日 10:00〜12:00</dd>
+                <dt>会場</dt><dd>コミュニティサロン Wan</dd>
+                <dt>参加費</dt><dd>500円（当日払い）</dd>
+                <dt>定員</dt><dd>4名程度</dd>
+              </dl>
+
+              <p>
+                ルールを一から覚えたい方、点数計算が不安な方のための講座です。
+                公民館の講座では時間が足りなかったところを、あらためてゆっくりやります。<br>
+                賭けない・飲まない・吸わない、健康麻雀です。
+              </p>
+
+              <p class="course-record">
+                <strong>いまの回は、公民館講座から続けて受けている方が対象です。</strong><br>
+                次に新しく募集するのは10月ごろの予定です。ご希望の方は公式LINEでお知らせください。
+              </p>
+
+              <div class="event-cta">
+                <a class="btn sec" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
+                  次の募集を知らせてもらう
+                </a>
+              </div>
+
+              <p class="line-note">
+                ルールを覚えたあとは、月1回の<a href="/events/#kenko-mahjong">健康麻雀会</a>で実際に打てます。
+              </p>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <p class="line-note" style="margin-top:28px;">
+        <strong>気になる講座がありましたら、公式LINEで教えてください。</strong><br>
+        ご希望の多いものから、次の日程を決めていきます。ここに載っていない内容のご相談も歓迎です。
+      </p>
+
+      <div class="past-link-bottom">
+        <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">公式LINEで知らせを受け取る</a>
+      </div>
+
+    </main>
+
+    <footer>© 2025 遊べるお寺プロジェクト</footer>
+  </div>
+</body>
+</html>
