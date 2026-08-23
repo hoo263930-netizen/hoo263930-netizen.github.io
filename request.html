@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>遊べるお寺プロジェクト｜ご依頼・講師相談</title>
-  <meta name="description" content="遊べるお寺プロジェクトへのご依頼・講師相談ページ。健康麻雀、ボードゲーム、謎解き、座禅、仏教カフェ、地域活動、福祉の視点を活かした講座・イベント・企画相談をお受けしています。" />
+  <title>遊べるお寺プロジェクト｜ご依頼・ご相談</title>
+  <meta name="description" content="遊べるお寺プロジェクトへのご依頼ページ。健康麻雀の出張・大会運営・講師、出張座禅や写経会、子ども向けの遊び、ホームページや公式LINEの制作、地域活動の相談をお受けしています。滋賀県高島市拠点。" />
   <style>
     :root{
       --sky:#22a7ff;
@@ -37,8 +37,8 @@
 
     main{ padding:28px var(--rail) 56px; }
     h1{ margin:.1em 0 .3em; font-size:clamp(28px,3.8vw,42px); line-height:1.45; }
-    h2{ margin:1.2em 0 .6em; font-size:clamp(20px,2.8vw,26px); }
-    h3{ margin:1em 0 .4em; font-size:clamp(16px,2.2vw,20px); }
+    h2{ margin:1.6em 0 .6em; font-size:clamp(22px,2.8vw,28px); }
+    h3{ margin:0 0 .4em; font-size:clamp(18px,2.2vw,22px); }
     p{ margin:.6em 0; }
 
     .wrap{ max-width:var(--maxw); margin:0 auto; }
@@ -50,32 +50,42 @@
     .badge{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; background:#ffeaa8; color:#523e00; }
     .badge.green{ background:#e5f5ec; color:#145c3b; }
 
-    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
     .btn{ display:inline-block; text-decoration:none; font-weight:700; padding:.7rem 1.1rem; border-radius:999px; }
     .btn.primary{ background:#36b37e; color:#fff; }
     .btn.ghost{ background:#fff; color:#222; border:1px solid #ddd; }
     .btn.dark{ background:#222; color:#fff; }
 
-    .lead{ font-size:16px; }
+    .lead{ font-size:17px; }
     .muted{ color:#5d6673; font-size:14px; }
     .hr{ border:0; border-top:1px solid #eee; margin:18px 0; }
+    ul{ padding-left:1.2em; }
+    li{ margin:.25em 0; }
+
+    /* 写真つきの項目 */
+    .photo{ margin:0 0 14px; border-radius:12px; overflow:hidden; background:#f2f4f7; }
+    .photo img{ display:block; width:100%; height:auto; }
+
+    .menu{ display:grid; gap:16px; margin-top:12px; }
+    @media (min-width:820px){
+      .menu-item{ display:grid; grid-template-columns:minmax(0,42%) minmax(0,1fr); gap:20px; align-items:start; }
+      .menu-item .photo{ margin:0; }
+    }
+    .menu-item .body ul{ margin:.4em 0 0; }
+    .menu-item .body li strong{ font-weight:800; }
+
     .cards{ display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-top:10px; }
     @media (max-width:900px){ .cards{ grid-template-columns:1fr; } }
-    ul{ padding-left:1.2em; }
-    li{ margin:.2em 0; }
 
-    .tag-list{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
-    .tag-list span{
-      display:inline-block;
-      background:#fffdf5;
-      border:1px solid #efd98a;
-      border-radius:999px;
-      padding:6px 12px;
-      font-size:14px;
+    .steps{ counter-reset:step; list-style:none; padding:0; margin:8px 0 0; display:grid; gap:10px; }
+    .steps li{ position:relative; padding-left:44px; }
+    .steps li::before{
+      counter-increment:step; content:counter(step);
+      position:absolute; left:0; top:2px;
+      width:30px; height:30px; border-radius:50%;
+      background:var(--sky); color:#fff; font-weight:800;
+      display:grid; place-items:center; font-size:15px;
     }
-
-    .two-column{ columns:2; column-gap:36px; }
-    @media (max-width:700px){ .two-column{ columns:1; } }
 
     details{ border:1px solid #e6ecf7; border-radius:12px; padding:12px 14px; background:#fcfdff; margin:10px 0; }
     summary{ font-weight:800; cursor:pointer; }
@@ -104,280 +114,162 @@
       <div class="wrap">
 
         <section class="block hero">
-          <p class="muted">ご依頼・講師相談</p>
-          <h1>遊びと仏教と福祉で、<br>地域に人が集まる場をつくります</h1>
+          <p class="muted">ご依頼・ご相談</p>
+          <h1>お寺の外へ、出張します。</h1>
 
-          <div class="badges">
-            <span class="badge">滋賀県高島市拠点</span>
-            <span class="badge">地域交流</span>
-            <span class="badge">健康麻雀</span>
-            <span class="badge">ボードゲーム</span>
-            <span class="badge">謎解き</span>
-            <span class="badge">座禅・仏教カフェ</span>
-            <span class="badge green">企画相談</span>
+          <div class="photo">
+            <img src="images/request/mahjong-lesson.jpg" alt="公民館の和室で、健康麻雀の講座をしている様子" loading="lazy" width="1200" height="900">
           </div>
 
           <p class="lead">
-            遊べるお寺プロジェクトは、滋賀県高島市のお寺を拠点に、仏教・福祉・遊び・地域活動を組み合わせながら、人が自然に集まれる場をつくる活動です。
-          </p>
-
-          <p class="lead">
-            健康麻雀、ボードゲーム、謎解き、座禅、仏教カフェ、相談支援の視点を活かし、地域団体・行政・社協・公民館・学校・福祉施設などに向けて、交流の場づくりや講座、イベント企画のご相談をお受けしています。
+            滋賀県高島市を拠点に、健康麻雀、座禅、仏教カフェ、子どもの遊びの場などを、公民館・サロン・施設・学校へ出張してお届けしています。
+            ホームページや公式LINEづくり、地域活動の相談もお受けしています。
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://lin.ee/ZITRIHg" target="_blank" rel="noopener">ご相談・お問い合わせはこちら</a>
-            <a class="btn ghost" href="/events/">実績・雰囲気を見る</a>
+            <a class="btn primary" href="https://lin.ee/ZITRIHg" target="_blank" rel="noopener">公式LINEで相談する</a>
             <a class="btn dark" href="/contact/">お問い合わせフォーム</a>
           </div>
-
-          <p class="muted">
-          </p>
         </section>
 
-        <h2>こんな相談に対応できます</h2>
-        <section class="block">
-          <ul>
-            <li>地域で人が集まる企画をしたい</li>
-            <li>高齢者の交流や外出のきっかけを作りたい</li>
-            <li>子どもや親子が楽しめる場を作りたい</li>
-            <li>お寺や公民館、地域施設をもっと活用したい</li>
-            <li>孤独や不安を抱える人が参加しやすい場を考えたい</li>
-            <li>福祉と遊びを組み合わせた講座やイベントを開きたい</li>
-            <li>イベントをしたいが、内容や進め方に迷っている</li>
-          </ul>
-        </section>
+        <h2>出張します</h2>
 
-        <h2>できること</h2>
+        <div class="menu">
+
+          <section class="block menu-item">
+            <div class="photo">
+              <img src="images/request/mahjong-visit.jpg" alt="和室に麻雀卓を持ち込んで、健康麻雀をしている様子" loading="lazy" width="1200" height="900">
+            </div>
+            <div class="body">
+              <div class="badges"><span class="badge">高齢者の交流</span><span class="badge">卓を持って行きます</span></div>
+              <h3>健康麻雀</h3>
+              <ul>
+                <li><strong>健康麻雀の会を開きます</strong>（麻雀卓を積んで伺うので、会場に道具がなくても大丈夫です）</li>
+                <li><strong>大会の企画・運営</strong>（組み合わせ、点数表、進行までお任せいただけます）</li>
+                <li><strong>健康麻雀の講師</strong>（公民館講座など、初めての方向けに教えます）</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="block menu-item">
+            <div class="photo">
+              <img src="images/request/zazen.jpg" alt="座布団が並べられた、お寺の本堂の様子" loading="lazy" width="1200" height="900">
+            </div>
+            <div class="body">
+              <div class="badges"><span class="badge">お寺体験</span><span class="badge">住職がうかがいます</span></div>
+              <h3>座禅・写経・仏教のお話</h3>
+              <ul>
+                <li><strong>出張座禅会</strong></li>
+                <li><strong>出張写経会</strong></li>
+                <li><strong>仏教カフェ</strong>（お茶を飲みながら、仏教の話や雑談をする会です）</li>
+              </ul>
+              <p class="muted">お寺に来ていただく形でも、こちらから伺う形でも対応できます。</p>
+            </div>
+          </section>
+
+          <section class="block menu-item">
+            <div class="photo">
+              <img src="images/request/kids-boardgame.jpg" alt="子どもたちがテーブルでボードゲームを遊んでいる様子" loading="lazy" width="1200" height="900">
+            </div>
+            <div class="body">
+              <div class="badges"><span class="badge">子ども</span><span class="badge">親子</span></div>
+              <h3>子ども向けの遊び</h3>
+              <ul>
+                <li><strong>ボードゲーム会</strong>（年齢に合わせて選んで持って行きます）</li>
+                <li><strong>謎解き・脱出ゲーム</strong></li>
+                <li><strong>学童・児童館などへの出張あそび</strong></li>
+              </ul>
+            </div>
+          </section>
+
+        </div>
+
+        <h2>つくる・相談にのる</h2>
         <section class="block">
+          <p class="muted">出張ではなく、つくるところ・考えるところをお手伝いするものです。</p>
           <div class="cards">
-
             <div class="block" style="box-shadow:none;">
-              <div class="badges"><span class="badge">交流</span><span class="badge">参加しやすい入口</span></div>
-              <h3>地域交流イベント</h3>
-              <p class="muted">
-                健康麻雀、ボードゲーム、謎解き、射的などを活用し、子どもから高齢者まで参加しやすい交流の場を企画・実施します。
-              </p>
+              <h3>ホームページをつくる</h3>
+              <p class="muted">団体やお店の小さなホームページをお作りします。作って終わりにせず、ご自身で更新できる形をご相談しながら決めます。</p>
             </div>
-
             <div class="block" style="box-shadow:none;">
-              <div class="badges"><span class="badge">お寺体験</span><span class="badge">対話</span></div>
-              <h3>お寺体験・仏教カフェ</h3>
-              <p class="muted">
-                座禅、お経、お茶、仏教カフェ、対話の場などを通して、お寺を身近に感じられる時間をつくります。
-              </p>
+              <h3>公式LINEをつくる</h3>
+              <p class="muted">お知らせを届ける手段として、公式LINEの開設・メニュー作成・使い方のレクチャーまでお手伝いします。</p>
             </div>
-
             <div class="block" style="box-shadow:none;">
-              <div class="badges"><span class="badge">講座</span><span class="badge">研修</span></div>
-              <h3>講座・研修・お話会</h3>
-              <p class="muted">
-                地域活動、居場所づくり、孤独、仏教、福祉、コミュニティづくりなどをテーマにした講座やお話会を行います。
-              </p>
+              <h3>地域活動の相談にのる</h3>
+              <p class="muted">これから始めたい、続けるのがしんどい、人が集まらない。そうした段階の相談をお受けします。</p>
             </div>
-
-            <div class="block" style="box-shadow:none;">
-              <div class="badges"><span class="badge">相談</span><span class="badge">運営設計</span></div>
-              <h3>企画相談・運営サポート</h3>
-              <p class="muted">
-                イベント内容、チラシ文言、参加導線、当日の進行、地域資源の活かし方などを一緒に考えます。
-              </p>
-            </div>
-
-          </div>
-        </section>
-
-        <h2>企画例</h2>
-        <section class="block">
-          <div class="tag-list">
-            <span>公民館での健康麻雀体験会</span>
-            <span>高齢者サロンでの健康麻雀勉強会</span>
-            <span>親子向けのお寺あそびイベント</span>
-            <span>地域交流ボードゲーム会</span>
-            <span>仏教カフェ、対話の会</span>
-            <span>座禅とお茶の体験会</span>
-            <span>地域活動をテーマにした講演</span>
-            <span>福祉職、支援者向けの場づくり研修</span>
-            <span>お寺や地域施設を活用した謎解きイベント</span>
-          </div>
-        </section>
-
-        <h2>対象となる方</h2>
-        <section class="block">
-          <ul class="two-column">
-            <li>行政、社協、公民館の方</li>
-            <li>自治会、まちづくり団体の方</li>
-            <li>NPO、市民活動団体の方</li>
-            <li>学校、保育、子ども支援関係の方</li>
-            <li>高齢者サロン、地域サロンの運営者</li>
-            <li>福祉施設、地域包括支援センター等の関係者</li>
-            <li>お寺や地域施設を活用したい方</li>
-            <li>地域の中で新しい交流の場をつくりたい方</li>
-          </ul>
-        </section>
-
-        <h2>大切にしていること</h2>
-        <section class="block section-note">
-          <h3>無理に「相談」にしないこと</h3>
-          <p>
-            困りごとを抱えている人ほど、いきなり相談窓口には来づらいことがあります。
-            だからこそ、麻雀、ボードゲーム、お茶、座禅、雑談のような、参加しやすい入口を大切にしています。
-          </p>
-
-          <h3>楽しいだけで終わらせないこと</h3>
-          <p>
-            イベントとして楽しいことは大切です。
-            ただし、それだけではなく、その場をきっかけに人がつながること、孤立が少しやわらぐこと、地域の中に次の動きが生まれることを目指しています。
-          </p>
-
-          <h3>小さく試し、続けられる形にすること</h3>
-          <p>
-            大きな企画を一度だけ行うよりも、地域の人や場所に合わせて、小さく試し、続けられる形にしていくことを重視しています。
-          </p>
-        </section>
-
-        <h2>これまでの活動</h2>
-        <section class="block">
-          <p>
-            健康麻雀会、ボードゲーム会、謎解きイベント、座禅会、仏教カフェ、地域イベント出展などを行っています。
-            詳細な活動の様子は、イベントページやnoteでもご覧いただけます。
-          </p>
-          <div class="cta">
-            <a class="btn ghost" href="/events/">イベント・活動の一覧を見る</a>
-            <a class="btn ghost" href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）を見る</a>
           </div>
         </section>
 
         <h2>ご依頼の流れ</h2>
         <section class="block">
-          <ol>
-            <li><strong>ご連絡</strong>（LINE／お問い合わせフォーム）</li>
-            <li><strong>内容確認</strong>（日時・場所・人数・目的など）</li>
-            <li><strong>提案・すり合わせ</strong>（必要に応じてオンライン打合せ）</li>
-            <li><strong>実施</strong>（当日の進行・運営）</li>
-            <li><strong>ふり返り</strong>（任意：次回に向けた相談も可能）</li>
+          <ol class="steps">
+            <li><strong>ご連絡</strong>　公式LINEかお問い合わせフォームから。「こういうことはできますか」の段階で構いません。</li>
+            <li><strong>内容のすり合わせ</strong>　日時・場所・人数・目的をうかがい、できる形と費用をご提案します。</li>
+            <li><strong>当日</strong>　準備物を持って伺い、進行までお引き受けします。</li>
           </ol>
 
           <hr class="hr">
 
-          <h3>最初のご連絡で教えていただきたいこと</h3>
+          <h3>最初に教えていただけると早いこと</h3>
           <ul>
-            <li>開催希望日（候補でも構いません）</li>
-            <li>場所（市町名＋会場名）</li>
-            <li>参加予定人数／年齢層</li>
-            <li>目的（交流／学び／地域活性／研修など）</li>
-            <li>希望する内容（健康麻雀／ボードゲーム／仏教カフェ／講座／企画相談など）</li>
-            <li>ご予算感（決まっていれば）</li>
+            <li>開催希望日（候補で構いません）</li>
+            <li>場所（市町名と会場名）</li>
+            <li>参加予定の人数と年齢層</li>
+            <li>ご予算（決まっていれば）</li>
           </ul>
         </section>
 
         <h2>料金について</h2>
-        <section class="block">
+        <section class="block section-note">
           <p>
-            内容、準備量、人数、移動距離によって変わります。
-            まずは、日時・場所・人数・目的を伺ったうえで、実施内容と費用をご提案します。
-          </p>
-          <p>
-            行政・学校・団体等で講師料規定がある場合は、規定に合わせて内容や実施範囲を調整します。
+            内容、準備量、人数、移動距離によって変わるため、うかがったうえでご提案します。
+            行政・学校・団体で講師料の規定がある場合は、その規定に合わせて内容を調整します。
           </p>
           <p class="muted">
-            ※交通費、印刷物、材料費などが必要な場合は、事前にご相談します。<br>
-            ※新規の謎解き制作、資料作成、チラシ制作などが発生する場合は、別途ご相談となります。
+            ※交通費、印刷物、材料費が必要な場合は、事前にご相談します。<br>
+            ※謎解きの新規制作や資料作成が発生する場合は、別途ご相談となります。
           </p>
         </section>
 
-        <h2>よくある質問（FAQ）</h2>
+        <h2>よくある質問</h2>
         <section class="block">
           <details>
             <summary>まだ内容が決まっていなくても相談できますか？</summary>
-            <p>はい。目的、対象者、会場、時期などを伺いながら、実施できる形を一緒に考えます。</p>
+            <p>はい。目的、対象の方、会場、時期などをうかがいながら、できる形を一緒に考えます。</p>
           </details>
-
           <details>
             <summary>予算が限られているのですが、相談できますか？</summary>
-            <p>可能です。時間を短くする、既存の内容を活用する、主催者側で準備物を用意するなど、条件に合わせて調整します。</p>
+            <p>できます。時間を短くする、既にある内容を使う、準備物を主催者側でご用意いただくなど、条件に合わせて調整します。</p>
           </details>
-
           <details>
-            <summary>謎解きや脱出ゲームの制作も依頼できますか？</summary>
-            <p>内容によります。既存の内容を活用できる場合と、新規制作が必要な場合で準備量が変わります。新規制作が必要な場合は、制作費を含めて別途ご相談となります。</p>
+            <summary>会場で用意するものはありますか？</summary>
+            <p>机、椅子、電源、駐車場など、会場の設備は主催者様側でご用意いただく形が基本です。必要なものは事前にお伝えします。麻雀卓など、こちらで運べるものは持って行きます。</p>
           </details>
-
-          <details>
-            <summary>会場側で用意するものはありますか？</summary>
-            <p>机、椅子、電源、駐車場など、会場設備は主催者様側でご用意いただく形が基本です。必要なものは事前にお伝えします。</p>
-          </details>
-
-          <details>
-            <summary>請求書・領収書は出せますか？</summary>
-            <p>はい。団体・行政の手続きに合わせて対応します。</p>
-          </details>
-
-          <details>
-            <summary>日程変更やキャンセルはできますか？</summary>
-            <p>できる限り調整します。すでに購入・印刷した物品がある場合は、その実費のみご負担をお願いすることがあります。</p>
-          </details>
-        </section>
-
-        <h2>プロフィール</h2>
-        <section class="block">
-          <h3>久我 光聖</h3>
-          <p>
-            住職・社会福祉士・保育士。
-            滋賀県高島市を拠点に、遊べるお寺プロジェクトを進めています。
-          </p>
-          <p>
-            社会福祉協議会での地域福祉・相談支援の経験、保育士としての視点、住職としての活動を活かしながら、地域の中に人が集まれる場づくりに取り組んでいます。
-          </p>
-          <p>
-            現在は、健康麻雀、ボードゲーム会、謎解きイベント、座禅会、仏教カフェ、相談活動などを通じて、地域の中に「遊びながらつながる場」をつくっています。
-          </p>
         </section>
 
         <h2>お問い合わせ</h2>
         <section class="block">
           <p>
-            講座、イベント、企画協力、地域活動のご相談など、お気軽にお問い合わせください。
-          </p>
-          <p>
-            「こういうことはできますか？」という段階でも構いません。
-            内容、場所、対象者、予算、時期などを伺いながら、できる形を一緒に考えます。
+            「こういうことはできますか？」という段階で構いません。
+            内容、場所、対象の方、予算、時期などをうかがいながら、できる形を一緒に考えます。
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://lin.ee/ZITRIHg" target="_blank" rel="noopener">ご相談・お問い合わせはこちら</a>
+            <a class="btn primary" href="https://lin.ee/ZITRIHg" target="_blank" rel="noopener">公式LINEで相談する</a>
             <a class="btn dark" href="/contact/">お問い合わせフォーム</a>
+            <a class="btn ghost" href="/project/">遊べるお寺プロジェクトについて</a>
           </div>
 
           <hr class="hr">
 
-          <h3>外部サービスからのご相談</h3>
-          <p class="muted">
-            相談内容に応じて、MENTA・ココナラのページもご利用いただけます。
-          </p>
-
-          <div class="cards">
-            <div class="block" style="box-shadow:none;">
-              <h3>MENTA</h3>
-              <p class="muted">
-                個人的な活動相談、地域活動の始め方、企画の壁打ち、働き方や発信の相談など、継続的・個別的に相談したい方向けです。
-              </p>
-              <div class="cta">
-                <a class="btn ghost" href="https://menta.work/user/219766" target="_blank" rel="noopener">MENTAで相談する</a>
-              </div>
-            </div>
-
-            <div class="block" style="box-shadow:none;">
-              <h3>ココナラ</h3>
-              <p class="muted">
-                イベント企画、講座、体験会、地域活動のサポートなど、具体的なご依頼や単発での依頼をご希望の方向けです。
-              </p>
-              <div class="cta">
-                <a class="btn ghost" href="https://coconala.com/users/5816878" target="_blank" rel="noopener">ココナラから依頼する</a>
-              </div>
-            </div>
+          <p class="muted">継続的に相談したい方は MENTA、単発のご依頼は ココナラ からもお受けしています。</p>
+          <div class="cta">
+            <a class="btn ghost" href="https://menta.work/user/219766" target="_blank" rel="noopener">MENTA</a>
+            <a class="btn ghost" href="https://coconala.com/users/5816878" target="_blank" rel="noopener">ココナラ</a>
           </div>
-
         </section>
 
       </div>
