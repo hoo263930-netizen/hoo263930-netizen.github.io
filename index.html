@@ -202,6 +202,34 @@
     }
     #line .line-qr small{ display:block; margin:6px 0 6px; color:rgba(255,255,255,.8); }
 
+    /* ===== Instagram（LINEセクションと対になる細い帯） ===== */
+    #insta{
+      width:min(1100px,94%);
+      margin:0 auto 28px;
+      border-radius:24px;
+      background:linear-gradient(100deg,#F9F0EC 0%,#FBF3F8 100%);
+      border:1px solid #EFD9D0;
+      padding:20px clamp(18px,3vw,32px);
+    }
+    #insta .insta-inner{
+      display:flex; align-items:center; gap:clamp(14px,2.5vw,28px);
+      flex-wrap:wrap; justify-content:space-between;
+    }
+    #insta .insta-copy{ flex:1 1 320px; }
+    #insta h2{
+      margin:0 0 4px; font-size:clamp(19px,2.1vw,24px); color:#B4436C;
+    }
+    #insta p{ margin:0; color:#5b4a4f; font-size:clamp(14px,1.6vw,16px); }
+    #insta .insta-btn{
+      display:inline-block; flex:0 0 auto;
+      padding:.7rem 1.4rem; border-radius:999px;
+      background:linear-gradient(100deg,#E8853C 0%,#D14C7A 55%,#9B4BC4 100%);
+      color:#fff; text-decoration:none; font-weight:700;
+      box-shadow:0 6px 16px rgba(184,67,108,.28);
+      white-space:nowrap;
+    }
+    #insta .insta-btn:hover{ filter:brightness(.96); }
+
     footer{
       background:#f7f7f7;
       border-top:1px solid #eee;
@@ -290,6 +318,19 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- ✅ Instagram -->
+      <section id="insta">
+        <div class="insta-inner">
+          <div class="insta-copy">
+            <h2>📷 Instagramでも発信しています</h2>
+            <p>健康麻雀、ボードゲーム、焚き火、写経会。活動の様子を写真で載せています。</p>
+          </div>
+          <a class="insta-btn" href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener">
+            @asoberu_otera を見る
+          </a>
         </div>
       </section>
 
