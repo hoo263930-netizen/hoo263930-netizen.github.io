@@ -69,7 +69,27 @@
     /* フッター */
     footer{ background:#111; color:#ddd; padding:16px var(--rail); text-align:center; font-size:.9rem; }
     footer a{ color:#fff; }
-  </style>
+  
+    /* ===== ナビ：項目が7つになり、中央寄せのままだと先頭が画面外へ切れて
+       スクロールでも戻れなくなるため修正（2026-08-24） ===== */
+    nav .wrap{ justify-content:flex-start; }
+    nav .wrap > :first-child{ margin-left:auto; }
+    nav .wrap > :last-child{ margin-right:auto; }
+    /* 7項目だと元の文字サイズ・余白では枠（1100px）に収まらず右が切れるため詰める */
+    nav a{ padding:18px clamp(10px,1.6vw,20px); font-size:clamp(16px,1.6vw,20px); }
+    @media (max-width:860px){
+      /* 狭い画面では横スクロールにせず、折り返して7項目すべてを見せる。
+         隠れた項目はスクロールできることに気づかれないため。 */
+      nav .wrap{ flex-wrap:wrap; justify-content:center; overflow:visible; }
+      nav .wrap > :first-child{ margin-left:0; }
+      nav .wrap > :last-child{ margin-right:0; }
+      nav a{ padding:12px 14px; font-size:16px; }
+      nav a + a{ border-left:0; }
+    }
+    @media (max-width:420px){
+      nav a{ padding:9px 8px; font-size:14px; }
+    }
+</style>
 </head>
 <body>
   <div class="container">
