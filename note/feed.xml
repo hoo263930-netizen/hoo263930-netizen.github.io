@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:webfeeds="http://webfeeds.org/rss/1.0" xmlns:note="https://note.com" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
   <channel>
-    <title>遊べるお寺プロジェクト@Kosen</title>
+    <title>こーせん｜遊べるお寺プロジェクト</title>
     <description>住職・社会福祉士・保育士
 遊びや対話を通して、「遊べるお寺、話せるお寺」を模索しています。
 ボードゲーム、謎解き、地域活動、相談支援など、少しやわらかい入口をつくれないか考えています。
@@ -10,20 +10,30 @@ HPはこちら↓
 https://hoo263930-netizen.github.io</description>
     <link>https://note.com/loyal_dill1011</link>
     <atom:link rel="self" type="application/rss+xml" href="https://note.com/loyal_dill1011/rss/"/>
-    <copyright>遊べるお寺プロジェクト@Kosen</copyright>
+    <copyright>こーせん｜遊べるお寺プロジェクト</copyright>
     <webfeeds:icon>https://d2l930y2yx77uc.cloudfront.net/assets/default/default_note_logo_202212-f2394a9e5b60c49f48650eee13f6e75987c8c4f1cfa7555629a9697dc6015cd9.png</webfeeds:icon>
     <webfeeds:logo>https://d2l930y2yx77uc.cloudfront.net/assets/default/default_note_logo_202212-f2394a9e5b60c49f48650eee13f6e75987c8c4f1cfa7555629a9697dc6015cd9.png</webfeeds:logo>
     <webfeeds:accentColor>249F80</webfeeds:accentColor>
     <webfeeds:related layout="card" target="browser"/>
     <webfeeds:analytics id="UA-48687000-1" engine="GoogleAnalytics"/>
     <language>ja</language>
-    <lastBuildDate>Mon, 24 Aug 2026 03:37:47 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2026 10:45:12 +0900</lastBuildDate>
+    <item>
+      <title>地域活動、はじめの一歩ラジオ #8｜地域活動の「活動以外の仕事」を、AIにどこまで渡せるか</title>
+      <media:thumbnail>https://assets.st-note.com/production/uploads/images/306433770/rectangle_large_type_2_59a263019cce66174c4b06afac3b85c4.png?width=800</media:thumbnail>
+      <description><![CDATA[<p name="00494281-d6f8-47a7-ba9d-0fa43616cce7" id="00494281-d6f8-47a7-ba9d-0fa43616cce7"><br></p><figure name="678231ed-5017-49ab-b7cb-f54060b5c9fb" id="678231ed-5017-49ab-b7cb-f54060b5c9fb"><img src="https://assets.st-note.com/img/1787523502-45v0JTtmOVEUBzasNkf9WlZQ.png" alt="" width="620" height="349"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/nd0ff600d8530'>続きをみる</a>]]></description>
+      <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
+      <pubDate>Mon, 24 Aug 2026 07:19:19 +0900</pubDate>
+      <link>https://note.com/loyal_dill1011/n/nd0ff600d8530</link>
+      <guid>https://note.com/loyal_dill1011/n/nd0ff600d8530</guid>
+    </item>
     <item>
       <title>大規模お化け屋敷を一日手伝ったら、文化祭を思い出した</title>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/305267886/rectangle_large_type_2_b20d9599c09c965144bf8f50873cdd4c.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<figure name="2374b90b-c4a4-41c3-924d-bcec1b4e8599" id="2374b90b-c4a4-41c3-924d-bcec1b4e8599"><img src="https://assets.st-note.com/img/1787203766-2f4tCcovMK8Gxiy5ZTrbsODW.jpg" alt="" width="620" height="877" style="width: 372px; height: 526.2px;"><figcaption></figcaption></figure><p name="562b6d28-3ac7-4ea9-9c6d-fff3e17a5c08" id="562b6d28-3ac7-4ea9-9c6d-fff3e17a5c08"><br>8月16日、地域の青年団が主催するお化け屋敷のお手伝いに行ってきました。<br></p><br/><a href='https://note.com/loyal_dill1011/n/n6458138800a1'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Fri, 21 Aug 2026 12:00:00 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n6458138800a1</link>
       <guid>https://note.com/loyal_dill1011/n/n6458138800a1</guid>
@@ -33,7 +43,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/305249710/rectangle_large_type_2_bd536a6580e7e4490848a3a3793d19a6.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<p name="bf318dc8-7f7c-48c6-835b-7e3c9219be13" id="bf318dc8-7f7c-48c6-835b-7e3c9219be13"><br></p><figure name="de2252dd-bf21-449b-98eb-90089777e368" id="de2252dd-bf21-449b-98eb-90089777e368"><img src="https://assets.st-note.com/img/1787198453-mPVA8cLrlgvR9adHGxuTWM0f.jpg" alt="" width="620" height="465" style="width: 372px; height: 279px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/ne1d87f2d6d36'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Thu, 20 Aug 2026 13:13:30 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/ne1d87f2d6d36</link>
       <guid>https://note.com/loyal_dill1011/n/ne1d87f2d6d36</guid>
@@ -43,7 +53,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/304963869/rectangle_large_type_2_eac13f7f572f6b76820c00ea4aebcef1.png?width=800</media:thumbnail>
       <description><![CDATA[<p name="eaac2bd8-cb84-4ed6-b799-a852847a879a" id="eaac2bd8-cb84-4ed6-b799-a852847a879a"><br></p><figure name="15b0136f-360c-4dba-8355-8d2941de060b" id="15b0136f-360c-4dba-8355-8d2941de060b"><img src="https://assets.st-note.com/img/1787116404-lVJpjrFHsPoG21SOgBzaXDw6.png" alt="" width="620" height="324" style="width: 372px; height: 194.4px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/ne1feb95272c1'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Wed, 19 Aug 2026 14:13:35 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/ne1feb95272c1</link>
       <guid>https://note.com/loyal_dill1011/n/ne1feb95272c1</guid>
@@ -53,7 +63,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/303670911/rectangle_large_type_2_42261986bacfe93c1d3f9d3eda6e6de4.png?width=800</media:thumbnail>
       <description><![CDATA[<p name="2fea14ca-0740-4e92-a5b1-0950ed03985f" id="2fea14ca-0740-4e92-a5b1-0950ed03985f"><br></p><figure name="7b1b227b-459f-4d61-b5c9-1b6832ac0e1f" id="7b1b227b-459f-4d61-b5c9-1b6832ac0e1f"><img src="https://assets.st-note.com/img/1786767724-BqjobDw0XchgrU8sQ3fZROAt.png" alt="" width="620" height="349" style="width: 372px; height: 209.4px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n74d324301382'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Sat, 15 Aug 2026 13:23:19 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n74d324301382</link>
       <guid>https://note.com/loyal_dill1011/n/n74d324301382</guid>
@@ -63,7 +73,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/302679356/rectangle_large_type_2_39a691acd13231e7fe9d065a537b7e20.png?width=800</media:thumbnail>
       <description><![CDATA[<p name="e541d85f-d64b-4146-96e4-4cc022538101" id="e541d85f-d64b-4146-96e4-4cc022538101"><br></p><figure name="341948fd-8d45-4700-aed0-3f5b07643b6b" id="341948fd-8d45-4700-aed0-3f5b07643b6b"><img src="https://assets.st-note.com/img/1786493116-7Z9RTDzq3LUMpPOJf0lCS6oy.png" alt="" width="620" height="349"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n30cbd1e3b401'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Wed, 12 Aug 2026 09:07:26 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n30cbd1e3b401</link>
       <guid>https://note.com/loyal_dill1011/n/n30cbd1e3b401</guid>
@@ -73,7 +83,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/301826423/rectangle_large_type_2_8b2cf2ea96521cff010291fefcb93b96.png?width=800</media:thumbnail>
       <description><![CDATA[<p name="fede3158-b84e-48b2-92ed-71936818fbdc" id="fede3158-b84e-48b2-92ed-71936818fbdc"><br></p><figure name="2c41a318-dfa5-4d5f-9b8d-0e997d611442" id="2c41a318-dfa5-4d5f-9b8d-0e997d611442"><img src="https://assets.st-note.com/img/1786254248-H6M0NIQ15XUdtVGwEZAsejpY.png" alt="" width="620" height="620" style="width: 372px; height: 372px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n49c660085143'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Sun, 09 Aug 2026 14:44:39 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n49c660085143</link>
       <guid>https://note.com/loyal_dill1011/n/n49c660085143</guid>
@@ -83,7 +93,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/301614754/rectangle_large_type_2_5a9c6086d37ddf46aa4efaf590f8b266.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<p name="8a19b7a9-d002-4d27-8eb7-8bed46751f13" id="8a19b7a9-d002-4d27-8eb7-8bed46751f13">今日は、初めて健康麻雀大会を開催しました。</p><p name="7d320d86-251b-41b0-9fa9-bc7b94a147d1" id="7d320d86-251b-41b0-9fa9-bc7b94a147d1">参加者は12名。3卓を使っての開催です。</p><br/><a href='https://note.com/loyal_dill1011/n/n868f7aded76b'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Sat, 08 Aug 2026 21:05:28 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n868f7aded76b</link>
       <guid>https://note.com/loyal_dill1011/n/n868f7aded76b</guid>
@@ -93,7 +103,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/301057859/rectangle_large_type_2_83664fb114d8ed182955e4fed616a150.png?width=800</media:thumbnail>
       <description><![CDATA[<p name="ed4d3f6b-d644-4a85-a159-4c95477710a7" id="ed4d3f6b-d644-4a85-a159-4c95477710a7"><br></p><figure name="8b5bac09-0bde-472c-be06-7d2c4717a9d0" id="8b5bac09-0bde-472c-be06-7d2c4717a9d0"><img src="https://assets.st-note.com/img/1786024176-EfAasHwYCy3GFjR7hWeBUqSX.png" alt="" width="620" height="413" style="width: 372px; height: 247.79999999999998px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n71408bf1c60a'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Fri, 07 Aug 2026 08:00:00 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n71408bf1c60a</link>
       <guid>https://note.com/loyal_dill1011/n/n71408bf1c60a</guid>
@@ -103,7 +113,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/301026360/rectangle_large_type_2_e4b9147483704e22d5bbae3083d294b1.png?width=800</media:thumbnail>
       <description><![CDATA[<p name="8981b437-35c2-4795-bbd7-8a89282a5e49" id="8981b437-35c2-4795-bbd7-8a89282a5e49"><br></p><figure name="306e4496-2af2-40ea-8604-27dbebce29dc" id="306e4496-2af2-40ea-8604-27dbebce29dc"><img src="https://assets.st-note.com/img/1786018128-yPFNjUk4nIqO6pMehxzvRSVL.png" alt="" width="620" height="439" style="width: 372px; height: 263.4px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n4e10271d69fa'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Thu, 06 Aug 2026 21:11:01 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n4e10271d69fa</link>
       <guid>https://note.com/loyal_dill1011/n/n4e10271d69fa</guid>
@@ -113,7 +123,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/300462553/rectangle_large_type_2_8f888867f3d7201ca0a18bbfb46c6a49.png?width=800</media:thumbnail>
       <description><![CDATA[<p name="4fa6e763-7ff3-4fe5-b081-23d84c8cefd2" id="4fa6e763-7ff3-4fe5-b081-23d84c8cefd2"><br></p><figure name="45f65d62-081c-47ca-8581-58935eccc15e" id="45f65d62-081c-47ca-8581-58935eccc15e"><img src="https://assets.st-note.com/img/1785847810-ThUxoOE9tzgWVuJpP8RnbI3A.png" alt="" width="620" height="620" style="width: 372px; height: 372px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n718a03e50b01'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Wed, 05 Aug 2026 12:00:00 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n718a03e50b01</link>
       <guid>https://note.com/loyal_dill1011/n/n718a03e50b01</guid>
@@ -123,7 +133,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/300584557/rectangle_large_type_2_84e75d5504f4ae4fb84b80c3d89d4f65.png?width=800</media:thumbnail>
       <description><![CDATA[<p name="d205abbc-9fc1-4f5c-877e-edaa30f3c684" id="d205abbc-9fc1-4f5c-877e-edaa30f3c684"><br></p><figure name="ae260602-a780-4dc4-a52d-07c8d9f9bb8b" id="ae260602-a780-4dc4-a52d-07c8d9f9bb8b"><img src="https://assets.st-note.com/img/1785893142-RL1FJqwSdpVZcGB7k4Q9vfTO.png" alt="" width="620" height="620" style="width: 372px; height: 372px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/ned8851bdafa1'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Wed, 05 Aug 2026 10:31:24 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/ned8851bdafa1</link>
       <guid>https://note.com/loyal_dill1011/n/ned8851bdafa1</guid>
@@ -133,7 +143,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/299978305/rectangle_large_type_2_1649d251b87cdc03643b83c54639c401.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<p name="daa0186b-351b-4659-8282-59ecee127748" id="daa0186b-351b-4659-8282-59ecee127748">今回はもともと付き合いのある方から、遊びについて相談を受けました。</p><p name="359779fc-6b95-433b-85d4-0cf66af968de" id="359779fc-6b95-433b-85d4-0cf66af968de">夏に、子ども向けの新しい事業をやることになったとのこと。子どもを楽しませる遊びの作り方が分からない、という相談でした。<br></p><br/><a href='https://note.com/loyal_dill1011/n/n1e4b9bcd5b6c'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Mon, 03 Aug 2026 09:27:30 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n1e4b9bcd5b6c</link>
       <guid>https://note.com/loyal_dill1011/n/n1e4b9bcd5b6c</guid>
@@ -143,7 +153,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/298183646/rectangle_large_type_2_f1637fc64a911c5cb4241665a7173cab.png?width=800</media:thumbnail>
       <description><![CDATA[<p name="e070ffb8-f238-4c7d-9a29-c398121c6854" id="e070ffb8-f238-4c7d-9a29-c398121c6854"><br></p><figure name="7a170d0c-26a0-4577-b570-671fb17a74ee" id="7a170d0c-26a0-4577-b570-671fb17a74ee"><img src="https://assets.st-note.com/img/1785194717-70oZuIadVhDR2ArEbiX3UTzp.png" alt="" width="620" height="349" style="width: 372px; height: 209.4px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n935ff91e9975'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Sat, 01 Aug 2026 12:00:00 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n935ff91e9975</link>
       <guid>https://note.com/loyal_dill1011/n/n935ff91e9975</guid>
@@ -153,7 +163,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/298048849/rectangle_large_type_2_d3d48048aa54b61f45f86c4e1ebd1066.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<p name="f01a8cec-b335-420f-8b07-f8da2652a606" id="f01a8cec-b335-420f-8b07-f8da2652a606">先日、今津のココハウスで、月に一度のボードゲーム会を開催しました。<br></p><figure name="a0f01172-4e49-4cac-aa87-ef5114a33ebe" id="a0f01172-4e49-4cac-aa87-ef5114a33ebe"><img src="https://assets.st-note.com/img/1785147088-JEBbwW7QlPrpDVLOnHcjx2Gi.jpg" alt="" width="620" height="877" style="width: 372px; height: 526.1999999999999px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n359555e86af6'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Thu, 30 Jul 2026 12:00:00 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n359555e86af6</link>
       <guid>https://note.com/loyal_dill1011/n/n359555e86af6</guid>
@@ -163,7 +173,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/298198584/rectangle_large_type_2_4b170dff10e2cfc97f2705b7ff9212ea.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<p name="ec49bc67-9e46-497f-a1dc-a2947f362973" id="ec49bc67-9e46-497f-a1dc-a2947f362973"><br></p><figure name="f2346abd-bffb-4adf-95ac-57da6a477e79" id="f2346abd-bffb-4adf-95ac-57da6a477e79"><img src="https://assets.st-note.com/img/1785199405-joSfeRGZNzw3hW4Um5F6bYvK.jpg" alt="" width="620" height="325" style="width: 372px; height: 195px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n7a84717d5fd8'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Tue, 28 Jul 2026 09:59:49 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n7a84717d5fd8</link>
       <guid>https://note.com/loyal_dill1011/n/n7a84717d5fd8</guid>
@@ -173,7 +183,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/298035295/rectangle_large_type_2_98bf0e5304a1d4c4c5c979d1ba7cc782.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<p name="4af6b667-3802-44d3-a396-adc035f33501" id="4af6b667-3802-44d3-a396-adc035f33501"><br></p><figure name="82a909a7-46f5-4fa1-b959-5da4cc3d8773" id="82a909a7-46f5-4fa1-b959-5da4cc3d8773"><img src="https://assets.st-note.com/img/1785144007-zSUjx42FAs8CH67LZpRm9qG0.jpg" alt="" width="620" height="826" style="width: 372px; height: 495.59999999999997px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/ncc539ce17161'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Mon, 27 Jul 2026 18:27:42 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/ncc539ce17161</link>
       <guid>https://note.com/loyal_dill1011/n/ncc539ce17161</guid>
@@ -183,7 +193,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/296228399/rectangle_large_type_2_846899f33f70d6e40c67c516157f404a.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<p name="1e52a9a0-be2f-41aa-b3ed-51e80cd73a8b" id="1e52a9a0-be2f-41aa-b3ed-51e80cd73a8b"><br></p><figure name="f795f753-bdb1-478c-a11d-6b24343c5200" id="f795f753-bdb1-478c-a11d-6b24343c5200"><img src="https://assets.st-note.com/img/1784604101-fWVU5NkvlwunLbidrmJ7zc0B.jpg" alt="" width="620" height="826" style="width: 372px; height: 495.59999999999997px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/nf34be5c42627'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Thu, 23 Jul 2026 12:00:00 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/nf34be5c42627</link>
       <guid>https://note.com/loyal_dill1011/n/nf34be5c42627</guid>
@@ -193,7 +203,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/296308708/rectangle_large_type_2_2209af303c4fd9a1848730e5c5d31907.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<p name="c0652d7b-5ee2-48a8-9a67-ae6385a09c82" id="c0652d7b-5ee2-48a8-9a67-ae6385a09c82"><br></p><br/><a href='https://note.com/loyal_dill1011/n/nf578fa432158'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Tue, 21 Jul 2026 18:18:30 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/nf578fa432158</link>
       <guid>https://note.com/loyal_dill1011/n/nf578fa432158</guid>
@@ -203,7 +213,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/296225522/rectangle_large_type_2_3a98e6d20cca50c726313c3e3ade9b42.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<p name="e7b72649-b2c4-4503-bbd5-73c3fc134c38" id="e7b72649-b2c4-4503-bbd5-73c3fc134c38">現在、私は無職です。</p><p name="10448b55-7bde-4f92-841a-25813f037a6f" id="10448b55-7bde-4f92-841a-25813f037a6f">住職ではありますが、それだけで生活できるほどの収入があるわけではなく、別の仕事を探しています。面接を受けたり、自分の活動をどう仕事にできるのか考えたりしながら、今も収入の見通しははっきりしていません。</p><br/><a href='https://note.com/loyal_dill1011/n/ned703e515f83'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Tue, 21 Jul 2026 12:09:09 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/ned703e515f83</link>
       <guid>https://note.com/loyal_dill1011/n/ned703e515f83</guid>
@@ -213,7 +223,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/294849908/rectangle_large_type_2_0ee6017788ff9a1bee4e468348ea4b49.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<h2 name="8f59c2db-8b4a-490c-9bbc-2ccefd6302e6" id="8f59c2db-8b4a-490c-9bbc-2ccefd6302e6"><br></h2><p name="e252eac1-7810-46a0-b005-fcdd71d7da67" id="e252eac1-7810-46a0-b005-fcdd71d7da67">この前、奈良の泊まり会で出会った男性と、釣りに行ってきました。</p><br/><a href='https://note.com/loyal_dill1011/n/n618666bbc57e'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Sat, 18 Jul 2026 12:00:00 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n618666bbc57e</link>
       <guid>https://note.com/loyal_dill1011/n/n618666bbc57e</guid>
@@ -223,7 +233,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/294770612/rectangle_large_type_2_f7b5278f83ae1913205856ed2a095347.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<p name="ad65a20d-182b-47aa-85c1-ec512ef78974" id="ad65a20d-182b-47aa-85c1-ec512ef78974"><br></p><figure name="836ef59a-aed8-4fd4-9ae6-0a9dc13cfb67" id="836ef59a-aed8-4fd4-9ae6-0a9dc13cfb67"><img src="https://assets.st-note.com/img/1784167385-XDBG9OiKbSjxYPC0davh1zsH.jpg" alt="" width="620" height="465" style="width: 372px; height: 279px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/nc364b2f6d42c'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Thu, 16 Jul 2026 11:05:36 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/nc364b2f6d42c</link>
       <guid>https://note.com/loyal_dill1011/n/nc364b2f6d42c</guid>
@@ -233,7 +243,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/294196119/rectangle_large_type_2_c610e6bd13744f4d336371e146c11fa3.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<figure name="5ee400bc-fa46-4bb2-a6c8-9cff523fe208" id="5ee400bc-fa46-4bb2-a6c8-9cff523fe208"><img src="https://assets.st-note.com/img/1783991589-UnEOQ2ZCMybosrhux9pWN3Pl.jpg" alt="" width="620" height="826" style="width: 372px; height: 495.59999999999997px;"><figcaption></figcaption></figure><p name="e056dae5-7814-4d50-bdbf-31c2eb9f46d6" id="e056dae5-7814-4d50-bdbf-31c2eb9f46d6">公民館で、全5回の健康麻雀講座が始まりました。</p><br/><a href='https://note.com/loyal_dill1011/n/n5e70d0323a00'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Tue, 14 Jul 2026 10:27:56 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n5e70d0323a00</link>
       <guid>https://note.com/loyal_dill1011/n/n5e70d0323a00</guid>
@@ -243,7 +253,7 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/291998215/rectangle_large_type_2_8a850843466a3fb84f29f2b23e1a43b0.png?width=800</media:thumbnail>
       <description><![CDATA[<figure name="a2c9645f-46d9-41e5-a5c1-d3b24211f7ff" id="a2c9645f-46d9-41e5-a5c1-d3b24211f7ff"><img src="https://assets.st-note.com/img/1783328476-mPLcNCj09Uh8AQSysizZGD67.png" alt="" width="620" height="413" style="width: 372px; height: 247.79999999999998px;"><figcaption></figcaption></figure><p name="3c6d3a12-0796-41c5-8e4f-e61531af6537" id="3c6d3a12-0796-41c5-8e4f-e61531af6537"><br>前回の記事では、奈良で参加した宿泊イベントについて書きました。</p><br/><a href='https://note.com/loyal_dill1011/n/n6ebf280ff82d'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Sat, 11 Jul 2026 12:00:00 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n6ebf280ff82d</link>
       <guid>https://note.com/loyal_dill1011/n/n6ebf280ff82d</guid>
@@ -253,20 +263,10 @@ https://hoo263930-netizen.github.io</description>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/291986885/rectangle_large_type_2_9919725f2ccc6d70afd19b24ef17020e.jpeg?width=800</media:thumbnail>
       <description><![CDATA[<figure name="f3211331-10b1-4dd0-b22d-e6508fea76c5" id="f3211331-10b1-4dd0-b22d-e6508fea76c5"><img src="https://assets.st-note.com/img/1783326545-wTDv2A3xLpJ1zVsU6S0i4Gtu.jpg" alt="" width="620" height="826" style="width: 372px; height: 495.59999999999997px;"><figcaption></figcaption></figure><p name="4a69ecef-0d80-4970-80d8-8f239ba063a6" id="4a69ecef-0d80-4970-80d8-8f239ba063a6"><br>先日、知り合いで会社を経営されている方から声をかけていただき、奈良で行われた宿泊イベントに参加してきました。</p><br/><a href='https://note.com/loyal_dill1011/n/n2d007342521b'>続きをみる</a>]]></description>
       <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
       <pubDate>Thu, 09 Jul 2026 12:00:00 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n2d007342521b</link>
       <guid>https://note.com/loyal_dill1011/n/n2d007342521b</guid>
-    </item>
-    <item>
-      <title>健康麻雀大会のルールを考えています</title>
-      <media:thumbnail>https://assets.st-note.com/production/uploads/images/292244768/rectangle_large_type_2_7b53c02da2f2732fce47b8d7dfa72c6c.jpeg?width=800</media:thumbnail>
-      <description><![CDATA[<p name="4e4dbebd-2d71-404f-8333-2aab402b0620" id="4e4dbebd-2d71-404f-8333-2aab402b0620"><br></p><figure name="f24be386-2361-4a89-8ce7-c37591437fc6" id="f24be386-2361-4a89-8ce7-c37591437fc6"><img src="https://assets.st-note.com/img/1783323835-35fxHUEVa7j86znNYhWg0C2S.jpg" alt="" width="620" height="877" style="width: 372px; height: 526.1999999999999px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n8ec8aa6f4bee'>続きをみる</a>]]></description>
-      <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>遊べるお寺プロジェクト@Kosen</note:creatorName>
-      <pubDate>Tue, 07 Jul 2026 12:00:00 +0900</pubDate>
-      <link>https://note.com/loyal_dill1011/n/n8ec8aa6f4bee</link>
-      <guid>https://note.com/loyal_dill1011/n/n8ec8aa6f4bee</guid>
     </item>
   </channel>
 </rss>
