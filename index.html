@@ -166,7 +166,7 @@
       padding:32px 0 6px;
       border-radius:24px; overflow:hidden;
       margin:22px auto 28px;
-      width:min(1100px,94%);
+      width:min(980px,94%);
     }
     #line .line-wrap,
     #line .line-inner,
@@ -178,7 +178,7 @@
       margin-bottom:0 !important;
       min-height:auto !important;
     }
-    #line .line-wrap{ width:min(1100px,92%); margin:0 auto; }
+    #line .line-wrap{ width:min(980px,92%); margin:0 auto; }
     #line .line-inner{
       display:grid;
       grid-template-columns:0.85fr 1.15fr;
@@ -202,33 +202,46 @@
     }
     #line .line-qr small{ display:block; margin:6px 0 6px; color:rgba(255,255,255,.8); }
 
-    /* ===== Instagram（LINEセクションと対になる細い帯） ===== */
+    /* ===== Instagram（LINEセクションと同じ作り。2026年9月7日に帯からカードへ） ===== */
     #insta{
-      width:min(1100px,94%);
-      margin:0 auto 28px;
-      border-radius:24px;
-      background:linear-gradient(100deg,#F9F0EC 0%,#FBF3F8 100%);
-      border:1px solid #EFD9D0;
-      padding:20px clamp(18px,3vw,32px);
-    }
-    #insta .insta-inner{
-      display:flex; align-items:center; gap:clamp(14px,2.5vw,28px);
-      flex-wrap:wrap; justify-content:space-between;
-    }
-    #insta .insta-copy{ flex:1 1 320px; }
-    #insta h2{
-      margin:0 0 4px; font-size:clamp(19px,2.1vw,24px); color:#B4436C;
-    }
-    #insta p{ margin:0; color:#5b4a4f; font-size:clamp(14px,1.6vw,16px); }
-    #insta .insta-btn{
-      display:inline-block; flex:0 0 auto;
-      padding:.7rem 1.4rem; border-radius:999px;
       background:linear-gradient(100deg,#E8853C 0%,#D14C7A 55%,#9B4BC4 100%);
-      color:#fff; text-decoration:none; font-weight:700;
-      box-shadow:0 6px 16px rgba(184,67,108,.28);
+      color:#fff;
+      padding:32px 0 6px;
+      border-radius:24px; overflow:hidden;
+      margin:22px auto 28px;
+      width:min(980px,94%);
+    }
+    #insta .insta-wrap{ width:min(980px,92%); margin:0 auto; }
+    #insta .insta-inner{
+      display:grid;
+      grid-template-columns:0.85fr 1.15fr;
+      gap:28px; align-items:start;
+    }
+    @media (max-width:900px){ #insta .insta-inner{ grid-template-columns:1fr; } }
+    #insta .white-card{
+      background:#fff; border-radius:20px; padding:16px;
+      box-shadow:0 8px 20px rgba(0,0,0,.15);
+    }
+    #insta .square-img{ display:block; width:100%; height:auto; border-radius:14px; }
+    #insta .insta-copy h2{ margin:0 0 10px; font-size:clamp(22px,2.4vw,28px); color:#fff; }
+    #insta .insta-copy p, #insta .insta-benefits{ color:rgba(255,255,255,.92); }
+    #insta .insta-benefits{ margin:6px 0 12px; padding-left:1.2em; }
+    #insta .insta-benefits li{ margin:4px 0; }
+    #insta .insta-buttons{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin:8px 0 12px; }
+    #insta .insta-btn{
+      display:inline-block;
+      padding:.7rem 1.4rem; border-radius:999px;
+      background:#fff; color:#B4436C; text-decoration:none; font-weight:700;
+      box-shadow:0 6px 16px rgba(0,0,0,.20);
       white-space:nowrap;
     }
     #insta .insta-btn:hover{ filter:brightness(.96); }
+    #insta .insta-qr{ text-align:center; }
+    #insta .insta-qr img{
+      background:#fff; border-radius:12px; padding:6px;
+      box-shadow:0 3px 10px rgba(0,0,0,.3);
+    }
+    #insta .insta-qr small{ display:block; margin:6px 0 6px; color:rgba(255,255,255,.85); }
 
     footer{
       background:#f7f7f7;
@@ -343,14 +356,41 @@
 
       <!-- ✅ Instagram -->
       <section id="insta">
-        <div class="insta-inner">
-          <div class="insta-copy">
-            <h2>📷 Instagramでも発信しています</h2>
-            <p>健康麻雀、ボードゲーム、焚き火、写経会。活動の様子を写真で載せています。</p>
+        <div class="insta-wrap">
+          <div class="insta-inner">
+            <div class="insta-media white-card">
+              <img class="square-img" src="/images/insta.png" alt="Instagramのご案内画像" width="560" height="560" loading="lazy" decoding="async">
+            </div>
+
+            <div class="insta-copy">
+              <h2>📷 Instagramのご案内</h2>
+              <p>
+                遊べるお寺プロジェクトのInstagramでは、<br>
+                イベントや活動の様子を写真で紹介しています。
+              </p>
+              <p>
+                健康麻雀、ボードゲーム、焚き火、写経会など、<br>
+                「どんな雰囲気でやっているの？」が伝わるのはこちらです。
+              </p>
+              <ul class="insta-benefits">
+                <li>📸 イベント当日の様子</li>
+                <li>📣 講座・イベントのお知らせ</li>
+                <li>🏯 遊べるお寺プロジェクトの日々の活動</li>
+              </ul>
+              <p>気になる活動があれば、ぜひのぞいてみてください。</p>
+
+              <div class="insta-buttons">
+                <a class="insta-btn" href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener">
+                  @asoberu_otera を見る
+                </a>
+              </div>
+
+              <div class="insta-qr">
+                <img src="/images/insta_qr.png" alt="Instagramフォロー用QR" width="160" height="160" loading="lazy" decoding="async">
+                <small>スマホでQRを読み取ってフォローできます</small>
+              </div>
+            </div>
           </div>
-          <a class="insta-btn" href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener">
-            @asoberu_otera を見る
-          </a>
         </div>
       </section>
 
