@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>オンライン相談 | 遊べるお寺プロジェクト</title>
-  <meta name="description" content="遊べるお寺プロジェクトのオンライン相談。地域活動の立ち上げや続け方、公式LINE・ホームページ・チラシ・AIの使い方まで、30分から相談できます。仏教のこと・生き方のことを、お坊さんに匿名で文字で相談できる無料フォームもあります。" />
+  <title>相談する（無料フォーム・オンライン相談） | 遊べるお寺プロジェクト</title>
+  <meta name="description" content="遊べるお寺プロジェクトの相談ページ。地域活動の立ち上げや続け方、公式LINE・ホームページ・チラシ・AIの使い方、仏教のこと・生き方のこと。お坊さんに匿名で文字で送れる無料フォームと、30分のオンライン相談（3,000円）があります。" />
 
   <style>
     :root{
@@ -293,6 +293,137 @@
       }
     }
 
+
+    /* ===== 相談ページ（2026年9月11日） ===== */
+    .cs-hero{
+      display:grid;
+      grid-template-columns:1.25fr 1fr;
+      gap:20px;
+      align-items:center;
+      margin:4px 0 22px;
+      padding:20px 22px;
+      border-radius:16px;
+      background:#fffdf2;
+      border:2px solid var(--sand);
+    }
+    .cs-hero h1{ margin:0 0 .3em; }
+    .cs-hero .page-lead{ margin:0 0 14px; }
+    .cs-hero-art img{
+      width:100%;
+      max-width:420px;
+      height:auto;
+      display:block;
+      margin:0 auto;
+    }
+    .cs-choice{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:18px;
+      margin:0 0 10px;
+    }
+    .cs-card{
+      border-radius:14px;
+      padding:18px 18px 20px;
+      background:#fff;
+      border:1px solid #dfe6ee;
+      display:flex;
+      flex-direction:column;
+    }
+    .cs-card.free{ background:#fffdf2; border:2px solid var(--sand); }
+    .cs-card.online{ background:#f7fbff; border:2px solid var(--sky); }
+    .cs-card img{
+      width:100%;
+      max-width:240px;
+      height:auto;
+      display:block;
+      margin:0 auto 4px;
+    }
+    .cs-card h2{
+      margin:.2em 0 .2em;
+      font-size:clamp(20px,2.4vw,26px);
+    }
+    .cs-card .cs-sub{ margin:0 0 .6em; color:#555; }
+    .cs-card ul{ margin:.2em 0 .9em; padding-left:1.2em; }
+    .cs-card li{ margin:.15em 0; }
+    .cs-card .event-cta{ margin-top:auto; }
+    .cs-topics{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+    .cs-topic{
+      border:1px solid #dfe6ee;
+      border-radius:14px;
+      padding:14px;
+      background:#fff;
+    }
+    .cs-topic img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      border-radius:10px;
+      display:block;
+      margin:0 0 10px;
+      background:#fff;
+    }
+    .cs-topic img.art{ object-fit:contain; }
+    .cs-topic h3{ margin:.1em 0 .3em; font-size:1.12rem; }
+    .cs-topic p{ margin:0; font-size:.95rem; color:#444; }
+    .cs-person{
+      display:grid;
+      grid-template-columns:240px 1fr;
+      gap:18px;
+      align-items:center;
+      border:1px solid #dfe6ee;
+      border-radius:14px;
+      padding:18px;
+      margin-top:18px;
+      background:#fff;
+    }
+    .cs-person img{ width:100%; height:auto; border-radius:12px; display:block; }
+    .cs-person h3{ margin:0 0 .3em; font-size:1.15rem; }
+    .cs-person p{ margin:.4em 0; }
+    .cs-steps{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+      margin:18px 0 0;
+      padding:0;
+      list-style:none;
+      counter-reset:step;
+    }
+    .cs-steps li{
+      border:1px solid #dfe6ee;
+      border-radius:14px;
+      padding:14px 16px;
+      background:#fff;
+      counter-increment:step;
+    }
+    .cs-steps li::before{
+      content:counter(step);
+      display:inline-block;
+      width:32px; height:32px; line-height:32px;
+      text-align:center;
+      border-radius:50%;
+      background:var(--sky);
+      color:#fff;
+      font-weight:700;
+      margin-bottom:6px;
+    }
+    .cs-steps h3{ margin:0 0 .3em; font-size:1.05rem; }
+    .cs-steps p{ margin:0; font-size:.95rem; }
+    .cs-note{ color:#666; font-size:.92rem; margin:12px 0 0; }
+    @media (max-width:800px){
+      .cs-hero{ grid-template-columns:1fr; padding:16px; }
+      .cs-hero-art{ order:-1; }
+      .cs-hero-art img{ max-width:250px; }
+      .cs-choice, .cs-topics, .cs-steps{ grid-template-columns:1fr; }
+      .cs-person{ grid-template-columns:1fr; }
+      .cs-person img{ max-width:260px; margin:0 auto; }
+      .cs-topic img{ height:150px; }
+    }
+
     /* ===== 講座ページ専用 ===== */
 
     .next-table{
@@ -447,13 +578,55 @@
 
     
     <main>
-      <h1>オンライン相談</h1>
+      <section class="cs-hero">
+        <div class="cs-hero-copy">
+          <h1>相談する</h1>
+          <p class="page-lead">
+            地域で何かを始めたい方、活動していて手が回らなくなっている方、<br>
+            お坊さんに話してみたいことがある方へ。<br>
+            文字で送るか、30分話すか。どちらでも大丈夫です。
+          </p>
+          <div class="event-cta">
+            <a class="btn sec" href="#free">文字で送る（無料・匿名）</a>
+            <a class="btn" href="#online">30分話す（3,000円）</a>
+          </div>
+        </div>
+        <div class="cs-hero-art">
+          <img src="/images/consult/monk-laptop.png" alt="ノートパソコンの前で話を聞く小坊主のイラスト" width="779" height="491">
+        </div>
+      </section>
 
-      <p class="page-lead">
-        地域で何かを始めたい方、すでに活動していて手が回らなくなっている方に向けた、1対1の相談です。<br>
-        オンライン（Google Meet）で行うので、遠方の方もご利用いただけます。<br>
-        お坊さんに話してみたいことがある方は、下の方に無料・匿名のフォームもあります。
-      </p>
+      <section class="cs-choice">
+        <article class="cs-card free" id="free">
+          <img src="/images/consult/monk-letter.png" alt="手紙を読む小坊主のイラスト" width="765" height="509" loading="lazy">
+          <h2>文字で送る <span class="badge important">無料・匿名</span></h2>
+          <p class="cs-sub">話すほどではないけれど、誰かに聞いてほしい。そんなときに。</p>
+          <ul>
+            <li>お坊さんとして、仏教の視点も交えてお答えします</li>
+            <li>返信は、できる範囲で行います（必ず返せるとは限りません）</li>
+            <li>ご本人の許可があるものだけ、匿名でnoteや音声で取り上げることがあります</li>
+          </ul>
+          <div class="event-cta">
+            <a class="btn" href="https://forms.gle/tbbjNfi5PgkwRNdHA" target="_blank" rel="noopener">お坊さんへの相談フォーム</a>
+          </div>
+          <p class="cs-note">※ 命に関わる急ぎのご相談は、よりそいホットライン（0120-279-338・24時間・通話無料）へおかけください。</p>
+        </article>
+
+        <article class="cs-card online" id="online">
+          <img src="/images/consult/monk-video.png" alt="スマートフォンでビデオ通話をする小坊主のイラスト" width="673" height="500" loading="lazy">
+          <h2>30分話す <span class="badge important">モニター募集中</span></h2>
+          <p class="cs-sub">地域活動のこと、道具のこと、仏教のこと。1対1で、オンラインで。</p>
+          <ul>
+            <li>Google Meet。パソコンでもスマートフォンでも参加できます</li>
+            <li>30分 3,000円。<strong>先着3名さまはモニター価格 1,000円</strong></li>
+            <li>お支払いは銀行振込。ご入金の確認後に日程が確定します</li>
+          </ul>
+          <div class="event-cta">
+            <a class="btn" href="https://forms.gle/dgeZapgDKke5YiAk6" target="_blank" rel="noopener">フォームから申し込む</a>
+            <a class="btn sec" href="/contact/">公式LINEから申し込む</a>
+          </div>
+        </article>
+      </section>
 
       <section class="event-list">
 
@@ -462,128 +635,66 @@
           下は例です。「どれにも当てはまらないけれど聞きたい」という内容でも構いません。
         </p>
 
-        <article class="event">
-          <div class="event-wrap">
-            <div class="event-body">
-              <h3>地域活動のこと</h3>
-              <p>
-                これから何か始めたいが、何から手をつければいいか分からない。<br>
-                イベントを開いても人が集まらない。<br>
-                続けるのがしんどくなってきた。担い手が足りない。
-              </p>
-
-              <h3>道具まわりのこと</h3>
-              <p>
-                公式LINEの作り方・使い方。<br>
-                ホームページの作り方、直し方。<br>
-                チラシ・Canvaの相談。<br>
-                ChatGPT・Claudeなど、AIを活動にどう使うか。<br>
-                スマホ・パソコンの困りごと。
-              </p>
-
-              <h3>仏教のこと、生き方のこと</h3>
-              <p>
-                仏教のこと、生き方のこと、誰にも言いにくいこと。<br>
-                お坊さんとして、仏教の視点も交えてお話しします。<br>
-                話すほどではない、という方は、下の無料フォームに書いてみてください。
-              </p>
-
-              <p>
-                住職として、社会福祉士として、保育士として現場にいた経験と、
-                実際に自分でイベントを開き、ホームページや公式LINEを作って運用している経験からお話しします。
-                うまくいかなかったことも、そのままお伝えします。
-              </p>
-            </div>
+        <div class="cs-topics">
+          <div class="cs-topic">
+            <img src="/images/request/mahjong-lesson.jpg" alt="健康麻雀講座の様子" loading="lazy">
+            <h3>地域活動のこと</h3>
+            <p>何から手をつければいいか分からない。イベントを開いても人が集まらない。続けるのがしんどくなってきた。</p>
           </div>
-        </article>
-
-
-        <h2 class="event-section-title">料金</h2>
-
-        <article class="event featured">
-          <div class="event-wrap">
-            <div class="event-body">
-              <h3>オンライン相談（30分） <span class="badge important">モニター募集中</span></h3>
-
-              <p class="event-date">
-                30分 3,000円<br>
-                <strong>先着3名さま　モニター価格 1,000円</strong>
-              </p>
-
-              <p>
-                初めての開催のため、最初の3名さまはモニター価格でお受けします。
-                終わったあとに、簡単な感想をお聞かせください。
-              </p>
-
-              <p>
-                お支払いは銀行振込です。お申し込み後に口座をご案内します。<br>
-                ご入金を確認してから、日程を確定します。
-              </p>
-            </div>
+          <div class="cs-topic">
+            <img src="/images/seminar/line-course.jpg" alt="公式LINE基本講座のチラシ" loading="lazy">
+            <h3>道具まわりのこと</h3>
+            <p>公式LINE、ホームページ、チラシ・Canva、ChatGPT・ClaudeなどのAI、スマホ・パソコンの困りごと。</p>
           </div>
-        </article>
-
-
-        <h2 class="event-section-title">お申し込みから当日まで</h2>
-
-        <article class="event">
-          <div class="event-wrap">
-            <div class="event-body">
-              <p>
-                <strong>1. お申し込み</strong><br>
-                下のフォーム、または公式LINEからご連絡ください。
-                相談したいことと、希望日時の候補をいくつかお知らせください。
-              </p>
-
-              <p>
-                <strong>2. 日程とお支払い</strong><br>
-                こちらから日程の候補と振込先をお返しします。
-                ご入金を確認した時点で日程が確定します。
-              </p>
-
-              <p>
-                <strong>3. 当日</strong><br>
-                Google Meet のリンクをお送りします。
-                パソコンでもスマートフォンでも参加できます。
-                使い方が分からない場合は、事前にお伝えします。
-              </p>
-
-              <p class="event-note">
-                ※ 日程は都度調整させていただいています。決まった開催枠はありません。<br>
-                ※ 相談の内容を、こちらから外部に話すことはありません。<br>
-                ※ 発信の材料としてご紹介したい場合は、必ず事前にご相談します。
-              </p>
-            </div>
+          <div class="cs-topic">
+            <img class="art" src="/images/consult/monk-lotus.png" alt="数珠を持ち蓮の花のそばにいる小坊主のイラスト" loading="lazy">
+            <h3>仏教のこと、生き方のこと</h3>
+            <p>仏教のこと、生き方のこと、誰にも言いにくいこと。お坊さんとして、仏教の視点も交えてお話しします。</p>
           </div>
-        </article>
+        </div>
 
 
-        <h2 class="event-section-title">お坊さんに、文字で相談する（無料・匿名）</h2>
-        <p class="event-section-note">
-          話すほどではないけれど、誰かに聞いてほしいことがある。そんなときは、フォームに書いてみてください。匿名で大丈夫です。
+        <h2 class="event-section-title">相談する人</h2>
+
+        <div class="cs-person">
+          <img src="/images/request/seminar-lecture.jpg" alt="講座で話す久我光聖" loading="lazy">
+          <div>
+            <h3>久我 光聖（こーせん）</h3>
+            <p>
+              住職・社会福祉士・保育士。滋賀県高島市で、健康麻雀、ボードゲーム会、写経会、地域活動の講座を、自分で開いて続けています。
+            </p>
+            <p>
+              現場にいた経験と、実際にイベントを開き、ホームページや公式LINEを作って運用している経験からお話しします。
+              うまくいかなかったことも、そのままお伝えします。
+            </p>
+            <p><a href="/project/">プロジェクトについて</a>／<a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）</a></p>
+          </div>
+        </div>
+
+
+        <h2 class="event-section-title">30分話す場合の流れ</h2>
+
+        <ol class="cs-steps">
+          <li>
+            <h3>お申し込み</h3>
+            <p>フォームか公式LINEから。相談したいことと、希望日時の候補をいくつかお知らせください。</p>
+          </li>
+          <li>
+            <h3>日程とお支払い</h3>
+            <p>こちらから日程の候補と振込先をお返しします。ご入金を確認した時点で日程が確定します。</p>
+          </li>
+          <li>
+            <h3>当日</h3>
+            <p>Google Meet のリンクをお送りします。使い方が分からない場合は、事前にお伝えします。</p>
+          </li>
+        </ol>
+
+        <p class="cs-note">
+          ※ 日程は都度調整させていただいています。決まった開催枠はありません。<br>
+          ※ 相談の内容を、こちらから外部に話すことはありません。<br>
+          ※ 発信の材料としてご紹介したい場合は、必ず事前にご相談します。<br>
+          ※ 初めての開催のため、最初の3名さまはモニター価格でお受けします。終わったあとに、簡単な感想をお聞かせください。
         </p>
-
-        <article class="event">
-          <div class="event-wrap">
-            <div class="event-body">
-              <p>
-                お坊さんとして、仏教の視点も交えてお答えします。<br>
-                返信は、できる範囲で行います（必ず返せるとは限りません）。<br>
-                ご本人の許可があるものだけ、匿名でnoteや音声で取り上げることがあります。
-              </p>
-
-              <div class="event-cta">
-                <a class="btn sec" href="https://forms.gle/tbbjNfi5PgkwRNdHA" target="_blank" rel="noopener">
-                  お坊さんへの相談フォーム（無料）
-                </a>
-              </div>
-
-              <p class="event-note">
-                ※ 命に関わる急ぎのご相談は、よりそいホットライン（0120-279-338・24時間・通話無料）へおかけください。
-              </p>
-            </div>
-          </div>
-        </article>
 
 
         <h2 class="event-section-title">これまでに作ってきたもの</h2>
@@ -616,17 +727,7 @@
           </div>
         </article>
 
-
-        <div class="event-cta" style="margin:32px 0;">
-          <a class="btn" href="https://forms.gle/dgeZapgDKke5YiAk6" target="_blank" rel="noopener">
-            フォームから申し込む
-          </a>
-          <a class="btn sec" href="/contact/">
-            公式LINEから申し込む
-          </a>
-        </div>
-
-        <p class="event-section-note">
+        <p class="event-section-note" style="margin-top:22px;">
           団体・施設からの出張やご依頼は<a href="/request.html">ご依頼・講師相談</a>を、
           講座のご案内は<a href="/seminar/">講座のページ</a>をご覧ください。
         </p>
