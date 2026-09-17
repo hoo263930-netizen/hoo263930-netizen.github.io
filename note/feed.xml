@@ -16,7 +16,17 @@ https://substack.com/@kosen3</description>
     <webfeeds:related layout="card" target="browser"/>
     <webfeeds:analytics id="UA-48687000-1" engine="GoogleAnalytics"/>
     <language>ja</language>
-    <lastBuildDate>Thu, 17 Sep 2026 13:32:42 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2026 20:25:47 +0900</lastBuildDate>
+    <item>
+      <title>noteを1年半やって、読まれている記事を数えてみた</title>
+      <media:thumbnail>https://assets.st-note.com/production/uploads/images/312859219/rectangle_large_type_2_a6b2c40102ca9db874645e3af9906755.png?width=800</media:thumbnail>
+      <description><![CDATA[<p name="1c40ed4b-0f89-44b7-b2aa-523938db0e43" id="1c40ed4b-0f89-44b7-b2aa-523938db0e43"><br>先日、noteのダッシュボードを、 始めた2025年4月からさかのぼって見てみました。</p><p name="536d737e-a79e-43ca-ba2e-23016bbef224" id="536d737e-a79e-43ca-ba2e-23016bbef224">noteは色々書いているんですが、あまり見直したことがなかったので、これを機に、振り返ってみようと思ったからです。</p><br/><a href='https://note.com/loyal_dill1011/n/n8ae97ba925fb'>続きをみる</a>]]></description>
+      <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
+      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
+      <pubDate>Thu, 17 Sep 2026 14:00:00 +0900</pubDate>
+      <link>https://note.com/loyal_dill1011/n/n8ae97ba925fb</link>
+      <guid>https://note.com/loyal_dill1011/n/n8ae97ba925fb</guid>
+    </item>
     <item>
       <title>作ったものは、相手が自分で直せる形で渡す</title>
       <media:thumbnail>https://assets.st-note.com/production/uploads/images/314170921/rectangle_large_type_2_6e60924f029f7c77c274ca5d0d054c6d.png?width=800</media:thumbnail>
@@ -256,16 +266,6 @@ https://substack.com/@kosen3</description>
       <pubDate>Sat, 01 Aug 2026 12:00:00 +0900</pubDate>
       <link>https://note.com/loyal_dill1011/n/n935ff91e9975</link>
       <guid>https://note.com/loyal_dill1011/n/n935ff91e9975</guid>
-    </item>
-    <item>
-      <title>地域で少しずつボドゲ会をしている</title>
-      <media:thumbnail>https://assets.st-note.com/production/uploads/images/298048849/rectangle_large_type_2_d3d48048aa54b61f45f86c4e1ebd1066.jpeg?width=800</media:thumbnail>
-      <description><![CDATA[<p name="f01a8cec-b335-420f-8b07-f8da2652a606" id="f01a8cec-b335-420f-8b07-f8da2652a606">先日、今津のココハウスで、月に一度のボードゲーム会を開催しました。<br></p><figure name="a0f01172-4e49-4cac-aa87-ef5114a33ebe" id="a0f01172-4e49-4cac-aa87-ef5114a33ebe"><img src="https://assets.st-note.com/img/1785147088-JEBbwW7QlPrpDVLOnHcjx2Gi.jpg" alt="" width="620" height="877" style="width: 372px; height: 526.1999999999999px;"><figcaption></figcaption></figure><br/><a href='https://note.com/loyal_dill1011/n/n359555e86af6'>続きをみる</a>]]></description>
-      <note:creatorImage>https://assets.st-note.com/production/uploads/images/226842821/profile_0d32137b5adc46931a7b5a1b4cc9beb1.png?fit=bounds&amp;format=jpeg&amp;quality=85&amp;width=330</note:creatorImage>
-      <note:creatorName>こーせん｜遊べるお寺プロジェクト</note:creatorName>
-      <pubDate>Thu, 30 Jul 2026 12:00:00 +0900</pubDate>
-      <link>https://note.com/loyal_dill1011/n/n359555e86af6</link>
-      <guid>https://note.com/loyal_dill1011/n/n359555e86af6</guid>
     </item>
   </channel>
 </rss>
