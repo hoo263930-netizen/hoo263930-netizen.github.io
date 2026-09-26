@@ -359,6 +359,31 @@
 
     .course-record a{ color:#1f6fff; }
 
+    /* これまでの開催：終わった回の日付をここに積み上げていく（2026-09-26） */
+    .course-history{
+      margin:.9em 0;
+      padding:.6rem .9rem;
+      background:#f7f8fa;
+      border-radius:10px;
+      font-size:.92rem;
+      color:#445;
+    }
+
+    .course-history-title{
+      margin:0 0 .25em;
+      font-weight:700;
+      color:#556;
+    }
+
+    .course-history ul{
+      margin:0;
+      padding-left:1.2em;
+    }
+
+    .course-history li{ margin:.1em 0; }
+
+    .course-history a{ color:#1f6fff; }
+
     .line-note{
       margin:.9em 0 0;
       padding:.55rem .85rem;
@@ -463,8 +488,8 @@
         <!-- ============================================================
              上段：次回の開催予定
              ▼更新するのは、この表の中身だけです。
-               ・日程が決まったら行を書き換える
-               ・終わったら行を消す（下の講座カードはそのまま残す）
+               ・日程が決まったら行を足す（日付の早い順）
+               ・終わったら行を消し、下の講座カードの「これまでの開催」に日付を足す
              ============================================================ -->
         <h2 class="event-section-title">次回の開催予定</h2>
         <p class="event-section-note">
@@ -484,18 +509,32 @@
             </thead>
             <tbody>
               <tr>
-                <td class="nt-date" data-label="日時">2026年9月18日（金）<br>19:00〜21:00</td>
-                <td class="nt-name" data-label="講座"><a href="#line-course">公式LINE 基本講座</a></td>
+                <td class="nt-date" data-label="日時">2026年10月2日（金）<br>19:00〜21:00</td>
+                <td class="nt-name" data-label="講座"><a href="#flyer-course">小さな活動を伝える チラシ作り講座</a></td>
                 <td data-label="会場">コミュニティサロン Wan</td>
                 <td data-label="参加費">2,000円（当日払い）</td>
                 <td data-label="申込">公式LINE／定員4名</td>
               </tr>
               <tr>
-                <td class="nt-date" data-label="日時">2026年9月25日（金）<br>19:00〜21:00</td>
+                <td class="nt-date" data-label="日時">2026年10月9日（金）<br>13:00〜15:00</td>
+                <td class="nt-name" data-label="講座"><a href="#mahjong-course">みんなの健康麻雀講座（午後）</a></td>
+                <td data-label="会場">コミュニティサロン Wan</td>
+                <td data-label="参加費">500円（当日払い）</td>
+                <td data-label="申込">公式LINE・InstagramのDM／定員8名</td>
+              </tr>
+              <tr>
+                <td class="nt-date" data-label="日時">2026年10月9日（金）<br>19:00〜21:00</td>
                 <td class="nt-name" data-label="講座"><a href="#ai-seminar">はじめてのAIセミナー</a></td>
                 <td data-label="会場">コミュニティサロン Wan</td>
                 <td data-label="参加費">2,000円（当日払い）</td>
-                <td data-label="申込">公式LINE／定員6名</td>
+                <td data-label="申込">公式LINE／定員4名</td>
+              </tr>
+              <tr>
+                <td class="nt-date" data-label="日時">2026年10月23日（金）<br>13:00〜15:00</td>
+                <td class="nt-name" data-label="講座"><a href="#mahjong-course">みんなの健康麻雀講座（午後）</a></td>
+                <td data-label="会場">コミュニティサロン Wan</td>
+                <td data-label="参加費">500円（当日払い）</td>
+                <td data-label="申込">公式LINE・InstagramのDM／定員8名</td>
               </tr>
             </tbody>
           </table>
@@ -505,6 +544,8 @@
              下段：開いている講座（カタログ）
              ▼講座を1つ増やすときは、この article をまるごと複製して
                (1)タイトル (2)画像 (3)日程 (4)会場 (5)参加費 (6)申込 を差し替えます。
+             ▼開催が終わったら、その講座の「これまでの開催」の一番上に日付を足します
+               （新しい回が上）。バッジと「日程」は次の回に書き換えます。
              ============================================================ -->
         <h2 class="event-section-title">開いている講座</h2>
         <p class="event-section-note">
@@ -524,7 +565,7 @@
               <h3>地域活動、はじめの一歩セミナー <span class="badge">次回は調整中</span></h3>
 
               <dl class="course-meta">
-                <dt>日程</dt><dd>2026年9月11日（金）19:00〜21:00</dd>
+                <dt>日程</dt><dd>次回は調整中です</dd>
                 <dt>会場</dt><dd>コミュニティサロン Wan（高島市安曇川町南船木301-1）</dd>
                 <dt>参加費</dt><dd>1,500円（当日払い）</dd>
                 <dt>定員</dt><dd>4名</dd>
@@ -537,6 +578,13 @@
               </p>
 
               <p>※この回だけの参加でも大丈夫です。</p>
+
+              <div class="course-history">
+                <p class="course-history-title">これまでの開催</p>
+                <ul>
+                  <li>2026年9月11日（金）</li>
+                </ul>
+              </div>
 
               <div class="event-cta">
                 <a class="btn" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
@@ -561,10 +609,10 @@
             </div>
 
             <div class="event-body">
-              <h3>公式LINE 基本講座 <span class="badge important">次回 9月18日</span></h3>
+              <h3>公式LINE 基本講座 <span class="badge">次回は調整中</span></h3>
 
               <dl class="course-meta">
-                <dt>日程</dt><dd>2026年9月18日（金）19:00〜21:00</dd>
+                <dt>日程</dt><dd>次回は調整中です（ご希望があれば公式LINEでお知らせください）</dd>
                 <dt>会場</dt><dd>コミュニティサロン Wan（高島市安曇川町南船木301-1）</dd>
                 <dt>参加費</dt><dd>2,000円（当日払い）</dd>
                 <dt>定員</dt><dd>4名</dd>
@@ -607,18 +655,18 @@
             </div>
 
             <div class="event-body">
-              <h3>はじめてのAIセミナー <span class="badge important">次回 9月25日</span></h3>
+              <h3>はじめてのAIセミナー <span class="badge important">次回 10月9日</span></h3>
 
               <dl class="course-meta">
-                <dt>日程</dt><dd>2026年9月25日（金）19:00〜21:00</dd>
+                <dt>日程</dt><dd>2026年10月9日（金）19:00〜21:00</dd>
                 <dt>会場</dt><dd>コミュニティサロン Wan（高島市安曇川町南船木301-1）</dd>
                 <dt>参加費</dt><dd>2,000円（当日払い）</dd>
-                <dt>定員</dt><dd>6名</dd>
+                <dt>定員</dt><dd>4名</dd>
               </dl>
 
               <p>
                 「なんで急にAIだらけ？」から、話します。<br>
-                AIのこれまでと2026年9月の状況、AIにできること・できないこと、
+                AIのこれまでといまの状況、AIにできること・できないこと、
                 暮らしの中での使いどころ、気をつけること。この4つを2時間でお話しします。
               </p>
 
@@ -626,6 +674,13 @@
                 講師の久我は、AIを毎日使って活動しています。<br>
                 チラシも、ホームページも、公式LINEも、講座のスライドも、AIと一緒に作っています。
               </p>
+
+              <div class="course-history">
+                <p class="course-history-title">これまでの開催</p>
+                <ul>
+                  <li>2026年9月25日（金）</li>
+                </ul>
+              </div>
 
               <div class="event-cta">
                 <a class="btn" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
@@ -650,10 +705,10 @@
             </div>
 
             <div class="event-body">
-              <h3>小さな活動を伝える チラシ作り講座 <span class="badge">次回は10月ごろ</span></h3>
+              <h3>小さな活動を伝える チラシ作り講座 <span class="badge important">次回 10月2日</span></h3>
 
               <dl class="course-meta">
-                <dt>日程</dt><dd>次回は10月に開催予定（日程が決まりしだいお知らせします）</dd>
+                <dt>日程</dt><dd>2026年10月2日（金）19:00〜21:00</dd>
                 <dt>会場</dt><dd>コミュニティサロン Wan</dd>
                 <dt>参加費</dt><dd>2,000円（当日払い）</dd>
                 <dt>定員</dt><dd>4名</dd>
@@ -665,10 +720,13 @@
                 <strong>初めての方も参加できます。</strong>
               </p>
 
-              <p class="course-record">
-                これまで2回開催／前回 2026年9月<br>
-                <a href="https://note.com/loyal_dill1011/n/nf34be5c42627" target="_blank" rel="noopener">前回の様子を読む（note）</a>
-              </p>
+              <div class="course-history">
+                <p class="course-history-title">これまでの開催</p>
+                <ul>
+                  <li>2026年9月4日（金）ステップアップ編</li>
+                  <li>2026年7月19日（日）<a href="https://note.com/loyal_dill1011/n/nf34be5c42627" target="_blank" rel="noopener">この回の様子を読む（note）</a></li>
+                </ul>
+              </div>
 
               <div class="event-cta">
                 <a class="btn" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
@@ -694,33 +752,42 @@
             </div>
 
             <div class="event-body">
-              <h3>健康麻雀講座 <span class="badge">次の募集は10月ごろ</span></h3>
+              <h3>みんなの健康麻雀講座 <span class="badge important">午後の回 10月9日から</span></h3>
 
               <dl class="course-meta">
-                <dt>日程</dt><dd>毎月 第2・第4金曜日 10:00〜12:00</dd>
-                <dt>会場</dt><dd>コミュニティサロン Wan</dd>
-                <dt>参加費</dt><dd>500円（当日払い）</dd>
-                <dt>定員</dt><dd>4名程度</dd>
+                <dt>午後の回</dt><dd>2026年10月9日（金）・10月23日（金）13:00〜15:00</dd>
+                <dt>午前の回</dt><dd>毎月 第2・第4金曜日 10:00〜12:00（公民館講座から続けて受けている方）</dd>
+                <dt>会場</dt><dd>コミュニティサロン Wan（高島市安曇川町南船木301-1）</dd>
+                <dt>参加費</dt><dd>各回500円（当日払い）</dd>
+                <dt>定員</dt><dd>午後の回 8名</dd>
               </dl>
 
               <p>
-                ルールを一から覚えたい方、点数計算が不安な方のための講座です。
-                公民館の講座では時間が足りなかったところを、あらためてゆっくりやります。<br>
+                <strong>チー・ポン・役を、基礎から教わる講座です。</strong>
+                麻雀会に来てくださっている方の「講座が欲しい」という声から、10月に午後の回を始めます。
+                初めての方も大丈夫です。<br>
                 賭けない・飲まない・吸わない、健康麻雀です。
               </p>
 
-              <p class="course-record">
-                <strong>いまの回は、公民館講座から続けて受けている方が対象です。</strong><br>
-                次に新しく募集するのは10月ごろの予定です。ご希望の方は公式LINEでお知らせください。
-              </p>
+              <div class="course-history">
+                <p class="course-history-title">これまでの開催（Wan・午前の回）</p>
+                <ul>
+                  <li>2026年9月25日（金）</li>
+                  <li>2026年9月11日（金）</li>
+                </ul>
+              </div>
 
               <div class="event-cta">
-                <a class="btn sec" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
-                  次の募集を知らせてもらう
+                <a class="btn" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
+                  公式LINEから申し込む
+                </a>
+                <a class="btn sec" href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener">
+                  InstagramのDMで申し込む
                 </a>
               </div>
 
               <p class="line-note">
+                公式LINEか、InstagramのDMで「午後講座」とお送りください。<br>
                 ルールを覚えたあとは、月1回の<a href="/events/#kenko-mahjong">健康麻雀会</a>で実際に打てます。
               </p>
             </div>
