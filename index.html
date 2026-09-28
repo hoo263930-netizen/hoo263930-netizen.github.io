@@ -6,9 +6,6 @@
   <title>遊べるお寺プロジェクト</title>
   <meta name="description" content="楽しく学び、遊んでつながる。遊べるお寺プロジェクトの公式サイト。イベント情報・活動報告・お問い合わせはこちら。" />
 
-  <!-- 外部（LINE公式ボタン画像）への接続を先に用意して待ち時間短縮 -->
-  <link rel="preconnect" href="https://scdn.line-apps.com" crossorigin>
-
   <style>
     :root{
       --sky:#22a7ff;
@@ -53,7 +50,7 @@
     nav a + a{ border-left:2px solid #ddd; }
     nav a:hover{ color:#111; background:#fafafa; }
 
-    /* ===== ヒーロー（固定表示：/images/top/hero1.jpg） ===== */
+    /* ===== ヒーロー（季節の画像をランダムに1枚。その月の画像がなければ hero1.jpg）2026-09-28 ===== */
     .hero{
       margin:0;
       background:#fff;
@@ -85,7 +82,7 @@
       box-shadow:0 8px 20px rgba(0,0,0,.12);
     }
     .collab-media img{
-      width:100%; max-width:360px; display:block; margin:0 auto; border-radius:12px;
+      width:100%; max-width:360px; height:auto; display:block; margin:0 auto; border-radius:12px;
     }
     .collab-copy h2{ margin:0 0 .6em; font-size:clamp(22px,3.6vw,34px); }
     .collab-copy p{ margin:0 0 1.1em; font-size:clamp(15px,2.4vw,17px); opacity:.95; }
@@ -108,6 +105,7 @@
       margin-top:14px;
     }
     .collab-actions .collab-btn{
+      box-sizing:border-box; /* 2026-09-28：幅100%＋余白でスマホ幅からはみ出していた */
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -127,121 +125,35 @@
       }
     }
 
-    /* ===== note（最新3件） ===== */
-    .note-section{ padding:36px 18px; background:#fafaf7; border-radius:18px; }
-    .note-heading{ margin:0 0 14px; }
-    #note-grid{ display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
-    .note-card{
-      background:#fff; border-radius:18px; overflow:hidden;
-      box-shadow:0 6px 18px rgba(0,0,0,.08);
-      transition:transform .2s, box-shadow .2s;
+    /* ===== イベント・講座への入口（2026-09-28） ===== */
+    .goto{ display:grid; gap:14px; grid-template-columns:1fr; margin:26px 0 30px; }
+    @media (min-width:720px){ .goto{ grid-template-columns:repeat(3,1fr); } }
+    .goto-card{
+      display:block; text-decoration:none; color:var(--ink);
+      background:#fffbea; border:2px solid var(--sand); border-radius:18px;
+      padding:18px 20px; box-shadow:0 4px 12px rgba(0,0,0,.06);
+      transition:transform .15s, box-shadow .15s;
     }
-    .note-card:hover{ transform:translateY(-4px); box-shadow:0 10px 24px rgba(0,0,0,.12); }
-    .note-thumb{
-      background:#f2f2f0;
-      height:180px;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .note-thumb img{ width:100%; height:180px; object-fit:cover; display:block; }
-    .note-thumb.noimg::before{ content:"🪷"; font-size:40px; opacity:.4; }
-    .note-content{ padding:16px 20px; }
-    .note-title{ font-weight:700; margin:0 0 6px; font-size:1.05rem; line-height:1.35; }
-    .note-title a{ color:#111; text-decoration:none; }
-    .note-title a:hover{ text-decoration:underline; }
-    .note-meta{ font-size:.86rem; color:#666; margin:0 0 10px; }
-    .note-desc{
-      color:#444; line-height:1.5; margin:0;
-      display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
-    }
-    .note-actions{ text-align:center; margin-top:16px; }
-    .btn-more{
-      display:inline-block; padding:10px 18px; border-radius:999px;
-      background:#f3b700; color:#111; text-decoration:none; font-weight:700;
-      box-shadow:0 6px 14px rgba(243,183,0,.35);
-    }
+    .goto-card:hover{ transform:translateY(-3px); box-shadow:0 8px 18px rgba(0,0,0,.10); }
+    .goto-title{ display:block; font-weight:700; font-size:clamp(18px,2.2vw,21px); margin:0 0 4px; }
+    .goto-text{ display:block; font-size:.95rem; color:#555; line-height:1.6; }
+    .goto-card.main{ background:#e9f6ff; border-color:var(--sky); }
 
-    /* ===== LINE セクション（あなたの最終版を維持） ===== */
-    #line{
-      background:var(--deep-green); color:#fff;
-      padding:32px 0 6px;
-      border-radius:24px; overflow:hidden;
-      margin:22px auto 28px;
-      width:min(980px,94%);
+    /* ===== 公式LINE・Instagram（小さくまとめた。2026-09-28） ===== */
+    .follow{ background:#f6f7f4; border-radius:18px; padding:20px clamp(16px,3vw,28px); margin:0 0 28px; }
+    .follow h2{ font-size:clamp(18px,2.4vw,22px); margin:0 0 .3em; }
+    .follow p{ margin:0 0 14px; color:#444; }
+    .follow-row{ display:flex; gap:18px; flex-wrap:wrap; }
+    .follow-item{ display:flex; align-items:center; gap:12px; }
+    .follow-btn{
+      display:inline-block; padding:.7rem 1.3rem; border-radius:999px;
+      color:#fff; text-decoration:none; font-weight:700; white-space:nowrap;
+      box-shadow:0 4px 10px rgba(0,0,0,.15);
     }
-    #line .line-wrap,
-    #line .line-inner,
-    #line .line-copy{
-      background:transparent !important;
-      box-shadow:none !important;
-      border:0 !important;
-      padding-bottom:0 !important;
-      margin-bottom:0 !important;
-      min-height:auto !important;
-    }
-    #line .line-wrap{ width:min(980px,92%); margin:0 auto; }
-    #line .line-inner{
-      display:grid;
-      grid-template-columns:0.85fr 1.15fr;
-      gap:28px; align-items:start;
-    }
-    @media (max-width:900px){ #line .line-inner{ grid-template-columns:1fr; } }
-    #line .white-card{
-      background:#fff !important; border-radius:20px; padding:16px;
-      box-shadow:0 8px 20px rgba(0,0,0,.15);
-    }
-    #line .square-img{ display:block; width:100%; height:auto; border-radius:14px; }
-    #line .line-copy h2{ margin:0 0 10px; font-size:clamp(22px,2.4vw,28px); color:#fff; }
-    #line .line-copy p, #line .line-benefits{ color:rgba(255,255,255,.9); }
-    #line .line-benefits{ margin:6px 0 12px; padding-left:1.2em; }
-    #line .line-benefits li{ margin:4px 0; }
-    #line .line-buttons{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin:8px 0 12px; }
-    #line .line-qr{ text-align:center; }
-    #line .line-qr img{
-      background:#fff; border-radius:12px; padding:6px;
-      box-shadow:0 3px 10px rgba(0,0,0,.3);
-    }
-    #line .line-qr small{ display:block; margin:6px 0 6px; color:rgba(255,255,255,.8); }
-
-    /* ===== Instagram（LINEセクションと同じ作り。2026年9月7日に帯からカードへ） ===== */
-    #insta{
-      background:linear-gradient(100deg,#E8853C 0%,#D14C7A 55%,#9B4BC4 100%);
-      color:#fff;
-      padding:32px 0 6px;
-      border-radius:24px; overflow:hidden;
-      margin:22px auto 28px;
-      width:min(980px,94%);
-    }
-    #insta .insta-wrap{ width:min(980px,92%); margin:0 auto; }
-    #insta .insta-inner{
-      display:grid;
-      grid-template-columns:0.85fr 1.15fr;
-      gap:28px; align-items:start;
-    }
-    @media (max-width:900px){ #insta .insta-inner{ grid-template-columns:1fr; } }
-    #insta .white-card{
-      background:#fff; border-radius:20px; padding:16px;
-      box-shadow:0 8px 20px rgba(0,0,0,.15);
-    }
-    #insta .square-img{ display:block; width:100%; height:auto; border-radius:14px; }
-    #insta .insta-copy h2{ margin:0 0 10px; font-size:clamp(22px,2.4vw,28px); color:#fff; }
-    #insta .insta-copy p, #insta .insta-benefits{ color:rgba(255,255,255,.92); }
-    #insta .insta-benefits{ margin:6px 0 12px; padding-left:1.2em; }
-    #insta .insta-benefits li{ margin:4px 0; }
-    #insta .insta-buttons{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin:8px 0 12px; }
-    #insta .insta-btn{
-      display:inline-block;
-      padding:.7rem 1.4rem; border-radius:999px;
-      background:#fff; color:#B4436C; text-decoration:none; font-weight:700;
-      box-shadow:0 6px 16px rgba(0,0,0,.20);
-      white-space:nowrap;
-    }
-    #insta .insta-btn:hover{ filter:brightness(.96); }
-    #insta .insta-qr{ text-align:center; }
-    #insta .insta-qr img{
-      background:#fff; border-radius:12px; padding:6px;
-      box-shadow:0 3px 10px rgba(0,0,0,.3);
-    }
-    #insta .insta-qr small{ display:block; margin:6px 0 6px; color:rgba(255,255,255,.85); }
+    .follow-btn.line{ background:var(--line-green); }
+    .follow-btn.insta{ background:linear-gradient(100deg,#E8853C 0%,#D14C7A 55%,#9B4BC4 100%); }
+    .follow-qr{ width:110px; height:110px; background:#fff; border-radius:8px; padding:4px; box-shadow:0 2px 6px rgba(0,0,0,.12); }
+    @media (max-width:700px){ .follow-qr{ display:none; } } /* スマホではQRを読めないので出さない */
 
     footer{
       background:#f7f7f7;
@@ -291,13 +203,30 @@
   </div>
 </nav>
 
-    <!-- ✅ 固定ヒーロー -->
+    <!-- ✅ ヒーロー：季節の画像をランダムに1枚（2026-09-28）
+         画像ができたら、下の HERO のその月の行にファイル名を足すだけでよい。
+         その月の画像がなければ /images/top/hero1.jpg を出す（空白にならない） -->
     <section class="hero" aria-label="メインビジュアル">
-      <img class="hero-img"
-           src="/images/top/hero1.jpg"
+      <img id="hero-img" class="hero-img"
            alt="遊べるお寺プロジェクト｜遊びでつながり、豊かに学ぶ"
-           loading="eager"
-           decoding="async">
+           width="1536" height="1024" decoding="async">
+      <script>
+        (function () {
+          var HERO = {
+            10: ["banner1.jpg", "banner2.jpg", "banner3.jpg", "banner4.jpg", "banner5.jpg"],
+            11: ["banner6.jpg", "banner7.jpg", "banner8.jpg"],
+            12: ["banner9.jpg", "banner10.jpg", "banner11.jpg"]
+          };
+          var m = new Date().getMonth() + 1;
+          var list = HERO[m] || [];
+          var img = document.getElementById("hero-img");
+          img.onerror = function () { img.onerror = null; img.src = "/images/top/hero1.jpg"; };
+          img.src = list.length
+            ? "/images/top/" + m + "/" + list[Math.floor(Math.random() * list.length)]
+            : "/images/top/hero1.jpg";
+        })();
+      </script>
+      <noscript><style>#hero-img{display:none}</style><img class="hero-img" src="/images/top/hero1.jpg" alt="遊べるお寺プロジェクト｜遊びでつながり、豊かに学ぶ"></noscript>
     </section>
 
     <main>
@@ -310,87 +239,35 @@
         </p>
       </section>
 
-      <!-- ✅ note：最新3件 -->
-      <section class="note-section" aria-label="最新のnote記事">
-        <h2 class="note-heading">📝 最新のnote記事</h2>
-        <div id="note-grid"></div>
-        <div class="note-actions">
-          <a class="btn-more" href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">もっと読む</a>
-        </div>
+      <!-- ✅ イベント・講座への入口（2026-09-28。noteの最新3件と入れ替え） -->
+      <section class="goto" aria-labelledby="goto-heading">
+        <h2 id="goto-heading" class="visually-hidden">イベントと講座</h2>
+        <a class="goto-card main" href="/events/">
+          <span class="goto-title"><span aria-hidden="true">📅</span> これからのイベント</span>
+          <span class="goto-text">健康麻雀・ボードゲーム・写経会・カフェなど。日程とお申し込みはこちら</span>
+        </a>
+        <a class="goto-card" href="/seminar/">
+          <span class="goto-title"><span aria-hidden="true">✏️</span> 講座のご案内</span>
+          <span class="goto-text">チラシ作り・AI・健康麻雀などの講座</span>
+        </a>
+        <a class="goto-card" href="/events/past.html">
+          <span class="goto-title"><span aria-hidden="true">🗂</span> これまでの活動</span>
+          <span class="goto-text">これまでに開いたイベントの様子</span>
+        </a>
       </section>
 
-      <!-- ✅ LINE -->
-      <section id="line" class="line-info">
-        <div class="line-wrap">
-          <div class="line-inner">
-            <div class="line-media white-card">
-              <img class="square-img" src="/images/line.png" alt="公式LINEご案内画像" width="560" height="560" decoding="async">
-            </div>
-
-            <div class="line-copy">
-              <h2>💬 公式LINEのご案内</h2>
-              <p>
-                遊べるお寺プロジェクトでは、イベント情報や活動報告を
-                <strong>月初と月末</strong>に「LINE公式アカウント」でお届けしています。<br>
-                お寺×遊び×つながりの最新情報を受け取りたい方は、ぜひご登録ください。
-              </p>
-              <ul class="line-benefits">
-                <li>📅 月初に今月のイベント案内</li>
-                <li>📝 月末の活動レポート</li>
-              </ul>
-
-              <div class="line-buttons">
-                <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
-                  <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
-                       alt="友だち追加" width="136" height="36" loading="lazy" decoding="async">
-                </a>
-              </div>
-
-              <div class="line-qr">
-                <img src="/images/line_qr.png" alt="LINE友だち追加用QR" width="160" height="160" loading="lazy" decoding="async">
-                <small>スマホでQRを読み取って追加できます</small>
-              </div>
-            </div>
+      <!-- ✅ 公式LINE・Instagram（小さくまとめた。2026-09-28） -->
+      <section class="follow" aria-label="公式LINEとInstagram">
+        <h2>お知らせを受け取る</h2>
+        <p>イベントのご案内とお申し込みは公式LINEから。活動の様子はInstagramで紹介しています。</p>
+        <div class="follow-row">
+          <div class="follow-item">
+            <a class="follow-btn line" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">公式LINEに登録する</a>
+            <img class="follow-qr" src="/images/line_qr.png" alt="公式LINE友だち追加用QR" width="110" height="110" loading="lazy" decoding="async">
           </div>
-        </div>
-      </section>
-
-      <!-- ✅ Instagram -->
-      <section id="insta">
-        <div class="insta-wrap">
-          <div class="insta-inner">
-            <div class="insta-media white-card">
-              <img class="square-img" src="/images/insta.png" alt="Instagramのご案内画像" width="560" height="560" loading="lazy" decoding="async">
-            </div>
-
-            <div class="insta-copy">
-              <h2>📷 Instagramのご案内</h2>
-              <p>
-                遊べるお寺プロジェクトのInstagramでは、<br>
-                イベントや活動の様子を写真で紹介しています。
-              </p>
-              <p>
-                健康麻雀、ボードゲーム、焚き火、写経会など、<br>
-                「どんな雰囲気でやっているの？」が伝わるのはこちらです。
-              </p>
-              <ul class="insta-benefits">
-                <li>📸 イベント当日の様子</li>
-                <li>📣 講座・イベントのお知らせ</li>
-                <li>🏯 遊べるお寺プロジェクトの日々の活動</li>
-              </ul>
-              <p>気になる活動があれば、ぜひのぞいてみてください。</p>
-
-              <div class="insta-buttons">
-                <a class="insta-btn" href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener">
-                  @asoberu_otera を見る
-                </a>
-              </div>
-
-              <div class="insta-qr">
-                <img src="/images/insta_qr.png" alt="Instagramフォロー用QR" width="160" height="160" loading="lazy" decoding="async">
-                <small>スマホでQRを読み取ってフォローできます</small>
-              </div>
-            </div>
+          <div class="follow-item">
+            <a class="follow-btn insta" href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener">Instagramを見る</a>
+            <img class="follow-qr" src="/images/insta_qr.png" alt="Instagramフォロー用QR" width="110" height="110" loading="lazy" decoding="async">
           </div>
         </div>
       </section>
@@ -399,7 +276,7 @@
       <section class="collab">
         <div class="collab-inner">
           <div class="collab-media">
-            <img src="/images/collab-badge.png" alt="コラボ募集イメージ">
+            <img src="/images/collab-badge.jpg" alt="コラボ募集イメージ" width="720" height="1080" loading="lazy" decoding="async">
           </div>
 
           <div class="collab-copy">
@@ -434,83 +311,5 @@
     </footer>
   </div>
 
-  <!-- note RSS → 最新3件（これ1本に統一） -->
-  <script>
-  (async () => {
-    const mount = document.getElementById("note-grid");
-    if (!mount) return;
-
-    mount.innerHTML = '<div class="note-card"><div class="note-content">読み込み中…</div></div>';
-
-    const toAbs = (u, base) => { try { return new URL(u, base).href; } catch { return u || ""; } };
-    const strip = (html) => (html || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-    const fmtDate = (s) => {
-      const d = new Date(s);
-      if (isNaN(d)) return "";
-      const y = d.getFullYear();
-      const m = String(d.getMonth()+1).padStart(2,"0");
-      const day = String(d.getDate()).padStart(2,"0");
-      return `${y}/${m}/${day}`;
-    };
-    const text = (el, sel) => el.querySelector(sel)?.textContent || "";
-    const attr = (el, sel, name) => el.querySelector(sel)?.getAttribute(name) || "";
-
-    try {
-      const rssURL   = encodeURIComponent("https://note.com/loyal_dill1011/rss");
-      const proxyURL = `https://api.allorigins.win/get?url=${rssURL}&cache=3600`;
-      const res = await fetch(proxyURL);
-      const data = await res.json();
-      const xml = new DOMParser().parseFromString(data.contents, "text/xml");
-      const items = Array.from(xml.querySelectorAll("item"));
-      if (!items.length) {
-        mount.innerHTML = "<p style='color:#666'>記事が見つかりませんでした。</p>";
-        return;
-      }
-
-      const posts = items.slice(0,3).map((item) => {
-        const title = text(item, "title");
-        const link  = text(item, "link");
-        const date  = fmtDate(text(item, "pubDate"));
-        const dhtml = text(item, "description");
-
-        const imgFromDesc = (() => {
-          const m = dhtml.match(/<img[^>]+src="([^">]+)"/i);
-          return m ? m[1] : "";
-        })();
-        const imgMedia = attr(item, "media\\:thumbnail", "url") || attr(item, "media\\:content", "url");
-        const imgEnc   = attr(item, "enclosure", "url");
-
-        let img = imgMedia || imgEnc || imgFromDesc || "";
-        img = toAbs(img, link);
-
-        const desc = strip(dhtml).replace(/続きをみる.*/g, "").slice(0, 90);
-
-        return { title, link, date, img, desc };
-      });
-
-      mount.innerHTML = posts.map(({ title, link, date, img, desc }) => {
-        const imgPart = img
-          ? `<div class="note-thumb"><img src="${img}" loading="lazy" decoding="async"
-               referrerpolicy="no-referrer"
-               onerror="this.parentNode.classList.add('noimg'); this.remove();" alt=""></div>`
-          : `<div class="note-thumb noimg"></div>`;
-
-        return `
-          <article class="note-card">
-            ${imgPart}
-            <div class="note-content">
-              <h3 class="note-title"><a href="${link}" target="_blank" rel="noopener">${title}</a></h3>
-              ${date ? `<p class="note-meta">${date}</p>` : ``}
-              <p class="note-desc">${desc}</p>
-            </div>
-          </article>`;
-      }).join("");
-
-    } catch (e) {
-      console.error(e);
-      mount.innerHTML = "<p style='color:#c00'>noteの読み込みに失敗しました。</p>";
-    }
-  })();
-  </script>
 </body>
 </html>
