@@ -386,6 +386,15 @@
     .cs-person p{ margin:.4em 0; }
     .cs-bio{ margin:.2em 0 .8em; padding-left:1.2em; }
     .cs-bio li{ margin:.15em 0; }
+    .cs-menu{ width:100%; border-collapse:collapse; margin:.4em 0 1em; background:#fff; }
+    .cs-menu th, .cs-menu td{ border:1px solid #e3e3e3; padding:12px 14px; text-align:left; vertical-align:top; }
+    .cs-menu th{ width:30%; background:#faf7ef; font-size:1rem; }
+    .cs-menu td b{ font-size:1.1rem; }
+    .cs-menu td small{ display:block; color:#555; margin-top:.3em; font-size:.88rem; }
+    @media (max-width:600px){
+      .cs-menu th, .cs-menu td{ display:block; width:auto; }
+      .cs-menu th{ border-bottom:none; }
+    }
     .cs-steps{
       display:grid;
       grid-template-columns:repeat(3, minmax(0,1fr));
@@ -587,7 +596,8 @@
           <p class="page-lead">
             地域で何かを始めたい方、活動していて手が回らなくなっている方、<br>
             お坊さんに話してみたいことがある方へ。<br>
-            文字で送るか、個別に話すか。どちらでも大丈夫です。
+            個別のご相談は<strong>1時間3,000円</strong>でお受けしています。<br>
+            作ること（公式LINE・ホームページ・仕組みづくり）は、別に料金をいただいています。
           </p>
         </div>
         <div class="cs-hero-art">
@@ -613,11 +623,11 @@
 
         <article class="cs-card online" id="online">
           <img src="/images/consult/monk-video.png" alt="スマートフォンでビデオ通話をする小坊主のイラスト" width="673" height="500" loading="lazy">
-          <h2>個別相談 <span class="badge important">モニター募集中</span></h2>
-          <p class="cs-sub">オンラインで30分、1対1。地域活動のこと、道具のこと、仏教のこと。</p>
+          <h2>個別相談 <span class="badge important">1時間 3,000円</span></h2>
+          <p class="cs-sub">1対1でお話しします。地域活動のこと、AIなど道具のこと、仏教のこと。</p>
           <ul>
-            <li>Google Meet。パソコンでもスマートフォンでも参加できます</li>
-            <li>30分 3,000円。<strong>先着3名さまはモニター価格 1,000円</strong></li>
+            <li><strong>1時間 3,000円</strong>（1時間をこえる場合は、1時間ごとに3,000円）</li>
+            <li>オンライン（Google Meet）か、高島市内でお会いして</li>
             <li>お支払いは銀行振込。ご入金の確認後に日程が確定します</li>
           </ul>
           <div class="event-cta">
@@ -628,6 +638,29 @@
       </section>
 
       <section class="event-list">
+
+        <h2 class="event-section-title">料金と、お受けしている形</h2>
+        <p class="event-section-note">ご用件にあわせて、次の形でお受けしています。</p>
+
+        <table class="cs-menu">
+          <tr>
+            <th>話を聞いてほしい・<br>考えを整理したい</th>
+            <td><b>個別相談　1時間 3,000円</b><small>オンラインか、高島市内でお会いして。<a href="#online">申し込みはこちら</a></small></td>
+          </tr>
+          <tr>
+            <th>自分でできるように<br>なりたい</th>
+            <td><b>講座</b><small>AI秘書の作り方講座・はじめてのホームページ講座・チラシ作り講座など。日程と料金は<a href="/seminar/">講座のページ</a>で。</small></td>
+          </tr>
+          <tr>
+            <th>作ってほしい</th>
+            <td><b>制作（別料金）</b><small>公式LINE・ホームページ・予約の仕組みなど。料金は<a href="https://asoberu-otera-works.pages.dev/tsukuru/" target="_blank" rel="noopener">制作のページ</a>で。内容をうかがって、お見積もりします。</small></td>
+          </tr>
+          <tr>
+            <th>文字で送りたい</th>
+            <td><b>無料・匿名</b><small>お坊さんへの相談。<a href="#free">フォームはこちら</a>（返信はできる範囲で）</small></td>
+          </tr>
+        </table>
+        <p class="cs-note">※ 相談の中で「作ってほしい」となった場合は、そこから先は制作として、お見積もりをお出しします。</p>
 
         <h2 class="event-section-title">こんなことを相談できます</h2>
         <p class="event-section-note">
@@ -681,7 +714,7 @@
         <ol class="cs-steps">
           <li>
             <h3>お申し込み</h3>
-            <p>フォームか公式LINEから。相談したいことと、希望日時の候補をいくつかお知らせください。</p>
+            <p>フォームか公式LINEから。<strong>どんな内容か</strong>、オンラインかお会いしてか、希望日時の候補をいくつかお知らせください。</p>
           </li>
           <li>
             <h3>日程とお支払い</h3>
@@ -689,15 +722,14 @@
           </li>
           <li>
             <h3>当日</h3>
-            <p>Google Meet のリンクをお送りします。使い方が分からない場合は、事前にお伝えします。</p>
+            <p>オンラインの場合は Google Meet のリンクをお送りします。お会いする場合は、場所をご相談して決めます。</p>
           </li>
         </ol>
 
         <p class="cs-note">
           ※ 日程は都度調整させていただいています。決まった開催枠はありません。<br>
           ※ 相談の内容を、こちらから外部に話すことはありません。<br>
-          ※ 発信の材料としてご紹介したい場合は、必ず事前にご相談します。<br>
-          ※ 初めての開催のため、最初の3名さまはモニター価格でお受けします。終わったあとに、簡単な感想をお聞かせください。
+          ※ 発信の材料としてご紹介したい場合は、必ず事前にご相談します。
         </p>
 
 
