@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>たかしまーじゃん | 遊べるお寺プロジェクト</title>
+  <meta name="description" content="牌だけあればOK。3〜5人で遊べる新しい麻雀「たかしまーじゃん」。初級・中級・上級のルール資料は無料で自由にコピーできます。" />
+  <style>
+    :root{
+      --sky:#22a7ff;   /* 青の下線 */
+      --sand:#f7ce52;  /* 両脇の黄 */
+      --ink:#2b2b2b;
+      --paper:#fff;
+      --maxw:1100px;
+      --rail:16px;
+    }
+    @media (min-width:900px){ :root{ --rail:24px; } }
+
+    /* ベース（トップ/イベントと同じ） */
+    html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+    body{ background:var(--sand); }
+    .container{ max-width:var(--maxw); margin:0 auto; background:var(--paper); min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
+
+    header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
+    .visually-hidden{ position:absolute; left:-9999px; }
+
+    /* ナビ（共通スタイル） */
+    nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
+    nav::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:3px; background:var(--sky); }
+    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail); display:flex; gap:0; justify-content:center; overflow:auto; }
+    nav a{
+      color:#333; text-decoration:none;
+      padding:18px clamp(14px,2.6vw,28px);
+      font-weight:700; font-size:clamp(18px,2.2vw,22px);
+      white-space:nowrap;
+    }
+    nav a + a{ border-left:2px solid #ddd; }
+    nav a:hover{ background:#fafafa; }
+
+    /* 本文レイアウト */
+    main{ padding:28px var(--rail) 56px; }
+    h2{ margin:.2em 0 .6em; font-size:clamp(20px,2.8vw,26px); }
+    p{ margin:.6em 0; }
+
+    /* ブロック */
+    .wrap{ max-width:var(--maxw); margin:0 auto; }
+    .block{ border:1px solid #dfe6ee; border-radius:14px; padding:18px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.05); }
+
+    /* バッジ */
+    .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 8px; }
+    .badge{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; background:#ffeaa8; color:#523e00; }
+
+    /* 画像 */
+    .media-1{ margin:10px 0; }
+    .media-1 img, .media-2 img{ width:100%; height:auto; display:block; border-radius:12px; background:#f4f7ff; border:1px solid #e9eef3; }
+    .media-1.small{ max-width:520px; }
+    .media-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:10px 0; }
+    figure{ margin:0; }
+    figcaption{ font-size:13px; color:#5d6673; margin-top:6px; background:#fcfdff; padding:6px 8px; border-radius:8px; border:1px dashed #e6ecf7; }
+    @media (max-width:760px){ .media-2{ grid-template-columns:1fr; } .media-1.small{ max-width:100%; } }
+
+    /* ボタン */
+    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .btn{ display:inline-block; text-decoration:none; font-weight:700; padding:.7rem 1.1rem; border-radius:999px; }
+    .btn.primary{ background:#36b37e; color:#fff; }
+    .btn.ghost{ background:#fff; color:#222; border:1px solid #ddd; }
+    .btn.dark{ background:#222; color:#fff; }
+
+    /* フッター */
+    footer{ background:#111; color:#ddd; padding:16px var(--rail); text-align:center; font-size:.9rem; }
+    footer a{ color:#fff; }
+  
+    /* ===== ナビ：項目が7つになり、中央寄せのままだと先頭が画面外へ切れて
+       スクロールでも戻れなくなるため修正（2026-08-24） ===== */
+    nav .wrap{ justify-content:flex-start; }
+    nav .wrap > :first-child{ margin-left:auto; }
+    nav .wrap > :last-child{ margin-right:auto; }
+    /* 7項目だと元の文字サイズ・余白では枠（1100px）に収まらず右が切れるため詰める */
+    nav a{ padding:18px clamp(10px,1.6vw,20px); font-size:clamp(16px,1.6vw,20px); }
+    @media (max-width:860px){
+      /* 狭い画面では横スクロールにせず、折り返して7項目すべてを見せる。
+         隠れた項目はスクロールできることに気づかれないため。 */
+      nav .wrap{ flex-wrap:wrap; justify-content:center; overflow:visible; }
+      nav .wrap > :first-child{ margin-left:0; }
+      nav .wrap > :last-child{ margin-right:0; }
+      nav a{ padding:12px 14px; font-size:16px; }
+      nav a + a{ border-left:0; }
+    }
+    @media (max-width:420px){
+      nav a{ padding:9px 8px; font-size:14px; }
+    }
+</style>
+<style>
+/* 地域の道具・たかしまーじゃん（2026-10-21） */
+.lead{ font-size:clamp(17px,2.2vw,20px); font-weight:700; }
+.tools{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:760px){ .tools{ grid-template-columns:1fr; } }
+.tool img{ width:100%; height:auto; display:block; border-radius:12px; border:1px solid #e9eef3; }
+.tool h3{ margin:.6em 0 .2em; font-size:clamp(19px,2.4vw,22px); }
+.points{ display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:0; list-style:none; }
+@media (max-width:760px){ .points{ grid-template-columns:1fr; } }
+.points li{ background:#f6fbf7; border:1px solid #d9eedf; border-radius:12px; padding:10px 12px; font-weight:700; }
+.points li span{ display:inline-block; width:1.6em; height:1.6em; line-height:1.6em; text-align:center; border-radius:50%; background:#36b37e; color:#fff; margin-right:.4em; }
+.steps{ padding-left:1.4em; } .steps li{ margin:.4em 0; }
+.sheets{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+@media (max-width:900px){ .sheets{ grid-template-columns:1fr 1fr; } }
+.sheets a{ text-decoration:none; color:inherit; }
+.sheets img{ width:100%; height:auto; display:block; border-radius:10px; border:1px solid #e9eef3; }
+.sheets .cap{ font-weight:700; text-align:center; margin-top:4px; }
+.soon{ display:inline-block; padding:4px 12px; border-radius:999px; background:#eee; color:#666; font-weight:700; font-size:14px; }
+.note-s{ font-size:14px; color:#5d6673; }
+</style>
+
+<style>
+/* ===== メニューを5つ＋小さな2段目にした（2026-10-21） ===== */
+nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
+.subnav{ background:#fffdf3; border-bottom:1px solid #f0e3b0; }
+.subnav .subwrap{ max-width:1100px; margin:0 auto; padding:8px 12px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.subnav a{ text-decoration:none; color:#333; font-weight:700; font-size:15px; line-height:1.4; padding:6px 14px; border-radius:999px; border:1px solid #e6d9a6; background:#fff; white-space:nowrap; }
+.subnav a[aria-current="page"]{ background:#f7ce52; border-color:#f7ce52; }
+@media (max-width:420px){ .subnav a{ font-size:14px; padding:5px 11px; } }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
+
+<nav aria-label="主なナビゲーション">
+  <div class="wrap">
+    <a href="/">ホーム</a>
+    <a href="/events/">参加する</a>
+    <a href="/dougu/" aria-current="page">地域の道具</a>
+    <a href="/consult/">相談・依頼</a>
+    <a href="/project/">私たちについて</a>
+  </div>
+</nav>
+<div class="subnav"><div class="subwrap">
+  <a href="/takashimahjong/" aria-current="page">たかしまーじゃん</a>
+  <a href="https://chiraoki.pages.dev/" target="_blank" rel="noopener">チラ置き ↗</a>
+</div></div>
+
+    <main>
+      <section class="wrap">
+        <h2>たかしまーじゃん</h2>
+        <div class="block">
+          <p class="lead">牌だけあればOK。3〜5人で遊べる、新しい麻雀。</p>
+          <p><strong>た</strong>のしい！　<strong>か</strong>んたん！　<strong>し</strong>ょうがい（生涯）できる！<br>たかしまーじゃんは、滋賀県高島市の遊べるお寺プロジェクトが考えた、麻雀をもとにした遊びです。山は作らず、牌を伏せて真ん中に広げるだけ。捨てるときは牌の名前を声に出すので、遊んでいるうちに自然と牌の名前を覚えます。</p>
+          <div class="media-1 small"><figure><img src="/images/takashimahjong/poster-omote.jpg" alt="たかしまーじゃんの紹介ポスター"></figure></div>
+        </div>
+      </section>
+
+      <section class="wrap" style="margin-top:20px;">
+        <h2>たかしまーじゃんの、いいところ</h2>
+        <div class="block">
+          <ul class="points">
+            <li><span>1</span>レベルに合わせて遊べる</li>
+            <li><span>2</span>遊んでいるうちに、自然と覚える</li>
+            <li><span>3</span>知らない人も、知っている人も一緒に</li>
+            <li><span>4</span>ふつうの麻雀へのステップアップにも</li>
+          </ul>
+          <p><strong>こんなところにおすすめ</strong>：サロン・自治会の出し物に／デイサービス・福祉施設のレクに／友だちや家族で</p>
+        </div>
+      </section>
+
+      <section class="wrap" style="margin-top:20px;">
+        <h2>初級・中級・上級、そしてふつうの麻雀へ</h2>
+        <div class="block">
+          <div class="media-1"><figure><img src="/images/takashimahjong/poster-ura-levels.jpg" alt="初級・中級・上級、そしてふつうの麻雀へ"></figure></div>
+          <ul>
+            <li><strong>初級</strong>：4枚からはじめる。上がるたびに3枚ずつ増えて、13枚で上がったら勝ち</li>
+            <li><strong>中級</strong>：13枚で、チー・ポン。上がった回数が多い人の勝ち</li>
+            <li><strong>上級</strong>：役と、かんたんな点数（碁石を使います）</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="wrap" style="margin-top:20px;" id="rules">
+        <h2>ルール資料（無料）</h2>
+        <div class="block">
+          <p>押すと大きな画像が開きます。保存・印刷・コピーして、自由に使ってください。</p>
+          <div class="sheets">
+            <a href="/images/takashimahjong/shokyu.jpg" target="_blank" rel="noopener"><img src="/images/takashimahjong/shokyu.jpg" alt="たかしまーじゃん 初級のルール"><div class="cap">初級</div></a>
+            <a href="/images/takashimahjong/chukyu.jpg" target="_blank" rel="noopener"><img src="/images/takashimahjong/chukyu.jpg" alt="たかしまーじゃん 中級のルール"><div class="cap">中級</div></a>
+            <a href="/images/takashimahjong/jokyu.jpg" target="_blank" rel="noopener"><img src="/images/takashimahjong/jokyu.jpg" alt="たかしまーじゃん 上級のルール"><div class="cap">上級</div></a>
+            <a href="/images/takashimahjong/pai-yomikata.jpg" target="_blank" rel="noopener"><img src="/images/takashimahjong/pai-yomikata.jpg" alt="麻雀牌 読み方表"><div class="cap">牌の読み方表</div></a>
+          </div>
+          <p style="margin-top:14px;">ハンドブック（PDF）　<span class="soon">準備中</span></p>
+          <p>遊び方の動画　<span class="soon">準備中</span></p>
+        </div>
+      </section>
+
+      <section class="wrap" style="margin-top:20px;">
+        <h2>はじめ方</h2>
+        <div class="block">
+          <ol class="steps">
+            <li><strong>遊び方を知る</strong>：このページのルール資料を見る。高島市内なら、講習会・出前講座に伺います。高島市外なら、オンラインで説明します</li>
+            <li><strong>資料を用意する</strong>：上のルール資料を保存・印刷する（無料・自由にコピーできます）</li>
+            <li><strong>ふつうの麻雀牌を用意する</strong></li>
+            <li><strong>あとは、ずっと遊べる</strong></li>
+          </ol>
+          <div class="cta">
+            <span class="btn ghost" style="cursor:default;">公式LINEで受け取る（準備中）</span>
+            <a class="btn primary" href="/contact/">講習会・出前講座の相談</a>
+          </div>
+          <p class="note-s">考案：遊べるお寺プロジェクト（滋賀県高島市）</p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:0 0 10px;">
+        <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:#06C755;color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">公式LINE</a>
+        <a href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:linear-gradient(100deg,#E8853C 0%,#D14C7A 55%,#9B4BC4 100%);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">Instagram</a>
+        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:#41C9B4;color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">活動報告（note）</a>
+      </div>
+      © 2025 遊べるお寺プロジェクト
+    </footer>
+  </div>
+</body>
+</html>

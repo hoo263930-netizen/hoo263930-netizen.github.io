@@ -452,6 +452,15 @@
       nav a{ padding:9px 8px; font-size:14px; }
     }
 </style>
+<style>
+/* ===== メニューを5つ＋小さな2段目にした（2026-10-21） ===== */
+nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
+.subnav{ background:#fffdf3; border-bottom:1px solid #f0e3b0; }
+.subnav .subwrap{ max-width:1100px; margin:0 auto; padding:8px 12px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.subnav a{ text-decoration:none; color:#333; font-weight:700; font-size:15px; line-height:1.4; padding:6px 14px; border-radius:999px; border:1px solid #e6d9a6; background:#fff; white-space:nowrap; }
+.subnav a[aria-current="page"]{ background:#f7ce52; border-color:#f7ce52; }
+@media (max-width:420px){ .subnav a{ font-size:14px; padding:5px 11px; } }
+</style>
 </head>
 <body>
   <div class="container">
@@ -460,17 +469,18 @@
     </header>
 
     <nav aria-label="主なナビゲーション">
-      <div class="wrap">
-        <a href="/">ホーム</a>
-        <a href="/project/">プロジェクト</a>
-        <a href="/events/">イベント</a>
-        <a href="/seminar/">講座</a>
-        <a href="https://asoberu-otera-works.pages.dev/" target="_blank" rel="noopener">ご依頼 ↗</a>
-        <a href="/consult/">相談</a>
-    <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告 ↗</a>
-        <a href="/contact/">お問い合わせ</a>
-      </div>
-    </nav>
+  <div class="wrap">
+    <a href="/">ホーム</a>
+    <a href="/events/" aria-current="page">参加する</a>
+    <a href="/dougu/">地域の道具</a>
+    <a href="/consult/">相談・依頼</a>
+    <a href="/project/">私たちについて</a>
+  </div>
+</nav>
+<div class="subnav"><div class="subwrap">
+  <a href="/events/">イベント</a>
+  <a href="/seminar/" aria-current="page">講座</a>
+</div></div>
 
     <main>
       <h1>講座のご案内</h1>
