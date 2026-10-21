@@ -108,6 +108,8 @@
 .sheets img{ width:100%; height:auto; display:block; border-radius:10px; border:1px solid #e9eef3; }
 .sheets .cap{ font-weight:700; text-align:center; margin-top:4px; }
 .soon{ display:inline-block; padding:4px 12px; border-radius:999px; background:#eee; color:#666; font-weight:700; font-size:14px; }
+.pair{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.pair figure{ margin:0; }
 .note-s{ font-size:14px; color:#5d6673; }
 </style>
 
@@ -157,7 +159,10 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
             <div class="cta"><a class="btn primary" href="/takashimahjong/">くわしく見る</a></div>
           </div>
           <div class="block tool">
-            <a href="https://chiraoki.pages.dev/" target="_blank" rel="noopener"><img src="/images/dougu/chiraoki.jpg" alt="チラ置きのチラシ（今週、高島で何がある？）"></a>
+            <div class="pair">
+              <figure><a href="/images/dougu/chiraoki.jpg" target="_blank" rel="noopener"><img src="/images/dougu/chiraoki.jpg" alt="チラ置きのチラシ（表）今週、高島で何がある？"></a><figcaption>チラシ（表）</figcaption></figure>
+              <figure><a href="/images/dougu/chiraoki-ura.jpg" target="_blank" rel="noopener"><img src="/images/dougu/chiraoki-ura.jpg" alt="チラ置きのチラシ（裏）使い方"></a><figcaption>チラシ（裏）使い方</figcaption></figure>
+            </div>
             <h3>チラ置き（高島のイベントチラシ置き場）</h3>
             <p>高島の講座・イベント・集まりのチラシを、スマホでカレンダーのように見られるページです。チラシを載せるのも、見るのも無料・登録なし。合言葉「たかしま」で、だれでも自分の会の案内を載せられます。</p>
             <div class="cta"><a class="btn primary" href="https://chiraoki.pages.dev/" target="_blank" rel="noopener">チラ置きを開く ↗</a></div>
