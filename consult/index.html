@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>相談する（無料フォーム・個別相談） | 遊べるお寺プロジェクト</title>
-  <meta name="description" content="遊べるお寺プロジェクトの相談ページ。地域活動の立ち上げや続け方、公式LINE・ホームページ・チラシ・AIの使い方、仏教のこと・生き方のこと。お坊さんに匿名で文字で送れる無料フォームと、オンラインの個別相談（1時間3,000円）があります。" />
+  <title>相談・ご依頼（講座・個別相談・制作・ご依頼・無料の相談） | 遊べるお寺プロジェクト</title>
+  <meta name="description" content="遊べるお寺プロジェクトの相談・ご依頼の窓口。講座、個別相談（オンライン1時間3,000円）、公式LINE・ホームページの制作、団体・施設からのご依頼、お坊さんに匿名で文字で送れる無料の相談。ご用件にあわせて選べます。" />
 
   <style>
     :root{
@@ -576,6 +576,57 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
 .subnav a{ text-decoration:none; color:#333; font-weight:700; font-size:15px; line-height:1.4; padding:6px 14px; border-radius:999px; border:1px solid #e6d9a6; background:#fff; white-space:nowrap; }
 .subnav a[aria-current="page"]{ background:#f7ce52; border-color:#f7ce52; }
 @media (max-width:420px){ .subnav a{ font-size:14px; padding:5px 11px; } }
+</style><style>
+/* ===== 相談・ご依頼の入口：目的で選ぶカード5枚＋個別相談のフォーム（2026-10-24） ===== */
+.cs-doors{ display:grid; gap:12px; margin:0 0 12px; padding:0; list-style:none; }
+.cs-door{
+  display:grid; grid-template-columns:300px 1fr auto; gap:6px 20px; align-items:center;
+  border:1px solid #dfe6ee; border-left:6px solid #cbd6e2; border-radius:14px;
+  padding:16px 18px; background:#fff;
+}
+.cs-door.online{ border-left-color:var(--sky); background:#f7fbff; }
+.cs-door.free{ border-left-color:var(--sand); background:#fffdf2; }
+.cs-door-when{ display:flex; gap:10px; align-items:flex-start; }
+.cs-door-num{
+  flex:0 0 32px; width:32px; height:32px; line-height:32px; text-align:center;
+  border-radius:50%; background:#1b2b44; color:#fff; font-weight:700;
+}
+.cs-door h2{ margin:0; font-size:1.15rem; line-height:1.5; }
+.cs-door h2 small{ display:block; font-size:.88rem; color:#555; font-weight:600; }
+.cs-door-kind{ margin:0; }
+.cs-door-kind b{ display:block; font-size:1.08rem; }
+.cs-door-kind span{ color:#333; }
+.cs-door .nb, .cs-block li strong{ white-space:nowrap; }
+.cs-door-list{ margin:.4em 0 0; padding-left:1.2em; font-size:.92rem; color:#444; }
+.cs-door-list li{ margin:.1em 0; }
+.cs-door-go .btn{ white-space:nowrap; }
+.cs-lead-note{ margin:0 0 6px; padding:.7rem .9rem; border-radius:10px; background:#f7fbff; border:1px solid #d6e9f8; font-size:.95rem; }
+.cs-block{ border-radius:14px; padding:20px 22px 22px; margin-top:6px; }
+.cs-block.online{ background:#f7fbff; border:2px solid var(--sky); }
+.cs-block.free{ background:#fffdf2; border:2px solid var(--sand); }
+.cs-block-head{ display:grid; grid-template-columns:200px 1fr; gap:18px; align-items:center; }
+.cs-block-head img{ width:100%; height:auto; display:block; }
+.cs-block h2{ margin:.1em 0 .3em; font-size:clamp(20px,2.4vw,26px); }
+.cs-block .cs-sub{ margin:0 0 .6em; color:#555; }
+.cs-block ul{ margin:.2em 0 .6em; padding-left:1.2em; }
+.cs-block li{ margin:.15em 0; }
+.cs-block h3{ margin:18px 0 8px; font-size:1.1rem; }
+.cs-form{ background:#fff; border:1px solid #dfe6ee; border-radius:12px; overflow:hidden; max-width:780px; margin:0 auto; }
+.cs-form iframe{ display:block; width:100%; height:1720px; border:0; }
+@media (max-width:1000px){
+  .cs-door{ grid-template-columns:230px 1fr; }
+  .cs-door-go{ grid-column:2; }
+}
+@media (max-width:800px){
+  .cs-door{ grid-template-columns:1fr; padding:14px 14px 16px; }
+  .cs-door-go{ grid-column:auto; margin-top:6px; }
+  .cs-block{ padding:16px 12px 18px; }
+  .cs-block-head{ grid-template-columns:1fr; }
+  .cs-block-head img{ max-width:220px; margin:0 auto; }
+}
+@media (max-width:600px){
+  .cs-form iframe{ height:2120px; }
+}
 </style>
 </head>
 <body>
@@ -603,12 +654,12 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
     <main>
       <section class="cs-hero">
         <div class="cs-hero-copy">
-          <h1>相談する</h1>
+          <h1>相談・ご依頼</h1>
           <p class="page-lead">
             地域で何かを始めたい方、活動していて手が回らなくなっている方、<br>
             お坊さんに話してみたいことがある方へ。<br>
-            個別のご相談は<strong>オンラインで1時間3,000円</strong>でお受けしています。<br>
-            作ること（公式LINE・ホームページ・仕組みづくり）は、別に料金をいただいています。
+            ご用件にあわせて、次の形でお受けしています。<br>
+            <strong>いちばん近いものを選んでください。</strong>
           </p>
         </div>
         <div class="cs-hero-art">
@@ -616,63 +667,127 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
         </div>
       </section>
 
-      <section class="cs-choice">
-        <article class="cs-card free" id="free">
-          <img src="/images/consult/monk-letter.png" alt="手紙を読む小坊主のイラスト" width="765" height="509" loading="lazy">
-          <h2>文字で送る <span class="badge important">無料・匿名</span></h2>
-          <p class="cs-sub">話すほどではないけれど、誰かに聞いてほしい。そんなときに。</p>
-          <ul>
-            <li>お坊さんとして、仏教の視点も交えてお答えします</li>
-            <li>返信は、できる範囲で行います（必ず返せるとは限りません）</li>
-            <li>ご本人の許可があるものだけ、匿名でnoteや音声で取り上げることがあります</li>
-          </ul>
-          <div class="event-cta">
-            <a class="btn" href="https://forms.gle/tbbjNfi5PgkwRNdHA" target="_blank" rel="noopener">お坊さんへの相談フォーム</a>
-          </div>
-          <p class="cs-note">※ 命に関わる急ぎのご相談は、よりそいホットライン（0120-279-338・24時間・通話無料）へおかけください。</p>
-        </article>
-
-        <article class="cs-card online" id="online">
-          <img src="/images/consult/monk-video.png" alt="スマートフォンでビデオ通話をする小坊主のイラスト" width="673" height="500" loading="lazy">
-          <h2>個別相談 <span class="badge important">1時間 3,000円</span></h2>
-          <p class="cs-sub">1対1でお話しします。地域活動のこと、AIなど道具のこと、仏教のこと。</p>
-          <ul>
-            <li>オンライン（Google Meet）：<strong>1時間 3,000円</strong></li>
-            <li>こちらから伺う場合（高島市内）：<strong>1時間 5,000円</strong></li>
-            <li>1時間をこえる場合は、1時間ごとに同じ料金です</li>
-            <li>お支払いは銀行振込。ご入金の確認後に日程が確定します</li>
-          </ul>
-          <div class="event-cta">
-            <a class="btn" href="https://forms.gle/dgeZapgDKke5YiAk6" target="_blank" rel="noopener">フォームから申し込む</a>
-            <a class="btn sec" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">公式LINEから申し込む</a>
-          </div>
-        </article>
+      <section aria-label="ご用件から選ぶ">
+        <ol class="cs-doors">
+          <li class="cs-door">
+            <div class="cs-door-when"><span class="cs-door-num">1</span><h2>自分でできるようになりたい</h2></div>
+            <div>
+              <p class="cs-door-kind"><b>講座</b><span>各講座の参加費（講座のページに）</span></p>
+              <ul class="cs-door-list">
+                <li>AIで毎日の作業を楽にしたい → <a href="/seminar/#ai-secretary">AI秘書の作り方講座</a></li>
+                <li>ホームページや予約のページを作りたい → <a href="/seminar/#hp-course">はじめてのホームページ講座</a></li>
+                <li>チラシを作りたい → <a href="/seminar/#flyer-course">チラシ作り講座</a></li>
+                <li>公式LINEを始めたい → <a href="/seminar/#line-course">公式LINE 基本講座</a></li>
+                <li>地域で何か始めたい → <a href="/seminar/#first-step">地域活動、はじめの一歩セミナー</a></li>
+              </ul>
+            </div>
+            <div class="cs-door-go"><a class="btn" href="/seminar/">講座のページへ</a></div>
+          </li>
+          <li class="cs-door online">
+            <div class="cs-door-when"><span class="cs-door-num">2</span><h2>話を聞いてほしい・<br>考えを整理したい</h2></div>
+            <div>
+              <p class="cs-door-kind"><b>個別相談</b><span>オンライン <span class="nb">1時間3,000円</span><br>こちらから伺う場合（高島市内） <span class="nb">1時間5,000円</span></span></p>
+            </div>
+            <div class="cs-door-go"><a class="btn" href="#online">この下で申し込む</a></div>
+          </li>
+          <li class="cs-door">
+            <div class="cs-door-when"><span class="cs-door-num">3</span><h2>作ってほしい</h2></div>
+            <div>
+              <p class="cs-door-kind"><b>制作</b><span>公式LINE <span class="nb">30,000円</span>（2026年12月までのお申し込み）<br>ホームページ <span class="nb">80,000円から</span> など</span></p>
+            </div>
+            <div class="cs-door-go"><a class="btn" href="https://asoberu-otera-works.pages.dev/tsukuru/" target="_blank" rel="noopener">制作のページへ ↗</a></div>
+          </li>
+          <li class="cs-door">
+            <div class="cs-door-when"><span class="cs-door-num">4</span><h2>団体・施設で呼びたい<small>出張・研修・講演</small></h2></div>
+            <div>
+              <p class="cs-door-kind"><b>ご依頼</b><span>内容をうかがってからお伝えします</span></p>
+            </div>
+            <div class="cs-door-go"><a class="btn" href="https://asoberu-otera-works.pages.dev/" target="_blank" rel="noopener">ご依頼のページへ ↗</a></div>
+          </li>
+          <li class="cs-door free">
+            <div class="cs-door-when"><span class="cs-door-num">5</span><h2>文字で送りたい<small>仏教のこと・生き方のこと</small></h2></div>
+            <div>
+              <p class="cs-door-kind"><b>お坊さんへの相談</b><span>無料・匿名</span></p>
+            </div>
+            <div class="cs-door-go"><a class="btn" href="#free">この下のフォームへ</a></div>
+          </li>
+        </ol>
+        <p class="cs-lead-note">
+          ※ 講座・制作・ご依頼の、日程や内容についてのお問い合わせは無料です。<br>
+          やり方のご相談（何をどうすればいいかを一緒に考える時間）は、個別相談としてお受けしています。
+        </p>
+        <p class="cs-note">※ 相談の中で「作ってほしい」となった場合は、そこから先は制作として、お見積もりをお出しします。</p>
       </section>
 
       <section class="event-list">
 
-        <h2 class="event-section-title">料金と、お受けしている形</h2>
-        <p class="event-section-note">ご用件にあわせて、次の形でお受けしています。</p>
+        <article class="cs-block online" id="online">
+          <div class="cs-block-head">
+            <img src="/images/consult/monk-video.png" alt="スマートフォンでビデオ通話をする小坊主のイラスト" width="673" height="500" loading="lazy">
+            <div>
+              <h2>個別相談 <span class="badge important">オンライン 1時間 3,000円</span></h2>
+              <p class="cs-sub">1対1でお話しします。地域活動のこと、AIなど道具のこと、仏教のこと。<br>
+              講座では足りないところを、あなたの活動に合わせて一緒に考えます。</p>
+              <ul>
+                <li>オンライン（Google Meet）：<strong>1時間 3,000円</strong></li>
+                <li>こちらから伺う場合（高島市内）：<strong>1時間 5,000円</strong></li>
+                <li>1時間をこえる場合は、1時間ごとに同じ料金です</li>
+                <li>お支払いは銀行振込。ご入金の確認後に日程が確定します</li>
+              </ul>
+            </div>
+          </div>
+          <h3>お申し込みは、下のフォームからお願いします。</h3>
+          <div class="cs-form">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdTPCNC1YkX2PtWw2pO5QGgG50xOJ-ozu3M7PEdAoAudnL_Yg/viewform?embedded=true" title="個別相談のお申し込みフォーム" loading="lazy">読み込んでいます…</iframe>
+          </div>
+          <p class="cs-note">
+            フォームがうまく表示されない方は → <a href="https://forms.gle/dgeZapgDKke5YiAk6" target="_blank" rel="noopener">別の画面で開く</a><br>
+            <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">公式LINE</a>からは「個別相談」とお送りください。フォームのご案内をお返しします。
+          </p>
+        </article>
 
-        <table class="cs-menu">
-          <tr>
-            <th>話を聞いてほしい・<br>考えを整理したい</th>
-            <td><b>個別相談　オンライン 1時間 3,000円</b><small>こちらから伺う場合（高島市内）は1時間 5,000円。<a href="#online">申し込みはこちら</a></small></td>
-          </tr>
-          <tr>
-            <th>自分でできるように<br>なりたい</th>
-            <td><b>講座</b><small>AI秘書の作り方講座・はじめてのホームページ講座・チラシ作り講座など。日程と料金は<a href="/seminar/">講座のページ</a>で。</small></td>
-          </tr>
-          <tr>
-            <th>作ってほしい</th>
-            <td><b>制作（別料金）</b><small>公式LINE・ホームページ・予約の仕組みなど。料金は<a href="https://asoberu-otera-works.pages.dev/tsukuru/" target="_blank" rel="noopener">制作のページ</a>で。内容をうかがって、お見積もりします。</small></td>
-          </tr>
-          <tr>
-            <th>文字で送りたい</th>
-            <td><b>無料・匿名</b><small>お坊さんへの相談。<a href="#free">フォームはこちら</a>（返信はできる範囲で）</small></td>
-          </tr>
-        </table>
-        <p class="cs-note">※ 相談の中で「作ってほしい」となった場合は、そこから先は制作として、お見積もりをお出しします。</p>
+        <h2 class="event-section-title">個別相談の流れ</h2>
+
+        <ol class="cs-steps">
+          <li>
+            <h3>お申し込み</h3>
+            <p>上のフォームから。<strong>どんな内容か</strong>、オンラインか伺うか、希望日時の候補をいくつかお知らせください。</p>
+          </li>
+          <li>
+            <h3>日程とお支払い</h3>
+            <p>こちらから日程の候補と振込先をお返しします。ご入金を確認した時点で日程が確定します。</p>
+          </li>
+          <li>
+            <h3>当日</h3>
+            <p>オンラインの場合は Google Meet のリンクをお送りします。伺う場合は、場所をご相談して決めます。</p>
+          </li>
+        </ol>
+
+        <p class="cs-note">
+          ※ 日程は都度調整させていただいています。決まった開催枠はありません。<br>
+          ※ 相談の内容を、こちらから外部に話すことはありません。<br>
+          ※ 発信の材料としてご紹介したい場合は、必ず事前にご相談します。
+        </p>
+
+        <article class="cs-block free" id="free">
+          <div class="cs-block-head">
+            <img src="/images/consult/monk-letter.png" alt="手紙を読む小坊主のイラスト" width="765" height="509" loading="lazy">
+            <div>
+              <h2>仏教のこと、生き方のこと　文字で送る <span class="badge important">無料・匿名</span></h2>
+              <p class="cs-sub">話すほどではないけれど、誰かに聞いてほしい。そんなときに。</p>
+              <ul>
+                <li>お坊さんとして、仏教の視点も交えてお答えします</li>
+                <li>返信は、できる範囲で行います（必ず返せるとは限りません）</li>
+                <li>ご本人の許可があるものだけ、匿名でnoteや音声で取り上げることがあります</li>
+                <li>地域活動やAIなど、やり方のご相談は、上の<a href="#online">個別相談</a>でお受けしています</li>
+              </ul>
+              <div class="event-cta">
+                <a class="btn" href="https://forms.gle/tbbjNfi5PgkwRNdHA" target="_blank" rel="noopener">お坊さんへの相談フォーム</a>
+              </div>
+              <p class="cs-note">※ 命に関わる急ぎのご相談は、よりそいホットライン（0120-279-338・24時間・通話無料）へおかけください。</p>
+            </div>
+          </div>
+        </article>
 
         <h2 class="event-section-title">こんなことを相談できます</h2>
         <p class="event-section-note">
@@ -721,33 +836,8 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
         </div>
 
 
-        <h2 class="event-section-title">個別相談の流れ</h2>
-
-        <ol class="cs-steps">
-          <li>
-            <h3>お申し込み</h3>
-            <p>フォームか公式LINEから。<strong>どんな内容か</strong>、オンラインか伺うか、希望日時の候補をいくつかお知らせください。</p>
-          </li>
-          <li>
-            <h3>日程とお支払い</h3>
-            <p>こちらから日程の候補と振込先をお返しします。ご入金を確認した時点で日程が確定します。</p>
-          </li>
-          <li>
-            <h3>当日</h3>
-            <p>オンラインの場合は Google Meet のリンクをお送りします。伺う場合は、場所をご相談して決めます。</p>
-          </li>
-        </ol>
-
-        <p class="cs-note">
-          ※ 日程は都度調整させていただいています。決まった開催枠はありません。<br>
-          ※ 相談の内容を、こちらから外部に話すことはありません。<br>
-          ※ 発信の材料としてご紹介したい場合は、必ず事前にご相談します。
-        </p>
-
-
         <p class="event-section-note" style="margin-top:22px;">
-          団体・施設からの出張やご依頼は<a href="https://asoberu-otera-works.pages.dev/" target="_blank" rel="noopener">ご依頼・ご相談のページ</a>を、
-          講座のご案内は<a href="/seminar/">講座のページ</a>をご覧ください。
+          上のどれにも当てはまらないご質問は、<a href="/contact/">お問い合わせのページ</a>からどうぞ。
         </p>
 
       </section>
