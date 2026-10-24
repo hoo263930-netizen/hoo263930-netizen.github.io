@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>/* 古い住所（github.io）で開かれたら、新しい住所の同じページへ移す（2026年10月24日、Cloudflare Pagesへ引っ越し） */if(/\.github\.io$/.test(location.hostname)){location.replace("https://asoberu-otera.pages.dev"+location.pathname+location.search+location.hash);}</script>
+  <link rel="canonical" href="https://asoberu-otera.pages.dev/results/" />
+  <title>実績 | 遊べるお寺プロジェクト</title>
+  <meta name="description" content="健康麻雀・座禅・謎解き・子どもの遊び・講座・公式LINEやホームページづくりなど、これまでに開いた場とお受けした依頼。" />
+  <style>
+    :root{
+      --sky:#22a7ff;   /* 青の下線 */
+      --sand:#f7ce52;  /* 両脇の黄 */
+      --ink:#2b2b2b;
+      --paper:#fff;
+      --maxw:1100px;
+      --rail:16px;
+    }
+    @media (min-width:900px){ :root{ --rail:24px; } }
+
+    /* ベース（トップ/イベントと同じ） */
+    html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+    body{ background:var(--sand); }
+    .container{ max-width:var(--maxw); margin:0 auto; background:var(--paper); min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
+
+    header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
+    .visually-hidden{ position:absolute; left:-9999px; }
+
+    /* ナビ（共通スタイル） */
+    nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
+    nav::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:3px; background:var(--sky); }
+    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail); display:flex; gap:0; justify-content:center; overflow:auto; }
+    nav a{
+      color:#333; text-decoration:none;
+      padding:18px clamp(14px,2.6vw,28px);
+      font-weight:700; font-size:clamp(18px,2.2vw,22px);
+      white-space:nowrap;
+    }
+    nav a + a{ border-left:2px solid #ddd; }
+    nav a:hover{ background:#fafafa; }
+
+    /* 本文レイアウト */
+    main{ padding:28px var(--rail) 56px; }
+    h2{ margin:.2em 0 .6em; font-size:clamp(20px,2.8vw,26px); }
+    p{ margin:.6em 0; }
+
+    /* ブロック */
+    .wrap{ max-width:var(--maxw); margin:0 auto; }
+    .block{ border:1px solid #dfe6ee; border-radius:14px; padding:18px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.05); }
+
+    /* バッジ */
+    .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 8px; }
+    .badge{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; background:#ffeaa8; color:#523e00; }
+
+    /* 画像 */
+    .media-1{ margin:10px 0; }
+    .media-1 img, .media-2 img{ width:100%; height:auto; display:block; border-radius:12px; background:#f4f7ff; border:1px solid #e9eef3; }
+    .media-1.small{ max-width:520px; }
+    .media-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:10px 0; }
+    figure{ margin:0; }
+    figcaption{ font-size:13px; color:#5d6673; margin-top:6px; background:#fcfdff; padding:6px 8px; border-radius:8px; border:1px dashed #e6ecf7; }
+    @media (max-width:760px){ .media-2{ grid-template-columns:1fr; } .media-1.small{ max-width:100%; } }
+
+    /* ボタン */
+    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .btn{ display:inline-block; text-decoration:none; font-weight:700; padding:.7rem 1.1rem; border-radius:999px; }
+    .btn.primary{ background:#36b37e; color:#fff; }
+    .btn.ghost{ background:#fff; color:#222; border:1px solid #ddd; }
+    .btn.dark{ background:#222; color:#fff; }
+
+    /* フッター */
+    footer{ background:#111; color:#ddd; padding:16px var(--rail); text-align:center; font-size:.9rem; }
+    footer a{ color:#fff; }
+  
+    /* ===== ナビ：項目が7つになり、中央寄せのままだと先頭が画面外へ切れて
+       スクロールでも戻れなくなるため修正（2026-08-24） ===== */
+    nav .wrap{ justify-content:flex-start; }
+    nav .wrap > :first-child{ margin-left:auto; }
+    nav .wrap > :last-child{ margin-right:auto; }
+    /* 7項目だと元の文字サイズ・余白では枠（1100px）に収まらず右が切れるため詰める */
+    nav a{ padding:18px clamp(10px,1.6vw,20px); font-size:clamp(16px,1.6vw,20px); }
+    @media (max-width:860px){
+      /* 狭い画面では横スクロールにせず、折り返して7項目すべてを見せる。
+         隠れた項目はスクロールできることに気づかれないため。 */
+      nav .wrap{ flex-wrap:wrap; justify-content:center; overflow:visible; }
+      nav .wrap > :first-child{ margin-left:0; }
+      nav .wrap > :last-child{ margin-right:0; }
+      nav a{ padding:12px 14px; font-size:16px; }
+      nav a + a{ border-left:0; }
+    }
+    @media (max-width:420px){
+      nav a{ padding:9px 8px; font-size:14px; }
+    }
+</style>
+<style>
+/* ===== メニューを5つ＋小さな2段目にした（2026-10-21） ===== */
+nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
+.subnav{ background:#fffdf3; border-bottom:1px solid #f0e3b0; }
+.subnav .subwrap{ max-width:1100px; margin:0 auto; padding:8px 12px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.subnav a{ text-decoration:none; color:#333; font-weight:700; font-size:15px; line-height:1.4; padding:6px 14px; border-radius:999px; border:1px solid #e6d9a6; background:#fff; white-space:nowrap; }
+.subnav a[aria-current="page"]{ background:#f7ce52; border-color:#f7ce52; }
+@media (max-width:420px){ .subnav a{ font-size:14px; padding:5px 11px; } }
+</style>
+<style>
+.gal-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+@media (max-width:900px){ .gal-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:560px){ .gal-grid{ grid-template-columns:1fr; } }
+.gal{ display:flex; flex-direction:column; border:1px solid #dfe6ee; border-radius:14px; overflow:hidden; background:#fff; color:inherit; text-decoration:none; box-shadow:0 6px 18px rgba(0,0,0,.05); }
+a.gal:hover{ box-shadow:0 8px 22px rgba(0,0,0,.12); }
+.gal-img{ display:block; aspect-ratio:4/3; background:#f4f7ff; overflow:hidden; }
+.gal-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+.gal-img.phone img, .gal-img.paper img{ object-fit:contain; background:#f4f1e8; }
+.gal-img.icon{ display:flex; align-items:center; justify-content:center; color:#06C755; background:#f3fbf5; }
+.gal-body{ padding:12px 14px 14px; display:flex; flex-direction:column; gap:4px; }
+.gal-body .cat{ font-size:13px; font-weight:700; color:#0b6db3; }
+.gal-body .date{ font-size:13px; color:#5d6673; }
+.gal-body b{ font-size:17px; line-height:1.5; }
+.gal-body small{ font-size:14px; color:#4a5560; line-height:1.7; }
+.gal-body .go{ font-size:13px; font-weight:700; color:#2f8f5b; margin-top:4px; }
+
+.cat-title{ margin:26px 0 10px; font-size:clamp(18px,2.4vw,21px); }
+.cat-title:first-of-type{ margin-top:6px; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
+
+<nav aria-label="主なナビゲーション">
+  <div class="wrap">
+    <a href="/">ホーム</a>
+    <a href="/events/">参加する</a>
+    <a href="/dougu/">地域の道具</a>
+    <a href="/consult/">相談・依頼</a>
+    <a href="/project/" aria-current="page">私たちについて</a>
+  </div>
+</nav>
+<div class="subnav"><div class="subwrap">
+  <a href="/project/">プロジェクト</a>
+  <a href="/about/">やっている人</a>
+  <a href="/results/" aria-current="page">実績</a>
+  <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告 ↗</a>
+</div></div>
+
+    <main>
+      <section class="wrap">
+        <h2>実績</h2>
+        <div class="block">
+          <p>開いてきた場と、お受けした依頼です。くわしい様子は、活動報告（note）に書いています。</p>
+        </div>
+      </section>
+
+      <section class="wrap" style="margin-top:12px;">
+        <h3 class="cat-title">■ 健康麻雀</h3>
+        <div class="gal-grid"><a class="gal" href="https://note.com/loyal_dill1011/n/n5e70d0323a00" target="_blank" rel="noopener"><span class="gal-img"><img src="/images/request/mahjong-play.jpg" alt="公民館の健康麻雀講座（全5回）" loading="lazy"></span><span class="gal-body"><span class="cat">■ 健康麻雀</span><span class="date">2026年7〜9月</span><b>公民館の健康麻雀講座（全5回）</b><small>市の広報での募集に、定員8名のところ40名以上の申し込み。12名・3卓に広げて開き、いまは月2回の講座に。</small><span class="go">活動報告を読む →</span></span></a><div class="gal"><span class="gal-img"><img src="/images/results/mahjong-kai.jpg" alt="月1回の健康麻雀会（高島市今津町）" loading="lazy"></span><span class="gal-body"><span class="cat">■ 健康麻雀</span><span class="date">2026年9月</span><b>月1回の健康麻雀会（高島市今津町）</b><small>数人から始めて、1回で24人。会場に置ける5卓（20人分）を超えました。</small></span></div><a class="gal" href="https://note.com/loyal_dill1011/n/n868f7aded76b" target="_blank" rel="noopener"><span class="gal-img"><img src="/images/results/mahjong-taikai.jpg" alt="健康麻雀大会" loading="lazy"></span><span class="gal-body"><span class="cat">■ 健康麻雀</span><span class="date">2026年8月</span><b>健康麻雀大会</b><small>初めての大会の企画・運営。12名・3卓。</small><span class="go">活動報告を読む →</span></span></a><a class="gal" href="https://note.com/loyal_dill1011/n/nff7a4b1624c0" target="_blank" rel="noopener"><span class="gal-img"><img src="/images/results/festa.jpg" alt="フェスタのブース" loading="lazy"></span><span class="gal-body"><span class="cat">■ 健康麻雀</span><span class="date">2025年11月</span><b>フェスタのブース</b><small>麻雀を知らない方も遊べる「4人で4枚麻雀」。</small><span class="go">活動報告を読む →</span></span></a></div>
+        <h3 class="cat-title">■ 座禅</h3>
+        <div class="gal-grid"><a class="gal" href="https://note.com/loyal_dill1011/n/nba5500e91aa4" target="_blank" rel="noopener"><span class="gal-img"><img src="/images/request/zazen-kids.jpg" alt="学童での座禅" loading="lazy"></span><span class="gal-body"><span class="cat">■ 座禅</span><span class="date">2025年8月</span><b>学童での座禅</b><small>約90人の子どもを、20人弱ずつ5つの組に分けて。</small><span class="go">活動報告を読む →</span></span></a><a class="gal" href="https://note.com/loyal_dill1011/n/n64e0cf92b93e" target="_blank" rel="noopener"><span class="gal-img"><img src="/images/results/zazen-table.jpg" alt="多文化共生の団体からのご依頼" loading="lazy"></span><span class="gal-body"><span class="cat">■ 座禅</span><span class="date">2025年10月</span><b>多文化共生の団体からのご依頼</b><small>未就学児を中心に、親子で約20名。</small><span class="go">活動報告を読む →</span></span></a></div>
+        <h3 class="cat-title">■ 謎解き</h3>
+        <div class="gal-grid"><a class="gal" href="https://note.com/loyal_dill1011/n/n4468e913ce5d" target="_blank" rel="noopener"><span class="gal-img"><img src="/images/results/nazotoki-kominkan.jpg" alt="公民館の、子ども向け謎解き脱出ゲーム" loading="lazy"></span><span class="gal-body"><span class="cat">■ 謎解き</span><span class="date">2026年2月</span><b>公民館の、子ども向け謎解き脱出ゲーム</b><small>市と共催。定員30名に29名。中学生のボランティア8名と一緒に運営しました。</small><span class="go">活動報告を読む →</span></span></a><a class="gal" href="https://note.com/loyal_dill1011/n/nee20e873fe28" target="_blank" rel="noopener"><span class="gal-img"><img src="/images/results/nazotoki-hotel.jpg" alt="市の事業の、婚活謎解きイベント（ホテル会場）" loading="lazy"></span><span class="gal-body"><span class="cat">■ 謎解き</span><span class="date">2026年6月</span><b>市の事業の、婚活謎解きイベント（ホテル会場）</b><small>委託を受けた団体から、企画・実施を担当。</small><span class="go">活動報告を読む →</span></span></a></div>
+        <h3 class="cat-title">■ 子どもの遊び</h3>
+        <div class="gal-grid"><a class="gal" href="https://note.com/loyal_dill1011/n/n1e4b9bcd5b6c" target="_blank" rel="noopener"><span class="gal-img"><img src="/images/results/sc-plaza.jpg" alt="S・Cプラザ（米原市）の子ども向け教室の遊びの時間" loading="lazy"></span><span class="gal-body"><span class="cat">■ 子どもの遊び</span><span class="date">2026年7月</span><b>S・Cプラザ（米原市）の子ども向け教室の遊びの時間</b><small>小学生約20人を、低学年と高学年に分けてから合流させる形で。</small><span class="go">活動報告を読む →</span></span></a></div>
+        <h3 class="cat-title">■ 講座</h3>
+        <div class="gal-grid"><a class="gal" href="https://note.com/loyal_dill1011/n/nf34be5c42627" target="_blank" rel="noopener"><span class="gal-img"><img src="/images/request/seminar-lecture.jpg" alt="ChatGPTとCanvaのチラシ作り講座" loading="lazy"></span><span class="gal-body"><span class="cat">■ 講座</span><span class="date">2026年7月</span><b>ChatGPTとCanvaのチラシ作り講座</b><small>定員6名がすぐに埋まり、同じ内容で2回目を開きました。</small><span class="go">活動報告を読む →</span></span></a></div>
+        <h3 class="cat-title">■ つくる</h3>
+        <div class="gal-grid"><a class="gal" href="https://note.com/loyal_dill1011/n/n7ce9939c689e" target="_blank" rel="noopener"><span class="gal-img icon"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 8c-10 0-18 6.3-18 14 0 6.9 6.3 12.6 14.8 13.8L19 41l7.5-5.2C35.8 34.6 42 29 42 22c0-7.7-8-14-18-14z"/><path d="M15 19v7h4M23 19v7M28 26v-7l5 7v-7"/></svg></span><span class="gal-body"><span class="cat">■ つくる</span><span class="date">2026年9月</span><b>地域のお店の公式LINE</b><small>開設からメニューまで、その日のうちに。</small><span class="go">活動報告を読む →</span></span></a><a class="gal" href="https://chozenji.pages.dev/" target="_blank" rel="noopener"><span class="gal-img phone"><img src="/images/results/site-chozenji.jpg" alt="長善寺のホームページ" loading="lazy"></span><span class="gal-body"><span class="cat">■ つくる</span><span class="date">2026年6月</span><b>長善寺のホームページ</b><small>お寺の案内・座禅体験・永代供養墓。英語版も。</small></span></a><div class="gal"><span class="gal-img paper"><img src="/images/results/flyer-course.jpg" alt="講座・催しのチラシ" loading="lazy"></span><span class="gal-body"><span class="cat">■ つくる</span><b>講座・催しのチラシ</b><small>ChatGPTとCanvaで、自分で作っています。</small></span></div></div>
+        <div class="cta" style="margin-top:22px;">
+          <a class="btn primary" href="/request.html">ご依頼のページ</a>
+          <a class="btn ghost" href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告（note）</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:0 0 10px;">
+        <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:#06C755;color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">公式LINE</a>
+        <a href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:linear-gradient(100deg,#E8853C 0%,#D14C7A 55%,#9B4BC4 100%);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">Instagram</a>
+        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:#41C9B4;color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">活動報告（note）</a>
+      </div>
+      © 2025 遊べるお寺プロジェクト
+    </footer>
+  </div>
+</body>
+</html>
