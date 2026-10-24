@@ -461,6 +461,19 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
 .subnav a[aria-current="page"]{ background:#f7ce52; border-color:#f7ce52; }
 @media (max-width:420px){ .subnav a{ font-size:14px; padding:5px 11px; } }
 </style>
+<style>
+/* ===== これまでに開いた講座：小さいカード（2026-10-24） ===== */
+.past-courses{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; }
+.past-course{ display:grid; grid-template-columns:130px 1fr; gap:14px; align-items:start; border:1px solid #dfe6ee; border-radius:14px; padding:14px; background:#fff; }
+.past-course-media{ display:block; border:1px solid #e9eef3; border-radius:8px; overflow:hidden; background:#fff; }
+.past-course-media img{ width:100%; height:auto; display:block; }
+.past-course h3{ margin:0 0 .3em; font-size:1.08rem; line-height:1.5; }
+.past-course-body > p{ margin:.3em 0; font-size:.93rem; color:#444; }
+.past-course .course-history{ margin:.5em 0; }
+.past-course-body > p.past-course-ask{ font-size:.86rem; color:#2f5d3f; }
+@media (max-width:800px){ .past-courses{ grid-template-columns:1fr; } }
+@media (max-width:420px){ .past-course{ grid-template-columns:96px 1fr; gap:10px; padding:12px; } }
+</style>
 </head>
 <body>
   <div class="container">
@@ -488,7 +501,7 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
       <p class="page-lead">
         地域で何かを始めたい方、すでに活動していて少し行き詰まっている方に向けた講座を開いています。
         少人数で、その場で手を動かして持ち帰ってもらう形が中心です。<br>
-        申込のいらない集まりは<a href="/events/">イベントのページ</a>を、
+        申込のいらない集まりや、みんなの健康麻雀講座は<a href="/events/">イベントのページ</a>を、
         団体・施設からのご依頼は<a href="https://asoberu-otera-works.pages.dev/" target="_blank" rel="noopener">ご依頼のページ</a>をご覧ください。<br>
         講座で足りないところは、<a href="/consult/#online">個別相談（オンライン1時間3,000円）</a>でもお受けしています。
       </p>
@@ -496,235 +509,15 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
       <section class="event-list">
 
         <!-- ============================================================
-             上段：次回の開催予定
-             ▼更新するのは、この表の中身だけです。
-               ・日程が決まったら行を足す（日付の早い順）
-               ・終わったら行を消し、下の講座カードの「これまでの開催」に日付を足す
+             上段：次回の開催予定（2026-10-24 作り直し。イベントの「近日開催」と同じ、チラシつきのカード）
+             ▼次の日が決まった講座は、ここに大きいカードで置く（開催日が近い順）。
+               バッジ「次回 ○月○日」と「日程」を書く。
+             ▼終わって次の日が決まっていなければ、下の「これまでに開いた講座」へ小さいカードで移す。
              ============================================================ -->
         <h2 class="event-section-title">次回の開催予定</h2>
         <p class="event-section-note">
-          日程が決まっている講座です。詳しい内容は下の「開いている講座」をご覧ください。
+          開催日が近い順に掲載しています。
         </p>
-
-        <div class="next-wrap">
-          <table class="next-table">
-            <thead>
-              <tr>
-                <th>日時</th>
-                <th>講座</th>
-                <th>会場</th>
-                <th>参加費</th>
-                <th>申込</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="nt-date" data-label="日時">2026年10月23日（金）<br>13:00〜15:00</td>
-                <td class="nt-name" data-label="講座"><a href="#mahjong-course">みんなの健康麻雀講座（午後）</a></td>
-                <td data-label="会場">コミュニティサロン Wan</td>
-                <td data-label="参加費">500円（当日払い）</td>
-                <td data-label="申込">公式LINE・InstagramのDM／定員8名</td>
-              </tr>
-              <tr>
-                <td class="nt-date" data-label="日時">2026年10月23日（金）<br>19:00〜21:00</td>
-                <td class="nt-name" data-label="講座"><a href="#flyer-course">チラシ作り講座（ステップアップ編）</a></td>
-                <td data-label="会場">コミュニティサロン Wan</td>
-                <td data-label="参加費">2,000円（当日払い）</td>
-                <td data-label="申込">公式LINE・InstagramのDM／定員4名</td>
-              </tr>
-              <tr>
-                <td class="nt-date" data-label="日時">2026年11月6日（金）<br>19:00〜21:00</td>
-                <td class="nt-name" data-label="講座"><a href="#hp-course">はじめてのホームページ講座</a></td>
-                <td data-label="会場">コミュニティサロン Wan</td>
-                <td data-label="参加費">3,000円（当日払い）</td>
-                <td data-label="申込">公式LINE・InstagramのDM／定員2名</td>
-              </tr>
-              <tr>
-                <td class="nt-date" data-label="日時">2026年11月13日（金）<br>19:00〜21:00</td>
-                <td class="nt-name" data-label="講座"><a href="#ai-secretary">AI秘書の作り方講座（ステップ1・導入編）</a></td>
-                <td data-label="会場">コミュニティサロン Wan</td>
-                <td data-label="参加費">2,000円（当日払い）</td>
-                <td data-label="申込">公式LINE・InstagramのDM／定員4名</td>
-              </tr>
-              <tr>
-                <td class="nt-date" data-label="日時">2026年11月20日（金）<br>19:00〜21:00</td>
-                <td class="nt-name" data-label="講座"><a href="#hp-course">はじめてのホームページ講座</a></td>
-                <td data-label="会場">コミュニティサロン Wan</td>
-                <td data-label="参加費">3,000円（当日払い）</td>
-                <td data-label="申込">公式LINE・InstagramのDM／定員2名</td>
-              </tr>
-              <tr>
-                <td class="nt-date" data-label="日時">2026年11月27日（金）<br>19:00〜21:00</td>
-                <td class="nt-name" data-label="講座"><a href="#ai-secretary">AI秘書の作り方講座（ステップ1・導入編）</a></td>
-                <td data-label="会場">コミュニティサロン Wan</td>
-                <td data-label="参加費">2,000円（当日払い）</td>
-                <td data-label="申込">公式LINE・InstagramのDM／定員4名</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- ============================================================
-             下段：開いている講座（カタログ）
-             ▼講座を1つ増やすときは、この article をまるごと複製して
-               (1)タイトル (2)画像 (3)日程 (4)会場 (5)参加費 (6)申込 を差し替えます。
-             ▼開催が終わったら、その講座の「これまでの開催」の一番上に日付を足します
-               （新しい回が上）。バッジと「日程」は次の回に書き換えます。
-             ============================================================ -->
-        <h2 class="event-section-title">開いている講座</h2>
-        <p class="event-section-note">
-          いま開いている講座の一覧です。日程が出ていないものも、ご希望があれば開催を検討します。
-        </p>
-
-        <!-- 地域活動、はじめの一歩セミナー -->
-        <article class="event" id="first-step">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/seminar/first-step-seminar.jpg" target="_blank" rel="noopener">
-                <img src="/images/seminar/first-step-seminar.jpg" alt="地域活動 はじめの一歩セミナー 第1回のチラシ" loading="lazy">
-              </a>
-            </div>
-
-            <div class="event-body">
-              <h3>地域活動、はじめの一歩セミナー <span class="badge">次回は調整中</span></h3>
-
-              <dl class="course-meta">
-                <dt>日程</dt><dd>次回は調整中です</dd>
-                <dt>会場</dt><dd>コミュニティサロン Wan（高島市安曇川町南船木301-1）</dd>
-                <dt>参加費</dt><dd>1,500円（当日払い）</dd>
-                <dt>定員</dt><dd>4名</dd>
-              </dl>
-
-              <p>
-                地域で何かを始めたいけれど、何から手をつければいいか分からない。
-                そういう方のための少人数の会です。<br>
-                続ける前提で大きく始めるのではなく、一人でも回せる大きさで始めるにはどうするか、という話をします。
-              </p>
-
-              <p>※この回だけの参加でも大丈夫です。</p>
-
-              <div class="course-history">
-                <p class="course-history-title">これまでの開催</p>
-                <ul>
-                  <li>2026年9月11日（金）</li>
-                </ul>
-              </div>
-
-              <div class="event-cta">
-                <a class="btn" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
-                  公式LINEから申し込む
-                </a>
-              </div>
-
-              <p class="line-note">
-                公式LINEで「セミナー」とお送りください。
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <!-- 公式LINE 基本講座 -->
-        <article class="event" id="line-course">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/seminar/line-course.jpg" target="_blank" rel="noopener">
-                <img src="/images/seminar/line-course.jpg" alt="公式LINE 基本講座のチラシ" loading="lazy">
-              </a>
-            </div>
-
-            <div class="event-body">
-              <h3>公式LINE 基本講座 <span class="badge">次回は調整中</span></h3>
-
-              <dl class="course-meta">
-                <dt>日程</dt><dd>次回は調整中です</dd>
-                <dt>会場</dt><dd>コミュニティサロン Wan（高島市安曇川町南船木301-1）</dd>
-                <dt>参加費</dt><dd>2,000円（当日払い）</dd>
-                <dt>定員</dt><dd>4名</dd>
-              </dl>
-
-              <p>
-                公式LINEでできること、おすすめの使い方をご紹介する講座です。
-                「公式LINEって何ができるの？」というところから始めます。<br>
-                最後に、作り方も少しご紹介します。
-              </p>
-
-              <p>
-                お店や教室をしている方、活動のお知らせを届けたい方、
-                公式LINEを作ってみたい方に向いています。<br>
-                スマートフォンがあれば大丈夫です。
-              </p>
-
-              <p>※難しいと感じた方は、こちらでお作りすることもできます。</p>
-
-              <div class="course-history">
-                <p class="course-history-title">これまでの開催</p>
-                <ul>
-                  <li>2026年10月16日（金）</li>
-                </ul>
-              </div>
-
-              <div class="event-cta">
-                <a class="btn" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
-                  公式LINEから申し込む
-                </a>
-              </div>
-
-              <p class="line-note">
-                公式LINEで「LINE講座」とお送りください。
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <!-- はじめてのAIセミナー -->
-        <article class="event" id="ai-seminar">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/seminar/ai-seminar.jpg" target="_blank" rel="noopener">
-                <img src="/images/seminar/ai-seminar.jpg" alt="はじめてのAIセミナーのチラシ" loading="lazy">
-              </a>
-            </div>
-
-            <div class="event-body">
-              <h3>はじめてのAIセミナー <span class="badge">次回は調整中</span></h3>
-
-              <dl class="course-meta">
-                <dt>日程</dt><dd>次回は調整中です</dd>
-                <dt>会場</dt><dd>コミュニティサロン Wan（高島市安曇川町南船木301-1）</dd>
-                <dt>参加費</dt><dd>2,000円（当日払い）</dd>
-                <dt>定員</dt><dd>4名</dd>
-              </dl>
-
-              <p>
-                「なんで急にAIだらけ？」から、話します。<br>
-                AIのこれまでといまの状況、AIにできること・できないこと、
-                暮らしの中での使いどころ、気をつけること。この4つを2時間でお話しします。
-              </p>
-
-              <p>
-                講師の久我は、AIを毎日使って活動しています。<br>
-                チラシも、ホームページも、公式LINEも、講座のスライドも、AIと一緒に作っています。
-              </p>
-
-              <div class="course-history">
-                <p class="course-history-title">これまでの開催</p>
-                <ul>
-                  <li>2026年9月25日（金）<a href="https://note.com/loyal_dill1011/n/ndfa1ad85a104" target="_blank" rel="noopener">この回の様子を読む（note）</a></li>
-                </ul>
-              </div>
-
-              <div class="event-cta">
-                <a class="btn" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
-                  公式LINEから申し込む
-                </a>
-              </div>
-
-              <p class="line-note">
-                公式LINEで「AIセミナー」とお送りください。
-              </p>
-            </div>
-          </div>
-        </article>
 
         <!-- はじめてのホームページ講座 -->
         <article class="event" id="hp-course">
@@ -814,112 +607,98 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
           </div>
         </article>
 
-        <!-- 小さな活動を伝える チラシ作り講座 -->
-        <article class="event" id="flyer-course">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/seminar/flyer-course.jpg" target="_blank" rel="noopener">
-                <img src="/images/seminar/flyer-course.jpg" alt="ChatGPT×Canvaでチラシを作る講座 ステップアップ編のチラシ" loading="lazy">
-              </a>
-            </div>
+        <!-- ============================================================
+             下段：これまでに開いた講座（次の日程が決まっていない講座・2026-10-24）
+             ▼次の日が決まったら、上の「次回の開催予定」に大きいカードで戻す。
+             ▼開催が終わって次の日が決まっていない講座は、ここに小さいカードで移し、
+               「これまでの開催」の一番上に日付を足す（新しい回が上）。
+             ============================================================ -->
+        <h2 class="event-section-title">これまでに開いた講座</h2>
+        <p class="event-section-note">
+          次の日程が決まっていない講座です。「またやってほしい」という講座があれば、公式LINEで教えてください。
+          ご希望の多いものから、次の日程を決めていきます。ここに載っていない内容のご要望も歓迎です。
+        </p>
 
-            <div class="event-body">
-              <h3>小さな活動を伝える チラシ作り講座 <span class="badge important">次回 10月23日</span></h3>
+        <div class="past-courses">
 
-              <dl class="course-meta">
-                <dt>日程</dt><dd>2026年10月23日（金）19:00〜21:00<br>（ステップアップ編：ChatGPTやCanvaを使える方向け。初めての方も受講できます）<br>このあとは、ご希望があれば開催します</dd>
-                <dt>会場</dt><dd>コミュニティサロン Wan</dd>
-                <dt>参加費</dt><dd>2,000円（当日払い）</dd>
-                <dt>定員</dt><dd>4名</dd>
-              </dl>
-
-              <p>
-                CanvaとChatGPTを使って、自分の活動を伝えるチラシのたたき台を、その場で作る講座です。
-                パソコンやスマホの操作に自信がない方でも大丈夫です。<br>
-                <strong>初めての方も参加できます。</strong>
-              </p>
-
+          <!-- 小さな活動を伝える チラシ作り講座 -->
+          <article class="past-course" id="flyer-course">
+            <a class="past-course-media" href="/images/seminar/flyer-course.jpg" target="_blank" rel="noopener">
+              <img src="/images/seminar/flyer-course.jpg" alt="ChatGPT×Canvaでチラシを作る講座 ステップアップ編のチラシ" loading="lazy">
+            </a>
+            <div class="past-course-body">
+              <h3>小さな活動を伝える チラシ作り講座</h3>
+              <p>CanvaとChatGPTを使って、自分の活動を伝えるチラシのたたき台を、その場で作る講座です。</p>
               <div class="course-history">
                 <p class="course-history-title">これまでの開催</p>
                 <ul>
+                  <li>2026年10月23日（金）ステップアップ編</li>
                   <li>2026年10月2日（金）</li>
                   <li>2026年9月4日（金）ステップアップ編</li>
                   <li>2026年7月19日（日）<a href="https://note.com/loyal_dill1011/n/nf34be5c42627" target="_blank" rel="noopener">この回の様子を読む（note）</a></li>
                 </ul>
               </div>
-
-              <div class="event-cta">
-                <a class="btn" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
-                  公式LINEから申し込む
-                </a>
-              </div>
-
-              <p class="line-note">
-                公式LINEで「チラシ講座」とお送りください。InstagramのDMでも受け付けています。
-              </p>
+              <p class="past-course-ask">またやってほしい方は、公式LINEで「チラシ講座」とお送りください。</p>
             </div>
-          </div>
-        </article>
+          </article>
 
-        <!-- 健康麻雀講座 -->
-        <article class="event" id="mahjong-course">
-          <div class="event-wrap">
-            <div class="event-media">
-              <a href="/images/seminar/mahjong-course.jpg" target="_blank" rel="noopener">
-                <img src="/images/seminar/mahjong-course.jpg" alt="みんなの健康麻雀講座のチラシ" loading="lazy">
-              </a>
-            </div>
-
-            <div class="event-body">
-              <h3>みんなの健康麻雀講座 <span class="badge important">次回 10月23日</span></h3>
-
-              <dl class="course-meta">
-                <dt>日程</dt><dd>毎月 第2・第4金曜日<br>午前 10:00〜12:00 ／ 午後 13:00〜15:00（どちらか好きな時間に）</dd>
-                <dt>次回</dt><dd>10月23日（金）・11月13日（金）・11月27日（金）</dd>
-                <dt>会場</dt><dd>コミュニティサロン Wan（高島市安曇川町南船木301-1）</dd>
-                <dt>参加費</dt><dd>各回500円（当日払い）</dd>
-                <dt>定員</dt><dd>午前・午後 各8名</dd>
-              </dl>
-
-              <p>
-                <strong>チー・ポン・役、点数計算まで覚える講座です。</strong>
-                麻雀のルールを少し知っている方、もっと強くなりたい方へ。
-                午前の回と午後の回は同じ内容なので、どちらか好きな時間にお越しください。<br>
-                賭けない・飲まない・吸わない、健康麻雀です。
-              </p>
-
+          <!-- 公式LINE 基本講座 -->
+          <article class="past-course" id="line-course">
+            <a class="past-course-media" href="/images/seminar/line-course.jpg" target="_blank" rel="noopener">
+              <img src="/images/seminar/line-course.jpg" alt="公式LINE 基本講座のチラシ" loading="lazy">
+            </a>
+            <div class="past-course-body">
+              <h3>公式LINE 基本講座</h3>
+              <p>公式LINEでできること、おすすめの使い方をご紹介する講座です。「公式LINEって何ができるの？」というところから始めます。</p>
               <div class="course-history">
-                <p class="course-history-title">これまでの開催（Wan）</p>
+                <p class="course-history-title">これまでの開催</p>
                 <ul>
-                  <li>2026年10月9日（金）午前の回・午後の回</li>
-                  <li>2026年9月25日（金）午前の回</li>
-                  <li>2026年9月11日（金）午前の回</li>
+                  <li>2026年10月16日（金）</li>
                 </ul>
               </div>
-
-              <div class="event-cta">
-                <a class="btn" href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">
-                  公式LINEから申し込む
-                </a>
-                <a class="btn sec" href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener">
-                  InstagramのDMで申し込む
-                </a>
-              </div>
-
-              <p class="line-note">
-                公式LINEか、InstagramのDMで「麻雀講座」とお送りください。<br>
-                ルールを覚えたあとは、月1回の<a href="/events/#kenko-mahjong">健康麻雀会</a>で実際に打てます。
-              </p>
+              <p class="past-course-ask">またやってほしい方は、公式LINEで「LINE講座」とお送りください。</p>
             </div>
-          </div>
-        </article>
+          </article>
+
+          <!-- はじめてのAIセミナー -->
+          <article class="past-course" id="ai-seminar">
+            <a class="past-course-media" href="/images/seminar/ai-seminar.jpg" target="_blank" rel="noopener">
+              <img src="/images/seminar/ai-seminar.jpg" alt="はじめてのAIセミナーのチラシ" loading="lazy">
+            </a>
+            <div class="past-course-body">
+              <h3>はじめてのAIセミナー</h3>
+              <p>「なんで急にAIだらけ？」から、話します。AIのこれまでといまの状況、AIにできること・できないこと、暮らしの中での使いどころ、気をつけること。この4つを2時間でお話しします。</p>
+              <div class="course-history">
+                <p class="course-history-title">これまでの開催</p>
+                <ul>
+                  <li>2026年9月25日（金）<a href="https://note.com/loyal_dill1011/n/ndfa1ad85a104" target="_blank" rel="noopener">この回の様子を読む（note）</a></li>
+                </ul>
+              </div>
+              <p class="past-course-ask">またやってほしい方は、公式LINEで「AIセミナー」とお送りください。</p>
+            </div>
+          </article>
+
+          <!-- 地域活動、はじめの一歩セミナー -->
+          <article class="past-course" id="first-step">
+            <a class="past-course-media" href="/images/seminar/first-step-seminar.jpg" target="_blank" rel="noopener">
+              <img src="/images/seminar/first-step-seminar.jpg" alt="地域活動 はじめの一歩セミナー 第1回のチラシ" loading="lazy">
+            </a>
+            <div class="past-course-body">
+              <h3>地域活動、はじめの一歩セミナー</h3>
+              <p>地域で何かを始めたいけれど、何から手をつければいいか分からない。そういう方のための少人数の会です。</p>
+              <div class="course-history">
+                <p class="course-history-title">これまでの開催</p>
+                <ul>
+                  <li>2026年9月11日（金）</li>
+                </ul>
+              </div>
+              <p class="past-course-ask">またやってほしい方は、公式LINEで「セミナー」とお送りください。</p>
+            </div>
+          </article>
+
+        </div>
 
       </section>
-
-      <p class="line-note" style="margin-top:28px;">
-        <strong>気になる講座がありましたら、公式LINEで教えてください。</strong><br>
-        ご希望の多いものから、次の日程を決めていきます。ここに載っていない内容のご要望も歓迎です。
-      </p>
 
       <div class="past-link-bottom">
         <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">公式LINEで知らせを受け取る</a>
