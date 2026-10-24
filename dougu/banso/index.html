@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>/* 古い住所（github.io）で開かれたら、新しい住所の同じページへ移す（2026年10月24日、Cloudflare Pagesへ引っ越し） */if(/\.github\.io$/.test(location.hostname)){location.replace("https://asoberu-otera.pages.dev"+location.pathname+location.search+location.hash);}</script>
+  <link rel="canonical" href="https://asoberu-otera.pages.dev/dougu/banso/" />
+  <title>伴走｜イベントができて、続いていくまで（試作版・無料） | 遊べるお寺プロジェクト</title>
+  <meta name="description" content="イベント・教室・地域の会を開く人のための、AIの相棒。始める・チラシ・記録・相談の4つの場面で付き合います。Claude Code と ChatGPT で使えます。試作版を無料で配っています。" />
+  <style>
+    :root{
+      --sky:#22a7ff;   /* 青の下線 */
+      --sand:#f7ce52;  /* 両脇の黄 */
+      --ink:#2b2b2b;
+      --paper:#fff;
+      --maxw:1100px;
+      --rail:16px;
+    }
+    @media (min-width:900px){ :root{ --rail:24px; } }
+
+    /* ベース（トップ/イベントと同じ） */
+    html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+    body{ background:var(--sand); }
+    .container{ max-width:var(--maxw); margin:0 auto; background:var(--paper); min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
+
+    header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
+    .visually-hidden{ position:absolute; left:-9999px; }
+
+    /* ナビ（共通スタイル） */
+    nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
+    nav::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:3px; background:var(--sky); }
+    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail); display:flex; gap:0; justify-content:center; overflow:auto; }
+    nav a{
+      color:#333; text-decoration:none;
+      padding:18px clamp(14px,2.6vw,28px);
+      font-weight:700; font-size:clamp(18px,2.2vw,22px);
+      white-space:nowrap;
+    }
+    nav a + a{ border-left:2px solid #ddd; }
+    nav a:hover{ background:#fafafa; }
+
+    /* 本文レイアウト */
+    main{ padding:28px var(--rail) 56px; }
+    h2{ margin:.2em 0 .6em; font-size:clamp(20px,2.8vw,26px); }
+    p{ margin:.6em 0; }
+
+    /* ブロック */
+    .wrap{ max-width:var(--maxw); margin:0 auto; }
+    .block{ border:1px solid #dfe6ee; border-radius:14px; padding:18px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.05); }
+
+    /* バッジ */
+    .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 8px; }
+    .badge{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; background:#ffeaa8; color:#523e00; }
+
+    /* 画像 */
+    .media-1{ margin:10px 0; }
+    .media-1 img, .media-2 img{ width:100%; height:auto; display:block; border-radius:12px; background:#f4f7ff; border:1px solid #e9eef3; }
+    .media-1.small{ max-width:520px; }
+    .media-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:10px 0; }
+    figure{ margin:0; }
+    figcaption{ font-size:13px; color:#5d6673; margin-top:6px; background:#fcfdff; padding:6px 8px; border-radius:8px; border:1px dashed #e6ecf7; }
+    @media (max-width:760px){ .media-2{ grid-template-columns:1fr; } .media-1.small{ max-width:100%; } }
+
+    /* ボタン */
+    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .btn{ display:inline-block; text-decoration:none; font-weight:700; padding:.7rem 1.1rem; border-radius:999px; }
+    .btn.primary{ background:#36b37e; color:#fff; }
+    .btn.ghost{ background:#fff; color:#222; border:1px solid #ddd; }
+    .btn.dark{ background:#222; color:#fff; }
+
+    /* フッター */
+    footer{ background:#111; color:#ddd; padding:16px var(--rail); text-align:center; font-size:.9rem; }
+    footer a{ color:#fff; }
+  
+    /* ===== ナビ：項目が7つになり、中央寄せのままだと先頭が画面外へ切れて
+       スクロールでも戻れなくなるため修正（2026-08-24） ===== */
+    nav .wrap{ justify-content:flex-start; }
+    nav .wrap > :first-child{ margin-left:auto; }
+    nav .wrap > :last-child{ margin-right:auto; }
+    /* 7項目だと元の文字サイズ・余白では枠（1100px）に収まらず右が切れるため詰める */
+    nav a{ padding:18px clamp(10px,1.6vw,20px); font-size:clamp(16px,1.6vw,20px); }
+    @media (max-width:860px){
+      /* 狭い画面では横スクロールにせず、折り返して7項目すべてを見せる。
+         隠れた項目はスクロールできることに気づかれないため。 */
+      nav .wrap{ flex-wrap:wrap; justify-content:center; overflow:visible; }
+      nav .wrap > :first-child{ margin-left:0; }
+      nav .wrap > :last-child{ margin-right:0; }
+      nav a{ padding:12px 14px; font-size:16px; }
+      nav a + a{ border-left:0; }
+    }
+    @media (max-width:420px){
+      nav a{ padding:9px 8px; font-size:14px; }
+    }
+</style>
+<style>
+/* ===== メニューを5つ＋小さな2段目にした（2026-10-21） ===== */
+nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
+.subnav{ background:#fffdf3; border-bottom:1px solid #f0e3b0; }
+.subnav .subwrap{ max-width:1100px; margin:0 auto; padding:8px 12px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.subnav a{ text-decoration:none; color:#333; font-weight:700; font-size:15px; line-height:1.4; padding:6px 14px; border-radius:999px; border:1px solid #e6d9a6; background:#fff; white-space:nowrap; }
+.subnav a[aria-current="page"]{ background:#f7ce52; border-color:#f7ce52; }
+@media (max-width:420px){ .subnav a{ font-size:14px; padding:5px 11px; } }
+</style>
+<style>
+section.wrap + section.wrap{ margin-top:22px; }
+.nb{ display:inline-block; }
+.lead{ font-size:clamp(16px,2vw,19px); font-weight:700; }
+.worries{ list-style:none; padding:0; margin:.4em 0; display:grid; gap:8px; }
+.worries li{ background:#fff7e0; border:1px solid #f0e3b0; border-radius:10px; padding:9px 12px 9px 2.2em; position:relative; font-weight:700; }
+.worries li::before{ content:"✓"; position:absolute; left:.8em; color:#c98a00; }
+.scenes{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.6em 0; }
+@media (max-width:760px){ .scenes{ grid-template-columns:1fr; } }
+.scenes > div{ border:1px solid #e1e8f0; border-radius:12px; padding:12px 14px; background:#fbfdff; }
+.scenes .cat{ display:inline-block; font-size:13px; font-weight:700; color:#fff; background:#36b37e; border-radius:999px; padding:1px 10px; }
+.scenes h3{ margin:.4em 0 .2em; font-size:17px; }
+.scenes p{ margin:0; font-size:15px; }
+.note-box{ background:#f7f9fc; border:1px solid #e1e8f0; border-radius:10px; padding:10px 14px; margin:.8em 0; font-size:15px; }
+.block h3{ margin:1em 0 .3em; font-size:17px; }
+.block code{ font-size:14px; background:#f3f5f7; padding:1px 6px; border-radius:4px; word-break:break-all; }
+.substack-embed{ margin-top:16px; }
+.substack-embed iframe{ width:100%; max-width:480px; border:1px solid #dfe6ee; border-radius:8px; background:#fff; }
+.howto{ border:2px solid #36b37e; border-radius:10px; padding:14px 18px; margin-top:14px; background:#fff; }
+.howto b{ font-size:17px; }
+.howto ol{ margin:8px 0 6px; padding-left:1.4em; }
+.howto li{ margin:5px 0; }
+.howto p{ margin:0; font-size:14px; color:#5d6673; }
+.fb-form{ display:grid; gap:16px; max-width:640px; margin-top:12px; }
+.fb-form label, .fb-form legend{ display:block; font-weight:700; font-size:15px; margin-bottom:6px; padding:0; }
+.fb-form .opt{ font-weight:400; color:#5d6673; font-size:13px; margin-left:8px; }
+.fb-form input[type=text], .fb-form input[type=email], .fb-form textarea{ width:100%; box-sizing:border-box; font:inherit; font-size:16px; padding:10px 12px; border:1px solid #c9d0d5; border-radius:8px; background:#fff; }
+.fb-form textarea{ min-height:110px; resize:vertical; }
+.fb-form fieldset{ border:0; margin:0; padding:0; min-width:0; }
+.fb-form .choices{ display:flex; flex-wrap:wrap; gap:6px 22px; }
+.fb-form .choices label{ display:inline-flex; align-items:center; gap:6px; font-weight:400; margin:0; }
+.fb-form button{ justify-self:start; font:inherit; font-weight:700; font-size:15px; padding:12px 30px; border:0; border-radius:999px; background:#36b37e; color:#fff; cursor:pointer; }
+.fb-form button:disabled{ opacity:.6; cursor:default; }
+.fb-form .done{ margin:0; font-weight:700; color:#2f8f5b; }
+.fb-form .hp{ position:absolute; left:-9999px; width:1px; height:1px; }
+@media (max-width:760px){ .fb-form button{ justify-self:stretch; } }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
+
+<nav aria-label="主なナビゲーション">
+  <div class="wrap">
+    <a href="/">ホーム</a>
+    <a href="/events/">参加する</a>
+    <a href="/dougu/" aria-current="page">地域の道具</a>
+    <a href="/consult/">相談・依頼</a>
+    <a href="/project/">私たちについて</a>
+  </div>
+</nav>
+<div class="subnav"><div class="subwrap">
+  <a href="/takashimahjong/">たかしまーじゃん</a>
+  <a href="/dougu/banso/" aria-current="page">伴走</a>
+  <a href="https://chiraoki.pages.dev/" target="_blank" rel="noopener">チラ置き ↗</a>
+</div></div>
+
+    <main>
+      <section class="wrap">
+        <h2>伴走｜イベントができて、続いていくまで</h2>
+        <div class="block">
+          <p class="lead"><span class="nb">イベント・教室・地域の会を開く人のための、</span><span class="nb">AIの相棒です。</span></p>
+          <p>始めるところから、チラシ、記録、次の回まで付き合います。試作版を、無料で配っています。</p>
+          <div class="cta"><a class="btn primary" href="#dl">無料でダウンロード</a></div>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <h2>こんなときに</h2>
+        <div class="block">
+          <ul class="worries">
+            <li>新しく会を始めたいけれど、何から手をつければいいか分からない</li>
+            <li>場所が見つからない。誰と一緒にやればいいか分からない</li>
+            <li>AIにチラシを頼んだら、ごちゃごちゃしたものが返ってきた</li>
+            <li>会が終わったあと、何を残して、次にどう生かせばいいか分からない</li>
+          </ul>
+          <p>活動は、場所（箱）・関わる人（ひと）・道具や連絡手段（もの）の3つがそろったとき、はじめて回り出します。伴走は、その土台の点検から、チラシ、記録、次の回の見直しまでを、AIと一緒にやるための手引きです。</p>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <h2>伴走でできること</h2>
+        <div class="block">
+          <p>話しかける言葉によって、4つの場面で付き合います。質問はいつも一覧でまとめて出るので、音声入力で一気に答えられます。</p>
+          <div class="scenes">
+            <div><span class="cat">始める</span><h3>「新しい回を始めたい」</h3><p>箱・ひと・ものを並べて、足りないところを見える化します。場所の候補をためておく台帳や、場所を借りるときの打診の叩き台も作ります。</p></div>
+            <div><span class="cat">チラシ</span><h3>「チラシを作りたい」</h3><p>19の質問に答えると、構成案（3案＋おすすめ）と、画像を作るAIに渡す指示文ができます。日時や金額は画像に描き込ませず、あとから入れる作りです。</p></div>
+            <div><span class="cat">記録</span><h3>「回が終わったから記録したい」</h3><p>誰が来たか、想定と違ったことを1枚に残します。箱・ひと・もの・マーケの4つで見て、次の一手を3案で出します。</p></div>
+            <div><span class="cat">相談</span><h3>「相談したい」</h3><p>人が集まらない、なんだかうまくいかない。過去の記録を読んでから、一緒に考えます。</p></div>
+          </div>
+          <p>デザインの画像そのものは作りません。画像は、ChatGPT・Canva など、お使いのもので作ります。</p>
+        </div>
+      </section>
+
+      <section class="wrap" id="dl">
+        <h2>ダウンロード（無料）</h2>
+        <div class="block">
+          <p>zipファイル（26KB）です。中に、使い方の説明（README）が入っています。</p>
+          <div class="cta"><a class="btn primary" href="/dougu/banso/dl" download="banso-0.9.zip">無料でダウンロード（試作版 0.9）</a></div>
+          <div class="note-box"><b>試作版です。</b>使ってみた感想を、下のフォームから聞かせてください。次の版づくりに使います。<br>作ったチラシや記録は、お仕事を含めて自由に使えます。ほかの方に紹介するときは、ファイルではなく、このページのリンクを伝えてください（新しい版が届くように）。</div>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <h2>使い方</h2>
+        <div class="block">
+          <p>くわしくは、zipの中の README にあります。</p>
+          <h3>Claude Code で使う</h3>
+          <ol>
+            <li>zipを開いて、<code>banso</code> フォルダを <code>.claude/skills</code> の中へ、フォルダごと入れる</li>
+            <li>新しいチャットを開く</li>
+            <li>「新しい回を始めたい」「チラシを作りたい」などと話しかける</li>
+          </ol>
+          <h3>ChatGPT で使う</h3>
+          <ol>
+            <li>「プロジェクト」を新しく作る</li>
+            <li>プロジェクトの「ファイル」に <code>chatgpt/伴走.md</code> を入れる</li>
+            <li>「指示」の欄に、READMEにある1行を貼る</li>
+            <li>そのプロジェクトの中で、同じように話しかける</li>
+          </ol>
+          <p class="note-box">使うには、Claude Code（Anthropic の有料プラン）か、ChatGPT の「プロジェクト」の機能が要ります。ChatGPTでは、記録や場所の台帳は会話の中に表で出てきます。手元のメモなどに保存しておき、次に相談するときに貼ってください。</p>
+        </div>
+      </section>
+
+      <section class="wrap" id="kansou">
+        <h2>感想を聞かせてください</h2>
+        <div class="block">
+          <p>ひとことでも助かります。お名前はいりません。</p>
+          <form class="fb-form" action="https://formspree.io/f/mrbybkoe" method="POST">
+            <fieldset>
+              <legend>使ったもの</legend>
+              <div class="choices">
+                <label><input type="radio" name="使ったもの" value="Claude Code"> Claude Code</label>
+                <label><input type="radio" name="使ったもの" value="ChatGPT"> ChatGPT</label>
+                <label><input type="radio" name="使ったもの" value="そのほか"> そのほか</label>
+              </div>
+            </fieldset>
+            <div><label for="fb-made">何に使いましたか</label><input type="text" id="fb-made" name="何に使ったか" placeholder="例：教室のチラシ、新しい会の準備、回の記録"></div>
+            <div><label for="fb-good">よかったところ</label><textarea id="fb-good" name="よかったところ"></textarea></div>
+            <div><label for="fb-bad">困ったところ・分かりにくかったところ</label><textarea id="fb-bad" name="困ったところ"></textarea></div>
+            <div><label for="fb-mail">メールアドレス<span class="opt">返事がほしい方だけ</span></label><input type="email" id="fb-mail" name="email"></div>
+            <input type="hidden" name="_subject" value="伴走 試作版の感想">
+            <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off">
+            <button type="submit">送る</button>
+            <p class="done" hidden>ありがとうございました。届きました。</p>
+          </form>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <h2>新しい版のお知らせ</h2>
+        <div class="block">
+          <p>新しい版ができたら、メール（Substack）でお知らせします。たかしまーじゃんなど、ほかの配布物のお知らせも同じメールで届きます。いつでも、メールの下のリンクから解除できます。</p>
+          <div class="howto">
+            <b>登録のしかた</b>
+            <ol>
+              <li>下の欄にメールアドレスを入れて、オレンジのボタン（Subscribe）を押す</li>
+              <li>英語の画面がいくつか出ます。いちばん下の灰色の文字（Skip for now／Maybe later）を押して進めてください</li>
+              <li>「Please confirm your subscription」という英語のメールが届きます。オレンジのボタン（Confirm subscription）を押すと、登録が終わります</li>
+            </ol>
+            <p>うまくいかないときは、公式LINEかメールでお知らせください。</p>
+          </div>
+          <div class="substack-embed"><iframe src="https://kosen3.substack.com/embed" title="メールアドレスの登録" width="480" height="320" frameborder="0" scrolling="no"></iframe></div>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <h2>質問・お問い合わせ</h2>
+        <div class="block">
+          <p>使い方の質問を受ける窓口（公式LINE）を準備しています。それまでは、上のフォームか、メール（<a href="mailto:hoo263930@gmail.com">hoo263930@gmail.com</a>）でどうぞ。</p>
+          <p>チラシづくりのやり方のご相談は、<a href="/consult/#online">個別相談（オンライン1時間3,000円）</a>でお受けしています。</p>
+          <p class="note-box">作った人：遊べるお寺プロジェクト　こーせん（久我光聖）。滋賀県高島市で、健康麻雀・写経会・チラシ作り講座などをやっているお坊さんです。自分の会を開いて、チラシを作り、記録をつけて、次の回を直す中で、この手引きができました。→ <a href="/about/">やっている人</a></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:0 0 10px;">
+        <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:#06C755;color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">公式LINE</a>
+        <a href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:linear-gradient(100deg,#E8853C 0%,#D14C7A 55%,#9B4BC4 100%);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">Instagram</a>
+        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:#41C9B4;color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">活動報告（note）</a>
+      </div>
+      © 2025 遊べるお寺プロジェクト
+    </footer>
+  </div>
+<script>
+/* 感想フォーム：送ったあと、ページを移らずにお礼を出す（JSが動かないときは、ふつうに送られる） */
+document.querySelectorAll(".fb-form").forEach(function(f){
+  f.addEventListener("submit", function(e){
+    e.preventDefault();
+    var b = f.querySelector("button"); b.disabled = true; b.textContent = "送っています…";
+    fetch(f.action, {method:"POST", body:new FormData(f), headers:{"Accept":"application/json"}})
+      .then(function(r){ if(!r.ok) throw r; f.reset(); b.hidden = true; f.querySelector(".done").hidden = false; })
+      .catch(function(){ b.disabled = false; b.textContent = "送る"; alert("うまく送れませんでした。時間をおいて、もう一度お試しください。"); });
+  });
+});
+</script>
+</body>
+</html>
