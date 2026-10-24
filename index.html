@@ -69,6 +69,12 @@
 
     /* 本文 */
     main{ padding:28px var(--rail) 56px; }
+
+    /* ===== 遊べるお寺プロジェクトとは：左に文・右に紹介画像（2026-10-24） ===== */
+    .about-top{ display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center; }
+    .about-top .lead{ margin-bottom:0; }
+    .about-top-media img{ width:100%; height:auto; display:block; border-radius:12px; border:1px solid #eee; }
+    @media(max-width:800px){ .about-top{ grid-template-columns:1fr; gap:14px; } }
     h2{ margin:.2em 0 .5em; font-size:clamp(20px,2.8vw,26px); }
     .lead{ margin:0 0 1rem; opacity:.9; }
 
@@ -235,21 +241,24 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
       <noscript><style>#hero-img{display:none}</style><img class="hero-img" src="/images/top/hero1.jpg" alt="遊べるお寺プロジェクト｜遊びでつながり、豊かに学ぶ"></noscript>
     </section>
 
-    <!-- ✅ プロジェクトの紹介画像（もとのトップ画像）を、季節の画像の下に1枚（2026-10-22） -->
-    <section class="hero" aria-label="遊べるお寺プロジェクトの紹介">
-      <img class="hero-img" src="/images/top/hero1.jpg"
-           alt="遊べるお寺プロジェクト〜遊びでつながり、豊かに学ぶ〜 楽しい、面白い。そんな遊びを入口に、人と地域の関係を育てています。代表：こうせん　住職｜社会福祉士｜保育士"
-           width="1920" height="1080" loading="lazy" decoding="async">
-    </section>
-
     <main>
-      <section>
-        <h2>遊べるお寺プロジェクトとは</h2>
-        <p class="lead">
-          「楽しい」、「面白い」、「ワクワクする」、そんな気持ちを土台として、遊びや対話を通じてつながっていく——そんな自由で開かれた雰囲気を大切にしています。<br><br>
-          現代社会では、地域や世代を超えたつながりが希薄になり、自分の属する団体や興味関心のある小さなコミュニティの中だけで暮らすことが当たり前になりつつあります。<br><br>
-          そのような時代において、価値観の異なる他者と自然に出会い、交わることができる「場」が作れたらと思い活動しています。
-        </p>
+      <!-- ✅ 遊べるお寺プロジェクトとは：左に文・右に紹介画像（もとのトップ画像 hero1.jpg）
+           10/22に季節の画像の下へ横いっぱいで足した紹介画像を、半分ほどの大きさにして右へ移した（2026-10-24）。
+           スマホでは、文の下に画像 -->
+      <section class="about-top">
+        <div class="about-top-copy">
+          <h2>遊べるお寺プロジェクトとは</h2>
+          <p class="lead">
+            「楽しい」、「面白い」、「ワクワクする」、そんな気持ちを土台として、遊びや対話を通じてつながっていく——そんな自由で開かれた雰囲気を大切にしています。<br><br>
+            現代社会では、地域や世代を超えたつながりが希薄になり、自分の属する団体や興味関心のある小さなコミュニティの中だけで暮らすことが当たり前になりつつあります。<br><br>
+            そのような時代において、価値観の異なる他者と自然に出会い、交わることができる「場」が作れたらと思い活動しています。
+          </p>
+        </div>
+        <div class="about-top-media">
+          <img src="/images/top/hero1.jpg"
+               alt="遊べるお寺プロジェクト〜遊びでつながり、豊かに学ぶ〜 楽しい、面白い。そんな遊びを入口に、人と地域の関係を育てています。代表：こうせん　住職｜社会福祉士｜保育士"
+               width="1920" height="1080" loading="lazy" decoding="async">
+        </div>
       </section>
 
       <!-- ✅ イベント・講座への入口（2026-09-28。noteの最新3件と入れ替え） -->
