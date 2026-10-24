@@ -476,6 +476,15 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
 @media (max-width:800px){ .past-courses{ grid-template-columns:1fr; } }
 @media (max-width:420px){ .past-course{ grid-template-columns:96px 1fr; gap:10px; padding:12px; } }
 </style>
+<style>
+/* ===== 受講した方の声（2026-10-24・works のトップから移した） ===== */
+.voices{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin:0; }
+@media (max-width:860px){ .voices{ grid-template-columns:1fr; } }
+.voice{ margin:0; border:1px solid #dfe6ee; border-radius:14px; padding:16px 16px 12px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.05); display:flex; flex-direction:column; justify-content:space-between; gap:10px; }
+.voice blockquote{ margin:0; font-weight:700; line-height:1.8; }
+.voice blockquote::before{ content:"“"; color:#36b37e; font-size:28px; line-height:0; vertical-align:-.35em; margin-right:2px; }
+.voice figcaption{ font-size:13px; color:#5d6673; }
+</style>
 </head>
 <body>
   <div class="container">
@@ -700,6 +709,15 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
 
         </div>
 
+      </section>
+
+      <section class="event-list" id="voices">
+        <h2 class="event-section-title">受講した方の声</h2>
+        <div class="voices">
+          <figure class="voice"><blockquote>初めてAIでチラシを作る事ができて、本当に感動しました！また機会があれば是非参加したいです！</blockquote><figcaption>チラシ作り講座（2026年7月）受講者アンケートより</figcaption></figure>
+          <figure class="voice"><blockquote>プロンプトは自身で考えるものだと思っていたので、プロンプトをAIに作成してもらうという事を知れたのが収穫でした。</blockquote><figcaption>チラシ作り講座 ステップアップ編（2026年9月）受講者アンケートより</figcaption></figure>
+          <figure class="voice"><blockquote>AIを音声で使いこなすことが、意外とスムーズにできたのが嬉しかったです。</blockquote><figcaption>はじめてのAIセミナー（2026年9月）受講者アンケートより</figcaption></figure>
+        </div>
       </section>
 
       <div class="past-link-bottom">
