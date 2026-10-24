@@ -1,19 +1,427 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script>/* 古い住所（github.io）で開かれたら、新しい住所の同じページへ移す（2026年10月24日、Cloudflare Pagesへ引っ越し） */if(/\.github\.io$/.test(location.hostname)){location.replace("https://asoberu-otera.pages.dev"+location.pathname+location.search+location.hash);}</script>
-  <title>ご依頼のページは移りました｜遊べるお寺プロジェクト</title>
-  <meta name="robots" content="noindex">
-  <link rel="canonical" href="https://asoberu-otera-works.pages.dev/">
-  <meta http-equiv="refresh" content="0; url=https://asoberu-otera-works.pages.dev/">
-  <!-- 2026-09-30：ご依頼のページは works に移った。2026-10-01：works を Cloudflare Pages（https://asoberu-otera-works.pages.dev/）へ移した。
-       前にこのアドレスを案内した名刺・チラシから来た人を、自動で移す。元の中身はgitの履歴にある。 -->
-  <style>body{font-family:sans-serif;padding:40px 20px;line-height:1.8;color:#1f2a30}a{color:#2f6f5e}</style>
+  <link rel="canonical" href="https://asoberu-otera.pages.dev/request" />
+  <title>ご依頼（団体・お店の方へ） | 遊べるお寺プロジェクト</title>
+  <meta name="description" content="地域の「人が集まる場」を、ひらいて、続く形にします。出張（健康麻雀・座禅・子どもの遊び）、研修・講座・講演、相談にのる、公式LINE・ホームページ制作。料金とご依頼の流れ。" />
+  <style>
+    :root{
+      --sky:#22a7ff;   /* 青の下線 */
+      --sand:#f7ce52;  /* 両脇の黄 */
+      --ink:#2b2b2b;
+      --paper:#fff;
+      --maxw:1100px;
+      --rail:16px;
+    }
+    @media (min-width:900px){ :root{ --rail:24px; } }
+
+    /* ベース（トップ/イベントと同じ） */
+    html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+    body{ background:var(--sand); }
+    .container{ max-width:var(--maxw); margin:0 auto; background:var(--paper); min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
+
+    header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
+    .visually-hidden{ position:absolute; left:-9999px; }
+
+    /* ナビ（共通スタイル） */
+    nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
+    nav::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:3px; background:var(--sky); }
+    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail); display:flex; gap:0; justify-content:center; overflow:auto; }
+    nav a{
+      color:#333; text-decoration:none;
+      padding:18px clamp(14px,2.6vw,28px);
+      font-weight:700; font-size:clamp(18px,2.2vw,22px);
+      white-space:nowrap;
+    }
+    nav a + a{ border-left:2px solid #ddd; }
+    nav a:hover{ background:#fafafa; }
+
+    /* 本文レイアウト */
+    main{ padding:28px var(--rail) 56px; }
+    h2{ margin:.2em 0 .6em; font-size:clamp(20px,2.8vw,26px); }
+    p{ margin:.6em 0; }
+
+    /* ブロック */
+    .wrap{ max-width:var(--maxw); margin:0 auto; }
+    .block{ border:1px solid #dfe6ee; border-radius:14px; padding:18px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.05); }
+
+    /* バッジ */
+    .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 8px; }
+    .badge{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; background:#ffeaa8; color:#523e00; }
+
+    /* 画像 */
+    .media-1{ margin:10px 0; }
+    .media-1 img, .media-2 img{ width:100%; height:auto; display:block; border-radius:12px; background:#f4f7ff; border:1px solid #e9eef3; }
+    .media-1.small{ max-width:520px; }
+    .media-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:10px 0; }
+    figure{ margin:0; }
+    figcaption{ font-size:13px; color:#5d6673; margin-top:6px; background:#fcfdff; padding:6px 8px; border-radius:8px; border:1px dashed #e6ecf7; }
+    @media (max-width:760px){ .media-2{ grid-template-columns:1fr; } .media-1.small{ max-width:100%; } }
+
+    /* ボタン */
+    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .btn{ display:inline-block; text-decoration:none; font-weight:700; padding:.7rem 1.1rem; border-radius:999px; }
+    .btn.primary{ background:#36b37e; color:#fff; }
+    .btn.ghost{ background:#fff; color:#222; border:1px solid #ddd; }
+    .btn.dark{ background:#222; color:#fff; }
+
+    /* フッター */
+    footer{ background:#111; color:#ddd; padding:16px var(--rail); text-align:center; font-size:.9rem; }
+    footer a{ color:#fff; }
+  
+    /* ===== ナビ：項目が7つになり、中央寄せのままだと先頭が画面外へ切れて
+       スクロールでも戻れなくなるため修正（2026-08-24） ===== */
+    nav .wrap{ justify-content:flex-start; }
+    nav .wrap > :first-child{ margin-left:auto; }
+    nav .wrap > :last-child{ margin-right:auto; }
+    /* 7項目だと元の文字サイズ・余白では枠（1100px）に収まらず右が切れるため詰める */
+    nav a{ padding:18px clamp(10px,1.6vw,20px); font-size:clamp(16px,1.6vw,20px); }
+    @media (max-width:860px){
+      /* 狭い画面では横スクロールにせず、折り返して7項目すべてを見せる。
+         隠れた項目はスクロールできることに気づかれないため。 */
+      nav .wrap{ flex-wrap:wrap; justify-content:center; overflow:visible; }
+      nav .wrap > :first-child{ margin-left:0; }
+      nav .wrap > :last-child{ margin-right:0; }
+      nav a{ padding:12px 14px; font-size:16px; }
+      nav a + a{ border-left:0; }
+    }
+    @media (max-width:420px){
+      nav a{ padding:9px 8px; font-size:14px; }
+    }
+</style>
+<style>
+/* ===== メニューを5つ＋小さな2段目にした（2026-10-21） ===== */
+nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
+.subnav{ background:#fffdf3; border-bottom:1px solid #f0e3b0; }
+.subnav .subwrap{ max-width:1100px; margin:0 auto; padding:8px 12px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.subnav a{ text-decoration:none; color:#333; font-weight:700; font-size:15px; line-height:1.4; padding:6px 14px; border-radius:999px; border:1px solid #e6d9a6; background:#fff; white-space:nowrap; }
+.subnav a[aria-current="page"]{ background:#f7ce52; border-color:#f7ce52; }
+@media (max-width:420px){ .subnav a{ font-size:14px; padding:5px 11px; } }
+</style>
+<style>
+.gal-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+@media (max-width:900px){ .gal-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:560px){ .gal-grid{ grid-template-columns:1fr; } }
+.gal{ display:flex; flex-direction:column; border:1px solid #dfe6ee; border-radius:14px; overflow:hidden; background:#fff; color:inherit; text-decoration:none; box-shadow:0 6px 18px rgba(0,0,0,.05); }
+a.gal:hover{ box-shadow:0 8px 22px rgba(0,0,0,.12); }
+.gal-img{ display:block; aspect-ratio:4/3; background:#f4f7ff; overflow:hidden; }
+.gal-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+.gal-img.phone img, .gal-img.paper img{ object-fit:contain; background:#f4f1e8; }
+.gal-img.icon{ display:flex; align-items:center; justify-content:center; color:#06C755; background:#f3fbf5; }
+.gal-body{ padding:12px 14px 14px; display:flex; flex-direction:column; gap:4px; }
+.gal-body .cat{ font-size:13px; font-weight:700; color:#0b6db3; }
+.gal-body .date{ font-size:13px; color:#5d6673; }
+.gal-body b{ font-size:17px; line-height:1.5; }
+.gal-body small{ font-size:14px; color:#4a5560; line-height:1.7; }
+.gal-body .go{ font-size:13px; font-weight:700; color:#2f8f5b; margin-top:4px; }
+
+section.wrap + section.wrap{ margin-top:22px; }
+.hero-catch{ font-size:clamp(22px,3.4vw,32px); font-weight:800; line-height:1.5; margin:.2em 0 .3em; }
+.nb{ display:inline-block; }
+.lead{ font-size:clamp(16px,2vw,19px); font-weight:700; }
+.worries{ list-style:none; padding:0; margin:.4em 0; display:grid; gap:8px; }
+.worries li{ background:#fff7e0; border:1px solid #f0e3b0; border-radius:10px; padding:9px 12px 9px 2.2em; position:relative; font-weight:700; }
+.worries li::before{ content:"✓"; position:absolute; left:.8em; color:#c98a00; }
+.svc-grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:10px; }
+@media (max-width:980px){ .svc-grid{ grid-template-columns:repeat(3,1fr); } }
+@media (max-width:520px){ .svc-grid{ grid-template-columns:1fr 1fr; } }
+.svc{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:4px; padding:14px 8px; border:1px solid #dfe6ee; border-radius:14px; background:#fff; color:inherit; text-decoration:none; }
+.svc:hover{ background:#f6fbf7; }
+.svc-icon{ color:#2f8f5b; }
+.svc b{ font-size:15px; line-height:1.4; }
+.svc small{ font-size:12.5px; color:#5d6673; line-height:1.5; }
+.svc-block h3{ margin:1.1em 0 .3em; font-size:18px; }
+.svc-block h4{ margin:1em 0 .3em; font-size:16px; }
+.svc-block > h2, .svc-head{ margin:0 0 .5em; font-size:clamp(19px,2.6vw,23px); }
+.photo-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:10px 0; }
+.photo-row.one{ grid-template-columns:1fr; max-width:520px; }
+.photo-row figure{ margin:0; }
+.photo-row img{ width:100%; aspect-ratio:4/3; object-fit:cover; display:block; border-radius:10px; border:1px solid #e9eef3; }
+.photo-row figcaption{ font-size:13px; color:#5d6673; text-align:center; margin-top:4px; background:none; border:0; padding:0; }
+@media (max-width:560px){ .photo-row{ grid-template-columns:1fr 1fr; } .photo-row figure:last-child:nth-child(3){ grid-column:1 / -1; } }
+.tag-list{ display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:.4em 0; list-style:none; }
+.tag-list li{ background:#f6fbf7; border:1px solid #d9eedf; border-radius:999px; padding:4px 12px; font-size:14px; font-weight:700; }
+.note-box{ background:#f7f9fc; border:1px solid #e1e8f0; border-radius:10px; padding:10px 14px; margin:.8em 0; font-size:15px; }
+.price{ width:100%; border-collapse:collapse; margin:.6em 0; }
+.price th, .price td{ border-bottom:1px solid #e6ecf2; padding:10px 8px; text-align:left; vertical-align:top; }
+.price th{ width:38%; font-weight:700; color:#333; }
+.price td b{ font-size:18px; }
+.price .p-sub{ display:block; font-size:13px; color:#5d6673; }
+.price-notes{ font-size:14.5px; color:#3f4a55; padding-left:1.3em; }
+.price-notes li{ margin:.3em 0; }
+.cards3{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+@media (max-width:760px){ .cards3{ grid-template-columns:1fr; } }
+.cards3 > div{ border:1px solid #e1e8f0; border-radius:12px; padding:12px 14px; background:#fbfdff; }
+.cards3 .num{ display:inline-block; font-weight:800; color:#2f8f5b; }
+.cards3 h4{ margin:.2em 0 .3em; font-size:16px; }
+.cards3 p{ margin:0; font-size:15px; }
+.flow{ list-style:none; padding:0; margin:.4em 0; display:grid; gap:10px; counter-reset:f; }
+.flow li{ counter-increment:f; border:1px solid #e1e8f0; border-radius:12px; padding:10px 14px 10px 3.2em; position:relative; background:#fff; }
+.flow li::before{ content:counter(f); position:absolute; left:.9em; top:.7em; width:1.7em; height:1.7em; line-height:1.7em; text-align:center; border-radius:50%; background:#36b37e; color:#fff; font-weight:800; }
+.flow h4{ margin:0; font-size:16px; }
+.flow p{ margin:.1em 0 0; font-size:15px; }
+.faq details{ border:1px solid #e1e8f0; border-radius:12px; padding:10px 14px; background:#fff; margin:8px 0; }
+.faq summary{ font-weight:700; cursor:pointer; }
+.faq details p{ margin:.5em 0 0; }
+.person-mini{ display:grid; grid-template-columns:200px 1fr; gap:16px; align-items:start; }
+.person-mini img{ width:100%; height:auto; display:block; border-radius:10px; border:1px solid #e9eef3; }
+.person-mini h3{ margin:0 0 .1em; }
+.person-mini .sub{ color:#5d6673; margin:0 0 .4em; font-size:15px; }
+@media (max-width:560px){ .person-mini{ grid-template-columns:1fr; } .person-mini img{ max-width:320px; } }
+.more{ text-align:right; margin:.6em 0 0; }
+.more a{ font-weight:700; }
+#toiawase .block{ background:#f6fbf7; border-color:#cfe8d8; }
+</style>
 </head>
 <body>
-  <p>ご依頼のページは、新しいページに移りました。</p>
-  <p><a href="https://asoberu-otera-works.pages.dev/">遊べるお寺プロジェクト｜ご依頼・お問い合わせ はこちら</a></p>
+  <div class="container">
+    <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
+
+<nav aria-label="主なナビゲーション">
+  <div class="wrap">
+    <a href="/">ホーム</a>
+    <a href="/events/">参加する</a>
+    <a href="/dougu/">地域の道具</a>
+    <a href="/consult/" aria-current="page">相談・依頼</a>
+    <a href="/project/">私たちについて</a>
+  </div>
+</nav>
+<div class="subnav"><div class="subwrap">
+  <a href="/consult/">相談</a>
+  <a href="/request.html" aria-current="page">ご依頼</a>
+  <a href="/contact/">お問い合わせ</a>
+</div></div>
+
+    <main>
+      <section class="wrap">
+        <h2>ご依頼（団体・お店の方へ）</h2>
+        <div class="block">
+          <p class="hero-catch"><span class="nb">地域の「人が集まる場」を、</span><span class="nb">ひらいて、</span><span class="nb">続く形にします</span></p>
+          <p class="lead">健康麻雀・座禅・ボードゲームで場をひらく、滋賀・高島のお坊さん</p>
+          <p>公民館、サロン、学童、施設へ出張します。一回の催しで終わらせず、担い手の方が一人でも回せる形まで、一緒に考えます。</p>
+          <div class="cta">
+            <a class="btn primary" href="#toiawase">問い合わせる</a>
+            <a class="btn ghost" href="#service">サービスを見る</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <h2>こんなとき、お問い合わせください</h2>
+        <div class="block">
+          <ul class="worries">
+            <li>講座や行事を開いても、人が集まらない</li>
+            <li>毎年同じ企画で、ネタが尽きてきた</li>
+            <li>担い手がいなくて、続かない</li>
+            <li>講座が終わると、集まりも終わってしまう</li>
+            <li>子どもが楽しめる遊びの作り方が分からない</li>
+          </ul>
+          <p>出張して場をひらくところから、自分たちで続けられる形にするところまで、お手伝いします。</p>
+        </div>
+      </section>
+
+      <section class="wrap" id="service">
+        <h2>サービス</h2>
+        <div class="block">
+          <p>中心は「場をひらく」と「続く形にする」の2つです。公式LINE・ホームページの制作もお受けしています。</p>
+          <div class="svc-grid"><a class="svc" href="#hiraku"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="13" y="6" width="22" height="34" rx="4"/><circle cx="24" cy="15" r="3"/><circle cx="24" cy="23" r="3"/><circle cx="24" cy="31" r="3"/></svg></span><b>健康麻雀</b><small>会・大会・初めての方の講座</small></a><a class="svc" href="#hiraku"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="11" r="5"/><path d="M24 17v10"/><path d="M14 38c2-7 6-11 10-11s8 4 10 11z"/><path d="M8 40h32"/></svg></span><b>座禅・写経</b><small>住職が道具を持って伺います</small></a><a class="svc" href="#hiraku"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="32" height="32" rx="7"/><circle cx="16" cy="16" r="2.2" fill="currentColor"/><circle cx="24" cy="24" r="2.2" fill="currentColor"/><circle cx="32" cy="32" r="2.2" fill="currentColor"/></svg></span><b>子どもの遊び</b><small>ボードゲーム・謎解き・学童</small></a><a class="svc" href="#tsuzuku"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="7" width="36" height="24" rx="2"/><path d="M24 31v9"/><path d="M16 41h16"/><path d="M12 15h14M12 21h20"/></svg></span><b>研修・講座</b><small>続ける話、告知の道具の使い方</small></a><a class="svc" href="#soudan"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10h24v15H16l-6 5v-5H6z"/><path d="M30 18h12v14h-3v5l-6-5H22v-4"/></svg></span><b>相談</b><small>始める前から、一緒に考えます</small></a><a class="svc" href="#tsukuru"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="3"/><path d="M5 17h38"/><circle cx="10" cy="13" r="1" fill="currentColor"/><circle cx="14" cy="13" r="1" fill="currentColor"/><path d="M12 25h14M12 31h22"/></svg></span><b>公式LINE・HP制作</b><small>会って、その場で作ります</small></a></div>
+        </div>
+      </section>
+
+      <section class="wrap" id="hiraku">
+        <div class="block svc-block">
+          <h2>01　出張して、場をひらく</h2>
+          <div class="photo-row">
+            <figure><img src="/images/request/mahjong-play.jpg" alt="健康麻雀の会" loading="lazy"><figcaption>健康麻雀</figcaption></figure>
+            <figure><img src="/images/request/zazen-kids.jpg" alt="子どもたちへの座禅" loading="lazy"><figcaption>座禅</figcaption></figure>
+            <figure><img src="/images/request/kids-boardgame.jpg" alt="子どものボードゲーム" loading="lazy"><figcaption>子どもの遊び</figcaption></figure>
+          </div>
+          <h3>健康麻雀</h3>
+          <p>会を開く／大会の企画・運営（組み合わせ、点数表、進行まで）／初めての方への講座。卓と牌を持って伺うので、会場に道具がなくても開けます。麻雀を知らない方も遊べる「4枚麻雀」の体験もできます。</p>
+          <h3>座禅・写経・仏教カフェ</h3>
+          <p>住職が伺います。座蒲や鐘など、お寺の道具を持って行きます。お寺に来ていただく形もできます。</p>
+          <h3>子どもの遊び</h3>
+          <p>ボードゲーム会、謎解き・脱出ゲーム、学童・児童館への出張あそび。学年の幅が広くても、組を分けてから合流させる形で、一緒に遊べるように組みます。</p>
+          <h4>向いている依頼の例</h4>
+          <ul class="tag-list"><li>公民館の講座</li><li>高齢者サロン・地域の集まり</li><li>学童・子ども会・子ども食堂の行事</li><li>お祭り・フェスタのブース</li><li>市や団体の交流イベント</li></ul>
+          <h4>料金</h4>
+          <p>内容・準備の量・人数・移動の距離で変わります。交通費・印刷物・材料費が要るときは、事前にお伝えします。謎解きを新しく作る場合は、別にお見積もりをお出しします。</p>
+          <div class="note-box">料金は、内容をうかがってからお伝えします。料金の目安は、準備ができしだい、このページに載せます。</div>
+        </div>
+      </section>
+
+      <section class="wrap" id="tsuzuku">
+        <div class="block svc-block">
+          <h2>02　続く形にする（研修・講座・講演）</h2>
+          <div class="photo-row one"><figure><img src="/images/request/seminar-lecture.jpg" alt="講座の様子" loading="lazy"><figcaption>講座の様子</figcaption></figure></div>
+          <p>担い手の方が、自分たちで続けられるようにするための研修・講座です。</p>
+          <ul>
+            <li><b>地域活動のはじめ方</b>：大きく始めず、一人でも回せる大きさで始めて、続ける話</li>
+            <li><b>チラシ作り</b>：ChatGPTとCanvaで、告知の紙を自分で作れるようにする回</li>
+            <li><b>公式LINEの使い方</b>：お知らせを届ける道具としての、基本の使い方</li>
+          </ul>
+          <p>内容・時間・対象に合わせて組み立てます。パソコンやスマホに自信がない方に向けた回もできます。1回2時間で組むことが多いです。</p>
+          <h4>向いている依頼の例</h4>
+          <ul class="tag-list"><li>担い手・ボランティア向けの研修</li><li>市民活動団体・サロンの世話役の勉強会</li><li>事業者向けの告知の道具の講座</li><li>地域づくりの講演</li></ul>
+          <h4>料金</h4>
+          <p>行政・学校・団体で講師料の規定がある場合は、その規定に合わせて内容を調整します。</p>
+          <div class="note-box">料金は、内容をうかがってからお伝えします。料金の目安は、準備ができしだい、このページに載せます。</div>
+        </div>
+      </section>
+
+      <section class="wrap" id="soudan">
+        <div class="block svc-block">
+          <h2>03　相談にのる</h2>
+          <p>これから始めたい。人が集まらない。続けるのがしんどい。そうした段階のご相談をお受けします。場所（箱）・関わる人（ひと）・道具や連絡手段（もの）の順に、何が足りていて、何が止まっているかを一緒に整理します。</p>
+          <h4>向いている依頼の例</h4>
+          <ul class="tag-list"><li>新しい集まりを始めたい団体・自治会</li><li>行事を少ない人数で回せる形にしたい</li><li>チラシ・公式LINE・ホームページの使い方が分からない</li></ul>
+          <p>団体の方は、お会いして、またはオンラインで。個人の方は、<a href="/consult/#online">相談のページの個別相談（オンライン1時間3,000円）</a>からお申し込みください。</p>
+          <h4>料金</h4>
+          <table class="price">
+            <tr><th>オンライン</th><td><b>1時間 3,000円</b></td></tr>
+            <tr><th>こちらから伺う場合</th><td><b>1時間 5,000円</b><span class="p-sub">高島市内</span></td></tr>
+          </table>
+          <ul class="price-notes">
+            <li>1時間をこえる場合は、1時間ごとに同じ料金です。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="wrap" id="tsukuru">
+        <div class="block svc-block">
+          <h2>04　つくる（公式LINE・ホームページ）</h2>
+          <p class="lead"><span class="nb">公式LINE・ホームページ、</span><span class="nb">会って、</span><span class="nb">その場で作ります</span></p>
+          <p>高島のお店・教室・小さな事業者のための、公式LINEとホームページづくりです。</p>
+          <h4>こんなこと、ありませんか</h4>
+          <ul class="worries">
+            <li>公式LINE、作りたいけど時間がない</li>
+            <li>ホームページ、頼むと高そう</li>
+            <li>作ったあと、自分で直せるか不安</li>
+          </ul>
+          <h4>3つの特長</h4>
+          <div class="cards3">
+            <div><span class="num">01</span><h4>その日に、できあがる</h4><p>お店に伺い、お話を聞きながら、その場で作ってお渡しします（公式LINEは目安2時間。ホームページは1〜2回伺います）。</p></div>
+            <div><span class="num">02</span><h4>自分で直せる形で渡す</h4><p>データごとお渡しし、直し方も一度いっしょにやります。あとから誰かに頼まなくてすみます。</p></div>
+            <div><span class="num">03</span><h4>「まだ決めていない」でも問い合わせできる</h4><p>作るかどうか迷っている段階でも大丈夫です。お問い合わせは無料です。</p></div>
+          </div>
+          <h4>作れるもの</h4>
+          <ul>
+            <li><b>公式LINE</b>：開設から、リッチメニュー（トーク画面の下に出るボタン）まで</li>
+            <li><b>ホームページ</b>：1ページのホームページ</li>
+          </ul>
+          <h4>作り方</h4>
+          <ul>
+            <li>会って、聞いて、その場で作ります</li>
+            <li>お店・団体のアカウントで作ります。こちらの手を離れても、そちらのものとして残ります</li>
+            <li>画像は、編集できるデータごとお渡しします</li>
+            <li>直し方を、その場で一度一緒にやります</li>
+          </ul>
+          <div class="note-box">2026年9月、地域のお店の公式LINEを、開設からメニューまで、その日のうちに作りました。<a href="https://note.com/loyal_dill1011/n/n7ce9939c689e" target="_blank" rel="noopener">そのときの様子（note）</a></div>
+          <h4>流れ</h4>
+          <ol class="flow">
+            <li><h4>ご連絡</h4><p>公式LINE・InstagramのDM・メールから。</p></li>
+            <li><h4>日程を決める</h4><p>作りたいものと、お店に伺う日を決めます。</p></li>
+            <li><h4>お店でお会いする</h4><p>お話を聞きながら、中身を決めます。</p></li>
+            <li><h4>その場で作る</h4><p>目の前で作っていきます。</p></li>
+            <li><h4>直し方を覚えて完成</h4><p>一度いっしょに直してみて、お渡しします。</p></li>
+          </ol>
+          <h4>当日までにご用意いただくもの</h4>
+          <p>ここがそろっていないと、当日は相談だけで終わることがあります。</p>
+          <ul>
+            <li>使うメールアドレスと、そのパスワードが分かる状態</li>
+            <li>SMS（ショートメール）が受け取れる携帯電話</li>
+            <li>お店のロゴ・写真（あれば）</li>
+            <li>メニュー・値段・営業時間の一覧（紙でもメモでも）</li>
+            <li>当日、一緒に見られるパソコンかタブレット（なければこちらで用意します）</li>
+          </ul>
+          <h4>料金</h4>
+          <table class="price">
+            <tr><th>公式LINE</th><td><b>30,000円</b><span class="p-sub">開設・基本設定（2026年12月までのお申し込み）</span></td></tr>
+            <tr><th>＋リッチメニュー</th><td><b>5,000円</b><span class="p-sub">トーク画面の下のボタン</span></td></tr>
+            <tr><th>＋アイコン</th><td><b>5,000円</b></td></tr>
+            <tr><th>ホームページ</th><td><b>80,000円から</b><span class="p-sub">1ページ</span></td></tr>
+          </table>
+          <ul class="price-notes">
+            <li>作る日にお店で一緒に作る時間（2時間まで）は、料金に含みます。2時間を超えた分は、1時間3,000円です。</li>
+            <li>作るかどうかを決める前の相談で伺う場合は、1回5,000円です。</li>
+            <li>ホームページはCanvaで作ります。あとからご自身で直せます。公開は無料のアドレス（〇〇.my.canva.site）です。お店独自のアドレスにする場合は、Canvaの有料プランとドメイン代（年1,000〜3,000円ほど）が、お店側でかかります。</li>
+            <li>ホームページの直しは1回まで。文章と写真は、お店側でご用意ください。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <h2>これまでの場</h2>
+        <div class="gal-grid"><a class="gal" href="https://note.com/loyal_dill1011/n/n5e70d0323a00" target="_blank" rel="noopener"><span class="gal-img"><img src="/images/request/mahjong-play.jpg" alt="公民館の健康麻雀講座（全5回）" loading="lazy"></span><span class="gal-body"><span class="cat">■ 健康麻雀</span><span class="date">2026年7〜9月</span><b>公民館の健康麻雀講座（全5回）</b><small>市の広報での募集に、定員8名のところ40名以上の申し込み。12名・3卓に広げて開き、いまは月2回の講座に。</small><span class="go">活動報告を読む →</span></span></a><div class="gal"><span class="gal-img"><img src="/images/results/mahjong-kai.jpg" alt="月1回の健康麻雀会（高島市今津町）" loading="lazy"></span><span class="gal-body"><span class="cat">■ 健康麻雀</span><span class="date">2026年9月</span><b>月1回の健康麻雀会（高島市今津町）</b><small>数人から始めて、1回で24人。会場に置ける5卓（20人分）を超えました。</small></span></div><a class="gal" href="https://note.com/loyal_dill1011/n/nba5500e91aa4" target="_blank" rel="noopener"><span class="gal-img"><img src="/images/request/zazen-kids.jpg" alt="学童での座禅" loading="lazy"></span><span class="gal-body"><span class="cat">■ 座禅</span><span class="date">2025年8月</span><b>学童での座禅</b><small>約90人の子どもを、20人弱ずつ5つの組に分けて。</small><span class="go">活動報告を読む →</span></span></a><a class="gal" href="https://note.com/loyal_dill1011/n/n4468e913ce5d" target="_blank" rel="noopener"><span class="gal-img"><img src="/images/results/nazotoki-kominkan.jpg" alt="公民館の、子ども向け謎解き脱出ゲーム" loading="lazy"></span><span class="gal-body"><span class="cat">■ 謎解き</span><span class="date">2026年2月</span><b>公民館の、子ども向け謎解き脱出ゲーム</b><small>市と共催。定員30名に29名。中学生のボランティア8名と一緒に運営しました。</small><span class="go">活動報告を読む →</span></span></a></div>
+        <p class="more"><a href="/results/">実績をもっと見る →</a></p>
+      </section>
+
+      <section class="wrap">
+        <h2>やっている人</h2>
+        <div class="block person-mini">
+          <img src="/images/project/zazen3.jpg" alt="子どもたちに座禅を教える久我光聖" loading="lazy">
+          <div>
+            <h3>こーせん（久我 光聖）</h3>
+            <p class="sub">住職・社会福祉士・保育士。滋賀県高島市。</p>
+            <p>永平寺で4年半の修行。児童養護施設と、社会福祉協議会で働きました。</p>
+            <p>2025年4月に「遊べるお寺プロジェクト」を始め、月1回の健康麻雀会から、ボードゲーム会、写経会、講座へと広げてきました。</p>
+            <p class="more" style="text-align:left;"><a href="/about/">自己紹介を見る →</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <h2>ご依頼の流れ</h2>
+        <div class="block">
+          <ol class="flow">
+            <li><h4>ご連絡</h4><p>公式LINEかフォームから。「こういうことはできますか」の段階で大丈夫です。</p></li>
+            <li><h4>うかがう</h4><p>日時・場所・人数・目的をうかがい、できる形と費用をお伝えします。</p></li>
+            <li><h4>当日</h4><p>道具を持って伺い、進行まで引き受けます。公式LINE・ホームページは、会って、聞いて、その場で作ります。</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <h2>よくある質問</h2>
+        <div class="faq">
+          <details><summary>まだ内容が決まっていなくても、問い合わせできますか？</summary><p>できます。目的、対象の方、会場、時期をうかがって、お受けできる形と費用をお伝えします。お問い合わせは無料です。何をどうすればいいかを一緒に考える時間は、<a href="#soudan">「相談にのる」</a>（オンライン1時間3,000円）としてお受けしています。</p></details>
+          <details><summary>予算が限られています。</summary><p>時間を短くする、今ある内容を使う、準備物をそちらでご用意いただくなど、条件に合わせて組み直します。</p></details>
+          <details><summary>会場で用意するものはありますか？</summary><p>机・椅子・電源・駐車場は、主催者側でご用意いただく形が基本です。麻雀卓など、運べるものはこちらで持って行きます。必要なものは事前にお伝えします。</p></details>
+        </div>
+      </section>
+
+      <section class="wrap" id="toiawase">
+        <h2>お問い合わせはこちらから</h2>
+        <div class="block">
+          <p>日にちが決まっていなくても大丈夫です。候補の日、場所、人数、ご予算（決まっていれば）を教えていただけると、話が早く進みます。</p>
+          <h4 style="margin:.6em 0 .2em;">教えていただけると早いこと</h4>
+          <ul>
+            <li>開催の希望日（候補で大丈夫です）</li>
+            <li>場所（市町名と会場名）</li>
+            <li>参加予定の人数と年齢層</li>
+            <li>ご予算（決まっていれば）</li>
+          </ul>
+          <div class="cta">
+            <a class="btn primary" href="https://lin.ee/ZITRIHg" target="_blank" rel="noopener">公式LINEで問い合わせる</a>
+            <a class="btn ghost" href="/contact/">お問い合わせフォーム</a>
+          </div>
+          <p>Instagramの<a href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener">DM</a>、メール（<a href="mailto:hoo263930@gmail.com">hoo263930@gmail.com</a>）でも受け付けています。</p>
+          <p class="note-box">個人の方の個別相談は、<a href="/consult/#online">相談のページ</a>からお申し込みください。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:0 0 10px;">
+        <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:#06C755;color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">公式LINE</a>
+        <a href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:linear-gradient(100deg,#E8853C 0%,#D14C7A 55%,#9B4BC4 100%);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">Instagram</a>
+        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:#41C9B4;color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">活動報告（note）</a>
+      </div>
+      © 2025 遊べるお寺プロジェクト
+    </footer>
+  </div>
 </body>
 </html>
