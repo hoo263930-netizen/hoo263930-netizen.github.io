@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>/* 古い住所（github.io）で開かれたら、新しい住所の同じページへ移す（2026年10月24日、Cloudflare Pagesへ引っ越し） */if(/\.github\.io$/.test(location.hostname)){location.replace("https://asoberu-otera.pages.dev"+location.pathname+location.search+location.hash);}</script>
+<link rel="canonical" href="https://asoberu-otera.pages.dev/dougu/omikuji/">
+<meta name="description" content="おしゃべりおみくじ：筒をタップすると、質問の札が1枚出るおみくじ。はじめて会う人どうしの自己紹介に。登録なし・無料。遊べるお寺プロジェクト">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="おみくじ">
+<meta name="theme-color" content="#1b2440">
+<title>おしゃべりおみくじ 集まれカフェ版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<style>
+/* 一画面のアプリ。藍の夜に、木のおみくじ筒が一つ。引くと和紙の札が縦書きで開く。iPadを机の真ん中に置いて回す前提 */
+:root {
+  --ai: #1b2440;        /* 藍：地 */
+  --ai-2: #253154;      /* 藍：面 */
+  --ai-line: #3a4770;   /* 藍：線 */
+  --mist: #d3d8e6;      /* 地の上の文字 */
+  --mist-dim: #9aa3bd;  /* 控えめな文字 */
+  --wood: #c08d5c;      /* 筒：正面 */
+  --wood-side: #8f6038; /* 筒：側面 */
+  --wood-hi: #dcae7c;   /* 筒：明るい面 */
+  --washi: #f5f0e3;     /* 札の紙 */
+  --sumi: #25211c;      /* 墨 */
+  --shu: #c4412d;       /* 朱 */
+  --font-q: "Klee One", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-ui: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  color-scheme: dark;
+}
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: radial-gradient(120% 80% at 50% 35%, var(--ai-2) 0%, var(--ai) 70%);
+  background-color: var(--ai);
+  color: var(--mist);
+  font-family: var(--font-ui);
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+}
+.app {
+  box-sizing: border-box;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+  padding-inline: max(16px, 3vw);
+  padding-block: 14px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+button { font-family: var(--font-ui); cursor: pointer; }
+button:focus-visible { outline: 3px solid var(--wood-hi); outline-offset: 3px; }
+
+/* 上：名前と残り */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.brand { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; min-width: 0; }
+.brand h1 { margin: 0; font-family: var(--font-q); font-size: clamp(20px, 3vw, 28px); letter-spacing: .08em; color: var(--washi); }
+.brand p { margin: 0; font-size: 13px; color: var(--mist-dim); letter-spacing: .04em; }
+.left { font-size: 14px; color: var(--mist); border: 1px solid var(--ai-line); border-radius: 999px; padding: 6px 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.left b { color: var(--washi); font-size: 18px; }
+
+/* 中：箱えらびと筒 */
+.stage { display: grid; grid-template-rows: auto minmax(0, 1fr); justify-items: center; gap: 12px; min-height: 0; }
+.pools { display: inline-flex; background: var(--ai); border: 1px solid var(--ai-line); border-radius: 999px; padding: 4px; gap: 4px; }
+.pools button { border: 0; background: transparent; color: var(--mist-dim); font-size: 15px; font-weight: 700; padding: 10px 18px; border-radius: 999px; letter-spacing: .04em; }
+.pools button[aria-selected="true"] { background: var(--wood); color: var(--sumi); }
+.pools button small { font-weight: 500; font-size: 12px; margin-left: 6px; opacity: .8; font-variant-numeric: tabular-nums; }
+
+.drawer { display: grid; grid-template-rows: minmax(0, 1fr) auto; justify-items: center; gap: 12px; min-height: 0; width: 100%; height: 100%; }
+.tsutsu { border: 0; background: transparent; padding: 0; height: 100%; max-height: 520px; width: auto; max-width: 70vw; aspect-ratio: 3 / 4.4; position: relative; min-height: 0; }
+.tsutsu svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.tsutsu.shake { animation: shake .75s ease-in-out; }
+@keyframes shake {
+  0%,100% { transform: rotate(0); }
+  15% { transform: rotate(-11deg); } 30% { transform: rotate(9deg); }
+  45% { transform: rotate(-8deg); } 60% { transform: rotate(6deg); }
+  75% { transform: rotate(-3deg); }
+}
+.stick { transition: transform .5s cubic-bezier(.2,.9,.3,1.2); transform: translateY(0); }
+.tsutsu.out .stick { transform: translateY(-58px); }
+.hint { margin: 0; font-size: 16px; color: var(--mist); letter-spacing: .06em; text-align: center; }
+.hint.empty { color: var(--wood-hi); }
+
+/* 下：こーせん用 */
+.foot { display: flex; justify-content: flex-end; align-items: center; gap: 10px; flex-wrap: wrap; }
+.ghost { border: 1px solid var(--ai-line); background: transparent; color: var(--mist-dim); font-size: 13px; padding: 9px 14px; border-radius: 10px; }
+.ghost.last { color: var(--washi); border-color: var(--wood-side); }
+.confirm { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--mist); flex-wrap: wrap; }
+.confirm button { border: 0; border-radius: 10px; padding: 9px 14px; font-size: 13px; font-weight: 700; }
+.confirm .yes { background: var(--shu); color: var(--washi); }
+.confirm .no { background: var(--ai-2); color: var(--mist); }
+
+/* 札 */
+.veil { position: fixed; inset: 0; background: rgba(12, 16, 30, .72); display: grid; place-items: center; padding: 16px; z-index: 5; }
+.fuda {
+  box-sizing: border-box;
+  background: var(--washi);
+  color: var(--sumi);
+  width: min(560px, 92vw);
+  height: min(78vh, 720px);
+  border-radius: 6px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.45);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 18px 22px 18px;
+  position: relative;
+  transform-origin: 50% 0;
+  animation: open .55s cubic-bezier(.2,.8,.2,1);
+}
+.fuda::before { content: ""; position: absolute; inset: 9px; border: 1.5px solid var(--shu); border-radius: 3px; pointer-events: none; opacity: .55; }
+@keyframes open { from { transform: scaleY(.08); opacity: .3; } to { transform: scaleY(1); opacity: 1; } }
+.fuda-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 6px 8px 0; }
+.fuda-head .no { display: flex; align-items: baseline; gap: 12px; }
+.qwrap { min-height: 0; min-width: 0; overflow: hidden; display: grid; place-items: center; padding: 10px 6px; }
+.ban { font-family: var(--font-q); font-size: 22px; color: var(--shu); letter-spacing: .14em; }
+.round { font-size: 12px; color: #7a6a55; letter-spacing: .08em; }
+.q {
+  font-family: var(--font-q);
+  writing-mode: vertical-rl;
+  margin: 0;
+  white-space: nowrap;
+  font-size: 44px;
+  line-height: 1.7;
+  letter-spacing: .1em;
+  color: var(--sumi);
+}
+.q .tcy { text-combine-upright: all; -webkit-text-combine: horizontal; }
+.fuda-foot { display: flex; gap: 10px; padding: 0 6px 4px; }
+.stamp { font-family: var(--font-q); color: var(--shu); border: 2px solid var(--shu); border-radius: 4px; padding: 3px 7px; font-size: 13px; letter-spacing: .1em; line-height: 1.3; transform: rotate(-3deg); white-space: nowrap; }
+.fuda-foot button { flex: 1; min-width: 0; border-radius: 12px; font-size: 17px; font-weight: 700; padding: 14px 10px; letter-spacing: .04em; }
+.next { border: 0; background: var(--sumi); color: var(--washi); }
+.again { border: 1.5px solid var(--sumi); background: transparent; color: var(--sumi); }
+.fuda.saigo .ban { color: var(--sumi); }
+.fuda.saigo::before { opacity: 1; border-width: 2.5px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tsutsu.shake, .fuda { animation: none; }
+  .stick { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <h1>おしゃべりおみくじ</h1>
+      <p>やりたいこと集まれカフェ・10月17日</p>
+    </div>
+    <div class="left" id="left" aria-live="polite">のこり <b id="leftNum">13</b> 本</div>
+  </header>
+
+  <main class="stage">
+    <div class="pools" role="tablist" aria-label="引く箱">
+      <button role="tab" id="pool1" aria-selected="true" data-pool="p1">1周目の筒<small id="c1">13</small></button>
+      <button role="tab" id="pool2" aria-selected="false" data-pool="p2">2周目の筒<small id="c2">6</small></button>
+    </div>
+    <div class="drawer">
+      <button class="tsutsu" id="tsutsu" aria-label="おみくじを引く">
+        <svg viewBox="0 0 300 440" aria-hidden="true">
+          <defs>
+            <linearGradient id="gFront" x1="0" x2="1">
+              <stop offset="0" stop-color="#b9875a"/><stop offset=".5" stop-color="#cb9a69"/><stop offset="1" stop-color="#b17f52"/>
+            </linearGradient>
+            <linearGradient id="gStick" x1="0" x2="1">
+              <stop offset="0" stop-color="#e9d3a6"/><stop offset="1" stop-color="#d1b07a"/>
+            </linearGradient>
+          </defs>
+          <!-- 棒（引くと上に出る） -->
+          <g class="stick">
+            <rect x="141" y="40" width="18" height="120" rx="3" fill="url(#gStick)"/>
+            <text id="stickNo" x="150" y="62" font-size="13" fill="#7a4b22" text-anchor="middle" font-family="Klee One, serif" writing-mode="tb" style="writing-mode: vertical-rl"></text>
+          </g>
+          <!-- 筒（六角の上面） -->
+          <polygon points="70,92 110,74 190,74 230,92 190,110 110,110" fill="#6f4a2b"/>
+          <ellipse cx="150" cy="92" rx="11" ry="6" fill="#2b1b10"/>
+          <!-- 側面と正面 -->
+          <polygon points="70,92 110,110 110,410 70,392" fill="#8f6038"/>
+          <polygon points="230,92 190,110 190,410 230,392" fill="#9c6a40"/>
+          <rect x="110" y="110" width="80" height="300" fill="url(#gFront)"/>
+          <!-- たが -->
+          <rect x="70" y="140" width="160" height="10" fill="#2f2219" opacity=".55"/>
+          <rect x="70" y="360" width="160" height="10" fill="#2f2219" opacity=".55"/>
+          <!-- 正面の字 -->
+          <rect x="126" y="168" width="48" height="170" rx="2" fill="#f5f0e3"/>
+          <text x="150" y="190" fill="#c4412d" font-size="30" font-family="Klee One, serif" writing-mode="tb" style="writing-mode: vertical-rl" text-anchor="start" letter-spacing="6">おみくじ</text>
+          <!-- 影 -->
+          <ellipse cx="150" cy="424" rx="96" ry="10" fill="#0c1020" opacity=".55"/>
+        </svg>
+      </button>
+      <p class="hint" id="hint">筒をタップして、1本引いてください</p>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div id="resetArea">
+      <button class="ghost" id="resetBtn">最初から</button>
+    </div>
+  </footer>
+</div>
+
+<div class="veil" id="veil" hidden>
+  <article class="fuda" id="fuda" role="dialog" aria-modal="true" aria-labelledby="fudaBan">
+    <div class="fuda-head">
+      <div class="no"><span class="ban" id="fudaBan">第七番</span><span class="round" id="fudaRound">1周目</span></div>
+      <span class="stamp">遊べるお寺</span>
+    </div>
+    <div class="qwrap" id="qwrap"><p class="q" id="fudaQ"></p></div>
+    <div class="fuda-foot">
+      <button class="again" id="againBtn">引き直す</button>
+      <button class="next" id="nextBtn">つぎの人へ</button>
+    </div>
+  </article>
+</div>
+
+<script>
+(() => {
+  // 質問（原稿_おしゃべりおみくじ（やりたいこと集まれカフェ・2026年10月17日）.md と同じ。/ は改行）
+  const Q = {
+    1:"最近、/ハマっているものは？", 2:"休みの日は、/インドア派？/アウトドア派？", 3:"高島で、/好きな場所は/どこですか？",
+    4:"最近、/ちょっと笑ったことは？", 5:"つい時間を/忘れてしまうことは？", 6:"好きな食べもの、/1つだけ選ぶなら？",
+    7:"秋になったら、/やりたいことは？", 8:"子どものころ、/何になりたかった？", 9:"スマホで、/いちばんよく開く/アプリは？",
+    10:"人にちょっと/自慢できる特技は？", 11:"最近、/買ってよかったものは？",
+    12:"行ってみたい場所は？/（近くでも遠くでも）", 13:"100万円もらったら、/何に使う？", 14:"1日だけ/何でもできるとしたら、/何をする？",
+    15:"高島に/「これがあったら/いいのに」/と思うものは？", 16:"人に/教えられそうなことは？", 17:"友だちを誘って、/やってみたいことは？",
+    18:"みんなで、/ジュースで/かんぱい", 19:"みんなで/「せーの」で、/好きな季節を言う",
+    20:"やってみたいけど、/まだやっていない/ことは？"
+  };
+  const POOLS = { p1: [1,2,3,4,5,6,7,8,9,10,11,18,19], p2: [12,13,14,15,16,17] };
+  const ROUND = { p1: "1周目", p2: "2周目" };
+  const KAN = ["","一","二","三","四","五","六","七","八","九","十","十一","十二","十三","十四","十五","十六","十七","十八","十九","二十"];
+  const KEY = "omikuji-1017";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let st = load() || fresh();
+  let current = null; // {n, pool}
+  let busy = false;
+
+  function fresh() { return { pool: "p1", left: { p1: POOLS.p1.slice(), p2: POOLS.p2.slice() } }; }
+  function load() { try { const s = JSON.parse(sessionStorage.getItem(KEY)); return s && s.left ? s : null; } catch (e) { return null; } }
+  function save() { try { sessionStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
+
+  const $ = id => document.getElementById(id);
+  const tsutsu = $("tsutsu"), hint = $("hint"), veil = $("veil"), fuda = $("fuda");
+
+  function render() {
+    $("c1").textContent = st.left.p1.length;
+    $("c2").textContent = st.left.p2.length;
+    $("leftNum").textContent = st.left[st.pool].length;
+    ["p1","p2"].forEach(p => $(p === "p1" ? "pool1" : "pool2").setAttribute("aria-selected", String(st.pool === p)));
+    const empty = st.left[st.pool].length === 0;
+    hint.classList.toggle("empty", empty);
+    hint.textContent = empty
+      ? (st.pool === "p1" && st.left.p2.length ? "この筒は空になりました。2周目の筒に切り替えられます" : "この筒は空になりました")
+      : "筒をタップして、1本引いてください";
+    tsutsu.setAttribute("aria-disabled", String(empty));
+  }
+
+  function qHTML(text) {
+    return text.split("/").map(line =>
+      line.replace(/[&<>]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;" }[c]))
+          .replace(/\d+/g, d => `<span class="tcy">${d}</span>`)
+    ).join("<br>");
+  }
+
+  function showFuda(n, label, saigo) {
+    $("fudaBan").textContent = saigo ? "さいごの一本" : `第${KAN[n]}番`;
+    $("fudaRound").textContent = label;
+    $("fudaQ").innerHTML = qHTML(Q[n]);
+    fuda.classList.toggle("saigo", !!saigo);
+    $("againBtn").hidden = !!saigo;
+    $("nextBtn").textContent = saigo ? "とじる" : "つぎの人へ";
+    veil.hidden = false;
+    fitQ();
+    fuda.style.animation = "none"; void fuda.offsetWidth; fuda.style.animation = "";
+    $("nextBtn").focus();
+  }
+
+  function fitQ() {
+    const wrap = $("qwrap"), q = $("fudaQ");
+    let size = 56;
+    q.style.fontSize = size + "px";
+    const W = wrap.clientWidth - 12, H = wrap.clientHeight - 20;
+    while (size > 18 && (q.offsetWidth > W || q.offsetHeight > H)) { size -= 2; q.style.fontSize = size + "px"; }
+  }
+  addEventListener("resize", () => { if (!veil.hidden) fitQ(); });
+
+  function pick(exclude) {
+    const pool = st.left[st.pool];
+    const choices = pool.length > 1 && exclude ? pool.filter(x => x !== exclude) : pool;
+    const n = choices[Math.floor(Math.random() * choices.length)];
+    pool.splice(pool.indexOf(n), 1);
+    save();
+    return n;
+  }
+
+  function draw(exclude) {
+    if (busy || st.left[st.pool].length === 0) return;
+    busy = true;
+    keepAwake();
+    const n = pick(exclude);
+    current = { n, pool: st.pool };
+    $("stickNo").textContent = KAN[n];
+    render();
+    const done = () => { tsutsu.classList.remove("shake"); showFuda(n, ROUND[current.pool], false); busy = false; };
+    if (reduce) { tsutsu.classList.add("out"); done(); return; }
+    tsutsu.classList.remove("out");
+    tsutsu.classList.add("shake");
+    setTimeout(() => tsutsu.classList.add("out"), 650);
+    setTimeout(done, 1250);
+  }
+
+  function closeFuda() {
+    veil.hidden = true;
+    tsutsu.classList.remove("out");
+    current = null;
+    render();
+    tsutsu.focus();
+  }
+
+  tsutsu.addEventListener("click", () => draw());
+  $("nextBtn").addEventListener("click", closeFuda);
+  $("againBtn").addEventListener("click", () => {
+    if (!current) return;
+    const back = current.n;
+    st.left[current.pool].push(back);
+    st.pool = current.pool;
+    save();
+    veil.hidden = true;
+    tsutsu.classList.remove("out");
+    current = null;
+    render();
+    draw(back);
+  });
+  document.querySelectorAll(".pools button").forEach(b => b.addEventListener("click", () => {
+    st.pool = b.dataset.pool; save(); render();
+  }));
+
+  // 最初から（ページの中で確かめる）
+  const resetArea = $("resetArea");
+  function askReset() {
+    resetArea.innerHTML = "";
+    const box = document.createElement("div");
+    box.className = "confirm";
+    box.innerHTML = '<span>全部の札を筒に戻しますか？</span><button class="yes" id="resetYes">戻す</button><button class="no" id="resetNo">やめる</button>';
+    resetArea.appendChild(box);
+    $("resetYes").addEventListener("click", () => { st = fresh(); save(); restoreReset(); render(); });
+    $("resetNo").addEventListener("click", restoreReset);
+    $("resetNo").focus();
+  }
+  function restoreReset() {
+    resetArea.innerHTML = '<button class="ghost" id="resetBtn">最初から</button>';
+    $("resetBtn").addEventListener("click", askReset);
+  }
+  $("resetBtn").addEventListener("click", askReset);
+
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !veil.hidden) closeFuda(); });
+
+  // 画面が消えないように（許されないときは何もしない）
+  let lock = null;
+  async function keepAwake() {
+    try { if (!lock && navigator.wakeLock) { lock = await navigator.wakeLock.request("screen"); lock.addEventListener("release", () => { lock = null; }); } } catch (e) { lock = null; }
+  }
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && lock === null && veil.hidden === false) keepAwake(); });
+
+  render();
+})();
+</script>
+</body>
+</html>
