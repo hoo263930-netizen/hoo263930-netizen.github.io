@@ -163,6 +163,27 @@
     .follow-qr{ width:110px; height:110px; background:#fff; border-radius:8px; padding:4px; box-shadow:0 2px 6px rgba(0,0,0,.12); }
     @media (max-width:700px){ .follow-qr{ display:none; } } /* スマホではQRを読めないので出さない */
 
+    /* ===== あなたの町でも、開けます（受け皿の入口。色は入口カード・地域の道具のボタンと同じ。2026-10-28） ===== */
+    .machi{ background:#fffbea; border:2px solid var(--sand); border-radius:18px; padding:20px clamp(16px,3vw,28px); margin:0 0 28px; }
+    .machi h2{ margin:0 0 .4em; }
+    .machi-lines{ margin:0 0 16px; font-weight:700; line-height:1.9; }
+    .machi-lines .nb{ display:inline-block; } /* スマホで「へ」だけが次の行に落ちないよう、読点で折り返す */
+    .machi-lines .l{ display:block; }
+    @media (max-width:700px){ .machi-lines .l + .l{ margin-top:.5em; } } /* スマホでは3行の区切りが見えるように */
+    .machi-row{ display:flex; gap:12px; flex-wrap:wrap; }
+    .machi-btn{
+      display:inline-block; padding:.7rem 1.3rem; border-radius:999px;
+      text-decoration:none; font-weight:700; white-space:nowrap;
+      box-shadow:0 4px 10px rgba(0,0,0,.15);
+    }
+    .machi-btn.dougu{ background:#36b37e; color:#fff; }
+    .machi-btn.line{ background:var(--line-green); color:#fff; }
+    .machi-btn.yomu{ background:#fff; color:#222; border:1px solid #ddd; }
+    @media (max-width:700px){
+      .machi-row{ flex-direction:column; align-items:flex-start; }
+      .machi-btn{ box-sizing:border-box; width:100%; max-width:320px; text-align:center; }
+    }
+
     footer{
       background:#f7f7f7;
       border-top:1px solid #eee;
@@ -280,9 +301,27 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
         </a>
       </section>
 
-      <!-- ✅ 公式LINE・Instagram（小さくまとめた。2026-09-28） -->
+      <!-- ✅ あなたの町でも、開けます（受け皿の入口・2026-10-28）
+           高島で会に来る人むけの上の2つ（とは・イベントと講座）はそのまま。ここから、ほかの町で始めたい人むけ。
+           入口の3行は、全国版LINEのあいさつと同じ言葉（45_HP/案_受け皿の入口 の1.）。ボタンは 取る・聞く・読む の3つ -->
+      <section class="machi" aria-labelledby="machi-heading">
+        <h2 id="machi-heading">あなたの町でも、開けます</h2>
+        <p class="machi-lines">
+          <span class="l"><span class="nb">何か始めたいけど、</span><span class="nb">重く考えて動けない方へ</span></span>
+          <span class="l"><span class="nb">滋賀県高島市の会で</span><span class="nb">実際に使っている道具と、</span><span class="nb">会の始め方を、</span><span class="nb">無料で置いています</span></span>
+          <span class="l"><span class="nb">小さく始めて、</span><span class="nb">続けるかは1回やってから決める。</span><span class="nb">ひとりで回せる形です</span></span>
+        </p>
+        <div class="machi-row">
+          <a class="machi-btn dougu" href="/dougu/">道具と始め方を見る</a>
+          <a class="machi-btn line" href="https://lin.ee/Z4hBJBe" target="_blank" rel="noopener">こーせんAIに聞く</a>
+          <a class="machi-btn yomu" href="https://kosen3.substack.com/subscribe" target="_blank" rel="noopener">読みものを受け取る</a>
+        </div>
+      </section>
+
+      <!-- ✅ 公式LINE・Instagram（小さくまとめた。2026-09-28）
+           見出しを「お知らせを受け取る」→「高島の会のお知らせ」に（全国版LINEと取りちがえないように・2026-10-28） -->
       <section class="follow" aria-label="公式LINEとInstagram">
-        <h2>お知らせを受け取る</h2>
+        <h2>高島の会のお知らせ</h2>
         <p>イベントのご案内とお申し込みは公式LINEから。活動の様子はInstagramで紹介しています。</p>
         <div class="follow-row">
           <div class="follow-item">

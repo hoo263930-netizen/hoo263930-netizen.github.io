@@ -113,6 +113,14 @@
 .pair{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .pair figure{ margin:0; }
 .note-s{ font-size:14px; color:#5d6673; }
+/* 受け皿の入口（トップの「あなたの町でも、開けます」と同じ色）・こーせんAIに聞く（2026-10-28） */
+.machi{ background:#fffbea; border:2px solid var(--sand); border-radius:14px; padding:16px 18px; margin:0 0 16px; }
+.machi p{ margin:0; font-weight:700; font-size:clamp(16px,2vw,18px); line-height:1.9; }
+.machi .nb{ display:inline-block; } /* スマホで1字だけ次の行に落ちないよう、読点で折り返す */
+.machi .l{ display:block; }
+@media (max-width:760px){ .machi .l + .l{ margin-top:.5em; } } /* スマホでは3行の区切りが見えるように */
+.block.ask{ background:#f6fbf7; border-color:#cfe8d8; }
+.btn.line{ background:#06C755; color:#fff; }
 </style>
 
 <style>
@@ -147,6 +155,14 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
     <main>
       <section class="wrap">
         <h2>地域の道具</h2>
+        <!-- 入口の3行（トップ・全国版LINEのあいさつと同じ言葉・2026-10-28）。下の説明文はそのまま -->
+        <div class="machi">
+          <p>
+            <span class="l"><span class="nb">何か始めたいけど、</span><span class="nb">重く考えて動けない方へ</span></span>
+            <span class="l"><span class="nb">滋賀県高島市の会で</span><span class="nb">実際に使っている道具と、</span><span class="nb">会の始め方を、</span><span class="nb">無料で置いています</span></span>
+            <span class="l"><span class="nb">小さく始めて、</span><span class="nb">続けるかは1回やってから決める。</span><span class="nb">ひとりで回せる形です</span></span>
+          </p>
+        </div>
         <div class="block">
           <p class="lead">地域で、だれでも使える道具をつくっています。</p>
           <p>遊べるお寺プロジェクトは、地域のつながりを広げるために、いろいろな会を開いています。その中から生まれた「みんなが自分で使える道具」を、ここにまとめています。使い方を覚えたら、あとはご自分の会や地域で、自由に使ってください。</p>
@@ -199,6 +215,14 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
         <div class="block" style="margin-top:16px;">
           <p><b>使い方</b>：iPadやスマホを机のまん中に置いて、順番に引きます。登録なし・無料で、だれでも使えます。</p>
           <p class="note-s">iPadやiPhoneのSafariで「共有」→「ホーム画面に追加」をすると、アプリのように全画面で開けます。引いた札は、同じ画面を開いているあいだは覚えています（「最初から」で筒に戻せます）。</p>
+        </div>
+      </section>
+
+      <!-- 道具の並びのいちばん下：使い方で分からないとき（全国版LINE・2026-10-28） -->
+      <section class="wrap" id="kiku" style="margin-top:20px;">
+        <div class="block ask">
+          <p>使い方で分からないことは、全国版LINEの「こーせんAIに聞く」から（無料・1日10回まで）</p>
+          <div class="cta"><a class="btn line" href="https://lin.ee/Z4hBJBe" target="_blank" rel="noopener">全国版の公式LINEを友だち追加する</a></div>
         </div>
       </section>
 
