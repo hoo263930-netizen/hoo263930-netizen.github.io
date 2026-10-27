@@ -174,6 +174,11 @@ section.wrap + section.wrap{ margin-top:22px; }
 .more{ text-align:right; margin:.6em 0 0; }
 .more a{ font-weight:700; }
 #toiawase .block{ background:#f6fbf7; border-color:#cfe8d8; }
+/* 場づくりワークショップ（02の中の小さな枠。色は「03 相談にのる」の段取りのカードと同じ・2026-10-28） */
+.ws-box{ border:1px solid #e1e8f0; border-radius:12px; padding:4px 16px 14px; background:#fbfdff; margin:1em 0; }
+.ws-box ul:not(.tag-list){ padding-left:1.3em; }
+.ws-box ul:not(.tag-list) li{ margin:.3em 0; }
+@media (min-width:700px){ .svc-grid{ grid-template-columns:repeat(4,1fr); } } /* 場づくりワークショップを足して7つ＝4つと3つの2段に（7つ横並びは字が折れて読みにくい） */
 </style>
 </head>
 <body>
@@ -227,7 +232,7 @@ section.wrap + section.wrap{ margin-top:22px; }
         <h2>サービス</h2>
         <div class="block">
           <p>中心は「場をひらく」と「続く形にする」の2つです。公式LINE・ホームページの制作もお受けしています。</p>
-          <div class="svc-grid"><a class="svc" href="#hiraku"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="13" y="6" width="22" height="34" rx="4"/><circle cx="24" cy="15" r="3"/><circle cx="24" cy="23" r="3"/><circle cx="24" cy="31" r="3"/></svg></span><b>健康麻雀</b><small>会・大会・初めての方の講座</small></a><a class="svc" href="#hiraku"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="11" r="5"/><path d="M24 17v10"/><path d="M14 38c2-7 6-11 10-11s8 4 10 11z"/><path d="M8 40h32"/></svg></span><b>座禅・写経</b><small>住職が道具を持って伺います</small></a><a class="svc" href="#hiraku"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="32" height="32" rx="7"/><circle cx="16" cy="16" r="2.2" fill="currentColor"/><circle cx="24" cy="24" r="2.2" fill="currentColor"/><circle cx="32" cy="32" r="2.2" fill="currentColor"/></svg></span><b>子どもの遊び</b><small>ボードゲーム・謎解き・学童</small></a><a class="svc" href="#tsuzuku"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="7" width="36" height="24" rx="2"/><path d="M24 31v9"/><path d="M16 41h16"/><path d="M12 15h14M12 21h20"/></svg></span><b>研修・講座</b><small>続ける話、告知の道具の使い方</small></a><a class="svc" href="#soudan"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10h24v15H16l-6 5v-5H6z"/><path d="M30 18h12v14h-3v5l-6-5H22v-4"/></svg></span><b>相談</b><small>始める前から、一緒に考えます</small></a><a class="svc" href="#tsukuru"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="3"/><path d="M5 17h38"/><circle cx="10" cy="13" r="1" fill="currentColor"/><circle cx="14" cy="13" r="1" fill="currentColor"/><path d="M12 25h14M12 31h22"/></svg></span><b>公式LINE・HP制作</b><small>会って、その場で作ります</small></a></div>
+          <div class="svc-grid"><a class="svc" href="#hiraku"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="13" y="6" width="22" height="34" rx="4"/><circle cx="24" cy="15" r="3"/><circle cx="24" cy="23" r="3"/><circle cx="24" cy="31" r="3"/></svg></span><b>健康麻雀</b><small>会・大会・初めての方の講座</small></a><a class="svc" href="#hiraku"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="11" r="5"/><path d="M24 17v10"/><path d="M14 38c2-7 6-11 10-11s8 4 10 11z"/><path d="M8 40h32"/></svg></span><b>座禅・写経</b><small>住職が道具を持って伺います</small></a><a class="svc" href="#hiraku"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="32" height="32" rx="7"/><circle cx="16" cy="16" r="2.2" fill="currentColor"/><circle cx="24" cy="24" r="2.2" fill="currentColor"/><circle cx="32" cy="32" r="2.2" fill="currentColor"/></svg></span><b>子どもの遊び</b><small>ボードゲーム・謎解き・学童</small></a><a class="svc" href="#tsuzuku"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="7" width="36" height="24" rx="2"/><path d="M24 31v9"/><path d="M16 41h16"/><path d="M12 15h14M12 21h20"/></svg></span><b>研修・講座</b><small>続ける話、告知の道具の使い方</small></a><a class="svc" href="#bazukuri"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="32" height="32" rx="7"/><circle cx="16" cy="16" r="2.2" fill="currentColor"/><circle cx="24" cy="24" r="2.2" fill="currentColor"/><circle cx="32" cy="32" r="2.2" fill="currentColor"/></svg></span><b>場づくりワークショップ</b><small>遊びと対話の道具を持って伺います</small></a><a class="svc" href="#soudan"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10h24v15H16l-6 5v-5H6z"/><path d="M30 18h12v14h-3v5l-6-5H22v-4"/></svg></span><b>相談</b><small>始める前から、一緒に考えます</small></a><a class="svc" href="#tsukuru"><span class="svc-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="3"/><path d="M5 17h38"/><circle cx="10" cy="13" r="1" fill="currentColor"/><circle cx="14" cy="13" r="1" fill="currentColor"/><path d="M12 25h14M12 31h22"/></svg></span><b>公式LINE・HP制作</b><small>会って、その場で作ります</small></a></div>
         </div>
       </section>
 
@@ -264,6 +269,23 @@ section.wrap + section.wrap{ margin-top:22px; }
             <li><b>公式LINEの使い方</b>：お知らせを届ける道具としての、基本の使い方</li>
           </ul>
           <p>内容・時間・対象に合わせて組み立てます。パソコンやスマホに自信がない方に向けた回もできます。1回2時間で組むことが多いです。</p>
+          <!-- 場づくりワークショップ（2026-10-28・45_HP/下書き_HPに足す文_大谷派から の②-2） -->
+          <div class="ws-box" id="bazukuri">
+            <h3>場づくりワークショップ</h3>
+            <p>「集まっても、話がはずまない」「毎年、同じ出し物になる」。そんなときに。</p>
+            <p>高島の会で実際に使っている、遊びと対話の道具を持って伺います。参加者のみなさんと一緒に体験して、終わったあとは、同じ道具でみなさんだけで回せるように、使い方をお渡しします。道具とルールの紙は、<a href="/dougu/">無料で置いています</a>。</p>
+            <h4>たとえば</h4>
+            <ul>
+              <li><b>たかしまーじゃん体験</b>：牌だけあれば、3〜5人で遊べる新しい麻雀です。麻雀を知らない方も遊べます</li>
+              <li><b>ことばみくじの対話</b>：仏教のことばの札を1枚引いて、札の問いに、みんなで答えます。吉・凶はありません</li>
+              <li><b>おしゃべりおみくじ</b>：「最近、ハマっているものは？」のような答えやすい質問で、はじめて会う人どうしの自己紹介に</li>
+              <li><b>付箋で話す会</b>：テーマ（たとえば終活）について、話したいことを付箋に書き、分けて、みんなで話します</li>
+            </ul>
+            <h4>向いている例</h4>
+            <ul class="tag-list"><li>サロンの世話役・ボランティアの研修</li><li>自治会や地区の集まり</li><li>高齢者施設のレクリエーション</li><li>お寺の行事のあとの時間</li></ul>
+            <h4>料金</h4>
+            <p>内容をうかがってからお伝えします。交通費・印刷物が要るときは、事前にお伝えします。</p>
+          </div>
           <h4>向いている依頼の例</h4>
           <ul class="tag-list"><li>担い手・ボランティア向けの研修</li><li>市民活動団体・サロンの世話役の勉強会</li><li>事業者向けの告知の道具の講座</li><li>地域づくりの講演</li></ul>
           <h4>料金</h4>

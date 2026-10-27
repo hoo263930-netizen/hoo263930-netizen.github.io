@@ -101,6 +101,25 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
 .subnav a[aria-current="page"]{ background:#f7ce52; border-color:#f7ce52; }
 @media (max-width:420px){ .subnav a{ font-size:14px; padding:5px 11px; } }
 </style>
+<style>
+/* ===== なぜ今・私たちの姿勢・まずは一言（2026-10-28）。色は地域の道具の「いいところ」・ご依頼の「お問い合わせ」と同じ ===== */
+.note-s{ font-size:14px; color:#5d6673; }
+.big-num{ font-size:clamp(17px,2.2vw,20px); font-weight:700; }
+.stance{ list-style:none; padding:0; margin:.6em 0 0; display:grid; grid-template-columns:1fr 1fr; gap:12px; counter-reset:s; }
+@media (max-width:760px){ .stance{ grid-template-columns:1fr; } }
+.stance li{ counter-increment:s; background:#f6fbf7; border:1px solid #d9eedf; border-radius:12px; padding:12px 14px; }
+.stance h3{ margin:0 0 .3em; font-size:17px; }
+.stance h3::before{ content:counter(s); display:inline-block; width:1.6em; height:1.6em; line-height:1.6em; text-align:center; border-radius:50%; background:#36b37e; color:#fff; margin-right:.4em; }
+.stance p{ margin:0; font-size:15px; }
+.with-head{ margin:1.2em 0 .4em; font-size:17px; }
+.cards3{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+@media (max-width:760px){ .cards3{ grid-template-columns:1fr; } }
+.cards3 > div{ border:1px solid #e1e8f0; border-radius:12px; padding:12px 14px; background:#fbfdff; }
+.cards3 h4{ margin:0 0 .3em; font-size:16px; }
+.cards3 p{ margin:0; font-size:15px; }
+.block.ask{ background:#f6fbf7; border-color:#cfe8d8; }
+.btn.line{ background:#06C755; color:#fff; }
+</style>
 </head>
 <body>
   <div class="container">
@@ -134,6 +153,58 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
           <p>世代や立場を超えて人が自然に集まり、遊びや対話を通じて交流できる場をつくることを目的としています。お寺という場所を活かしながら、ときには地域の会場や野外など「お寺でない場所」にも飛び出して活動しています。</p>
           <p><strong>「遊べるお寺プロジェクト」</strong>では、楽しい時間を共有することで一人ひとりの人生をより豊かにし、地域全体が元気になっていくこと、そしてその広がりが世界を少しずつ楽しくしていくことを目指しています。</p>
           <p>そんな、僧侶である私の仏教の実践に興味を持たれた方は、ぜひ一度お越しください。</p>
+        </div>
+      </section>
+
+      <!-- 1-2) なぜ今、地域の会なのか（2026-10-28・45_HP/下書き_HPに足す文_大谷派から の①-1） -->
+      <section id="why-now" class="wrap" style="margin-top:20px;">
+        <h2>なぜ今、地域の会なのか</h2>
+        <div class="block">
+          <p class="big-num">全国の自治会・町内会の加入率は、10年で 78.0％ から 71.7％ に下がりました。</p>
+          <p class="note-s">（2010年→2020年。毎年の加入率が分かる600市区町村の平均。600のうち530の市区町村で下がっています）</p>
+          <p>地域を支えてきた人たちが疲れ、地域の活動が小さくなっています。だからこそ、個人が小さく始めて、コツコツ続ける会を、地域に増やしていきたい。そうした人が増えれば、地域が豊かになる一歩になると考えています。</p>
+          <p class="note-s">出典：<a href="https://www.soumu.go.jp/main_content/000819371.pdf" target="_blank" rel="noopener">総務省「地域コミュニティに関する研究会 報告書」（2022年4月）</a></p>
+        </div>
+      </section>
+
+      <!-- 1-3) 私たちの姿勢（2026-10-28・同じ下書きの①-2。00_活動方針の「大事にすること」1〜4） -->
+      <section id="stance" class="wrap" style="margin-top:20px;">
+        <h2>私たちの姿勢</h2>
+        <div class="block">
+          <p>地域で会を開くとき、私たちが大事にしている4つのことです。ご一緒するときも、同じ考え方でお付き合いします。</p>
+          <ol class="stance">
+            <li>
+              <h3>続ける前提で、始めない</h3>
+              <p>「毎月ずっと」と決めてから始めると、重くて動けなくなります。まず1回やってみて、続けるかは、そのあとで決めてかまいません。月1回の健康麻雀会も、最初に来てくれたのは友人2人ほどでした。</p>
+            </li>
+            <li>
+              <h3>一人で回せる形を、先につくる</h3>
+              <p>だれかが頑張り続けないと回らない会は、その人が疲れたときに止まります。場所・道具・連絡を、一人でも回る大きさにしてから始めます。私が張りついていないと回らない仕組みは、つくりません。</p>
+            </li>
+            <li>
+              <h3>あなたが自分でできる形で、お渡しする</h3>
+              <p>道具も、会の開き方も、頼まれて作るものも、あなたの手元で使えて、直せる形でお渡しします。</p>
+            </li>
+            <li>
+              <h3>開く人が楽しいことを選ぶ</h3>
+              <p>主催が疲れない会が、いちばん長く続きます。来る人のためにも、まず開く人が楽しめることを選びます。</p>
+            </li>
+          </ol>
+          <h3 class="with-head">こんな方と、ご一緒しています</h3>
+          <div class="cards3">
+            <div>
+              <h4>自治会・サロン・高齢者施設で、会を回している方</h4>
+              <p>「毎年同じ企画で、ネタが尽きてきた」「担い手がいない」。今いる人数で回る大きさから、一緒に考えます。</p>
+            </div>
+            <div>
+              <h4>お寺の方</h4>
+              <p>お寺には、もう人が集まれる場所があります。法事や儀式のときだけでなく、人が集まって、遊んで、話せる場所にするやり方を、同じ住職として、高島で実際に回している会からお伝えします。</p>
+            </div>
+            <div>
+              <h4>個人で何か始めたい方</h4>
+              <p>仲間がいなくても、一人で、小さく始められます。</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -234,6 +305,16 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
             <a class="btn ghost" href="/events/">イベントページ</a>
             <a class="btn ghost" href="/contact/">問い合わせ</a>
           </div>
+        </div>
+      </section>
+
+      <!-- 8) まずは一言（全国版LINE・2026-10-28・同じ下書きの④。相談・ご依頼のページにも同じ欄） -->
+      <section id="hitokoto" class="wrap" style="margin-top:20px;">
+        <h2>まずは一言、どうぞ</h2>
+        <div class="block ask">
+          <p>「こういうことはできる？」「何から始めたらいい？」の段階で大丈夫です。全国版の公式LINEで、こーせんAIに、地域活動のことをいつでも聞けます。会の始め方、人の集め方、続け方など、気軽にどうぞ。（無料・1日10回まで）</p>
+          <div class="cta"><a class="btn line" href="https://lin.ee/Z4hBJBe" target="_blank" rel="noopener">全国版の公式LINEを友だち追加する</a></div>
+          <p class="note-s">高島の会（健康麻雀会など）のお知らせ・お申し込みは、<a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">高島の公式LINE</a>へ。</p>
         </div>
       </section>
     </main>

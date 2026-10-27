@@ -629,6 +629,18 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
 @media (max-width:600px){
   .cs-form iframe{ height:2120px; }
 }
+/* ===== 見出しの頭の言葉（学ぶ・横につく・頼む・聞く）／お金のかからないもの／よくある質問／まずは一言（2026-10-28）。
+   色は今のページの札・無料の欄・ご依頼のよくある質問と同じ ===== */
+.cs-door-tag{ display:block; width:fit-content; margin:0 0 .2em; padding:.05em .6em; border-radius:8px; font-size:.82rem; font-weight:700; background:#e9f6ff; color:#056; vertical-align:middle; }
+.cs-free-band{ margin:0 0 12px; padding:.7rem .9rem; border-radius:10px; background:#fffdf2; border:1px solid var(--sand); font-size:.95rem; }
+.cs-free-band b{ display:block; }
+.faq details{ border:1px solid #e1e8f0; border-radius:12px; padding:10px 14px; background:#fff; margin:8px 0; }
+.faq summary{ font-weight:700; cursor:pointer; }
+.faq details p{ margin:.5em 0 0; }
+.cs-ask{ border-radius:14px; padding:18px 20px; background:#f6fbf7; border:1px solid #cfe8d8; margin-top:28px; }
+.cs-ask h2{ margin:0 0 .4em; font-size:clamp(20px,2.4vw,26px); }
+.cs-ask p{ margin:.4em 0; }
+.btn.line{ background:#06C755; box-shadow:0 4px 14px rgba(6,199,85,.18); }
 </style>
 </head>
 <body>
@@ -670,9 +682,15 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
       </section>
 
       <section aria-label="ご用件から選ぶ">
+        <!-- お金のかからないもの（2026-10-28・45_HP/下書き_HPに足す文_大谷派から の②）。
+             事例集のページができるまでは「これまでの会」は「これまでの活動」へ -->
+        <p class="cs-free-band">
+          <b>お金のかからないもの：</b>
+          <a href="/dougu/">道具と会の始め方（地域の道具）</a>／<a href="https://lin.ee/Z4hBJBe" target="_blank" rel="noopener">こーせんAIに聞く</a>（全国版の公式LINE・1日10回まで）／<a href="/events/past.html">これまでの会</a>
+        </p>
         <ol class="cs-doors">
           <li class="cs-door">
-            <div class="cs-door-when"><span class="cs-door-num">1</span><h2>自分でできるようになりたい</h2></div>
+            <div class="cs-door-when"><span class="cs-door-num">1</span><h2><span class="cs-door-tag">学ぶ</span>自分でできるようになりたい</h2></div>
             <div>
               <p class="cs-door-kind"><b>講座</b><span>各講座の参加費（講座のページに）</span></p>
               <ul class="cs-door-list">
@@ -686,28 +704,28 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
             <div class="cs-door-go"><a class="btn" href="/seminar/">講座のページへ</a></div>
           </li>
           <li class="cs-door online">
-            <div class="cs-door-when"><span class="cs-door-num">2</span><h2>話を聞いてほしい・<br>考えを整理したい</h2></div>
+            <div class="cs-door-when"><span class="cs-door-num">2</span><h2><span class="cs-door-tag">横につく</span>話を聞いてほしい・<br>一緒に考えてほしい</h2></div>
             <div>
               <p class="cs-door-kind"><b>個別相談</b><span>オンライン <span class="nb">1時間3,000円</span><br>こちらから伺う場合（高島市内） <span class="nb">1時間5,000円</span></span></p>
             </div>
             <div class="cs-door-go"><a class="btn" href="#online">この下で申し込む</a></div>
           </li>
           <li class="cs-door">
-            <div class="cs-door-when"><span class="cs-door-num">3</span><h2>作ってほしい</h2></div>
+            <div class="cs-door-when"><span class="cs-door-num">3</span><h2><span class="cs-door-tag">頼む</span>作ってほしい<small>公式LINE・ホームページ</small></h2></div>
             <div>
               <p class="cs-door-kind"><b>制作</b><span>公式LINE <span class="nb">30,000円</span>（2026年12月までのお申し込み）<br>ホームページ <span class="nb">80,000円から</span> など</span></p>
             </div>
             <div class="cs-door-go"><a class="btn" href="/request.html#tsukuru">制作のページへ</a></div>
           </li>
           <li class="cs-door">
-            <div class="cs-door-when"><span class="cs-door-num">4</span><h2>団体・施設で呼びたい<small>出張・研修・講演</small></h2></div>
+            <div class="cs-door-when"><span class="cs-door-num">4</span><h2><span class="cs-door-tag">頼む</span>団体・施設で、<span class="nb">場をひらいてほしい</span><small>出張・場づくりワークショップ・研修・講演</small></h2></div>
             <div>
               <p class="cs-door-kind"><b>ご依頼</b><span>内容をうかがってからお伝えします</span></p>
             </div>
             <div class="cs-door-go"><a class="btn" href="/request.html">ご依頼のページへ</a></div>
           </li>
           <li class="cs-door free">
-            <div class="cs-door-when"><span class="cs-door-num">5</span><h2>文字で送りたい<small>仏教のこと・生き方のこと</small></h2></div>
+            <div class="cs-door-when"><span class="cs-door-num">5</span><h2><span class="cs-door-tag">聞く</span>文字で送りたい<small>仏教のこと・生き方のこと</small></h2></div>
             <div>
               <p class="cs-door-kind"><b>お坊さんへの相談</b><span>無料・匿名</span></p>
             </div>
@@ -814,6 +832,38 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
           </div>
         </div>
 
+        <!-- よくある質問（2026-10-28・45_HP/下書き_HPに足す文_大谷派から の③。答えは今のHPと記録にあることだけ）
+             ご依頼のページの「よくある質問」（団体向けの3問）はそのまま -->
+        <h2 class="event-section-title" id="faq">よくある質問</h2>
+
+        <div class="faq">
+          <details><summary>お金がかかるもの・かからないものを教えてください。</summary>
+            <p>かからないもの：<a href="/dougu/">地域の道具</a>（たかしまーじゃんのルール資料・ことばみくじ・おしゃべりおみくじ・伴走）、こーせんAIへの質問（全国版の公式LINE・1日10回まで）、講座・制作・ご依頼の日程や内容についてのお問い合わせ、文字で送る仏教のこと・生き方のことの相談（匿名）。</p>
+            <p>かかるもの：講座（<a href="/seminar/">講座のページ</a>に）、<a href="#online">個別相談</a>（オンライン1時間3,000円・高島市内に伺う場合1時間5,000円）、公式LINE・ホームページの制作、出張・研修・講演（内容をうかがってからお伝えします）。</p>
+          </details>
+          <details><summary>何をやりたいか、まだ決まっていなくても相談できますか？</summary>
+            <p>できます。何から手をつければいいか分からない、という段階のご相談も多いです。何をどうすればいいかを一緒に考える時間は、個別相談としてお受けしています。まずは、こーせんAIに一言聞いてみるのもおすすめです。</p>
+          </details>
+          <details><summary>宗派は関係ありますか？ お寺でなくても大丈夫ですか？</summary>
+            <p>宗派は問いません。自治会・サロン・施設・個人の方も、同じようにお受けしています。</p>
+          </details>
+          <details><summary>高島市の外からでも頼めますか？</summary>
+            <p>個別相談はオンライン（Google Meet）なので、どこからでも大丈夫です。地域の道具とこーせんAIも、どこからでも使えます。出張は、滋賀県内と、その近くまで伺います。遠方はお問い合わせください。移動の距離で料金が変わります。交通費が要るときは、事前にお伝えします。</p>
+          </details>
+          <details><summary>どこまで付き合ってもらえますか？</summary>
+            <p>一回の催しで終わらせず、担い手の方が一人でも回せる形になるところまで、一緒に考えます。私がずっと張りついて回す形ではなく、あなたが自分で回せる形でお渡しするのが目標です。個別相談は1時間ごとです。</p>
+          </details>
+          <details><summary>道具を、自分たちの会で使ってもいいですか？ コピーしてもいいですか？</summary>
+            <p>どうぞ。使い方を覚えたら、あとはご自分の会や地域で、自由に使ってください。たかしまーじゃんのルール資料は、自由にコピーして使えます。</p>
+          </details>
+          <details><summary>相談した内容や、会の写真・名前は、HPやSNSに載りますか？</summary>
+            <p>相談の内容を、こちらから外に話すことはありません。会の様子やご相談を、発信の中で紹介したいときは、必ず先にご相談します。</p>
+          </details>
+          <details><summary>お寺で会を開いてみたいのですが、何から始めればいいですか？</summary>
+            <p>まず「箱（使える場所）」「もの（もうある道具・連絡の手段）」「ひと（関わる人）」を書き出すところからです。お寺には、もう箱があります。足りないところは、無理にそろえなくてかまいません。高島の会で実際に使っている道具と、会の始め方は、<a href="/dougu/">地域の道具</a>に無料で置いています。</p>
+          </details>
+        </div>
+
 
         <h2 class="event-section-title">相談する人</h2>
 
@@ -842,6 +892,14 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
           上のどれにも当てはまらないご質問は、<a href="/contact/">お問い合わせのページ</a>からどうぞ。
         </p>
 
+      </section>
+
+      <!-- まずは一言（全国版LINE・2026-10-28・同じ下書きの④。私たちについてのページにも同じ欄） -->
+      <section class="cs-ask" id="hitokoto">
+        <h2>まずは一言、どうぞ</h2>
+        <p>「こういうことはできる？」「何から始めたらいい？」の段階で大丈夫です。全国版の公式LINEで、こーせんAIに、地域活動のことをいつでも聞けます。会の始め方、人の集め方、続け方など、気軽にどうぞ。（無料・1日10回まで）</p>
+        <div class="event-cta"><a class="btn line" href="https://lin.ee/Z4hBJBe" target="_blank" rel="noopener">全国版の公式LINEを友だち追加する</a></div>
+        <p class="cs-note">高島の会（健康麻雀会など）のお知らせ・お申し込みは、<a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener">高島の公式LINE</a>へ。</p>
       </section>
     </main>
 
