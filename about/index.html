@@ -114,6 +114,14 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
 .tags{ display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:.6em 0; list-style:none; }
 .tags li{ background:#f6fbf7; border:1px solid #d9eedf; border-radius:999px; padding:5px 14px; font-weight:700; }
 section.wrap + section.wrap{ margin-top:20px; }
+/* 大事にしていること｜三方よし（2026-10-27）：左に絵・右に文。スマホでは絵の下に文 */
+.sanpou{ display:grid; grid-template-columns:300px 1fr; gap:22px; align-items:center; }
+.sanpou img{ width:100%; height:auto; display:block; }
+.yoshi{ list-style:none; padding:0; margin:.8em 0; display:grid; gap:8px; }
+.yoshi li{ display:flex; gap:12px; align-items:baseline; background:#fffdf3; border:1px solid #f0e3b0; border-radius:12px; padding:8px 14px; }
+.yoshi b{ flex:none; color:#8a5a00; }
+.note-s{ font-size:14px; color:#5d6673; }
+@media (max-width:760px){ .sanpou{ grid-template-columns:1fr; } .sanpou img{ max-width:320px; margin:0 auto; } .yoshi li{ flex-direction:column; gap:2px; } }
 </style>
 </head>
 <body>
@@ -164,10 +172,19 @@ section.wrap + section.wrap{ margin-top:20px; }
       </section>
 
       <section class="wrap">
-        <h2>大事にしていること</h2>
-        <div class="block">
-          <ul class="tags"><li>続ける前提で始めない</li><li>一人で回せる仕組みをつくる</li></ul>
-          <p>大きく始めて、続けるために無理をするより、一人でも回せる大きさで始める。そのほうが続く、と考えています。頼まれて作るものも、相手の方が自分で回せる形でお渡しします。</p>
+        <h2>大事にしていること｜三方よし</h2>
+        <div class="block sanpou">
+          <img src="/images/about/sanpouyoshi.webp" alt="布袋・ブッダ・地蔵が「自分よし」「相手よし」「世間よし」と指さしている絵" loading="lazy">
+          <div>
+            <p class="lead">近江商人の「三方よし」を、地域の活動でも大事にしています。</p>
+            <ul class="yoshi">
+              <li><b>自分よし</b><span>一人でも回せる大きさで始めて、楽しく続ける</span></li>
+              <li><b>相手よし</b><span>作って終わりにせず、相手の方が自分でできる形でお渡しする</span></li>
+              <li><b>世間よし</b><span>自分でできる人が、地域に増えていく</span></li>
+            </ul>
+            <p>頼まれて作るものも、私がずっと抱えるのではなく、相手の方が自分で直せる・回せる形でお渡しします。発信を続けているのも、道具をだれでも使える形で出しているのも、同じ理由です。地域で「できる人」が増えていけば、地域はどんどん良くなっていく。そう思っています。</p>
+            <p class="note-s">高島は、近江商人のひとつ「高島商人」のふるさとです。</p>
+          </div>
         </div>
       </section>
 
