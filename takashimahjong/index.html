@@ -6,7 +6,7 @@
   <script>/* 古い住所（github.io）で開かれたら、新しい住所の同じページへ移す（2026年10月24日、Cloudflare Pagesへ引っ越し） */if(/\.github\.io$/.test(location.hostname)){location.replace("https://asoberu-otera.pages.dev"+location.pathname+location.search+location.hash);}</script>
   <link rel="canonical" href="https://asoberu-otera.pages.dev/takashimahjong/" />
   <title>たかしまーじゃん | 遊べるお寺プロジェクト</title>
-  <meta name="description" content="牌だけあればOK。3〜5人で遊べる新しい麻雀「たかしまーじゃん」。初級・中級・上級のルール資料は無料で自由にコピーできます。" />
+  <meta name="description" content="牌だけあればOK。3〜5人で遊べる新しい麻雀「たかしまーじゃん」。初級・中級・上級のルール資料は無料で自由にコピーできます。ハンドブック（PDF）も登録なしで無料です。" />
   <style>
     :root{
       --sky:#22a7ff;   /* 青の下線 */
@@ -114,6 +114,23 @@
 </style>
 
 <style>
+/* ハンドブック（PDF）・遊び方の動画・全国版LINE（2026-10-29） */
+.books{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px; }
+@media (max-width:760px){ .books{ grid-template-columns:1fr; } }
+.book{ border:1px solid #d9eedf; background:#f6fbf7; border-radius:12px; padding:14px 16px; }
+.book h3{ margin:0 0 .2em; font-size:clamp(18px,2.2vw,20px); }
+.book p{ margin:.4em 0; }
+.btn.line{ background:#06C755; color:#fff; }
+.videos{ display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:start; }
+@media (max-width:760px){ .videos{ grid-template-columns:1fr; } }
+.video .frame{ position:relative; aspect-ratio:16/9; border-radius:10px; overflow:hidden; background:#111; }
+.video .frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+.video .vt{ margin:.4em 0 0; font-weight:700; }
+.video.empty{ border:1px dashed #d9dee5; border-radius:10px; padding:10px 12px; }
+.video.empty .vt{ margin:0; display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between; }
+</style>
+
+<style>
 /* ===== メニューを5つ＋小さな2段目にした（2026-10-21） ===== */
 nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
 .subnav{ background:#fffdf3; border-bottom:1px solid #f0e3b0; }
@@ -147,7 +164,7 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
         <h2>たかしまーじゃん</h2>
         <div class="block">
           <p class="lead">牌だけあればOK。3〜5人で遊べる、新しい麻雀。</p>
-          <p><strong>た</strong>のしい！　<strong>か</strong>んたん！　<strong>し</strong>ょうがい（生涯）できる！<br>たかしまーじゃんは、滋賀県高島市の遊べるお寺プロジェクトが考えた、麻雀をもとにした遊びです。山は作らず、牌を伏せて真ん中に広げるだけ。捨てるときは牌の名前を声に出すので、遊んでいるうちに自然と牌の名前を覚えます。</p>
+          <p><strong>た</strong>のしい！　<strong>か</strong>んたん！　<strong>し</strong>ょうがい（生涯）できる！<br>たかしまーじゃんは、滋賀県高島市で生まれた、麻雀をもとにした遊びです。山は作らず、牌を伏せて真ん中に広げるだけ。捨てるときは牌の名前を声に出すので、遊んでいるうちに自然と牌の名前を覚えます。</p>
           <div class="media-1 small"><figure><img src="/images/takashimahjong/chirashi-omote.jpg" alt="たかしまーじゃんのチラシ（表）たのしい・かんたん・生涯できる。高島で生まれた、新しい麻雀。"></figure></div>
         </div>
       </section>
@@ -178,7 +195,7 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
       </section>
 
       <section class="wrap" style="margin-top:20px;" id="rules">
-        <h2>ルール資料（無料）</h2>
+        <h2>ルール資料（無料・登録なし）</h2>
         <div class="block">
           <p>押すと大きな画像が開きます。保存・印刷・コピーして、自由に使ってください。</p>
           <div class="sheets">
@@ -187,24 +204,65 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
             <a href="/images/takashimahjong/jokyu.jpg" target="_blank" rel="noopener"><img src="/images/takashimahjong/jokyu.jpg" alt="たかしまーじゃん 上級のルール"><div class="cap">上級</div></a>
             <a href="/images/takashimahjong/pai-yomikata.jpg" target="_blank" rel="noopener"><img src="/images/takashimahjong/pai-yomikata.jpg" alt="麻雀牌 読み方表"><div class="cap">牌の読み方表</div></a>
           </div>
-          <p style="margin-top:14px;">ハンドブック（PDF）　<span class="soon">準備中</span></p>
-          <p>遊び方の動画　<span class="soon">準備中</span></p>
+          <!-- PDFは版を上げても同じファイル名のまま中身だけ差しかえる（ボタンは直さなくてよい） -->
+          <div class="books" id="handbook">
+            <div class="book">
+              <h3>たかしまーじゃん ハンドブック</h3>
+              <p>初級・中級・上級の遊び方と、教えるときの進め方・声のかけ方・よくある質問をまとめた本です。</p>
+              <div class="cta"><a class="btn primary" href="/takashimahjong/handbook.pdf" target="_blank" rel="noopener">ハンドブックを開く（PDF）</a></div>
+              <p class="note-s">自分たちで遊ぶための印刷・コピーは、自由にどうぞ。配布する場合は、お問い合わせください。</p>
+            </div>
+            <div class="book">
+              <h3>一般の麻雀へのステップアップ</h3>
+              <p>上級まで進んだ方が、ふつうの麻雀へ移るときの資料です（教える人向け）。山の作り方・役・カン・フリテン・点数を、1つずつ足していきます。</p>
+              <div class="cta"><a class="btn primary" href="/takashimahjong/ippan-mahjong.pdf" target="_blank" rel="noopener">ステップアップを開く（PDF）</a></div>
+            </div>
+          </div>
         </div>
       </section>
+
+      <section class="wrap" style="margin-top:20px;" id="douga">
+        <h2>遊び方の動画</h2>
+        <div class="block">
+          <p>見ながら、そのまま遊べる短い動画です。</p>
+          <!-- YouTubeに上げたら data-yt に住所（https://youtu.be/… など）を入れるだけで、動画が出る。空のあいだは「準備中」 -->
+          <div class="videos">
+            <div class="video" data-yt=""><p class="vt">たかしまーじゃんって何？ <span class="soon">準備中</span></p></div>
+            <div class="video" data-yt=""><p class="vt">初級① 牌と席 <span class="soon">準備中</span></p></div>
+            <div class="video" data-yt=""><p class="vt">初級② 遊び方 <span class="soon">準備中</span></p></div>
+            <div class="video" data-yt=""><p class="vt">中級 チーとポン <span class="soon">準備中</span></p></div>
+            <div class="video" data-yt=""><p class="vt">上級 役と点数 <span class="soon">準備中</span></p></div>
+          </div>
+        </div>
+      </section>
+      <script>
+      document.querySelectorAll('.video[data-yt]').forEach(function(v){
+        var s = v.getAttribute('data-yt').trim();
+        var m = s.match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/|live\/)([\w-]{11})/) || s.match(/^([\w-]{11})$/);
+        if(!m){ v.classList.add('empty'); return; }
+        var t = v.querySelector('.vt'), soon = t.querySelector('.soon');
+        if(soon) soon.remove();
+        var f = document.createElement('div'); f.className = 'frame';
+        f.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + m[1] + '?rel=0" title="' + t.textContent.trim() + '" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+        v.insertBefore(f, t);
+      });
+      </script>
 
       <section class="wrap" style="margin-top:20px;">
         <h2>はじめ方</h2>
         <div class="block">
           <ol class="steps">
-            <li><strong>遊び方を知る</strong>：このページのルール資料を見る。高島市内なら、講習会・出前講座に伺います。高島市外なら、オンラインで説明します</li>
+            <li><strong>遊び方を知る</strong>：このページのルール資料とハンドブックを見る。高島市内なら、講習会・出前講座に伺います。高島市外なら、オンラインで説明します</li>
             <li><strong>資料を用意する</strong>：上のルール資料を保存・印刷する（無料・自由にコピーできます）</li>
             <li><strong>ふつうの麻雀牌を用意する</strong></li>
             <li><strong>あとは、ずっと遊べる</strong></li>
           </ol>
+          <p>遊び方で分からないことは、全国版LINEの「こーせんAIに聞く」から（無料・1日10回まで）</p>
           <div class="cta">
-            <span class="btn ghost" style="cursor:default;">公式LINEで受け取る（準備中）</span>
+            <a class="btn line" href="https://lin.ee/Z4hBJBe" target="_blank" rel="noopener">全国版の公式LINEを友だち追加する</a>
             <a class="btn primary" href="/contact/">講習会・出前講座のお問い合わせ</a>
           </div>
+          <p class="note-s" style="margin-top:12px;">新しい版や動画のお知らせは、メールで届きます（Substack・無料）　<a href="https://kosen3.substack.com/subscribe" target="_blank" rel="noopener">お知らせを受け取る</a></p>
           <p class="note-s">考案：遊べるお寺プロジェクト（滋賀県高島市）</p>
         </div>
       </section>
