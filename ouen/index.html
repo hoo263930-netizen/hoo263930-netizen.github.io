@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>/* 古い住所（github.io）で開かれたら、新しい住所の同じページへ移す（2026年10月24日、Cloudflare Pagesへ引っ越し） */if(/\.github\.io$/.test(location.hostname)){location.replace("https://asoberu-otera.pages.dev"+location.pathname+location.search+location.hash);}</script>
+  <link rel="canonical" href="https://asoberu-otera.pages.dev/ouen/" />
+  <title>応援・お店 | 遊べるお寺プロジェクト</title>
+  <meta name="description" content="遊べるお寺プロジェクト（滋賀県高島市）を応援していただける方へ。本（Kindle・紙）、寄付の振込先、メールのお知らせ、無料の配布物、つながる窓口をまとめています。" />
+  <style>
+    :root{
+      --sky:#22a7ff;   /* 青の下線 */
+      --sand:#f7ce52;  /* 両脇の黄 */
+      --ink:#2b2b2b;
+      --paper:#fff;
+      --maxw:1100px;
+      --rail:16px;
+    }
+    @media (min-width:900px){ :root{ --rail:24px; } }
+
+    /* ベース（トップ/イベントと同じ） */
+    html,body{ margin:0; padding:0; color:var(--ink); line-height:1.75; font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+    body{ background:var(--sand); }
+    .container{ max-width:var(--maxw); margin:0 auto; background:var(--paper); min-height:100vh; box-shadow:0 0 6px rgba(0,0,0,.05); }
+
+    header{ background:#fff; border-bottom:2px solid var(--sand); padding:0 var(--rail); }
+    .visually-hidden{ position:absolute; left:-9999px; }
+
+    /* ナビ（共通スタイル） */
+    nav{ background:#fff; position:relative; border-bottom:2px solid var(--sand); }
+    nav::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:3px; background:var(--sky); }
+    nav .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--rail); display:flex; gap:0; justify-content:center; overflow:auto; }
+    nav a{
+      color:#333; text-decoration:none;
+      padding:18px clamp(14px,2.6vw,28px);
+      font-weight:700; font-size:clamp(18px,2.2vw,22px);
+      white-space:nowrap;
+    }
+    nav a + a{ border-left:2px solid #ddd; }
+    nav a:hover{ background:#fafafa; }
+
+    /* 本文レイアウト */
+    main{ padding:28px var(--rail) 56px; }
+    h2{ margin:.2em 0 .6em; font-size:clamp(20px,2.8vw,26px); }
+    p{ margin:.6em 0; }
+
+    /* ブロック */
+    .wrap{ max-width:var(--maxw); margin:0 auto; }
+    .block{ border:1px solid #dfe6ee; border-radius:14px; padding:18px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.05); }
+
+    /* バッジ */
+    .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 8px; }
+    .badge{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; background:#ffeaa8; color:#523e00; }
+
+    /* 画像 */
+    .media-1{ margin:10px 0; }
+    .media-1 img, .media-2 img{ width:100%; height:auto; display:block; border-radius:12px; background:#f4f7ff; border:1px solid #e9eef3; }
+    .media-1.small{ max-width:520px; }
+    .media-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:10px 0; }
+    figure{ margin:0; }
+    figcaption{ font-size:13px; color:#5d6673; margin-top:6px; background:#fcfdff; padding:6px 8px; border-radius:8px; border:1px dashed #e6ecf7; }
+    @media (max-width:760px){ .media-2{ grid-template-columns:1fr; } .media-1.small{ max-width:100%; } }
+
+    /* ボタン */
+    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .btn{ display:inline-block; text-decoration:none; font-weight:700; padding:.7rem 1.1rem; border-radius:999px; }
+    .btn.primary{ background:#36b37e; color:#fff; }
+    .btn.ghost{ background:#fff; color:#222; border:1px solid #ddd; }
+    .btn.dark{ background:#222; color:#fff; }
+
+    /* フッター */
+    footer{ background:#111; color:#ddd; padding:16px var(--rail); text-align:center; font-size:.9rem; }
+    footer a{ color:#fff; }
+  
+    /* ===== ナビ：項目が7つになり、中央寄せのままだと先頭が画面外へ切れて
+       スクロールでも戻れなくなるため修正（2026-08-24） ===== */
+    nav .wrap{ justify-content:flex-start; }
+    nav .wrap > :first-child{ margin-left:auto; }
+    nav .wrap > :last-child{ margin-right:auto; }
+    /* 7項目だと元の文字サイズ・余白では枠（1100px）に収まらず右が切れるため詰める */
+    nav a{ padding:18px clamp(10px,1.6vw,20px); font-size:clamp(16px,1.6vw,20px); }
+    @media (max-width:860px){
+      /* 狭い画面では横スクロールにせず、折り返して7項目すべてを見せる。
+         隠れた項目はスクロールできることに気づかれないため。 */
+      nav .wrap{ flex-wrap:wrap; justify-content:center; overflow:visible; }
+      nav .wrap > :first-child{ margin-left:0; }
+      nav .wrap > :last-child{ margin-right:0; }
+      nav a{ padding:12px 14px; font-size:16px; }
+      nav a + a{ border-left:0; }
+    }
+    @media (max-width:420px){
+      nav a{ padding:9px 8px; font-size:14px; }
+    }
+</style>
+
+<style>
+/* ===== メニューを5つ＋小さな2段目にした（2026-10-21） ===== */
+nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
+.subnav{ background:#fffdf3; border-bottom:1px solid #f0e3b0; }
+.subnav .subwrap{ max-width:1100px; margin:0 auto; padding:8px 12px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.subnav a{ text-decoration:none; color:#333; font-weight:700; font-size:15px; line-height:1.4; padding:6px 14px; border-radius:999px; border:1px solid #e6d9a6; background:#fff; white-space:nowrap; }
+.subnav a[aria-current="page"]{ background:#f7ce52; border-color:#f7ce52; }
+@media (max-width:420px){ .subnav a{ font-size:14px; padding:5px 11px; } }
+</style>
+<style>
+/* 応援・お店（2026-10-29） */
+.lead{ font-size:clamp(17px,2.2vw,20px); font-weight:700; }
+.note-s{ font-size:14px; color:#5d6673; }
+.soon{ display:inline-block; padding:2px 10px; border-radius:999px; background:#eee; color:#666; font-weight:700; font-size:13px; }
+.cards{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:760px){ .cards{ grid-template-columns:1fr; } }
+.card{ border:1px solid #dfe6ee; border-radius:12px; padding:14px 16px; background:#fff; }
+.card .cat{ display:inline-block; padding:2px 10px; border-radius:999px; font-size:12px; font-weight:700; background:#ffeaa8; color:#523e00; }
+.card h3{ margin:.4em 0 .2em; font-size:clamp(18px,2.2vw,20px); line-height:1.5; }
+.card p{ margin:.4em 0; }
+.card.wait{ background:#fafafa; border-style:dashed; }
+.btn.line{ background:#06C755; color:#fff; }
+.bank{ width:100%; border-collapse:collapse; margin:6px 0 10px; }
+.bank th, .bank td{ text-align:left; padding:8px 10px; border-bottom:1px solid #e9eef3; vertical-align:top; }
+.bank th{ width:7.5em; color:#5d6673; font-weight:700; white-space:nowrap; }
+.bank td{ font-weight:700; }
+.bank .kana{ display:block; font-weight:400; font-size:14px; color:#5d6673; }
+@media (max-width:420px){ .bank th{ width:6em; padding:8px 6px; } .bank td{ padding:8px 6px; } }
+.plain{ padding-left:1.3em; } .plain li{ margin:.35em 0; }
+.links{ display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:10px; }
+.links a{ display:block; text-decoration:none; color:inherit; border:1px solid #dfe6ee; border-radius:12px; padding:10px 14px; background:#fff; }
+.links a b{ display:block; }
+.links a span{ font-size:14px; color:#5d6673; }
+.links a:hover{ background:#fafafa; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header><span class="visually-hidden">遊べるお寺プロジェクト</span></header>
+
+<nav aria-label="主なナビゲーション">
+  <div class="wrap">
+    <a href="/">ホーム</a>
+    <a href="/events/">参加する</a>
+    <a href="/dougu/">地域の道具</a>
+    <a href="/consult/">相談・依頼</a>
+    <a href="/project/" aria-current="page">私たちについて</a>
+  </div>
+</nav>
+<div class="subnav"><div class="subwrap">
+  <a href="/project/">プロジェクト</a>
+  <a href="/about/">やっている人</a>
+  <a href="/results/">実績</a>
+  <a href="/ouen/" aria-current="page">応援・お店</a>
+  <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener">活動報告 ↗</a>
+</div></div>
+
+    <main>
+      <section class="wrap">
+        <h2>応援・お店</h2>
+        <div class="block">
+          <p class="lead">遊べるお寺プロジェクトを、応援していただける方へ。</p>
+          <p>地域の担い手が疲れてしまい、地域の活動が小さくなっています。だからこそ、個人の活動で、小さくコツコツと続けて、地域を元気にしていきたい。滋賀県高島市で、健康麻雀や、いろんな国の文化にふれるカフェ、チラシ作りの講座などを開いています。</p>
+          <p>本を手に取っていただくこと、寄付、そしてメールの登録や、会に来ていただくこと。どれも、この活動を続ける力になります。</p>
+        </div>
+      </section>
+
+      <section class="wrap" style="margin-top:20px;" id="shikata">
+        <h2>応援のしかた</h2>
+        <div class="cards">
+          <div class="card" id="hon">
+            <span class="cat">本</span>
+            <h3>個人で小さく始めて、コツコツ続ける活動のつくり方</h3>
+            <p class="note-s">――地域で疲れないための設計と思考（久我光聖）</p>
+            <p>地域の活動を、ひとりで小さく始めて、疲れずに続けるための考え方と組み立て方をまとめた本です。</p>
+            <div class="cta">
+              <a class="btn primary" href="https://www.amazon.co.jp/dp/B0GJNP4N2N" target="_blank" rel="noopener">Kindle（480円）</a>
+              <a class="btn ghost" href="https://www.amazon.co.jp/dp/B0GJPKBFMV" target="_blank" rel="noopener">紙の本（1,000円）</a>
+            </div>
+            <p class="note-s">どちらもAmazonのページが開きます。</p>
+          </div>
+          <div class="card" id="kifu-card">
+            <span class="cat">寄付</span>
+            <h3>寄付で応援する</h3>
+            <p>金額は自由です。下の振込先へお願いします。名義は「遊べるお寺プロジェクト」（個人事業）です。</p>
+            <div class="cta"><a class="btn primary" href="#kifu">振込先を見る</a></div>
+          </div>
+          <div class="card">
+            <span class="cat">無料</span>
+            <h3>お知らせをメールで受け取る</h3>
+            <p>活動の話や、新しい配布物のお知らせを、メール（Substack）でお届けします。読んでいただけることも、大きな応援です。</p>
+            <div class="cta"><a class="btn primary" href="https://kosen3.substack.com/subscribe" target="_blank" rel="noopener">メールで受け取る</a></div>
+          </div>
+          <div class="card wait">
+            <span class="cat">グッズ</span>
+            <h3>遊べるお寺のグッズ <span class="soon">準備中</span></h3>
+            <p>仏さまのキャラクターたちのグッズを、SUZURIで準備しています。並んだら、ここからご案内します。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap" style="margin-top:20px;" id="kifu">
+        <h2>寄付の振込先</h2>
+        <div class="block">
+          <table class="bank">
+            <tr><th>銀行</th><td>GMOあおぞらネット銀行<span class="kana">金融機関コード 0310</span><span class="kana">※「あおぞら銀行」とは別の銀行です</span></td></tr>
+            <tr><th>支店</th><td>ビジネス第二支店<span class="kana">支店番号 202</span></td></tr>
+            <tr><th>種類</th><td>普通</td></tr>
+            <tr><th>口座番号</th><td>1128731</td></tr>
+            <tr><th>名義</th><td>遊べるお寺プロジェクト　久我 光聖<span class="kana">アソベルオテラプロジエクト　クガ　コウシヨウ</span></td></tr>
+          </table>
+          <ul class="plain">
+            <li>いただいた寄付は、地域の会の道具や、無料の配布物づくりに使わせていただきます。</li>
+            <li>お振込みのあと、よろしければ<a href="/contact/">お問い合わせ</a>か公式LINEから一言いただけると、お礼をお伝えできます。</li>
+            <li class="note-s">個人の事業のため、寄付金控除（税金の控除）の対象にはなりません。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="wrap" style="margin-top:20px;" id="haifu">
+        <h2>無料で使える配布物</h2>
+        <div class="block">
+          <p>高島の会で実際に使っている道具を、無料・登録なしで置いています。たかしまーじゃんのルール資料（遊び方のハンドブックも、無料のPDFで置きます）、イベントの始め方からチラシ・記録まで付き合うAIの手引き「伴走」、集まりで使えるおみくじなど。</p>
+          <div class="cta">
+            <a class="btn primary" href="/dougu/">地域の道具を見る</a>
+            <a class="btn ghost" href="/takashimahjong/">たかしまーじゃん</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap" style="margin-top:20px;" id="tsunagaru">
+        <h2>つながる</h2>
+        <div class="block">
+          <div class="links">
+            <a href="https://kosen3.substack.com/subscribe" target="_blank" rel="noopener"><b>メール（Substack）</b><span>活動の話・新しい配布物のお知らせ</span></a>
+            <a href="https://lin.ee/Z4hBJBe" target="_blank" rel="noopener"><b>全国版の公式LINE</b><span>こーせんAIに、地域活動のことを聞ける</span></a>
+            <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener"><b>高島の公式LINE</b><span>高島の会のお知らせ・お申し込み</span></a>
+            <a href="https://www.youtube.com/@KosenCH" target="_blank" rel="noopener"><b>YouTube</b><span>会の様子・やり方の動画</span></a>
+            <a href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener"><b>Instagram</b><span>高島の会の告知と写真</span></a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:0 0 10px;">
+        <a href="https://lin.ee/FKUeKVH" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:#06C755;color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">公式LINE</a>
+        <a href="https://www.instagram.com/asoberu_otera/" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:linear-gradient(100deg,#E8853C 0%,#D14C7A 55%,#9B4BC4 100%);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">Instagram</a>
+        <a href="https://note.com/loyal_dill1011" target="_blank" rel="noopener" style="display:inline-block;padding:6px 18px;border-radius:999px;background:#41C9B4;color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;">活動報告（note）</a>
+        <a href="/ouen/" style="display:inline-block;padding:6px 18px;border-radius:999px;background:#f7ce52;color:#2b2b2b;text-decoration:none;font-weight:700;font-size:.86rem;">応援・お店</a>
+      </div>
+      © 2025 遊べるお寺プロジェクト
+    </footer>
+  </div>
+</body>
+</html>
