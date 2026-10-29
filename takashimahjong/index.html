@@ -60,6 +60,8 @@
     figure{ margin:0; }
     figcaption{ font-size:13px; color:#5d6673; margin-top:6px; background:#fcfdff; padding:6px 8px; border-radius:8px; border:1px dashed #e6ecf7; }
     @media (max-width:760px){ .media-2{ grid-template-columns:1fr; } .media-1.small{ max-width:100%; } }
+    .media-2.keep2{ grid-template-columns:1fr 1fr; max-width:900px; }
+    .media-2.keep2 a{ display:block; }
 
     /* ボタン */
     .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
@@ -168,7 +170,10 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
         <div class="block">
           <p class="lead">牌だけあればOK。3〜5人で遊べる、新しい麻雀。</p>
           <p><strong>た</strong>のしい！　<strong>か</strong>んたん！　<strong>し</strong>ょうがい（生涯）できる！<br>たかしまーじゃんは、滋賀県高島市で生まれた、麻雀をもとにした遊びです。山は作らず、牌を伏せて真ん中に広げるだけ。捨てるときは牌の名前を声に出すので、遊んでいるうちに自然と牌の名前を覚えます。</p>
-          <div class="media-1 small"><figure><img src="/images/takashimahjong/chirashi-omote.jpg" alt="たかしまーじゃんのチラシ（表）たのしい・かんたん・生涯できる。高島で生まれた、新しい麻雀。"></figure></div>
+          <div class="media-2 keep2">
+            <a href="/images/takashimahjong/chirashi-omote.jpg" target="_blank" rel="noopener"><figure><img src="/images/takashimahjong/chirashi-omote.jpg" alt="たかしまーじゃんのチラシ（表）たのしい・かんたん・生涯できる。高島で生まれた、新しい麻雀。"></figure></a>
+            <a href="/images/takashimahjong/chirashi-ura.jpg" target="_blank" rel="noopener"><figure><img src="/images/takashimahjong/chirashi-ura.jpg" alt="たかしまーじゃんのチラシ（裏）初級・中級・上級、そしてふつうの麻雀へ。はじめ方。"></figure></a>
+          </div>
         </div>
       </section>
 
@@ -188,7 +193,6 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
       <section class="wrap" style="margin-top:20px;">
         <h2>初級・中級・上級、そしてふつうの麻雀へ</h2>
         <div class="block">
-          <div class="media-1 small"><figure><img src="/images/takashimahjong/chirashi-ura.jpg" alt="たかしまーじゃんのチラシ（裏）初級・中級・上級、そしてふつうの麻雀へ。はじめ方。"></figure></div>
           <ul>
             <li><strong>初級</strong>：4枚からはじめる。上がるたびに3枚ずつ増えて、13枚で上がったら勝ち</li>
             <li><strong>中級</strong>：13枚で、チー・ポン。上がった回数が多い人の勝ち</li>
