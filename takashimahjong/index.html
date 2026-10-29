@@ -120,6 +120,9 @@
 .book{ border:1px solid #d9eedf; background:#f6fbf7; border-radius:12px; padding:14px 16px; }
 .book h3{ margin:0 0 .2em; font-size:clamp(18px,2.2vw,20px); }
 .book p{ margin:.4em 0; }
+.book.with-cover{ display:grid; grid-template-columns:120px 1fr; gap:14px; align-items:start; }
+.book .cover img{ width:100%; height:auto; display:block; border-radius:8px; border:1px solid #e9eef3; }
+@media (max-width:420px){ .book.with-cover{ grid-template-columns:88px 1fr; gap:10px; } }
 .btn.line{ background:#06C755; color:#fff; }
 .videos{ display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:start; }
 @media (max-width:760px){ .videos{ grid-template-columns:1fr; } }
@@ -206,11 +209,19 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
           </div>
           <!-- PDFは版を上げても同じファイル名のまま中身だけ差しかえる（ボタンは直さなくてよい） -->
           <div class="books" id="handbook">
-            <div class="book">
-              <h3>たかしまーじゃん ハンドブック</h3>
-              <p>初級・中級・上級の遊び方と、教えるときの進め方・声のかけ方・よくある質問をまとめた本です。</p>
-              <div class="cta"><a class="btn primary" href="/takashimahjong/handbook.pdf" target="_blank" rel="noopener">ハンドブックを開く（PDF）</a></div>
-              <p class="note-s">自分たちで遊ぶための印刷・コピーは、自由にどうぞ。配布する場合は、お問い合わせください。</p>
+            <div class="book with-cover">
+              <a class="cover" href="/takashimahjong/handbook.pdf" target="_blank" rel="noopener"><img src="/images/takashimahjong/chirashi-omote.jpg" alt="たかしまーじゃん ハンドブックの表紙"></a>
+              <div>
+                <h3>たかしまーじゃん ハンドブック</h3>
+                <p>初級・中級・上級の遊び方と、教えるときの進め方・声のかけ方・よくある質問をまとめた本です。</p>
+                <div class="cta"><a class="btn primary" href="/takashimahjong/handbook.pdf" target="_blank" rel="noopener">ハンドブックを開く（PDF）</a></div>
+                <p class="note-s"><strong>PDFは、登録なしで無料でダウンロードできます。</strong>自分たちで遊ぶための印刷・コピーは、自由にどうぞ。配布する場合は、お問い合わせください。</p>
+                <!-- Kindleで出版したら、data-ebook（電子書籍）・data-print（紙の本）に住所を入れるだけで、ボタンが出る。空のあいだは何も出さない -->
+                <div class="kindle" data-ebook="" data-print="" hidden>
+                  <p class="note-s">紙の本・電子書籍（Kindle）でも読めます。手元に置きたい方、活動を応援してくださる方へ。</p>
+                  <div class="cta"></div>
+                </div>
+              </div>
             </div>
             <div class="book">
               <h3>一般の麻雀へのステップアップ</h3>
@@ -236,6 +247,13 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
         </div>
       </section>
       <script>
+      document.querySelectorAll('.kindle').forEach(function(k){
+        var e = (k.getAttribute('data-ebook')||'').trim(), p = (k.getAttribute('data-print')||'').trim(), c = k.querySelector('.cta');
+        if(!e && !p) return;
+        if(e) c.insertAdjacentHTML('beforeend', '<a class="btn ghost" href="' + e + '" target="_blank" rel="noopener">Kindle（電子書籍・500円）</a> ');
+        if(p) c.insertAdjacentHTML('beforeend', '<a class="btn ghost" href="' + p + '" target="_blank" rel="noopener">紙の本（1,650円）</a>');
+        k.hidden = false;
+      });
       document.querySelectorAll('.video[data-yt]').forEach(function(v){
         var s = v.getAttribute('data-yt').trim();
         var m = s.match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/|live\/)([\w-]{11})/) || s.match(/^([\w-]{11})$/);
