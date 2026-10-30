@@ -222,8 +222,9 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
                 <div class="cta"><a class="btn primary" href="/takashimahjong/handbook.pdf" target="_blank" rel="noopener">ハンドブックを開く（PDF）</a></div>
                 <p class="note-s"><strong>PDFは、登録なしで無料でダウンロードできます。</strong>自分たちで遊ぶための印刷・コピーは、自由にどうぞ。配布する場合は、お問い合わせください。</p>
                 <!-- Kindleで出版したら、data-ebook（電子書籍）・data-print（紙の本）に住所を入れるだけで、ボタンが出る。空のあいだは何も出さない -->
-                <div class="kindle" data-ebook="" data-print="" hidden>
-                  <p class="note-s">紙の本・電子書籍（Kindle）でも読めます。手元に置きたい方、活動を応援してくださる方へ。</p>
+                <!-- 電子書籍は2026年10月30日から販売中（B0HPR6ZK54）。紙の本を出すときは data-print に https://www.amazon.co.jp/dp/B0HPTMT1JJ を入れる（上の文も「紙の本・電子書籍」に変わる） -->
+                <div class="kindle" data-ebook="https://www.amazon.co.jp/dp/B0HPR6ZK54" data-print="" hidden>
+                  <p class="note-s"><span class="k-what">紙の本・電子書籍（Kindle）</span>でも読めます。<span class="k-who">手元に置きたい方、活動を応援してくださる方へ。</span></p>
                   <div class="cta"></div>
                 </div>
               </div>
@@ -255,6 +256,8 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
       document.querySelectorAll('.kindle').forEach(function(k){
         var e = (k.getAttribute('data-ebook')||'').trim(), p = (k.getAttribute('data-print')||'').trim(), c = k.querySelector('.cta');
         if(!e && !p) return;
+        if(!p){ k.querySelector('.k-what').textContent = '電子書籍（Kindle）'; k.querySelector('.k-who').textContent = '活動を応援してくださる方へ。'; }
+        if(!e){ k.querySelector('.k-what').textContent = '紙の本'; }
         if(e) c.insertAdjacentHTML('beforeend', '<a class="btn ghost" href="' + e + '" target="_blank" rel="noopener">Kindle（電子書籍・500円）</a> ');
         if(p) c.insertAdjacentHTML('beforeend', '<a class="btn ghost" href="' + p + '" target="_blank" rel="noopener">紙の本（1,650円）</a>');
         k.hidden = false;
