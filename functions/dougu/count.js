@@ -3,6 +3,9 @@ export async function onRequest({ env }) {
   const headers = { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" };
   if (!env.DL) return new Response(JSON.stringify({ note: "KV（DL）がまだつながっていません" }), { headers });
   const out = {};
-  for (const k of (await env.DL.list()).keys) out[k.name] = Number(await env.DL.get(k.name));
+  for (const k of (await env.DL.list()).keys) {
+    if (k.name.startsWith("go:")) continue; // 短いリンクの数（/go/count で見る・10/30）は出さない
+    out[k.name] = Number(await env.DL.get(k.name));
+  }
   return new Response(JSON.stringify(out, null, 1), { headers });
 }
