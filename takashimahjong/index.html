@@ -205,22 +205,23 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
         <h2>ルール資料（無料・登録なし）</h2>
         <div class="block">
           <p>押すと大きな画像が開きます。保存・印刷・コピーして、自由に使ってください。</p>
+          <!-- 資料のリンクは /takashimahjong/dl/名前 を通して、開いた回数を数える（2026年11月4日・数は /dougu/count）。資料を足したら functions/takashimahjong/dl/[name].js にも1行足す -->
           <div class="sheets">
-            <a href="/images/takashimahjong/shokyu.jpg" target="_blank" rel="noopener"><img src="/images/takashimahjong/shokyu.jpg" alt="たかしまーじゃん 初級のルール"><div class="cap">初級</div></a>
-            <a href="/images/takashimahjong/chukyu.jpg" target="_blank" rel="noopener"><img src="/images/takashimahjong/chukyu.jpg" alt="たかしまーじゃん 中級のルール"><div class="cap">中級</div></a>
-            <a href="/images/takashimahjong/jokyu.jpg" target="_blank" rel="noopener"><img src="/images/takashimahjong/jokyu.jpg" alt="たかしまーじゃん 上級のルール"><div class="cap">上級</div></a>
-            <a href="/images/takashimahjong/pai-yomikata.jpg" target="_blank" rel="noopener"><img src="/images/takashimahjong/pai-yomikata.jpg" alt="麻雀牌 読み方表"><div class="cap">牌の読み方表</div></a>
-            <a href="/images/takashimahjong/agari-rei.jpg" target="_blank" rel="noopener"><img src="/images/takashimahjong/agari-rei.jpg" alt="たかしまーじゃん あがり方の例（この1枚が来たら、あがり）"><div class="cap">あがり方の例</div></a>
+            <a href="/takashimahjong/dl/shokyu?from=hp" target="_blank" rel="noopener"><img src="/images/takashimahjong/shokyu.jpg" alt="たかしまーじゃん 初級のルール"><div class="cap">初級</div></a>
+            <a href="/takashimahjong/dl/chukyu?from=hp" target="_blank" rel="noopener"><img src="/images/takashimahjong/chukyu.jpg" alt="たかしまーじゃん 中級のルール"><div class="cap">中級</div></a>
+            <a href="/takashimahjong/dl/jokyu?from=hp" target="_blank" rel="noopener"><img src="/images/takashimahjong/jokyu.jpg" alt="たかしまーじゃん 上級のルール"><div class="cap">上級</div></a>
+            <a href="/takashimahjong/dl/yomikata?from=hp" target="_blank" rel="noopener"><img src="/images/takashimahjong/pai-yomikata.jpg" alt="麻雀牌 読み方表"><div class="cap">牌の読み方表</div></a>
+            <a href="/takashimahjong/dl/agari?from=hp" target="_blank" rel="noopener"><img src="/images/takashimahjong/agari-rei.jpg" alt="たかしまーじゃん あがり方の例（この1枚が来たら、あがり）"><div class="cap">あがり方の例</div></a>
           </div>
           <!-- PDFは版を上げても同じファイル名のまま中身だけ差しかえる（ボタンは直さなくてよい） -->
           <div class="books" id="handbook">
             <div class="book with-cover">
-              <a class="cover" href="/takashimahjong/handbook.pdf" target="_blank" rel="noopener"><img src="/images/takashimahjong/chirashi-omote.jpg" alt="たかしまーじゃん ハンドブックの表紙"></a>
+              <a class="cover" href="/takashimahjong/dl/handbook?from=hp" target="_blank" rel="noopener"><img src="/images/takashimahjong/chirashi-omote.jpg" alt="たかしまーじゃん ハンドブックの表紙"></a>
               <div>
                 <h3>たかしまーじゃん ハンドブック</h3>
                 <p>初級・中級・上級の遊び方と、教えるときの進め方・声のかけ方・よくある質問をまとめた本です。</p>
-                <div class="cta"><a class="btn primary" href="/takashimahjong/handbook.pdf" target="_blank" rel="noopener">ハンドブックを開く（PDF）</a></div>
-                <p class="note-s"><strong>PDFは、登録なしで無料でダウンロードできます。</strong>自分たちで遊ぶための印刷・コピーは、自由にどうぞ。配布する場合は、お問い合わせください。</p>
+                <div class="cta"><a class="btn primary" href="/takashimahjong/dl/handbook?from=hp" target="_blank" rel="noopener">ハンドブックを開く（PDF）</a></div>
+                <p class="note-s"><strong>PDFは、登録なしで無料でダウンロードできます。</strong>自由にコピー、配布できます。</p>
                 <!-- Kindleで出版したら、data-ebook（電子書籍）・data-print（紙の本）に住所を入れるだけで、ボタンが出る。空のあいだは何も出さない -->
                 <!-- 電子書籍（B0HPR6ZK54）・紙の本（B0HPTMT1JJ）。紙だけ隠すときは data-print を空にする（上の文も「電子書籍（Kindle）」だけに変わる） -->
                 <div class="kindle" data-ebook="https://www.amazon.co.jp/dp/B0HPR6ZK54" data-print="https://www.amazon.co.jp/dp/B0HPTMT1JJ" hidden>
@@ -232,7 +233,7 @@ nav a[aria-current="page"]{ color:#0b6db3; background:#f2f9ff; }
             <div class="book">
               <h3>一般の麻雀へのステップアップ</h3>
               <p>上級まで進んだ方が、ふつうの麻雀へ移るときの資料です（教える人向け）。山の作り方・役・カン・フリテン・点数を、1つずつ足していきます。</p>
-              <div class="cta"><a class="btn primary" href="/takashimahjong/ippan-mahjong.pdf" target="_blank" rel="noopener">ステップアップを開く（PDF）</a></div>
+              <div class="cta"><a class="btn primary" href="/takashimahjong/dl/ippan?from=hp" target="_blank" rel="noopener">ステップアップを開く（PDF）</a></div>
             </div>
           </div>
         </div>

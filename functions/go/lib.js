@@ -3,6 +3,7 @@
 // 残すのは数だけ。だれが押したか（IP・端末・名前）は残さない
 // 置き場は伴走のダウンロード数と同じKV（DL）。鍵の名前は go:日付:行き先:印。数は metadata にも入れる（/go/count が一度に読めるように）
 // KV をつなぐまで・数えられないときも、行き先へは必ず送る
+// 資料を開いた数（takashimahjong/dl）も同じ形で数える。鍵の頭だけ dl にして、/go/count に混ざらないようにする（2026年11月4日）
 
 // 印の一覧。ここにない印は other、印なしは none にまとめる（へんな印で置き場が増えないように）
 const FROM = ["x", "threads", "notes", "post", "insta", "youtube", "note", "hp", "qr"];
@@ -14,13 +15,13 @@ export function fromOf(request) {
   return !raw ? "none" : FROM.includes(raw) ? raw : "other";
 }
 
-export function go({ env, request, waitUntil }, to, dest) {
+export function go({ env, request, waitUntil }, to, dest, kind = "go") {
   const from = fromOf(request);
   const ua = request.headers.get("user-agent") || "";
   const pre = (request.headers.get("sec-purpose") || "") + (request.headers.get("purpose") || "");
   if (env.DL && request.method === "GET" && ua && !BOT.test(ua) && !/prefetch/i.test(pre)) {
     const day = new Date(Date.now() + 9 * 36e5).toISOString().slice(0, 10);
-    const key = `go:${day}:${to}:${from}`;
+    const key = `${kind}:${day}:${to}:${from}`;
     waitUntil((async () => {
       try {
         const n = parseInt((await env.DL.get(key)) || "0", 10) + 1;
